@@ -2,6 +2,10 @@ import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { schemaTypes } from './sanity/schemas'
 
+// Sanity Configuration - hardcoded for reliability
+const projectId = '6qskaa98'
+const dataset = 'production'
+
 // Slot image pages for filtering
 const SLOT_PAGES = [
   { id: 'home', title: 'Home', icon: '🏠' },
@@ -17,8 +21,8 @@ export default defineConfig({
   name: 'default',
   title: 'THE YON CMS',
 
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'YOUR_PROJECT_ID',
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+  projectId,
+  dataset,
 
   basePath: '/studio',
 

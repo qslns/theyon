@@ -1,19 +1,28 @@
 import { createClient, type QueryParams } from 'next-sanity'
 
-// Use placeholder to prevent build errors when Sanity is not configured
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'placeholder'
-const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
+// Sanity Configuration
+export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '6qskaa98'
+export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
+export const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-01-01'
 const isProduction = process.env.NODE_ENV === 'production'
 
 // Singleton client instance
 export const client = createClient({
   projectId,
   dataset,
-  apiVersion: '2024-01-01',
+  apiVersion,
   useCdn: isProduction,
   perspective: 'published',
-  // Stale-while-revalidate for better performance
   stega: { enabled: false },
+})
+
+// Authenticated client for mutations (server-side only)
+export const writeClient = createClient({
+  projectId,
+  dataset,
+  apiVersion,
+  useCdn: false,
+  token: process.env.SANITY_API_TOKEN,
 })
 
 // Simple in-memory cache for SSR (cleared on each request in production)
