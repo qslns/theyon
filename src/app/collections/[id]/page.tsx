@@ -1,14 +1,16 @@
 'use client'
 
-import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import Footer from '@/components/Footer'
-import { useLightbox } from '@/components/ImageLightbox'
-
-// Custom easing for smooth animations
-const yonEase = [0.22, 1, 0.36, 1] as const
+import { Slot, AnnotationLabel } from '@/components/deconstructivist'
+import {
+  GlitchTitle,
+  LabelText,
+  WhisperText,
+  NumberTag,
+  ExperimentalText,
+} from '@/components/typography'
 
 // Collection data with enhanced image layouts
 const collectionsData: Record<string, {
@@ -91,81 +93,22 @@ const collectionsData: Record<string, {
   },
 }
 
-// Layout configurations
-const layoutStyles = {
-  full: 'w-full',
-  left: 'w-full md:w-[70%] md:mr-auto',
-  right: 'w-full md:w-[70%] md:ml-auto',
-  center: 'w-full md:w-[60%] md:mx-auto',
-  'overlap-left': 'w-full md:w-[45%] md:mr-auto md:-mt-32 md:ml-[5%]',
-  'overlap-right': 'w-full md:w-[45%] md:ml-auto md:-mt-32 md:mr-[5%]',
-}
 
-const sizeStyles = {
-  large: 'aspect-[3/4]',
-  medium: 'aspect-[4/5]',
-  small: 'aspect-[1/1]',
-}
-
-const variantStyles = {
-  light: 'bg-yon-platinum',
-  medium: 'bg-yon-silver',
-  dark: 'bg-yon-charcoal',
-}
-
-const variantTextStyles = {
-  light: 'text-yon-grey',
-  medium: 'text-yon-graphite',
-  dark: 'text-yon-silver',
-}
-
-// Animation variants
-const entryAnimations = [
-  { initial: { opacity: 0, y: 80 }, type: 'slideUp' },
-  { initial: { opacity: 0, x: -60 }, type: 'slideRight' },
-  { initial: { opacity: 0, x: 60 }, type: 'slideLeft' },
-  { initial: { opacity: 0, scale: 0.95 }, type: 'scaleIn' },
-  { initial: { opacity: 0, rotate: -3 }, type: 'rotateIn' },
-]
+// Slot sizes for gallery
+const slotSizes = ['large', 'medium', 'small', 'medium-wide', 'small-square'] as const
+const slotClips = ['irregular-1', 'torn-1', 'organic-1', 'torn-2', 'irregular-3', 'wave-1'] as const
+const rotations = [-2.5, 3, -1.5, 4, -3, 2]
+const decorations = ['tape-corner', 'pin', 'staple', 'corner-fold', 'tape-top', 'clip'] as const
 
 export default function CollectionDetailPage() {
   const params = useParams()
   const slug = params.id as string
   const collection = collectionsData[slug]
-  const { openLightbox } = useLightbox()
-
-  const heroRef = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
-  })
-
-  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.1])
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
-  const titleY = useTransform(scrollYProgress, [0, 1], [0, 100])
-
-  // Prepare images for lightbox
-  const lightboxImages = collection?.images.map((image, index) => ({
-    src: `/images/collections/${slug}/${String(image.id).padStart(2, '0')}.jpg`,
-    alt: `${collection.title} - ${image.caption || `Image ${image.id}`}`,
-    caption: image.caption,
-    captionKo: `${collection.title} NO.${collection.index}`,
-    width: 1200,
-    height: image.size === 'large' ? 1600 : image.size === 'medium' ? 1500 : 1200,
-  })) || []
-
-  const handleImageClick = (index: number) => {
-    openLightbox(lightboxImages, index)
-  }
 
   if (!collection) {
     return (
       <div className="min-h-screen bg-yon-white flex items-center justify-center">
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
+        <div className="text-center animate-fade-in">
           <h1 className="font-serif text-6xl md:text-7xl text-yon-platinum leading-none">404</h1>
           <p className="mt-4 text-lg text-yon-grey">Collection not found</p>
           <Link
@@ -174,173 +117,338 @@ export default function CollectionDetailPage() {
           >
             ← Back to Collections
           </Link>
-        </motion.div>
+        </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-yon-white">
+    <div className="min-h-screen bg-yon-white overflow-x-hidden">
       {/* ============================================
-          HERO SECTION - Fullscreen with Extreme Typography
+          HERO SECTION - Dense Deconstructivist Collage
           ============================================ */}
-      <section ref={heroRef} className="relative min-h-screen overflow-hidden">
-        {/* Background image placeholder */}
-        <motion.div
-          className="absolute inset-0 bg-yon-charcoal"
-          style={{ scale: heroScale }}
-        >
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="font-mono text-sm text-yon-grey/30 tracking-widest">HERO IMAGE</span>
-          </div>
-        </motion.div>
-
-        {/* Gradient overlays - enhanced */}
-        <div className="absolute inset-0 bg-gradient-to-t from-yon-black/70 via-yon-black/20 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-yon-black/30 to-transparent" />
-
-        {/* Subtle background letter */}
-        <motion.span
-          className="absolute top-[10%] right-[-5%] font-serif text-[20rem] md:text-[28rem] text-yon-white/[0.02] leading-none select-none pointer-events-none"
-          style={{ y: titleY }}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5, ease: yonEase }}
+      <section className="relative w-full overflow-hidden texture-grain" style={{ height: 'calc(100vh - 42px)' }}>
+        {/* Background typography */}
+        <span
+          className="absolute pointer-events-none select-none"
+          style={{
+            top: '10%',
+            right: '-15%',
+            fontSize: 'clamp(18rem, 45vw, 60rem)',
+            fontWeight: 100,
+            fontFamily: 'var(--font-serif), Georgia, serif',
+            opacity: 0.025,
+            lineHeight: 0.8,
+            color: '#0A0A0A',
+          }}
+          aria-hidden="true"
         >
           {collection.title.charAt(0)}
-        </motion.span>
+        </span>
 
-        {/* Decorative vertical line */}
-        <motion.div
-          className="absolute top-[15%] left-[8%] w-px h-[30vh] bg-gradient-to-b from-transparent via-yon-accent/40 to-transparent"
-          initial={{ scaleY: 0 }}
-          animate={{ scaleY: 1 }}
-          transition={{ duration: 1.2, delay: 0.4, ease: yonEase }}
+        {/* Secondary background - index */}
+        <span
+          className="absolute pointer-events-none select-none"
+          style={{
+            bottom: '15%',
+            left: '-5%',
+            fontSize: 'clamp(12rem, 30vw, 45rem)',
+            fontWeight: 100,
+            fontFamily: 'var(--font-mono), monospace',
+            opacity: 0.015,
+            letterSpacing: '0.2em',
+            color: '#8B7355',
+          }}
+          aria-hidden="true"
+        >
+          {collection.index}
+        </span>
+
+        {/* Hero Slots - 8 scattered */}
+        <Slot
+          label={`${collection.title} / MAIN`}
+          size="hero"
+          position="absolute"
+          top="5%"
+          left="-3%"
+          rotation={-2.5}
+          clip="irregular-1"
+          shadow="offset-xl"
+          zIndex={20}
+          bleed="left"
+          bleedAmount="lg"
+          annotationNumber={`${collection.index}-001`}
+          texture="grain"
         />
 
-        {/* Collection index tag */}
-        <motion.span
-          className="absolute top-[25%] left-[4%] font-mono text-[10px] text-yon-silver/40 tracking-[0.3em] -rotate-90 origin-left"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.9 }}
+        <Slot
+          label="DETAIL"
+          size="large"
+          position="absolute"
+          top="8%"
+          right="5%"
+          rotation={3}
+          clip="torn-1"
+          shadow="float"
+          zIndex={18}
+          decoration="tape-corner"
+          bleed="right"
+          bleedAmount="md"
+        />
+
+        <Slot
+          label="PROCESS"
+          size="medium"
+          position="absolute"
+          top="45%"
+          right="15%"
+          rotation={-4}
+          clip="organic-1"
+          shadow="dramatic"
+          zIndex={25}
+          overlapX={80}
+          decoration="staple"
+        />
+
+        <Slot
+          label="TEXTURE"
+          size="small"
+          position="absolute"
+          bottom="25%"
+          left="8%"
+          rotation={6}
+          clip="torn-2"
+          shadow="offset"
+          zIndex={22}
+          grayscale
+          decoration="pin"
+        />
+
+        <Slot
+          label="MATERIAL"
+          size="swatch"
+          position="absolute"
+          top="65%"
+          left="35%"
+          rotation={-10}
+          border="rough"
+          zIndex={28}
+          decoration="tape-top"
+        />
+
+        <Slot
+          label="SAMPLE"
+          size="swatch"
+          position="absolute"
+          top="70%"
+          left="42%"
+          rotation={8}
+          border="accent"
+          zIndex={29}
+          overlapX={25}
+        />
+
+        <Slot
+          label="REF"
+          size="tiny"
+          position="absolute"
+          top="55%"
+          right="-2%"
+          rotation={-12}
+          clip="irregular-4"
+          zIndex={15}
+          bleed="right"
+          bleedAmount="md"
+        />
+
+        <Slot
+          label={collection.index}
+          size="micro"
+          position="absolute"
+          top="35%"
+          left="50%"
+          rotation={15}
+          border="thin"
+          zIndex={30}
+          decoration="pin-red"
+        />
+
+        {/* Annotations */}
+        <AnnotationLabel
+          text={collection.title}
+          position={{ top: '12%', left: '25%' }}
+          rotation={-3}
+          variant="tag"
+        />
+        <AnnotationLabel
+          text="in progress"
+          position={{ top: '50%', left: '5%' }}
+          rotation={5}
+          variant="handwritten"
+        />
+        <AnnotationLabel
+          text={`NO.${collection.index}`}
+          position={{ bottom: '35%', right: '30%' }}
+          rotation={-2}
+          variant="number"
+        />
+
+        {/* Title card - bottom left */}
+        <div
+          className="absolute z-40"
+          style={{
+            bottom: '8%',
+            left: '6%',
+            transform: 'rotate(-2deg)',
+          }}
         >
-          COLLECTION.{collection.index}
-        </motion.span>
+          <LabelText text="Collection" style={{ fontSize: '0.55rem' }} />
 
-        {/* Hero content - Extreme Typography */}
-        <motion.div
-          className="absolute bottom-0 left-0 right-0 p-8 md:p-12 lg:p-20"
-          style={{ y: titleY, opacity: heroOpacity }}
-        >
-          <div className="max-w-7xl mx-auto">
-            {/* Collection number tag with accent */}
-            <motion.div
-              className="flex items-center gap-4 mb-6"
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: yonEase }}
-            >
-              <span className="w-10 h-px bg-yon-accent" />
-              <span className="font-mono text-[11px] text-yon-accent tracking-[0.3em] uppercase">
-                NO. {collection.index}
-              </span>
-            </motion.div>
+          <GlitchTitle
+            text={collection.title}
+            size="heading"
+            glitchOffset={5}
+            charRotation
+            rotationIntensity={3}
+            className="mt-3"
+            style={{
+              fontSize: 'clamp(2rem, 6vw, 4.5rem)',
+              letterSpacing: '-0.03em',
+            }}
+            as="h1"
+          />
 
-            {/* Main Title - Restrained, elegant */}
-            <motion.h1
-              className="relative"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <motion.span
-                className="block font-serif text-3xl md:text-4xl lg:text-5xl text-yon-white leading-tight tracking-[-0.02em]"
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: 0.5, ease: yonEase }}
-              >
-                {collection.title}
-              </motion.span>
-            </motion.h1>
-
+          <div className="mt-4 flex items-center gap-3">
+            <NumberTag index={parseInt(collection.index)} />
+            <span className="w-6 h-px bg-yon-accent/40" />
+            <ExperimentalText
+              text={collection.description.split('.')[0]}
+              variant="caption"
+              effect="scatter"
+              intensity="subtle"
+              style={{ maxWidth: '280px', fontSize: '0.65rem' }}
+            />
           </div>
-        </motion.div>
+        </div>
 
+        {/* Scroll hint */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40">
+          <WhisperText text="Scroll" style={{ fontSize: '0.5rem' }} />
+          <span className="block text-yon-grey/30 mt-2 text-center">↓</span>
+        </div>
       </section>
 
 
       {/* ============================================
-          IMAGE GALLERY - Varied Layouts
+          IMAGE GALLERY - Dense Moodboard Style
           ============================================ */}
-      <section className="pb-32 md:pb-48 px-6 md:px-12">
+      <section className="relative py-24 px-8 md:px-16 overflow-hidden texture-paper">
+        {/* Background */}
+        <span
+          className="absolute pointer-events-none select-none"
+          style={{
+            top: '5%',
+            left: '-10%',
+            fontSize: 'clamp(10rem, 25vw, 35rem)',
+            fontWeight: 100,
+            fontFamily: 'var(--font-serif), Georgia, serif',
+            opacity: 0.02,
+            color: '#0A0A0A',
+            transform: 'rotate(-5deg)',
+          }}
+          aria-hidden="true"
+        >
+          LOOKS
+        </span>
+
         <div className="max-w-7xl mx-auto">
-          {collection.images.map((image, index) => {
-            const animation = entryAnimations[index % entryAnimations.length]
-            const rotations = [-1.5, 2, -0.8, 1.5, -2, 1]
-            const rotation = rotations[index % rotations.length]
+          <LabelText text="Gallery" className="mb-12" style={{ fontSize: '0.55rem' }} />
 
-            return (
-              <motion.div
-                key={image.id}
-                className={`mb-16 md:mb-24 ${layoutStyles[image.layout]}`}
-                initial={animation.initial}
-                whileInView={{ opacity: 1, y: 0, x: 0, scale: 1, rotate: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
-              >
-                <button
-                  onClick={() => handleImageClick(index)}
-                  className={`relative ${sizeStyles[image.size]} ${variantStyles[image.variant]} overflow-hidden transition-shadow duration-500 hover:shadow-2xl cursor-zoom-in group w-full`}
-                  style={{ transform: `rotate(${rotation}deg)` }}
-                  data-cursor="image"
-                  aria-label={`View ${image.caption || `Image ${image.id}`}`}
-                >
-                  {/* Placeholder content */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className={`font-mono text-xs tracking-widest ${variantTextStyles[image.variant]}`}>
-                      IMAGE {String(image.id).padStart(2, '0')}
-                    </span>
-                  </div>
+          {/* Image grid with Slots */}
+          <div className="relative" style={{ minHeight: '150vh' }}>
+            {collection.images.map((image, index) => {
+              const positions = [
+                { top: '0', left: '0' },
+                { top: '5%', right: '10%' },
+                { top: '25%', left: '25%' },
+                { top: '35%', right: '5%' },
+                { top: '55%', left: '5%' },
+                { top: '65%', right: '20%' },
+              ]
+              const pos = positions[index % positions.length]
 
-                  {/* Index number */}
-                  <div className="absolute top-6 left-6">
-                    <span className={`font-mono text-[10px] tracking-wider ${variantTextStyles[image.variant]}`}>
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                  </div>
+              return (
+                <Slot
+                  key={image.id}
+                  label={image.caption || `LOOK ${String(image.id).padStart(2, '0')}`}
+                  size={slotSizes[index % slotSizes.length]}
+                  position="absolute"
+                  top={pos.top}
+                  left={pos.left}
+                  right={pos.right}
+                  rotation={rotations[index % rotations.length]}
+                  clip={slotClips[index % slotClips.length]}
+                  shadow={index === 0 ? 'offset-lg' : index % 2 === 0 ? 'float' : 'offset'}
+                  zIndex={15 + index}
+                  decoration={decorations[index % decorations.length]}
+                  annotationNumber={`${collection.index}-${String(image.id).padStart(3, '0')}`}
+                  grayscale={index % 4 === 3}
+                  sepia={index % 5 === 4}
+                />
+              )
+            })}
+          </div>
 
-                  {/* Hover overlay with zoom icon */}
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-                    style={{ backgroundColor: 'rgba(10, 10, 10, 0.3)' }}
-                  >
-                    <svg
-                      width="32"
-                      height="32"
-                      viewBox="0 0 32 32"
-                      fill="none"
-                      stroke="#FAFAFA"
-                      strokeWidth="1.5"
-                    >
-                      <circle cx="14" cy="14" r="8" />
-                      <line x1="20" y1="20" x2="26" y2="26" />
-                      <line x1="14" y1="11" x2="14" y2="17" />
-                      <line x1="11" y1="14" x2="17" y2="14" />
-                    </svg>
-                  </div>
-                </button>
+          {/* Concept section */}
+          <div className="mt-32 max-w-2xl" style={{ transform: 'rotate(-0.5deg)' }}>
+            <LabelText text="Concept" style={{ fontSize: '0.55rem', color: 'rgba(139, 115, 85, 0.6)' }} />
+            <p
+              className="font-sans text-yon-grey/70 mt-6 leading-relaxed"
+              style={{ fontSize: '0.95rem' }}
+            >
+              {collection.concept}
+            </p>
+          </div>
 
-                {/* Caption */}
-                {image.caption && (
-                  <p className="mt-4 font-mono text-xs text-yon-grey tracking-wider">
-                    {image.caption}
-                  </p>
-                )}
-              </motion.div>
-            )
-          })}
+          {/* Techniques & Materials */}
+          <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div style={{ transform: 'rotate(0.3deg)' }}>
+              <LabelText text="Techniques" style={{ fontSize: '0.55rem', color: 'rgba(139, 115, 85, 0.6)' }} />
+              <ul className="mt-4 space-y-2">
+                {collection.techniques.map((technique, i) => (
+                  <li key={i} className="font-mono text-yon-grey/60" style={{ fontSize: '0.75rem' }}>
+                    {technique}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div style={{ transform: 'rotate(-0.3deg)' }}>
+              <LabelText text="Materials" style={{ fontSize: '0.55rem', color: 'rgba(139, 115, 85, 0.6)' }} />
+              <ul className="mt-4 space-y-2">
+                {collection.materials.map((material, i) => (
+                  <li key={i} className="font-mono text-yon-grey/60" style={{ fontSize: '0.75rem' }}>
+                    {material}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
+
+        {/* Scattered annotations */}
+        <AnnotationLabel
+          text="final"
+          position={{ top: '15%', right: '25%' }}
+          rotation={-4}
+          variant="handwritten"
+        />
+        <AnnotationLabel
+          text="APPROVED"
+          position={{ top: '45%', left: '55%' }}
+          rotation={5}
+          variant="stamp"
+        />
       </section>
 
 

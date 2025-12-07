@@ -9,7 +9,6 @@ const processStages = [
   {
     id: '01',
     title: 'RESEARCH',
-    titleKo: '리서치',
     description: 'Gathering inspiration from archives, street, culture',
     items: [
       { label: 'Mood Board', id: 'RES-001' },
@@ -21,7 +20,6 @@ const processStages = [
   {
     id: '02',
     title: 'CONCEPT',
-    titleKo: '컨셉',
     description: 'Distilling ideas into core vision',
     items: [
       { label: 'Manifesto', id: 'CON-001' },
@@ -32,7 +30,6 @@ const processStages = [
   {
     id: '03',
     title: 'SKETCH',
-    titleKo: '스케치',
     description: 'Quick studies, silhouettes, explorations',
     items: [
       { label: 'Quick Study', id: 'SKE-001' },
@@ -45,7 +42,6 @@ const processStages = [
   {
     id: '04',
     title: 'MATERIAL',
-    titleKo: '소재',
     description: 'Fabric tests, texture studies, color development',
     items: [
       { label: 'Fabric Test', id: 'MAT-001' },
@@ -57,7 +53,6 @@ const processStages = [
   {
     id: '05',
     title: 'TOILE',
-    titleKo: '토왈',
     description: '3D development through muslin iterations',
     items: [
       { label: 'First Toile', id: 'TOI-001' },
@@ -69,7 +64,6 @@ const processStages = [
   {
     id: '06',
     title: 'FAILURE',
-    titleKo: '실패',
     description: 'Documented failures — essential to progress',
     items: [
       { label: 'Rejected', id: 'FAI-001' },
@@ -80,7 +74,6 @@ const processStages = [
   {
     id: '07',
     title: 'REFINE',
-    titleKo: '정제',
     description: 'Seam studies, proportions, finishing details',
     items: [
       { label: 'Seam Study', id: 'REF-001' },
@@ -91,7 +84,6 @@ const processStages = [
   {
     id: '08',
     title: 'FINAL',
-    titleKo: '완성',
     description: 'Completed looks ready for presentation',
     items: [
       { label: 'Look 01', id: 'FIN-001' },
@@ -229,13 +221,6 @@ function SketchbookPage({
           >
             {stage.title}
           </h2>
-
-          <span
-            className="block font-mono text-yon-grey/30 mt-2"
-            style={{ fontSize: '0.55rem', letterSpacing: '0.15em' }}
-          >
-            {stage.titleKo}
-          </span>
 
           <p
             className="font-sans text-yon-grey/50 mt-6 max-w-sm"

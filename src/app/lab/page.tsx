@@ -3,6 +3,12 @@
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import { Slot, AnnotationLabel } from '@/components/deconstructivist'
+import {
+  GlitchTitle,
+  LabelText,
+  WhisperText,
+  ExperimentalText,
+} from '@/components/typography'
 
 // Lab experiments data
 const experiments = [
@@ -452,48 +458,44 @@ export default function LabPage() {
         {/* Main title */}
         <div className="relative z-30 pt-40 pb-20 px-8 md:px-16 lg:px-24">
           <div className="max-w-4xl">
-            <span
-              className="block font-mono uppercase tracking-[0.4em] text-yon-grey/40"
-              style={{ fontSize: '0.55rem' }}
-            >
-              THE YON — Experiments
-            </span>
+            <LabelText text="THE YON — Experiments" style={{ fontSize: '0.55rem' }} />
 
-            <h1
-              className="font-serif text-yon-black mt-6"
+            <GlitchTitle
+              text="Lab"
+              size="display"
+              glitchOffset={6}
+              charRotation
+              rotationIntensity={3}
+              className="mt-6"
               style={{
                 fontSize: 'clamp(3.5rem, 9vw, 7rem)',
-                letterSpacing: '-0.03em',
                 transform: 'rotate(-1.5deg)',
-                lineHeight: 0.9,
               }}
-            >
-              Lab
-            </h1>
+              as="h1"
+            />
 
-            <p
-              className="font-serif italic text-yon-grey/60 mt-10"
+            <ExperimentalText
+              text="Experiments in construction, material, and form. Work in progress, failures included."
+              variant="body"
+              effect="scatter"
+              intensity="subtle"
+              className="mt-10"
               style={{
                 fontSize: 'clamp(1rem, 2.2vw, 1.4rem)',
                 maxWidth: '40ch',
                 marginLeft: '3rem',
-                transform: 'rotate(0.5deg)',
+                fontStyle: 'italic',
               }}
-            >
-              &ldquo;Experiments in construction, material, and form. Work in progress, failures
-              included.&rdquo;
-            </p>
+            />
 
-            <span
-              className="block font-mono text-yon-grey/30 mt-4"
+            <WhisperText
+              text="Work in progress"
+              className="mt-4"
               style={{
                 fontSize: '0.55rem',
-                letterSpacing: '0.2em',
                 marginLeft: '3rem',
               }}
-            >
-              실험실 — 진행중인 작업
-            </span>
+            />
           </div>
         </div>
 
