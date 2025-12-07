@@ -5,11 +5,15 @@ const PAGE_OPTIONS = [
   { title: 'Home', value: 'home' },
   { title: 'About', value: 'about' },
   { title: 'Collections', value: 'collections' },
-  { title: 'Collections Detail', value: 'collections-detail' },
   { title: 'Archive', value: 'archive' },
   { title: 'Process', value: 'process' },
   { title: 'Contact', value: 'contact' },
   { title: 'Lab', value: 'lab' },
+  // Dynamic collection pages
+  { title: 'Collection: Deconstruction', value: 'collection-deconstruction' },
+  { title: 'Collection: Fragments', value: 'collection-fragments' },
+  { title: 'Collection: Void', value: 'collection-void' },
+  { title: 'Collection: Origin', value: 'collection-origin' },
 ]
 
 // Section options - varies by page

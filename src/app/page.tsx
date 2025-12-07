@@ -13,8 +13,13 @@ import {
   GrainDisplay,
   StaggerFadeText,
 } from '@/components/typography'
+import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 
-export default function HomePage() {
+export default async function HomePage() {
+  // Fetch all slot images for home page from CMS
+  const slotImages = await getSlotImages('home')
+  const slot = createSlotHelper(slotImages)
+
   return (
     <div className="relative bg-yon-white min-h-screen overflow-x-hidden">
       {/* ============================================
@@ -107,7 +112,7 @@ export default function HomePage() {
 
         {/* Slot 1: Hero - Primary large image (left, bleeding) */}
         <Slot
-          label="LOOK 01"
+          {...slot('home-hero-001', 'LOOK 01')}
           size="hero"
           position="absolute"
           top="5%"
@@ -124,7 +129,7 @@ export default function HomePage() {
 
         {/* Slot 2: Large - Secondary (right top) */}
         <Slot
-          label="LOOK 02"
+          {...slot('home-hero-002', 'LOOK 02')}
           size="large"
           position="absolute"
           top="3%"
@@ -139,7 +144,7 @@ export default function HomePage() {
 
         {/* Slot 3: Medium - Overlapping center-right */}
         <Slot
-          label="DETAIL"
+          {...slot('home-hero-003', 'DETAIL')}
           size="medium"
           position="absolute"
           top="40%"
@@ -155,7 +160,7 @@ export default function HomePage() {
 
         {/* Slot 4: Small - Accent (bottom left, bleeding) */}
         <Slot
-          label="PROCESS"
+          {...slot('home-hero-004', 'PROCESS')}
           size="small"
           position="absolute"
           bottom="18%"
@@ -171,7 +176,7 @@ export default function HomePage() {
 
         {/* Slot 5: Tiny - Swatch with tape */}
         <Slot
-          label="FABRIC"
+          {...slot('home-hero-005', 'FABRIC')}
           size="tiny"
           position="absolute"
           top="65%"
@@ -184,7 +189,7 @@ export default function HomePage() {
 
         {/* Slot 6: Swatch - Material sample */}
         <Slot
-          label="WOOL"
+          {...slot('home-hero-006', 'WOOL')}
           size="swatch"
           position="absolute"
           top="22%"
@@ -197,7 +202,7 @@ export default function HomePage() {
 
         {/* Slot 7: Small square - Bottom right */}
         <Slot
-          label="TOILE"
+          {...slot('home-hero-007', 'TOILE')}
           size="small-square"
           position="absolute"
           bottom="10%"
@@ -211,7 +216,7 @@ export default function HomePage() {
 
         {/* Slot 8: Tiny - Far right edge (bleeding) */}
         <Slot
-          label="REF"
+          {...slot('home-hero-008', 'REF')}
           size="tiny"
           position="absolute"
           top="50%"
@@ -225,7 +230,7 @@ export default function HomePage() {
 
         {/* Slot 9: Micro - Scattered accent */}
         <Slot
-          label="01"
+          {...slot('home-hero-009', '01')}
           size="micro"
           position="absolute"
           top="35%"
@@ -238,7 +243,7 @@ export default function HomePage() {
 
         {/* Slot 10: Medium-wide - Overlapping */}
         <Slot
-          label="SILHOUETTE"
+          {...slot('home-hero-010', 'SILHOUETTE')}
           size="medium-wide"
           position="absolute"
           top="58%"
@@ -253,7 +258,7 @@ export default function HomePage() {
 
         {/* Slot 11: Swatch cluster 1 */}
         <Slot
-          label="SILK"
+          {...slot('home-hero-011', 'SILK')}
           size="swatch"
           position="absolute"
           top="75%"
@@ -265,7 +270,7 @@ export default function HomePage() {
 
         {/* Slot 12: Swatch cluster 2 */}
         <Slot
-          label="LINEN"
+          {...slot('home-hero-012', 'LINEN')}
           size="swatch"
           position="absolute"
           top="78%"
@@ -278,7 +283,7 @@ export default function HomePage() {
 
         {/* Slot 13: Tiny-wide - Reference */}
         <Slot
-          label="MOOD"
+          {...slot('home-hero-013', 'MOOD')}
           size="tiny-wide"
           position="absolute"
           top="12%"
@@ -292,7 +297,7 @@ export default function HomePage() {
 
         {/* Slot 14: Small - Top bleeding */}
         <Slot
-          label="ARCHIVE"
+          {...slot('home-hero-014', 'ARCHIVE')}
           size="small"
           position="absolute"
           top="-3%"
@@ -307,7 +312,7 @@ export default function HomePage() {
 
         {/* Slot 15: Medium-tall */}
         <Slot
-          label="FORM"
+          {...slot('home-hero-015', 'FORM')}
           size="medium-tall"
           position="absolute"
           bottom="5%"
@@ -467,7 +472,7 @@ export default function HomePage() {
             text="Twisted yet harmonious"
             size="display"
             glitchOffset={6}
-            rotateChars
+            charRotation
             rotationIntensity={3}
             style={{
               fontStyle: 'italic',
@@ -491,7 +496,7 @@ export default function HomePage() {
 
         {/* Floating slots - 6 slots */}
         <Slot
-          label="MOOD"
+          {...slot('home-philosophy-001', 'MOOD')}
           size="medium"
           position="absolute"
           top="10%"
@@ -505,7 +510,7 @@ export default function HomePage() {
         />
 
         <Slot
-          label="REF"
+          {...slot('home-philosophy-002', 'REF')}
           size="tiny"
           position="absolute"
           bottom="25%"
@@ -517,7 +522,7 @@ export default function HomePage() {
         />
 
         <Slot
-          label="TEXTURE"
+          {...slot('home-philosophy-003', 'TEXTURE')}
           size="swatch"
           position="absolute"
           top="60%"
@@ -528,7 +533,7 @@ export default function HomePage() {
         />
 
         <Slot
-          label="SKETCH"
+          {...slot('home-philosophy-004', 'SKETCH')}
           size="small"
           position="absolute"
           bottom="15%"
@@ -542,7 +547,7 @@ export default function HomePage() {
         />
 
         <Slot
-          label="DETAIL"
+          {...slot('home-philosophy-005', 'DETAIL')}
           size="tiny-wide"
           position="absolute"
           top="35%"
@@ -553,7 +558,7 @@ export default function HomePage() {
         />
 
         <Slot
-          label="002"
+          {...slot('home-philosophy-006', '002')}
           size="micro"
           position="absolute"
           top="50%"
@@ -656,7 +661,7 @@ export default function HomePage() {
           <div className="flex flex-wrap items-start gap-4 md:gap-0">
             {/* Main look */}
             <Slot
-              label="DECONSTRUCTION / 01"
+              {...slot('home-collections-001', 'DECONSTRUCTION / 01')}
               size="large"
               rotation={-2.5}
               clip="irregular-1"
@@ -668,7 +673,7 @@ export default function HomePage() {
 
             {/* Detail overlapping */}
             <Slot
-              label="DETAIL"
+              {...slot('home-collections-002', 'DETAIL')}
               size="small"
               rotation={5}
               clip="torn-1"
@@ -680,7 +685,7 @@ export default function HomePage() {
 
             {/* Swatch with decoration */}
             <Slot
-              label="DENIM"
+              {...slot('home-collections-003', 'DENIM')}
               size="swatch"
               rotation={-10}
               border="rough"
@@ -691,7 +696,7 @@ export default function HomePage() {
 
             {/* Extra tiny */}
             <Slot
-              label="REF"
+              {...slot('home-collections-004', 'REF')}
               size="micro"
               rotation={12}
               border="thin"
@@ -724,7 +729,7 @@ export default function HomePage() {
         <div className="relative mb-20 px-8 md:px-16 flex justify-end">
           <div className="flex flex-wrap items-end gap-4 md:gap-0">
             <Slot
-              label="FRAGMENTS / 01"
+              {...slot('home-collections-005', 'FRAGMENTS / 01')}
               size="medium"
               rotation={3}
               clip="organic-2"
@@ -734,7 +739,7 @@ export default function HomePage() {
             />
 
             <Slot
-              label="TEXTURE"
+              {...slot('home-collections-006', 'TEXTURE')}
               size="tiny"
               rotation={-15}
               border="brutal"
@@ -744,7 +749,7 @@ export default function HomePage() {
             />
 
             <Slot
-              label="NYLON"
+              {...slot('home-collections-007', 'NYLON')}
               size="swatch"
               rotation={8}
               border="accent"
@@ -757,7 +762,7 @@ export default function HomePage() {
         {/* Collection 3: VOID - Scattered */}
         <div className="relative px-8 md:px-16">
           <Slot
-            label="VOID / 01"
+            {...slot('home-collections-008', 'VOID / 01')}
             size="medium"
             position="relative"
             rotation={-1.5}
@@ -770,7 +775,7 @@ export default function HomePage() {
           />
 
           <Slot
-            label="SILHOUETTE"
+            {...slot('home-collections-009', 'SILHOUETTE')}
             size="small-square"
             position="absolute"
             top="0"
@@ -782,7 +787,7 @@ export default function HomePage() {
           />
 
           <Slot
-            label="VOL"
+            {...slot('home-collections-010', 'VOL')}
             size="tiny"
             position="absolute"
             top="40%"
@@ -883,7 +888,7 @@ export default function HomePage() {
           <div className="flex flex-wrap gap-6 items-start">
             {/* Sketch slots */}
             <Slot
-              label="SKETCH / 001"
+              {...slot('home-process-001', 'SKETCH / 001')}
               size="medium"
               rotation={-4}
               border="rough"
@@ -894,7 +899,7 @@ export default function HomePage() {
             />
 
             <Slot
-              label="ITERATION"
+              {...slot('home-process-002', 'ITERATION')}
               size="small"
               rotation={8}
               clip="torn-3"
@@ -905,7 +910,7 @@ export default function HomePage() {
             />
 
             <Slot
-              label="FINAL"
+              {...slot('home-process-003', 'FINAL')}
               size="small-square"
               rotation={-2}
               border="brutal"
@@ -914,7 +919,7 @@ export default function HomePage() {
             />
 
             <Slot
-              label="REJECTED"
+              {...slot('home-process-004', 'REJECTED')}
               size="tiny"
               rotation={12}
               clip="irregular-3"
@@ -925,7 +930,7 @@ export default function HomePage() {
             />
 
             <Slot
-              label="NOTE"
+              {...slot('home-process-005', 'NOTE')}
               size="micro"
               rotation={-15}
               border="dashed"
@@ -937,14 +942,14 @@ export default function HomePage() {
           {/* Swatch cluster */}
           <div className="absolute right-16 top-20 flex gap-2">
             <Slot
-              label="A"
+              {...slot('home-process-006', 'A')}
               size="swatch"
               rotation={-5}
               border="thin"
               zIndex={10}
             />
             <Slot
-              label="B"
+              {...slot('home-process-007', 'B')}
               size="swatch"
               rotation={8}
               border="accent"
@@ -952,7 +957,7 @@ export default function HomePage() {
               overlapX={20}
             />
             <Slot
-              label="C"
+              {...slot('home-process-008', 'C')}
               size="swatch"
               rotation={-12}
               border="rough"
@@ -1033,7 +1038,7 @@ export default function HomePage() {
             text="Get in Touch"
             size="heading"
             glitchOffset={5}
-            rotateChars
+            charRotation
             rotationIntensity={2.5}
             style={{
               transform: 'rotate(-2deg)',
@@ -1069,7 +1074,7 @@ export default function HomePage() {
 
         {/* Accent slots */}
         <Slot
-          label="STUDIO"
+          {...slot('home-contact-001', 'STUDIO')}
           size="small"
           position="absolute"
           bottom="18%"
@@ -1082,7 +1087,7 @@ export default function HomePage() {
         />
 
         <Slot
-          label="MAIL"
+          {...slot('home-contact-002', 'MAIL')}
           size="tiny"
           position="absolute"
           top="25%"
@@ -1094,7 +1099,7 @@ export default function HomePage() {
         />
 
         <Slot
-          label="@"
+          {...slot('home-contact-003', '@')}
           size="micro"
           position="absolute"
           bottom="30%"

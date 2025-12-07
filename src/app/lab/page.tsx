@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import { Slot, AnnotationLabel } from '@/components/deconstructivist'
@@ -9,191 +7,14 @@ import {
   WhisperText,
   ExperimentalText,
 } from '@/components/typography'
+import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
+import LabExperiments from './lab-experiments'
 
-// Lab experiments data
-const experiments = [
-  {
-    id: 'EXP-001',
-    title: 'Material Splice',
-    status: 'active',
-    description: 'Contrasting fabric fusion techniques',
-    date: '2024.11',
-  },
-  {
-    id: 'EXP-002',
-    title: 'Zero Waste Pattern',
-    status: 'testing',
-    description: 'Pattern cutting with no fabric waste',
-    date: '2024.10',
-  },
-  {
-    id: 'EXP-003',
-    title: 'Modular System',
-    status: 'paused',
-    description: 'Interchangeable garment components',
-    date: '2024.09',
-  },
-  {
-    id: 'EXP-004',
-    title: 'Surface Treatment',
-    status: 'complete',
-    description: 'Post-production fabric manipulation',
-    date: '2024.08',
-  },
-  {
-    id: 'EXP-005',
-    title: 'Volume Study',
-    status: 'active',
-    description: '3D form through flat construction',
-    date: '2024.11',
-  },
-]
+export default async function LabPage() {
+  // Fetch all slot images for lab page from CMS
+  const slotImages = await getSlotImages('lab')
+  const slot = createSlotHelper(slotImages)
 
-// Experiment card with dense slot cluster
-function ExperimentCard({
-  experiment,
-  index,
-}: {
-  experiment: (typeof experiments)[0]
-  index: number
-}) {
-  const isReversed = index % 2 === 1
-  const rotations = [-2, 1.5, -1, 2, -1.5]
-  const clips = ['irregular-1', 'torn-1', 'irregular-3', 'torn-2', 'organic-1'] as const
-  const decorations = ['tape-top', 'pin', 'staple', 'corner-fold', 'tape-corner'] as const
-
-  const statusColors = {
-    active: 'text-yon-accent',
-    testing: 'text-yon-grey/60',
-    paused: 'text-yon-grey/40',
-    complete: 'text-yon-black/40',
-  }
-
-  return (
-    <div
-      className="relative py-16 border-b border-yon-grey/10"
-      style={{ transform: `rotate(${rotations[index % rotations.length] * 0.3}deg)` }}
-    >
-      <div className={`flex flex-col md:flex-row gap-8 ${isReversed ? 'md:flex-row-reverse' : ''}`}>
-        {/* Dense slot cluster - 4 slots per experiment */}
-        <div className="w-full md:w-1/2 relative" style={{ minHeight: '300px' }}>
-          {/* Main slot */}
-          <Slot
-            label={experiment.title}
-            size="medium"
-            position="absolute"
-            top="0"
-            left={isReversed ? 'auto' : '0'}
-            right={isReversed ? '0' : 'auto'}
-            rotation={rotations[index % rotations.length]}
-            clip={clips[index % clips.length]}
-            shadow={index % 2 === 0 ? 'offset' : 'float'}
-            grayscale={experiment.status === 'paused'}
-            zIndex={15}
-            annotationNumber={experiment.id.replace('EXP-', '')}
-          />
-
-          {/* Detail slot - overlapping */}
-          <Slot
-            label="DETAIL"
-            size="small"
-            position="absolute"
-            top="30%"
-            left={isReversed ? '10%' : '40%'}
-            rotation={-rotations[index % rotations.length] * 2}
-            clip={clips[(index + 2) % clips.length]}
-            zIndex={20}
-            decoration={decorations[index % decorations.length]}
-            overlapX={50}
-          />
-
-          {/* Swatch */}
-          <Slot
-            label="SAMPLE"
-            size="swatch"
-            position="absolute"
-            bottom="10%"
-            left={isReversed ? '5%' : '25%'}
-            rotation={rotations[(index + 1) % rotations.length] * 3}
-            border="rough"
-            zIndex={18}
-            decoration="tape-top"
-          />
-
-          {/* Micro accent */}
-          <Slot
-            label={String(index + 1).padStart(2, '0')}
-            size="micro"
-            position="absolute"
-            top="60%"
-            left={isReversed ? '40%' : '60%'}
-            rotation={12}
-            border="thin"
-            zIndex={22}
-            decoration="pin-red"
-          />
-        </div>
-
-        {/* Info */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center px-4">
-          <div className="flex items-baseline gap-4">
-            <span
-              className="font-mono text-yon-grey/30"
-              style={{ fontSize: '0.55rem', letterSpacing: '0.2em' }}
-            >
-              {experiment.id}
-            </span>
-            <span
-              className={`font-mono uppercase tracking-[0.15em] ${statusColors[experiment.status as keyof typeof statusColors]}`}
-              style={{ fontSize: '0.5rem' }}
-            >
-              {experiment.status}
-            </span>
-          </div>
-
-          <h3
-            className="font-serif text-yon-black mt-3"
-            style={{
-              fontSize: 'clamp(1.4rem, 3vw, 2rem)',
-              transform: `rotate(${rotations[index % rotations.length] * 0.2}deg)`
-            }}
-          >
-            {experiment.title}
-          </h3>
-
-          <p
-            className="font-sans text-yon-grey/50 mt-3 max-w-sm"
-            style={{ fontSize: '0.85rem', lineHeight: 1.7 }}
-          >
-            {experiment.description}
-          </p>
-
-          <span
-            className="font-mono text-yon-grey/30 mt-4"
-            style={{ fontSize: '0.55rem', letterSpacing: '0.15em' }}
-          >
-            {experiment.date}
-          </span>
-        </div>
-      </div>
-
-      {/* Annotation per experiment */}
-      {index % 2 === 0 && (
-        <AnnotationLabel
-          text={experiment.status === 'active' ? 'in progress' : experiment.status}
-          position={{
-            top: '20%',
-            right: isReversed ? '60%' : '10%'
-          }}
-          rotation={rotations[(index + 2) % rotations.length]}
-          variant={experiment.status === 'active' ? 'stamp' : 'handwritten'}
-        />
-      )}
-    </div>
-  )
-}
-
-export default function LabPage() {
   return (
     <div className="relative min-h-screen bg-yon-white overflow-x-hidden">
       {/* ============================================
@@ -261,7 +82,7 @@ export default function LabPage() {
 
         {/* Slot 1: Hero primary - left bleeding */}
         <Slot
-          label="EXP / MAIN"
+          {...slot('lab-hero-001', 'EXP / MAIN')}
           size="hero"
           position="absolute"
           top="8%"
@@ -278,7 +99,7 @@ export default function LabPage() {
 
         {/* Slot 2: Large - right top */}
         <Slot
-          label="TEST 001"
+          {...slot('lab-hero-002', 'TEST 001')}
           size="large"
           position="absolute"
           top="5%"
@@ -294,7 +115,7 @@ export default function LabPage() {
 
         {/* Slot 3: Medium - center overlapping */}
         <Slot
-          label="SAMPLE"
+          {...slot('lab-hero-003', 'SAMPLE')}
           size="medium"
           position="absolute"
           top="35%"
@@ -309,7 +130,7 @@ export default function LabPage() {
 
         {/* Slot 4: Small - bottom left */}
         <Slot
-          label="ITERATION"
+          {...slot('lab-hero-004', 'ITERATION')}
           size="small"
           position="absolute"
           bottom="20%"
@@ -324,7 +145,7 @@ export default function LabPage() {
 
         {/* Slot 5: Medium-wide - right center */}
         <Slot
-          label="PROCESS"
+          {...slot('lab-hero-005', 'PROCESS')}
           size="medium-wide"
           position="absolute"
           top="55%"
@@ -338,7 +159,7 @@ export default function LabPage() {
 
         {/* Slot 6: Swatch cluster 1 */}
         <Slot
-          label="A"
+          {...slot('lab-hero-006', 'A')}
           size="swatch"
           position="absolute"
           top="25%"
@@ -351,7 +172,7 @@ export default function LabPage() {
 
         {/* Slot 7: Swatch cluster 2 */}
         <Slot
-          label="B"
+          {...slot('lab-hero-007', 'B')}
           size="swatch"
           position="absolute"
           top="28%"
@@ -364,7 +185,7 @@ export default function LabPage() {
 
         {/* Slot 8: Tiny - scattered */}
         <Slot
-          label="REF"
+          {...slot('lab-hero-008', 'REF')}
           size="tiny"
           position="absolute"
           top="70%"
@@ -377,7 +198,7 @@ export default function LabPage() {
 
         {/* Slot 9: Tiny-wide - top */}
         <Slot
-          label="MOOD"
+          {...slot('lab-hero-009', 'MOOD')}
           size="tiny-wide"
           position="absolute"
           top="15%"
@@ -390,7 +211,7 @@ export default function LabPage() {
 
         {/* Slot 10: Micro - accent */}
         <Slot
-          label="01"
+          {...slot('lab-hero-010', '01')}
           size="micro"
           position="absolute"
           top="48%"
@@ -403,7 +224,7 @@ export default function LabPage() {
 
         {/* Slot 11: Small - right bleeding */}
         <Slot
-          label="DATA"
+          {...slot('lab-hero-011', 'DATA')}
           size="small"
           position="absolute"
           bottom="35%"
@@ -417,7 +238,7 @@ export default function LabPage() {
 
         {/* Slot 12: Medium-tall - bottom */}
         <Slot
-          label="RESULT"
+          {...slot('lab-hero-012', 'RESULT')}
           size="medium-tall"
           position="absolute"
           bottom="5%"
@@ -531,33 +352,9 @@ export default function LabPage() {
       </section>
 
       {/* ============================================
-          EXPERIMENTS LIST - Dense Cards
+          EXPERIMENTS LIST - Client Component
           ============================================ */}
-      <section className="relative py-20 px-8 md:px-16 lg:px-24 texture-paper">
-        {/* Background */}
-        <span
-          className="absolute pointer-events-none select-none"
-          style={{
-            top: '5%',
-            right: '-10%',
-            fontSize: 'clamp(12rem, 28vw, 40rem)',
-            fontWeight: 100,
-            fontFamily: 'var(--font-mono), monospace',
-            opacity: 0.015,
-            color: '#0A0A0A',
-            transform: 'rotate(5deg)',
-          }}
-          aria-hidden="true"
-        >
-          01—05
-        </span>
-
-        <div className="max-w-6xl mx-auto">
-          {experiments.map((experiment, index) => (
-            <ExperimentCard key={experiment.id} experiment={experiment} index={index} />
-          ))}
-        </div>
-      </section>
+      <LabExperiments />
 
       {/* ============================================
           FAILURES SECTION - Dense Scattered Layout
@@ -638,7 +435,7 @@ export default function LabPage() {
           <div className="relative mt-20" style={{ minHeight: '70vh' }}>
             {/* Row 1 */}
             <Slot
-              label="REJECTED / 01"
+              {...slot('lab-failures-001', 'REJECTED / 01')}
               size="large"
               position="absolute"
               top="0%"
@@ -653,7 +450,7 @@ export default function LabPage() {
             />
 
             <Slot
-              label="FAILED TOILE"
+              {...slot('lab-failures-002', 'FAILED TOILE')}
               size="medium"
               position="absolute"
               top="5%"
@@ -666,7 +463,7 @@ export default function LabPage() {
             />
 
             <Slot
-              label="WRONG PATH"
+              {...slot('lab-failures-003', 'WRONG PATH')}
               size="small"
               position="absolute"
               top="15%"
@@ -681,7 +478,7 @@ export default function LabPage() {
 
             {/* Row 2 */}
             <Slot
-              label="ITERATION 03"
+              {...slot('lab-failures-004', 'ITERATION 03')}
               size="medium-wide"
               position="absolute"
               top="35%"
@@ -695,7 +492,7 @@ export default function LabPage() {
             />
 
             <Slot
-              label="DISCARDED"
+              {...slot('lab-failures-005', 'DISCARDED')}
               size="small-square"
               position="absolute"
               top="40%"
@@ -708,7 +505,7 @@ export default function LabPage() {
             />
 
             <Slot
-              label="STUDY"
+              {...slot('lab-failures-006', 'STUDY')}
               size="tiny"
               position="absolute"
               top="50%"
@@ -721,7 +518,7 @@ export default function LabPage() {
 
             {/* Row 3 */}
             <Slot
-              label="BROKEN"
+              {...slot('lab-failures-007', 'BROKEN')}
               size="medium"
               position="absolute"
               bottom="25%"
@@ -734,7 +531,7 @@ export default function LabPage() {
             />
 
             <Slot
-              label="ABANDONED"
+              {...slot('lab-failures-008', 'ABANDONED')}
               size="small"
               position="absolute"
               bottom="20%"
@@ -749,7 +546,7 @@ export default function LabPage() {
 
             {/* Swatches - rejected materials */}
             <Slot
-              label="X"
+              {...slot('lab-failures-009', 'X')}
               size="swatch"
               position="absolute"
               top="60%"
@@ -762,7 +559,7 @@ export default function LabPage() {
             />
 
             <Slot
-              label="X"
+              {...slot('lab-failures-010', 'X')}
               size="swatch"
               position="absolute"
               top="65%"
@@ -776,7 +573,7 @@ export default function LabPage() {
 
             {/* Micro accents */}
             <Slot
-              label="NO"
+              {...slot('lab-failures-011', 'NO')}
               size="micro"
               position="absolute"
               top="28%"
@@ -788,7 +585,7 @@ export default function LabPage() {
             />
 
             <Slot
-              label="?"
+              {...slot('lab-failures-012', '?')}
               size="micro"
               position="absolute"
               bottom="35%"
@@ -875,7 +672,7 @@ export default function LabPage() {
               {/* Step 1 */}
               <div className="relative">
                 <Slot
-                  label="OBSERVE"
+                  {...slot('lab-method-001', 'OBSERVE')}
                   size="small"
                   rotation={-3}
                   clip="irregular-2"
@@ -895,7 +692,7 @@ export default function LabPage() {
               {/* Step 2 */}
               <div className="relative" style={{ marginTop: '2rem' }}>
                 <Slot
-                  label="EXPERIMENT"
+                  {...slot('lab-method-002', 'EXPERIMENT')}
                   size="small"
                   rotation={4}
                   clip="torn-1"
@@ -915,7 +712,7 @@ export default function LabPage() {
               {/* Step 3 */}
               <div className="relative" style={{ marginTop: '1rem' }}>
                 <Slot
-                  label="REFINE"
+                  {...slot('lab-method-003', 'REFINE')}
                   size="small"
                   rotation={-2}
                   clip="organic-1"
@@ -937,7 +734,7 @@ export default function LabPage() {
 
         {/* Floating accents */}
         <Slot
-          label="NOTE"
+          {...slot('lab-method-004', 'NOTE')}
           size="tiny"
           position="absolute"
           top="15%"
@@ -949,7 +746,7 @@ export default function LabPage() {
         />
 
         <Slot
-          label="REF"
+          {...slot('lab-method-005', 'REF')}
           size="swatch"
           position="absolute"
           bottom="20%"
@@ -1019,7 +816,7 @@ export default function LabPage() {
 
         {/* Accent slots */}
         <Slot
-          label="FINAL"
+          {...slot('lab-cta-001', 'FINAL')}
           size="small"
           position="absolute"
           bottom="15%"
@@ -1031,7 +828,7 @@ export default function LabPage() {
         />
 
         <Slot
-          label="RESULT"
+          {...slot('lab-cta-002', 'RESULT')}
           size="tiny"
           position="absolute"
           top="20%"
@@ -1042,7 +839,7 @@ export default function LabPage() {
         />
 
         <Slot
-          label="→"
+          {...slot('lab-cta-003', '→')}
           size="micro"
           position="absolute"
           bottom="30%"

@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import { Slot, AnnotationLabel } from '@/components/deconstructivist'
@@ -8,15 +6,16 @@ import {
   GlitchTitle,
   ExperimentalText,
   AnnotationText,
-  NumberTag,
   LabelText,
   WhisperText,
-  HandwrittenNote,
-  TagText,
-  GrainDisplay,
 } from '@/components/typography'
+import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  // Fetch all slot images for about page from CMS
+  const slotImages = await getSlotImages('about')
+  const slot = createSlotHelper(slotImages)
+
   return (
     <div className="relative min-h-screen bg-yon-white overflow-x-hidden">
       {/* ============================================
@@ -86,7 +85,7 @@ export default function AboutPage() {
 
         {/* Slot 1: Main portrait - large, left bleeding */}
         <Slot
-          label="PORTRAIT"
+          {...slot('about-hero-001', 'PORTRAIT')}
           size="hero"
           position="absolute"
           top="5%"
@@ -103,7 +102,7 @@ export default function AboutPage() {
 
         {/* Slot 2: Studio shot - right top */}
         <Slot
-          label="STUDIO"
+          {...slot('about-hero-002', 'STUDIO')}
           size="large"
           position="absolute"
           top="3%"
@@ -119,7 +118,7 @@ export default function AboutPage() {
 
         {/* Slot 3: Medium - hands at work */}
         <Slot
-          label="HANDS"
+          {...slot('about-hero-003', 'HANDS')}
           size="medium"
           position="absolute"
           top="40%"
@@ -134,7 +133,7 @@ export default function AboutPage() {
 
         {/* Slot 4: Process shot */}
         <Slot
-          label="PROCESS"
+          {...slot('about-hero-004', 'PROCESS')}
           size="small"
           position="absolute"
           bottom="25%"
@@ -149,7 +148,7 @@ export default function AboutPage() {
 
         {/* Slot 5: Tokyo reference */}
         <Slot
-          label="TOKYO"
+          {...slot('about-hero-005', 'TOKYO')}
           size="tiny"
           position="absolute"
           top="55%"
@@ -162,7 +161,7 @@ export default function AboutPage() {
 
         {/* Slot 6: Sasada badge */}
         <Slot
-          label="SASADA"
+          {...slot('about-hero-006', 'SASADA')}
           size="swatch"
           position="absolute"
           top="22%"
@@ -175,7 +174,7 @@ export default function AboutPage() {
 
         {/* Slot 7: Small square - materials */}
         <Slot
-          label="MATERIAL"
+          {...slot('about-hero-007', 'MATERIAL')}
           size="small-square"
           position="absolute"
           bottom="15%"
@@ -189,7 +188,7 @@ export default function AboutPage() {
 
         {/* Slot 8: Detail - right bleeding */}
         <Slot
-          label="DETAIL"
+          {...slot('about-hero-008', 'DETAIL')}
           size="small"
           position="absolute"
           top="65%"
@@ -204,7 +203,7 @@ export default function AboutPage() {
 
         {/* Slot 9: Micro accent */}
         <Slot
-          label="01"
+          {...slot('about-hero-009', '01')}
           size="micro"
           position="absolute"
           top="35%"
@@ -217,7 +216,7 @@ export default function AboutPage() {
 
         {/* Slot 10: Medium-wide - sketchbook */}
         <Slot
-          label="SKETCHBOOK"
+          {...slot('about-hero-010', 'SKETCHBOOK')}
           size="medium-wide"
           position="absolute"
           top="70%"
@@ -231,7 +230,7 @@ export default function AboutPage() {
 
         {/* Slot 11: Swatch cluster 1 */}
         <Slot
-          label="WOOL"
+          {...slot('about-hero-011', 'WOOL')}
           size="swatch"
           position="absolute"
           top="78%"
@@ -243,7 +242,7 @@ export default function AboutPage() {
 
         {/* Slot 12: Swatch cluster 2 */}
         <Slot
-          label="SILK"
+          {...slot('about-hero-012', 'SILK')}
           size="swatch"
           position="absolute"
           top="82%"
@@ -256,7 +255,7 @@ export default function AboutPage() {
 
         {/* Slot 13: Tiny-wide reference */}
         <Slot
-          label="REF"
+          {...slot('about-hero-013', 'REF')}
           size="tiny-wide"
           position="absolute"
           top="12%"
@@ -269,7 +268,7 @@ export default function AboutPage() {
 
         {/* Slot 14: Top bleeding */}
         <Slot
-          label="MOOD"
+          {...slot('about-hero-014', 'MOOD')}
           size="small"
           position="absolute"
           top="-2%"
@@ -284,7 +283,7 @@ export default function AboutPage() {
 
         {/* Slot 15: Medium-tall */}
         <Slot
-          label="FORM"
+          {...slot('about-hero-015', 'FORM')}
           size="medium-tall"
           position="absolute"
           bottom="10%"
@@ -341,7 +340,7 @@ export default function AboutPage() {
             text="Taehyun Lee"
             size="heading"
             glitchOffset={5}
-            rotateChars
+            charRotation
             rotationIntensity={3}
             className="mt-4"
             style={{
@@ -457,7 +456,7 @@ export default function AboutPage() {
             text="Twisted yet harmonious"
             size="display"
             glitchOffset={7}
-            rotateChars
+            charRotation
             rotationIntensity={4}
             style={{
               fontStyle: 'italic',
@@ -484,7 +483,7 @@ export default function AboutPage() {
 
         {/* Floating slots - 8 slots */}
         <Slot
-          label="MOOD"
+          {...slot('about-philosophy-001', 'MOOD')}
           size="medium"
           position="absolute"
           top="8%"
@@ -498,7 +497,7 @@ export default function AboutPage() {
         />
 
         <Slot
-          label="VISION"
+          {...slot('about-philosophy-002', 'VISION')}
           size="small"
           position="absolute"
           top="30%"
@@ -511,7 +510,7 @@ export default function AboutPage() {
         />
 
         <Slot
-          label="REF"
+          {...slot('about-philosophy-003', 'REF')}
           size="tiny"
           position="absolute"
           bottom="25%"
@@ -522,7 +521,7 @@ export default function AboutPage() {
         />
 
         <Slot
-          label="TEXTURE"
+          {...slot('about-philosophy-004', 'TEXTURE')}
           size="swatch"
           position="absolute"
           top="55%"
@@ -534,7 +533,7 @@ export default function AboutPage() {
         />
 
         <Slot
-          label="SKETCH"
+          {...slot('about-philosophy-005', 'SKETCH')}
           size="small"
           position="absolute"
           bottom="12%"
@@ -548,7 +547,7 @@ export default function AboutPage() {
         />
 
         <Slot
-          label="IDEA"
+          {...slot('about-philosophy-006', 'IDEA')}
           size="tiny-wide"
           position="absolute"
           top="40%"
@@ -559,7 +558,7 @@ export default function AboutPage() {
         />
 
         <Slot
-          label="02"
+          {...slot('about-philosophy-007', '02')}
           size="micro"
           position="absolute"
           top="50%"
@@ -570,7 +569,7 @@ export default function AboutPage() {
         />
 
         <Slot
-          label="FORM"
+          {...slot('about-philosophy-008', 'FORM')}
           size="small-square"
           position="absolute"
           bottom="30%"
@@ -704,7 +703,7 @@ export default function AboutPage() {
 
         {/* Side slots - 6 scattered */}
         <Slot
-          label="SKETCH"
+          {...slot('about-education-001', 'SKETCH')}
           size="large"
           position="absolute"
           top="5%"
@@ -718,7 +717,7 @@ export default function AboutPage() {
         />
 
         <Slot
-          label="TOILE"
+          {...slot('about-education-002', 'TOILE')}
           size="medium"
           position="absolute"
           top="40%"
@@ -731,7 +730,7 @@ export default function AboutPage() {
         />
 
         <Slot
-          label="PATTERN"
+          {...slot('about-education-003', 'PATTERN')}
           size="small"
           position="absolute"
           bottom="20%"
@@ -744,7 +743,7 @@ export default function AboutPage() {
         />
 
         <Slot
-          label="NOTE"
+          {...slot('about-education-004', 'NOTE')}
           size="tiny"
           position="absolute"
           top="65%"
@@ -756,7 +755,7 @@ export default function AboutPage() {
         />
 
         <Slot
-          label="SAMPLE"
+          {...slot('about-education-005', 'SAMPLE')}
           size="swatch"
           position="absolute"
           bottom="30%"
@@ -768,7 +767,7 @@ export default function AboutPage() {
         />
 
         <Slot
-          label="03"
+          {...slot('about-education-006', '03')}
           size="micro"
           position="absolute"
           top="30%"
@@ -853,7 +852,7 @@ export default function AboutPage() {
           {/* Process slots grid */}
           <div className="relative mt-16" style={{ minHeight: '40vh' }}>
             <Slot
-              label="RESEARCH"
+              {...slot('about-process-001', 'RESEARCH')}
               size="medium"
               position="absolute"
               top="0"
@@ -867,7 +866,7 @@ export default function AboutPage() {
             />
 
             <Slot
-              label="SKETCH"
+              {...slot('about-process-002', 'SKETCH')}
               size="small"
               position="absolute"
               top="10%"
@@ -879,7 +878,7 @@ export default function AboutPage() {
             />
 
             <Slot
-              label="PROTOTYPE"
+              {...slot('about-process-003', 'PROTOTYPE')}
               size="medium"
               position="absolute"
               top="5%"
@@ -892,7 +891,7 @@ export default function AboutPage() {
             />
 
             <Slot
-              label="ITERATE"
+              {...slot('about-process-004', 'ITERATE')}
               size="small-square"
               position="absolute"
               bottom="20%"
@@ -904,7 +903,7 @@ export default function AboutPage() {
             />
 
             <Slot
-              label="FINAL"
+              {...slot('about-process-005', 'FINAL')}
               size="small"
               position="absolute"
               bottom="10%"
@@ -918,7 +917,7 @@ export default function AboutPage() {
             />
 
             <Slot
-              label="A"
+              {...slot('about-process-006', 'A')}
               size="swatch"
               position="absolute"
               top="50%"
@@ -929,7 +928,7 @@ export default function AboutPage() {
             />
 
             <Slot
-              label="B"
+              {...slot('about-process-007', 'B')}
               size="swatch"
               position="absolute"
               top="55%"
@@ -1010,7 +1009,7 @@ export default function AboutPage() {
 
         {/* Accent slots */}
         <Slot
-          label="STUDIO"
+          {...slot('about-contact-001', 'STUDIO')}
           size="small"
           position="absolute"
           bottom="15%"
@@ -1023,7 +1022,7 @@ export default function AboutPage() {
         />
 
         <Slot
-          label="MAIL"
+          {...slot('about-contact-002', 'MAIL')}
           size="tiny"
           position="absolute"
           top="20%"
@@ -1035,7 +1034,7 @@ export default function AboutPage() {
         />
 
         <Slot
-          label="@"
+          {...slot('about-contact-003', '@')}
           size="micro"
           position="absolute"
           bottom="30%"

@@ -1,7 +1,6 @@
-'use client'
-
+import { Suspense } from 'react'
+import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { useParams } from 'next/navigation'
 import Footer from '@/components/Footer'
 import { Slot, AnnotationLabel } from '@/components/deconstructivist'
 import {
@@ -11,6 +10,7 @@ import {
   NumberTag,
   ExperimentalText,
 } from '@/components/typography'
+import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 
 // Collection data with enhanced image layouts
 const collectionsData: Record<string, {
@@ -93,6 +93,12 @@ const collectionsData: Record<string, {
   },
 }
 
+// Generate static params for all known collections
+export function generateStaticParams() {
+  return Object.keys(collectionsData).map((slug) => ({
+    id: slug,
+  }))
+}
 
 // Slot sizes for gallery
 const slotSizes = ['large', 'medium', 'small', 'medium-wide', 'small-square'] as const
@@ -100,27 +106,22 @@ const slotClips = ['irregular-1', 'torn-1', 'organic-1', 'torn-2', 'irregular-3'
 const rotations = [-2.5, 3, -1.5, 4, -3, 2]
 const decorations = ['tape-corner', 'pin', 'staple', 'corner-fold', 'tape-top', 'clip'] as const
 
-export default function CollectionDetailPage() {
-  const params = useParams()
-  const slug = params.id as string
+interface PageProps {
+  params: Promise<{ id: string }>
+}
+
+export default async function CollectionDetailPage({ params }: PageProps) {
+  const { id: slug } = await params
   const collection = collectionsData[slug]
 
   if (!collection) {
-    return (
-      <div className="min-h-screen bg-yon-white flex items-center justify-center">
-        <div className="text-center animate-fade-in">
-          <h1 className="font-serif text-6xl md:text-7xl text-yon-platinum leading-none">404</h1>
-          <p className="mt-4 text-lg text-yon-grey">Collection not found</p>
-          <Link
-            href="/collections"
-            className="inline-block mt-8 font-mono text-sm text-yon-black border-b border-yon-black pb-1 hover:text-yon-accent hover:border-yon-accent transition-colors"
-          >
-            ← Back to Collections
-          </Link>
-        </div>
-      </div>
-    )
+    notFound()
   }
+
+  // Fetch slot images for this specific collection
+  // Use collection-{slug} as the page identifier for CMS
+  const slotImages = await getSlotImages(`collection-${slug}`)
+  const slot = createSlotHelper(slotImages)
 
   return (
     <div className="min-h-screen bg-yon-white overflow-x-hidden">
@@ -166,7 +167,7 @@ export default function CollectionDetailPage() {
 
         {/* Hero Slots - 8 scattered */}
         <Slot
-          label={`${collection.title} / MAIN`}
+          {...slot(`collection-${slug}-hero-001`, `${collection.title} / MAIN`)}
           size="hero"
           position="absolute"
           top="5%"
@@ -182,7 +183,7 @@ export default function CollectionDetailPage() {
         />
 
         <Slot
-          label="DETAIL"
+          {...slot(`collection-${slug}-hero-002`, 'DETAIL')}
           size="large"
           position="absolute"
           top="8%"
@@ -197,7 +198,7 @@ export default function CollectionDetailPage() {
         />
 
         <Slot
-          label="PROCESS"
+          {...slot(`collection-${slug}-hero-003`, 'PROCESS')}
           size="medium"
           position="absolute"
           top="45%"
@@ -211,7 +212,7 @@ export default function CollectionDetailPage() {
         />
 
         <Slot
-          label="TEXTURE"
+          {...slot(`collection-${slug}-hero-004`, 'TEXTURE')}
           size="small"
           position="absolute"
           bottom="25%"
@@ -225,7 +226,7 @@ export default function CollectionDetailPage() {
         />
 
         <Slot
-          label="MATERIAL"
+          {...slot(`collection-${slug}-hero-005`, 'MATERIAL')}
           size="swatch"
           position="absolute"
           top="65%"
@@ -237,7 +238,7 @@ export default function CollectionDetailPage() {
         />
 
         <Slot
-          label="SAMPLE"
+          {...slot(`collection-${slug}-hero-006`, 'SAMPLE')}
           size="swatch"
           position="absolute"
           top="70%"
@@ -249,7 +250,7 @@ export default function CollectionDetailPage() {
         />
 
         <Slot
-          label="REF"
+          {...slot(`collection-${slug}-hero-007`, 'REF')}
           size="tiny"
           position="absolute"
           top="55%"
@@ -262,7 +263,7 @@ export default function CollectionDetailPage() {
         />
 
         <Slot
-          label={collection.index}
+          {...slot(`collection-${slug}-hero-008`, collection.index)}
           size="micro"
           position="absolute"
           top="35%"
@@ -380,7 +381,7 @@ export default function CollectionDetailPage() {
               return (
                 <Slot
                   key={image.id}
-                  label={image.caption || `LOOK ${String(image.id).padStart(2, '0')}`}
+                  {...slot(`collection-${slug}-gallery-${String(image.id).padStart(3, '0')}`, image.caption || `LOOK ${String(image.id).padStart(2, '0')}`)}
                   size={slotSizes[index % slotSizes.length]}
                   position="absolute"
                   top={pos.top}
@@ -455,61 +456,63 @@ export default function CollectionDetailPage() {
       {/* ============================================
           NAVIGATION
           ============================================ */}
-      <section className="py-16 md:py-24 px-6 md:px-12 border-t border-yon-platinum">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex justify-between items-center">
-            {/* Previous */}
-            <div>
-              {collection.prevSlug ? (
-                <Link
-                  href={`/collections/${collection.prevSlug}`}
-                  className="group flex items-center gap-4 outline-none focus-visible:ring-2 focus-visible:ring-yon-black focus-visible:ring-offset-4 rounded"
-                >
-                  <span className="font-mono text-xs text-yon-grey group-hover:text-yon-black group-focus-visible:text-yon-black transition-colors">←</span>
-                  <div>
-                    <span className="block font-mono text-[10px] text-yon-grey tracking-wider uppercase">Previous</span>
-                    <span className="block font-serif text-lg text-yon-black group-hover:text-yon-accent group-focus-visible:text-yon-accent transition-colors">
-                      {collectionsData[collection.prevSlug]?.title}
-                    </span>
-                  </div>
-                </Link>
-              ) : (
-                <Link
-                  href="/collections"
-                  className="font-mono text-sm text-yon-grey hover:text-yon-black focus-visible:text-yon-black transition-colors outline-none focus-visible:ring-2 focus-visible:ring-yon-black focus-visible:ring-offset-4 rounded"
-                >
-                  ← All Collections
-                </Link>
-              )}
-            </div>
+      <Suspense fallback={null}>
+        <section className="py-16 md:py-24 px-6 md:px-12 border-t border-yon-platinum">
+          <div className="max-w-5xl mx-auto">
+            <div className="flex justify-between items-center">
+              {/* Previous */}
+              <div>
+                {collection.prevSlug ? (
+                  <Link
+                    href={`/collections/${collection.prevSlug}`}
+                    className="group flex items-center gap-4 outline-none focus-visible:ring-2 focus-visible:ring-yon-black focus-visible:ring-offset-4 rounded"
+                  >
+                    <span className="font-mono text-xs text-yon-grey group-hover:text-yon-black group-focus-visible:text-yon-black transition-colors">←</span>
+                    <div>
+                      <span className="block font-mono text-[10px] text-yon-grey tracking-wider uppercase">Previous</span>
+                      <span className="block font-serif text-lg text-yon-black group-hover:text-yon-accent group-focus-visible:text-yon-accent transition-colors">
+                        {collectionsData[collection.prevSlug]?.title}
+                      </span>
+                    </div>
+                  </Link>
+                ) : (
+                  <Link
+                    href="/collections"
+                    className="font-mono text-sm text-yon-grey hover:text-yon-black focus-visible:text-yon-black transition-colors outline-none focus-visible:ring-2 focus-visible:ring-yon-black focus-visible:ring-offset-4 rounded"
+                  >
+                    ← All Collections
+                  </Link>
+                )}
+              </div>
 
-            {/* Next */}
-            <div>
-              {collection.nextSlug ? (
-                <Link
-                  href={`/collections/${collection.nextSlug}`}
-                  className="group flex items-center gap-4 text-right outline-none focus-visible:ring-2 focus-visible:ring-yon-black focus-visible:ring-offset-4 rounded"
-                >
-                  <div>
-                    <span className="block font-mono text-[10px] text-yon-grey tracking-wider uppercase">Next</span>
-                    <span className="block font-serif text-lg text-yon-black group-hover:text-yon-accent group-focus-visible:text-yon-accent transition-colors">
-                      {collectionsData[collection.nextSlug]?.title}
-                    </span>
-                  </div>
-                  <span className="font-mono text-xs text-yon-grey group-hover:text-yon-black group-focus-visible:text-yon-black transition-colors">→</span>
-                </Link>
-              ) : (
-                <Link
-                  href="/archive"
-                  className="font-mono text-sm text-yon-black hover:text-yon-accent focus-visible:text-yon-accent transition-colors outline-none focus-visible:ring-2 focus-visible:ring-yon-black focus-visible:ring-offset-4 rounded"
-                >
-                  View Archive →
-                </Link>
-              )}
+              {/* Next */}
+              <div>
+                {collection.nextSlug ? (
+                  <Link
+                    href={`/collections/${collection.nextSlug}`}
+                    className="group flex items-center gap-4 text-right outline-none focus-visible:ring-2 focus-visible:ring-yon-black focus-visible:ring-offset-4 rounded"
+                  >
+                    <div>
+                      <span className="block font-mono text-[10px] text-yon-grey tracking-wider uppercase">Next</span>
+                      <span className="block font-serif text-lg text-yon-black group-hover:text-yon-accent group-focus-visible:text-yon-accent transition-colors">
+                        {collectionsData[collection.nextSlug]?.title}
+                      </span>
+                    </div>
+                    <span className="font-mono text-xs text-yon-grey group-hover:text-yon-black group-focus-visible:text-yon-black transition-colors">→</span>
+                  </Link>
+                ) : (
+                  <Link
+                    href="/archive"
+                    className="font-mono text-sm text-yon-black hover:text-yon-accent focus-visible:text-yon-accent transition-colors outline-none focus-visible:ring-2 focus-visible:ring-yon-black focus-visible:ring-offset-4 rounded"
+                  >
+                    View Archive →
+                  </Link>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </Suspense>
 
       <Footer />
     </div>

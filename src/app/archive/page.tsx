@@ -1,234 +1,17 @@
-'use client'
-
-import { useState, useMemo, memo } from 'react'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import { Slot, AnnotationLabel } from '@/components/deconstructivist'
 import {
   GlitchTitle,
-  LabelText,
-  WhisperText,
-  NumberTag,
-  ExperimentalText,
   AnnotationText,
 } from '@/components/typography'
+import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
+import ArchiveClient from './archive-client'
 
-// Archive items - research and process documentation
-const archiveItems = [
-  {
-    id: '001',
-    title: 'Deconstructed Tailoring',
-    category: 'Construction',
-    description: 'Traditional pattern blocks, reimagined. Where structure meets chaos.',
-    longDescription: 'Exploring the boundary between precision and disorder in classical tailoring. Each seam becomes a decision point—to follow or to break.',
-    status: 'current',
-    tags: ['Tailoring', 'Deconstruction', 'Structure'],
-    date: '2025.01',
-  },
-  {
-    id: '002',
-    title: 'Raw Edge Studies',
-    category: 'Material',
-    description: 'Embracing the unfinished. Beauty in the frayed.',
-    longDescription: 'What if we celebrated the edges that convention tells us to hide? A meditation on completion and incompleteness.',
-    status: 'current',
-    tags: ['Raw Edge', 'Texture', 'Unfinished'],
-    date: '2025.01',
-  },
-  {
-    id: '003',
-    title: 'Volume Architecture',
-    category: 'Form',
-    description: 'The space between body and fabric. Sculptural silhouettes.',
-    longDescription: 'Architecture for the human form. Creating three-dimensional space that moves, breathes, and transforms with the wearer.',
-    status: 'archived',
-    tags: ['Volume', 'Sculpture', 'Silhouette'],
-    date: '2024.10',
-  },
-  {
-    id: '004',
-    title: 'Toile Iterations',
-    category: 'Process',
-    description: 'Every muslin tells a story. Prototypes as artifacts.',
-    longDescription: 'The toile is not just a test—it is a document of exploration. Each iteration preserves a moment of discovery or failure.',
-    status: 'archived',
-    tags: ['Muslin', 'Prototype', 'Iteration'],
-    date: '2024.09',
-  },
-  {
-    id: '005',
-    title: 'Beautiful Failures',
-    category: 'Experiment',
-    description: "What didn't work—and why it matters.",
-    longDescription: 'A collection of experiments that did not succeed in their original intention, but revealed unexpected truths about material and form.',
-    status: 'archived',
-    tags: ['Failure', 'Learning', 'Discovery'],
-    date: '2024.06',
-  },
-  {
-    id: '006',
-    title: 'Seam Exposé',
-    category: 'Detail',
-    description: 'Seams as protagonists. Exposed, celebrated, exaggerated.',
-    longDescription: 'Inverting the hierarchy of garment construction. The seam—normally hidden—becomes the main character of the narrative.',
-    status: 'archived',
-    tags: ['Seams', 'Exposed', 'Detail'],
-    date: '2024.05',
-  },
-  {
-    id: '007',
-    title: 'Concept Sketches',
-    category: 'Origin',
-    description: 'Where it all begins. Raw ideas on paper.',
-    longDescription: 'The first marks of imagination. Before fabric, before form—there is the line. These sketches capture the genesis of ideas.',
-    status: 'archived',
-    tags: ['Sketch', 'Concept', 'Beginning'],
-    date: '2024.02',
-  },
-  {
-    id: '008',
-    title: 'Texture Studies',
-    category: 'Surface',
-    description: 'The language of fabric. Close encounters.',
-    longDescription: 'Macro explorations of textile surfaces. Understanding material through intimate observation reveals patterns invisible to the casual eye.',
-    status: 'archived',
-    tags: ['Texture', 'Material', 'Surface'],
-    date: '2024.01',
-  },
-]
-
-const categories = ['All', 'Construction', 'Material', 'Form', 'Process', 'Experiment', 'Detail', 'Origin', 'Surface']
-
-// Dense archive card with scattered slots
-const ArchiveCard = memo(function ArchiveCard({ item, index }: { item: typeof archiveItems[0]; index: number }) {
-  const [isHovered, setIsHovered] = useState(false)
-  const rotations = [-3, 2, -2, 3, -1.5, 2.5, -2.5, 1.5]
-  const clips = ['irregular-1', 'torn-1', 'organic-1', 'torn-2', 'irregular-3', 'wave-1', 'corner-cut', 'notch-1'] as const
-  const decorations = ['tape-corner', 'pin', 'staple', 'corner-fold', 'tape-top', 'clip', 'pin-red', 'mark-x'] as const
-
-  return (
-    <div
-      className="relative animate-fade-in-up"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      style={{
-        transform: `rotate(${rotations[index % rotations.length] * 0.3}deg)`,
-        animationDelay: `${index * 50}ms`
-      }}
-    >
-      {/* Main slot - clickable */}
-      <div className="relative cursor-pointer" style={{ minHeight: '280px' }}>
-        <Slot
-          label={item.title}
-          size={index % 3 === 0 ? 'medium' : index % 3 === 1 ? 'small' : 'medium-wide'}
-          rotation={rotations[index % rotations.length]}
-          clip={clips[index % clips.length]}
-          shadow={isHovered ? 'dramatic' : 'offset'}
-          zIndex={10}
-          grayscale={item.status === 'archived'}
-          sepia={item.status === 'archived' && index % 2 === 0}
-          decoration={decorations[index % decorations.length]}
-          annotationNumber={item.id}
-          texture={index % 4 === 0 ? 'grain' : undefined}
-        />
-
-        {/* Secondary accent slot */}
-        <Slot
-          label={item.category}
-          size="tiny"
-          position="absolute"
-          top="65%"
-          right="-8%"
-          rotation={-rotations[index % rotations.length] * 2}
-          border="thin"
-          zIndex={15}
-          decoration={index % 2 === 0 ? 'pin' : 'clip'}
-        />
-
-        {/* Swatch */}
-        <Slot
-          label={item.id}
-          size="swatch"
-          position="absolute"
-          bottom="-5%"
-          left="10%"
-          rotation={rotations[(index + 3) % rotations.length]}
-          border={index % 2 === 0 ? 'rough' : 'accent'}
-          zIndex={12}
-        />
-      </div>
-
-      {/* Info below */}
-      <div className="mt-4 px-2">
-        <div className="flex items-center gap-3">
-          <NumberTag className={item.status === 'current' ? 'text-yon-accent' : 'text-yon-grey/40'}>
-            {item.status === 'current' ? '● Current' : '○ Archived'}
-          </NumberTag>
-          <WhisperText className="text-yon-grey/30">
-            {item.date}
-          </WhisperText>
-        </div>
-
-        <h3
-          className="mt-2"
-          style={{
-            transform: `rotate(${rotations[index % rotations.length] * 0.2}deg)`
-          }}
-        >
-          <ExperimentalText
-            text={item.title}
-            variant="subtitle"
-            effect={item.status === 'archived' ? 'grain' : 'layer'}
-            intensity="subtle"
-            colorScheme="mono"
-            as="span"
-          />
-        </h3>
-
-        <p
-          className="font-sans text-yon-grey/60 mt-2"
-          style={{ fontSize: '0.75rem', lineHeight: 1.6 }}
-        >
-          {item.description}
-        </p>
-
-        {/* Tags */}
-        <div
-          className="mt-3 flex flex-wrap gap-2 transition-opacity duration-300"
-          style={{ opacity: isHovered ? 1 : 0.5 }}
-        >
-          {item.tags.map(tag => (
-            <LabelText
-              key={tag}
-              className="text-yon-grey/50"
-              style={{ fontSize: '0.45rem' }}
-            >
-              #{tag}
-            </LabelText>
-          ))}
-        </div>
-      </div>
-    </div>
-  )
-})
-
-export default function ArchivePage() {
-  const [searchQuery, setSearchQuery] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState('All')
-
-  // Filter items
-  const filteredItems = useMemo(() => {
-    return archiveItems.filter(item => {
-      const matchesSearch = searchQuery === '' ||
-        item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
-
-      const matchesCategory = selectedCategory === 'All' || item.category === selectedCategory
-
-      return matchesSearch && matchesCategory
-    })
-  }, [searchQuery, selectedCategory])
+export default async function ArchivePage() {
+  // Fetch all slot images for archive page from CMS
+  const slotImages = await getSlotImages('archive')
+  const slot = createSlotHelper(slotImages)
 
   return (
     <div className="relative min-h-screen bg-yon-white overflow-x-hidden">
@@ -297,7 +80,7 @@ export default function ArchivePage() {
 
         {/* Slot 1: Hero left bleeding */}
         <Slot
-          label="ARCHIVE / MAIN"
+          {...slot('archive-header-001', 'ARCHIVE / MAIN')}
           size="hero"
           position="absolute"
           top="5%"
@@ -315,7 +98,7 @@ export default function ArchivePage() {
 
         {/* Slot 2: Large right */}
         <Slot
-          label="PROCESS"
+          {...slot('archive-header-002', 'PROCESS')}
           size="large"
           position="absolute"
           top="8%"
@@ -332,7 +115,7 @@ export default function ArchivePage() {
 
         {/* Slot 3: Medium overlapping */}
         <Slot
-          label="RESEARCH"
+          {...slot('archive-header-003', 'RESEARCH')}
           size="medium"
           position="absolute"
           top="40%"
@@ -347,7 +130,7 @@ export default function ArchivePage() {
 
         {/* Slot 4: Small */}
         <Slot
-          label="STUDY"
+          {...slot('archive-header-004', 'STUDY')}
           size="small"
           position="absolute"
           top="55%"
@@ -361,7 +144,7 @@ export default function ArchivePage() {
 
         {/* Slot 5: Medium-wide */}
         <Slot
-          label="DOCUMENT"
+          {...slot('archive-header-005', 'DOCUMENT')}
           size="medium-wide"
           position="absolute"
           bottom="20%"
@@ -375,7 +158,7 @@ export default function ArchivePage() {
 
         {/* Slot 6-8: Swatch cluster */}
         <Slot
-          label="A"
+          {...slot('archive-header-006', 'A')}
           size="swatch"
           position="absolute"
           top="28%"
@@ -387,7 +170,7 @@ export default function ArchivePage() {
         />
 
         <Slot
-          label="B"
+          {...slot('archive-header-007', 'B')}
           size="swatch"
           position="absolute"
           top="32%"
@@ -399,7 +182,7 @@ export default function ArchivePage() {
         />
 
         <Slot
-          label="C"
+          {...slot('archive-header-008', 'C')}
           size="swatch"
           position="absolute"
           top="36%"
@@ -412,7 +195,7 @@ export default function ArchivePage() {
 
         {/* Slot 9: Tiny */}
         <Slot
-          label="REF"
+          {...slot('archive-header-009', 'REF')}
           size="tiny"
           position="absolute"
           bottom="35%"
@@ -425,7 +208,7 @@ export default function ArchivePage() {
 
         {/* Slot 10: Small bottom right bleeding */}
         <Slot
-          label="NOTES"
+          {...slot('archive-header-010', 'NOTES')}
           size="small"
           position="absolute"
           bottom="15%"
@@ -440,7 +223,7 @@ export default function ArchivePage() {
 
         {/* Slot 11: Micro accents */}
         <Slot
-          label="01"
+          {...slot('archive-header-011', '01')}
           size="micro"
           position="absolute"
           top="48%"
@@ -453,7 +236,7 @@ export default function ArchivePage() {
 
         {/* Slot 12: Medium-tall */}
         <Slot
-          label="HISTORY"
+          {...slot('archive-header-012', 'HISTORY')}
           size="medium-tall"
           position="absolute"
           bottom="5%"
@@ -505,8 +288,9 @@ export default function ArchivePage() {
                 text="Archive"
                 size="display"
                 glitchOffset={8}
-                rotateChars
+                charRotation
                 rotationIntensity={4}
+                as="h1"
               />
             </div>
 
@@ -522,107 +306,13 @@ export default function ArchivePage() {
                 Research, process documentation, and experiments.
                 Every failure is a step toward discovery. Nothing is wasted.
               </p>
-
             </div>
-          </div>
-        </div>
-
-        {/* Filter controls */}
-        <div className="relative z-35 px-8 md:px-16 lg:px-24 pb-12">
-          <div className="flex flex-wrap items-center gap-6">
-            {/* Search */}
-            <div className="relative flex-1 max-w-xs">
-              <input
-                type="text"
-                placeholder="Search..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-2.5 font-mono text-yon-black bg-transparent border-b border-yon-grey/20 focus:border-yon-black focus:outline-none transition-colors placeholder:text-yon-grey/40"
-                style={{ fontSize: '0.75rem' }}
-              />
-            </div>
-
-            <span className="text-yon-grey/20">|</span>
-
-            {/* Category filter */}
-            <div className="flex items-center gap-2 overflow-x-auto">
-              {categories.slice(0, 5).map(cat => (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`font-mono uppercase tracking-[0.15em] transition-all whitespace-nowrap ${
-                    selectedCategory === cat
-                      ? 'text-yon-black border-b border-yon-black'
-                      : 'text-yon-grey/40 hover:text-yon-grey/70'
-                  }`}
-                  style={{ fontSize: '0.55rem', paddingBottom: '2px' }}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-
-            {/* Results count */}
-            <span
-              className="ml-auto font-mono text-yon-grey/30"
-              style={{ fontSize: '0.55rem', letterSpacing: '0.1em' }}
-            >
-              {filteredItems.length} Items
-            </span>
           </div>
         </div>
       </section>
 
-      {/* ============================================
-          ARCHIVE GRID - Dense Scattered Layout
-          ============================================ */}
-      <section className="relative py-20 px-8 md:px-16 lg:px-24 texture-paper">
-        {/* Background */}
-        <span
-          className="absolute pointer-events-none select-none"
-          style={{
-            top: '5%',
-            right: '-10%',
-            fontSize: 'clamp(10rem, 25vw, 38rem)',
-            fontWeight: 100,
-            fontFamily: 'var(--font-mono), monospace',
-            opacity: 0.015,
-            color: '#0A0A0A',
-            transform: 'rotate(5deg)',
-          }}
-          aria-hidden="true"
-        >
-          01—08
-        </span>
-
-        <div
-          key={`${selectedCategory}-${searchQuery}`}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16 animate-fade-in"
-        >
-          {filteredItems.map((item, index) => (
-            <ArchiveCard key={item.id} item={item} index={index} />
-          ))}
-        </div>
-
-        {/* Empty state */}
-        {filteredItems.length === 0 && (
-          <div className="py-24 text-center animate-fade-in">
-            <span className="font-mono text-yon-grey/50" style={{ fontSize: '0.75rem' }}>
-              No results found
-            </span>
-            <button
-              onClick={() => {
-                setSelectedCategory('All')
-                setSearchQuery('')
-              }}
-              className="block mx-auto mt-6 font-mono uppercase tracking-[0.15em] text-yon-black hover:text-yon-accent transition-colors border-b border-yon-grey/20 hover:border-yon-black pb-1"
-              style={{ fontSize: '0.6rem' }}
-            >
-              Reset Filters →
-            </button>
-          </div>
-        )}
-      </section>
+      {/* Archive Grid - Client Component for Filtering */}
+      <ArchiveClient />
 
       {/* ============================================
           FAILURES SECTION - Important Documentation
@@ -678,9 +368,10 @@ export default function ArchivePage() {
                 text="Failures"
                 size="heading"
                 glitchOffset={6}
-                rotateChars
+                charRotation
                 rotationIntensity={3}
                 style={{ color: 'var(--yon-accent)' }}
+                as="h2"
               />
             </div>
 
@@ -696,14 +387,13 @@ export default function ArchivePage() {
                 Every failed experiment teaches something. Rejected ideas, broken toiles, wrong paths —
                 all documented as essential steps toward discovery.
               </p>
-
             </div>
           </div>
 
           {/* Failure slots - 10 scattered grayscale */}
           <div className="relative mt-20" style={{ minHeight: '50vh' }}>
             <Slot
-              label="REJECTED / 01"
+              {...slot('archive-failures-001', 'REJECTED / 01')}
               size="large"
               position="absolute"
               top="0%"
@@ -718,7 +408,7 @@ export default function ArchivePage() {
             />
 
             <Slot
-              label="FAILED TOILE"
+              {...slot('archive-failures-002', 'FAILED TOILE')}
               size="medium"
               position="absolute"
               top="10%"
@@ -731,7 +421,7 @@ export default function ArchivePage() {
             />
 
             <Slot
-              label="WRONG PATH"
+              {...slot('archive-failures-003', 'WRONG PATH')}
               size="small"
               position="absolute"
               top="30%"
@@ -745,7 +435,7 @@ export default function ArchivePage() {
             />
 
             <Slot
-              label="ITERATION 03"
+              {...slot('archive-failures-004', 'ITERATION 03')}
               size="medium-wide"
               position="absolute"
               top="45%"
@@ -759,7 +449,7 @@ export default function ArchivePage() {
             />
 
             <Slot
-              label="DISCARDED"
+              {...slot('archive-failures-005', 'DISCARDED')}
               size="small-square"
               position="absolute"
               top="50%"
@@ -772,7 +462,7 @@ export default function ArchivePage() {
             />
 
             <Slot
-              label="X"
+              {...slot('archive-failures-006', 'X')}
               size="swatch"
               position="absolute"
               top="70%"
@@ -785,7 +475,7 @@ export default function ArchivePage() {
             />
 
             <Slot
-              label="X"
+              {...slot('archive-failures-007', 'X')}
               size="swatch"
               position="absolute"
               top="75%"
@@ -798,7 +488,7 @@ export default function ArchivePage() {
             />
 
             <Slot
-              label="NO"
+              {...slot('archive-failures-008', 'NO')}
               size="micro"
               position="absolute"
               top="38%"
@@ -810,7 +500,7 @@ export default function ArchivePage() {
             />
 
             <Slot
-              label="?"
+              {...slot('archive-failures-009', '?')}
               size="micro"
               position="absolute"
               bottom="20%"
@@ -822,7 +512,7 @@ export default function ArchivePage() {
             />
 
             <Slot
-              label="LESSON"
+              {...slot('archive-failures-010', 'LESSON')}
               size="tiny"
               position="absolute"
               bottom="15%"
@@ -891,8 +581,9 @@ export default function ArchivePage() {
               text="Collections"
               size="heading"
               glitchOffset={5}
-              rotateChars
+              charRotation
               rotationIntensity={3}
+              as="h2"
             />
           </div>
 
@@ -907,7 +598,7 @@ export default function ArchivePage() {
 
         {/* Accent slots */}
         <Slot
-          label="RESULT"
+          {...slot('archive-cta-001', 'RESULT')}
           size="small"
           position="absolute"
           bottom="15%"
@@ -919,7 +610,7 @@ export default function ArchivePage() {
         />
 
         <Slot
-          label="FINAL"
+          {...slot('archive-cta-002', 'FINAL')}
           size="tiny"
           position="absolute"
           top="20%"
@@ -930,7 +621,7 @@ export default function ArchivePage() {
         />
 
         <Slot
-          label="→"
+          {...slot('archive-cta-003', '→')}
           size="micro"
           position="absolute"
           bottom="30%"
