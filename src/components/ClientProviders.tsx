@@ -2,6 +2,7 @@
 
 import { memo, Suspense } from 'react'
 import dynamic from 'next/dynamic'
+import { SlotDebugProvider } from '@/contexts/SlotDebugContext'
 
 // Dynamic imports with proper loading states
 const LenisProvider = dynamic(() => import('@/hooks/useLenis'), {
@@ -25,14 +26,16 @@ const CustomCursor = dynamic(() => import('@/components/CustomCursor'), {
 const ClientProviders = memo(function ClientProviders({ children }: { children: React.ReactNode }) {
   return (
     <Suspense fallback={null}>
-      <LenisProvider>
-        <LightboxProvider>
-          <CustomCursor />
-          <ScrollProgress />
-          {children}
-          <BackToTop />
-        </LightboxProvider>
-      </LenisProvider>
+      <SlotDebugProvider>
+        <LenisProvider>
+          <LightboxProvider>
+            <CustomCursor />
+            <ScrollProgress />
+            {children}
+            <BackToTop />
+          </LightboxProvider>
+        </LenisProvider>
+      </SlotDebugProvider>
     </Suspense>
   )
 })

@@ -1,6 +1,7 @@
 'use client'
 
-import { CSSProperties, ReactNode, memo } from 'react'
+import { CSSProperties, ReactNode, memo, useState } from 'react'
+import { useSlotDebug } from '@/contexts/SlotDebugContext'
 
 // Extended Slot sizes - more variety
 type SlotSize =
@@ -95,6 +96,8 @@ type TextureOverlay = 'grain' | 'paper' | 'noise' | 'scan' | 'none'
 
 interface SlotProps {
   children?: ReactNode
+  // Slot identification (for debug mode)
+  slotId?: string
   // Image props
   src?: string
   alt?: string
@@ -266,6 +269,7 @@ const LABEL_POSITION_STYLES = Object.freeze<Record<string, CSSProperties>>({
 
 function Slot({
   children,
+  slotId,
   src,
   alt = 'Image',
   label,
@@ -305,6 +309,8 @@ function Slot({
   onClick,
   animated = false,
 }: SlotProps) {
+  const { isDebugMode, setHoveredSlotId } = useSlotDebug()
+  const [isHovered, setIsHovered] = useState(false)
   // Build transform string
   const transforms: string[] = []
   if (rotation !== 0) transforms.push(`rotate(${rotation}deg)`)
@@ -359,14 +365,97 @@ function Slot({
     ...style,
   }
 
+  // Debug mode handlers
+  const handleMouseEnter = () => {
+    if (isDebugMode && slotId) {
+      setIsHovered(true)
+      setHoveredSlotId(slotId)
+    }
+  }
+
+  const handleMouseLeave = () => {
+    if (isDebugMode) {
+      setIsHovered(false)
+      setHoveredSlotId(null)
+    }
+  }
+
   return (
     <div
       className={`slot ${className}`}
       style={combinedStyle}
       onClick={onClick}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       role={onClick ? 'button' : undefined}
       tabIndex={onClick ? 0 : undefined}
+      data-slot-id={slotId}
     >
+      {/* Debug Mode Overlay */}
+      {isDebugMode && slotId && (
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 9999,
+            background: isHovered
+              ? 'rgba(0, 255, 0, 0.3)'
+              : 'rgba(0, 0, 0, 0.6)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '8px',
+            pointerEvents: 'none',
+            transition: 'background 0.2s ease',
+            border: isHovered ? '2px solid #00ff00' : '1px solid rgba(255,255,255,0.3)',
+          }}
+        >
+          <span
+            style={{
+              fontFamily: 'monospace',
+              fontSize: isHovered ? '11px' : '9px',
+              color: '#fff',
+              textAlign: 'center',
+              wordBreak: 'break-all',
+              textShadow: '0 1px 2px rgba(0,0,0,0.8)',
+              fontWeight: isHovered ? 'bold' : 'normal',
+              background: isHovered ? 'rgba(0, 0, 0, 0.7)' : 'transparent',
+              padding: isHovered ? '4px 8px' : '0',
+              borderRadius: '4px',
+              transition: 'all 0.2s ease',
+            }}
+          >
+            {slotId}
+          </span>
+          {isHovered && (
+            <div
+              style={{
+                marginTop: '8px',
+                fontFamily: 'monospace',
+                fontSize: '8px',
+                color: 'rgba(255,255,255,0.8)',
+                textAlign: 'center',
+                background: 'rgba(0, 0, 0, 0.7)',
+                padding: '4px 8px',
+                borderRadius: '4px',
+              }}
+            >
+              <div>SIZE: {size}</div>
+              {position === 'absolute' && (
+                <>
+                  {top && <div>TOP: {top}</div>}
+                  {left && <div>LEFT: {left}</div>}
+                  {right && <div>RIGHT: {right}</div>}
+                  {bottom && <div>BOTTOM: {bottom}</div>}
+                </>
+              )}
+              {rotation !== 0 && <div>ROTATE: {rotation}°</div>}
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Texture overlay */}
       {texture !== 'none' && (
         <div

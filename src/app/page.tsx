@@ -27,7 +27,7 @@ export default async function HomePage() {
           Target: 15+ slots with overlapping, bleeding, varied sizes
           1920x1080 viewport optimized - fits in single screen capture
           ============================================ */}
-      <section className="relative w-full overflow-hidden texture-grain" style={{ height: 'calc(100vh - 42px)' }}>
+      <section className="relative w-full overflow-hidden texture-grain" style={{ height: 'calc(100vh - 48px)' }}>
         {/* Background typography - THE YON massive with layer effect */}
         <span
           className="absolute pointer-events-none select-none"

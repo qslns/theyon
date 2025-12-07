@@ -7,7 +7,7 @@ import BackToTop from './BackToTop'
 // Frozen constants - no re-creation on render
 const NAV_ITEMS = Object.freeze([
   { href: '/collections', label: 'Collections' },
-  { href: '/process', label: 'Process' },
+  { href: '/lab', label: 'Lab' },
   { href: '/archive', label: 'Archive' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
@@ -16,6 +16,10 @@ const NAV_ITEMS = Object.freeze([
 const SOCIAL_ITEMS = Object.freeze([
   { href: 'mailto:hello@theyon.com', label: 'Email', external: false },
   { href: 'https://instagram.com/theyon_studio', label: 'Instagram', external: true },
+] as const)
+
+const ADMIN_ITEMS = Object.freeze([
+  { href: '/studio', label: 'CMS Studio' },
 ] as const)
 
 // Current year - computed once at module level
@@ -221,6 +225,26 @@ const Footer = memo(function Footer() {
                 <span className="text-yon-silver" style={{ fontSize: '0.85rem' }}>
                   Seoul & Tokyo
                 </span>
+              </div>
+
+              {/* Admin Links */}
+              <div className="mt-8 pt-6" style={{ borderTop: '1px solid rgba(250,250,250,0.06)' }}>
+                <span
+                  className="font-mono text-yon-grey/30 tracking-[0.15em] uppercase block mb-3"
+                  style={{ fontSize: '0.45rem' }}
+                >
+                  Admin
+                </span>
+                {ADMIN_ITEMS.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block font-mono text-yon-grey/40 hover:text-yon-accent transition-colors"
+                    style={{ fontSize: '0.7rem' }}
+                  >
+                    {item.label} →
+                  </Link>
+                ))}
               </div>
             </nav>
           </div>

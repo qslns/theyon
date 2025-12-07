@@ -22,7 +22,7 @@ export default async function AboutPage() {
           SECTION 1: Portrait Collage Hero
           Dense deconstructivist layout - fits single screen capture
           ============================================ */}
-      <section className="relative w-full overflow-hidden texture-grain" style={{ height: 'calc(100vh - 42px)' }}>
+      <section className="relative w-full overflow-hidden texture-grain" style={{ height: 'calc(100vh - 48px)' }}>
         {/* Background typography - Name */}
         <span
           className="absolute pointer-events-none select-none"

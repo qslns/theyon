@@ -125,6 +125,7 @@ export function getSlotProps(
   slotId: string,
   defaultLabel?: string
 ): {
+  slotId: string
   src?: string
   alt?: string
   label?: string
@@ -133,10 +134,11 @@ export function getSlotProps(
   const slot = slotImages[slotId]
 
   if (!slot) {
-    return { label: defaultLabel }
+    return { slotId, label: defaultLabel }
   }
 
   return {
+    slotId,
     src: slot.imageUrl,
     alt: slot.imageAlt || slot.description || defaultLabel,
     label: slot.label || defaultLabel,

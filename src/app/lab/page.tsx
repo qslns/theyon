@@ -20,7 +20,7 @@ export default async function LabPage() {
       {/* ============================================
           HERO - Lab Introduction - fits single screen
           ============================================ */}
-      <section className="relative w-full overflow-hidden texture-grain" style={{ height: 'calc(100vh - 42px)' }}>
+      <section className="relative w-full overflow-hidden texture-grain" style={{ height: 'calc(100vh - 48px)' }}>
         {/* Background typography - LAB */}
         <span
           className="absolute pointer-events-none select-none"

@@ -128,7 +128,7 @@ export default async function CollectionDetailPage({ params }: PageProps) {
       {/* ============================================
           HERO SECTION - Dense Deconstructivist Collage
           ============================================ */}
-      <section className="relative w-full overflow-hidden texture-grain" style={{ height: 'calc(100vh - 42px)' }}>
+      <section className="relative w-full overflow-hidden texture-grain" style={{ height: 'calc(100vh - 48px)' }}>
         {/* Background typography */}
         <span
           className="absolute pointer-events-none select-none"
