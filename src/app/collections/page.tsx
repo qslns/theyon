@@ -1,23 +1,23 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, memo } from 'react'
 import Link from 'next/link'
-import { AnimatePresence, motion } from 'framer-motion'
-import { client } from '../../../sanity/lib/client'
-import { collectionsQuery } from '@/lib/sanity/queries'
+import dynamic from 'next/dynamic'
 import type { Collection } from '@/types/sanity'
 import Footer from '@/components/Footer'
 import { Slot, AnnotationLabel } from '@/components/deconstructivist'
-import {
-  LayeredTitle,
-  GlitchTitle,
-  ExperimentalText,
-  AnnotationText,
-  LabelText,
-  WhisperText,
-  HandwrittenNote,
-  GrainDisplay,
-} from '@/components/typography'
+import { GlitchTitle, LabelText } from '@/components/typography'
+
+// Dynamic import for Sanity client - only load when needed
+const fetchCollections = async () => {
+  const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+  if (!projectId || projectId === 'your_project_id_here') {
+    return null
+  }
+  const { client } = await import('../../../sanity/lib/client')
+  const { collectionsQuery } = await import('@/lib/sanity/queries')
+  return client.fetch<Collection[]>(collectionsQuery)
+}
 
 // Fallback data for THE YON
 const FALLBACK_COLLECTIONS: Partial<Collection>[] = [
@@ -489,17 +489,10 @@ export default function CollectionsPage() {
   const [activeFilter, setActiveFilter] = useState('all')
 
   useEffect(() => {
-    async function fetchCollections() {
+    async function loadCollections() {
       try {
-        const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
-        if (!projectId || projectId === 'your_project_id_here') {
-          setCollections(FALLBACK_COLLECTIONS)
-          setFilteredCollections(FALLBACK_COLLECTIONS)
-          setLoading(false)
-          return
-        }
-        const data = await client.fetch<Collection[]>(collectionsQuery)
-        const result = data.length > 0 ? data : FALLBACK_COLLECTIONS
+        const data = await fetchCollections()
+        const result = data && data.length > 0 ? data : FALLBACK_COLLECTIONS
         setCollections(result)
         setFilteredCollections(result)
       } catch {
@@ -509,7 +502,7 @@ export default function CollectionsPage() {
         setLoading(false)
       }
     }
-    fetchCollections()
+    loadCollections()
   }, [])
 
   // Filter collections
@@ -850,19 +843,14 @@ export default function CollectionsPage() {
             </button>
           </div>
         ) : (
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeFilter}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
-            >
-              {filteredCollections.map((collection, index) => (
-                <CollectionMoodboard key={collection._id} collection={collection} index={index} />
-              ))}
-            </motion.div>
-          </AnimatePresence>
+          <div
+            key={activeFilter}
+            className="animate-fade-in"
+          >
+            {filteredCollections.map((collection, index) => (
+              <CollectionMoodboard key={collection._id} collection={collection} index={index} />
+            ))}
+          </div>
         )}
       </section>
 

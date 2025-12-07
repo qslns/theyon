@@ -789,6 +789,64 @@ const ANNOTATION_VARIANT_STYLES = Object.freeze<Record<string, CSSProperties>>({
     padding: '3px 8px',
     textTransform: 'uppercase',
   },
+  // NEW: Circled text - hand-drawn circle effect
+  circled: {
+    fontFamily: 'monospace',
+    fontSize: '0.6rem',
+    letterSpacing: '0.1em',
+    color: '#1a1a1a',
+    border: '2px solid #8B7355',
+    borderRadius: '50%',
+    padding: '6px 12px',
+    textTransform: 'uppercase',
+  },
+  // NEW: Underlined with accent color
+  underlined: {
+    fontFamily: 'Georgia, serif',
+    fontSize: '0.7rem',
+    color: '#1a1a1a',
+    borderBottom: '2px solid #8B7355',
+    paddingBottom: '2px',
+  },
+  // NEW: Highlight / marker effect
+  highlight: {
+    fontFamily: 'monospace',
+    fontSize: '0.6rem',
+    letterSpacing: '0.1em',
+    color: '#1a1a1a',
+    background: 'linear-gradient(transparent 50%, rgba(139, 115, 85, 0.25) 50%)',
+    padding: '0 4px',
+    textTransform: 'uppercase',
+  },
+  // NEW: Margiela-style number (01, 02)
+  number: {
+    fontFamily: 'monospace',
+    fontSize: '0.45rem',
+    letterSpacing: '0.4em',
+    color: '#7A7A7A',
+    opacity: 0.5,
+    textTransform: 'uppercase',
+  },
+  // NEW: Crossed out / strikethrough
+  crossed: {
+    fontFamily: 'monospace',
+    fontSize: '0.6rem',
+    letterSpacing: '0.1em',
+    color: '#7A7A7A',
+    textDecoration: 'line-through',
+    textDecorationColor: '#C41E3A',
+    textDecorationThickness: '2px',
+    textTransform: 'uppercase',
+  },
+  // NEW: Whisper (very subtle)
+  whisper: {
+    fontFamily: 'monospace',
+    fontSize: '0.4rem',
+    letterSpacing: '0.5em',
+    color: '#B0B0B0',
+    opacity: 0.5,
+    textTransform: 'uppercase',
+  },
 })
 
 // Utility component for scattered annotation labels
@@ -801,7 +859,7 @@ export const AnnotationLabel = memo(function AnnotationLabel({
   text: string
   position: { top?: string; left?: string; right?: string; bottom?: string }
   rotation?: number
-  variant?: 'default' | 'handwritten' | 'stamp' | 'tag'
+  variant?: 'default' | 'handwritten' | 'stamp' | 'tag' | 'circled' | 'underlined' | 'highlight' | 'number' | 'crossed' | 'whisper'
 }) {
   return (
     <span

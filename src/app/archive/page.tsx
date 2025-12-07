@@ -1,21 +1,15 @@
 'use client'
 
-import { useState, useMemo } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useMemo, memo } from 'react'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import { Slot, AnnotationLabel } from '@/components/deconstructivist'
-import { useLightbox } from '@/components/ImageLightbox'
 import {
-  LayeredTitle,
   GlitchTitle,
-  ExperimentalText,
   LabelText,
   WhisperText,
   NumberTag,
-  HandwrittenNote,
-  CrossedText,
-  GrainDisplay,
+  ExperimentalText,
   AnnotationText,
 } from '@/components/typography'
 
@@ -106,22 +100,21 @@ const archiveItems = [
 const categories = ['All', 'Construction', 'Material', 'Form', 'Process', 'Experiment', 'Detail', 'Origin', 'Surface']
 
 // Dense archive card with scattered slots
-function ArchiveCard({ item, index }: { item: typeof archiveItems[0]; index: number }) {
+const ArchiveCard = memo(function ArchiveCard({ item, index }: { item: typeof archiveItems[0]; index: number }) {
   const [isHovered, setIsHovered] = useState(false)
   const rotations = [-3, 2, -2, 3, -1.5, 2.5, -2.5, 1.5]
   const clips = ['irregular-1', 'torn-1', 'organic-1', 'torn-2', 'irregular-3', 'wave-1', 'corner-cut', 'notch-1'] as const
   const decorations = ['tape-corner', 'pin', 'staple', 'corner-fold', 'tape-top', 'clip', 'pin-red', 'mark-x'] as const
 
   return (
-    <motion.div
-      className="relative"
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.5, delay: index * 0.05 }}
+    <div
+      className="relative animate-fade-in-up"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      style={{ transform: `rotate(${rotations[index % rotations.length] * 0.3}deg)` }}
+      style={{
+        transform: `rotate(${rotations[index % rotations.length] * 0.3}deg)`,
+        animationDelay: `${index * 50}ms`
+      }}
     >
       {/* Main slot - clickable */}
       <div className="relative cursor-pointer" style={{ minHeight: '280px' }}>
@@ -200,10 +193,9 @@ function ArchiveCard({ item, index }: { item: typeof archiveItems[0]; index: num
         </p>
 
         {/* Tags */}
-        <motion.div
-          className="mt-3 flex flex-wrap gap-2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isHovered ? 1 : 0.5 }}
+        <div
+          className="mt-3 flex flex-wrap gap-2 transition-opacity duration-300"
+          style={{ opacity: isHovered ? 1 : 0.5 }}
         >
           {item.tags.map(tag => (
             <LabelText
@@ -214,16 +206,15 @@ function ArchiveCard({ item, index }: { item: typeof archiveItems[0]; index: num
               #{tag}
             </LabelText>
           ))}
-        </motion.div>
+        </div>
       </div>
-    </motion.div>
+    </div>
   )
-}
+})
 
 export default function ArchivePage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
-  const { openLightbox } = useLightbox()
 
   // Filter items
   const filteredItems = useMemo(() => {
@@ -604,28 +595,18 @@ export default function ArchivePage() {
           01—08
         </span>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`${selectedCategory}-${searchQuery}`}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-          >
-            {filteredItems.map((item, index) => (
-              <ArchiveCard key={item.id} item={item} index={index} />
-            ))}
-          </motion.div>
-        </AnimatePresence>
+        <div
+          key={`${selectedCategory}-${searchQuery}`}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16 animate-fade-in"
+        >
+          {filteredItems.map((item, index) => (
+            <ArchiveCard key={item.id} item={item} index={index} />
+          ))}
+        </div>
 
         {/* Empty state */}
         {filteredItems.length === 0 && (
-          <motion.div
-            className="py-24 text-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
+          <div className="py-24 text-center animate-fade-in">
             <span className="font-mono text-yon-grey/50" style={{ fontSize: '0.75rem' }}>
               No results found
             </span>
@@ -639,7 +620,7 @@ export default function ArchivePage() {
             >
               Reset Filters →
             </button>
-          </motion.div>
+          </div>
         )}
       </section>
 

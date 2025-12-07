@@ -10,7 +10,7 @@ import { memo, useMemo, CSSProperties, ReactNode } from 'react'
 
 type LayerStyle = 'offset' | 'echo' | 'glitch' | 'shadow' | 'double' | 'triple'
 type BlendMode = 'normal' | 'multiply' | 'difference' | 'overlay' | 'screen'
-type SizeVariant = 'hero' | 'large' | 'medium' | 'small'
+type SizeVariant = 'hero' | 'display' | 'heading' | 'large' | 'medium' | 'small'
 
 interface LayeredTitleProps {
   text: string
@@ -33,19 +33,31 @@ interface LayeredTitleProps {
 // Frozen size configurations
 const SIZE_STYLES = Object.freeze<Record<SizeVariant, CSSProperties>>({
   hero: {
-    fontSize: 'clamp(4rem, 18vw, 14rem)',
+    fontSize: 'clamp(5rem, 20vw, 16rem)',
+    lineHeight: 0.82,
+    letterSpacing: '-0.05em',
+    fontWeight: 300,
+  },
+  display: {
+    fontSize: 'clamp(3.5rem, 14vw, 10rem)',
     lineHeight: 0.85,
     letterSpacing: '-0.04em',
     fontWeight: 300,
   },
+  heading: {
+    fontSize: 'clamp(2.5rem, 10vw, 6rem)',
+    lineHeight: 0.88,
+    letterSpacing: '-0.03em',
+    fontWeight: 300,
+  },
   large: {
-    fontSize: 'clamp(2.5rem, 10vw, 8rem)',
+    fontSize: 'clamp(2rem, 8vw, 5rem)',
     lineHeight: 0.9,
     letterSpacing: '-0.03em',
     fontWeight: 300,
   },
   medium: {
-    fontSize: 'clamp(1.75rem, 6vw, 4rem)',
+    fontSize: 'clamp(1.75rem, 6vw, 3.5rem)',
     lineHeight: 0.95,
     letterSpacing: '-0.02em',
     fontWeight: 300,
@@ -302,10 +314,11 @@ export const HeroLayeredTitle = memo(function HeroLayeredTitle(
   return <LayeredTitle {...props} size="hero" as="h1" />
 })
 
-export const GlitchTitle = memo(function GlitchTitle(
-  props: Omit<LayeredTitleProps, 'layerStyle'>
-) {
-  return <LayeredTitle {...props} layerStyle="glitch" />
+export const GlitchTitle = memo(function GlitchTitle({
+  glitchOffset = 2,
+  ...props
+}: Omit<LayeredTitleProps, 'layerStyle'> & { glitchOffset?: number }) {
+  return <LayeredTitle {...props} layerStyle="glitch" offsetX={glitchOffset} offsetY={glitchOffset} />
 })
 
 export const EchoTitle = memo(function EchoTitle(
