@@ -13,11 +13,6 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
 
-  // Skip ESLint during build
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-
   // Experimental features for better performance
   experimental: {
     optimizeCss: true,
@@ -37,7 +32,6 @@ const nextConfig = {
 
   // Image optimization
   images: {
-    domains: ['cdn.sanity.io'],
     remotePatterns: [
       {
         protocol: 'https',
