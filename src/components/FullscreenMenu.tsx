@@ -12,12 +12,12 @@ interface FullscreenMenuProps {
 
 // Frozen constants - no re-creation on render
 const MENU_ITEMS = Object.freeze([
-  { href: '/', label: 'Home', labelKo: '홈', num: '00' },
-  { href: '/collections', label: 'Collections', labelKo: '컬렉션', num: '01' },
-  { href: '/process', label: 'Process', labelKo: '프로세스', num: '02' },
-  { href: '/archive', label: 'Archive', labelKo: '아카이브', num: '03' },
-  { href: '/about', label: 'About', labelKo: '소개', num: '04' },
-  { href: '/contact', label: 'Contact', labelKo: '연락', num: '05' },
+  { href: '/', label: 'Home', num: '00' },
+  { href: '/collections', label: 'Collections', num: '01' },
+  { href: '/process', label: 'Process', num: '02' },
+  { href: '/archive', label: 'Archive', num: '03' },
+  { href: '/about', label: 'About', num: '04' },
+  { href: '/contact', label: 'Contact', num: '05' },
 ] as const)
 
 const SOCIAL_LINKS = Object.freeze([
@@ -399,23 +399,6 @@ function FullscreenMenu({ isOpen, onClose }: FullscreenMenuProps) {
                               transition={{ duration: 0.3, delay: 0.5 }}
                             />
                           )}
-                        </motion.span>
-
-                        {/* Korean label - secondary */}
-                        <motion.span
-                          className="hidden lg:block font-mono tracking-wider"
-                          style={{
-                            fontSize: '11px',
-                            color: isHovered ? 'rgba(139, 115, 85, 0.8)' : 'rgba(122, 122, 122, 0.3)',
-                            marginLeft: '16px',
-                          }}
-                          animate={{
-                            opacity: isHovered ? 1 : 0.5,
-                            x: isHovered ? 8 : 0,
-                          }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          {item.labelKo}
                         </motion.span>
 
                         {/* Arrow - appears on hover */}
