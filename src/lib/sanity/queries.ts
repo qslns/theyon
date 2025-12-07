@@ -231,3 +231,85 @@ export const recentArchiveEntriesQuery = `
     images
   }
 `
+
+// ============================================
+// SLOT IMAGE QUERIES
+// CMS-managed slot images for pages
+// ============================================
+
+/**
+ * Get all active slot images for a specific page
+ */
+export const slotImagesByPageQuery = `
+  *[_type == "slotImage" && page == $page && isActive == true] | order(section asc, order asc) {
+    slotId,
+    page,
+    section,
+    description,
+    label,
+    order,
+    "imageUrl": image.asset->url,
+    "imageAlt": image.alt,
+    "imageLqip": image.asset->metadata.lqip,
+    "imageWidth": image.asset->metadata.dimensions.width,
+    "imageHeight": image.asset->metadata.dimensions.height,
+    "imageHotspot": image.hotspot
+  }
+`
+
+/**
+ * Get a single slot image by slotId
+ */
+export const slotImageByIdQuery = `
+  *[_type == "slotImage" && slotId == $slotId && isActive == true][0] {
+    slotId,
+    page,
+    section,
+    description,
+    label,
+    "imageUrl": image.asset->url,
+    "imageAlt": image.alt,
+    "imageLqip": image.asset->metadata.lqip,
+    "imageWidth": image.asset->metadata.dimensions.width,
+    "imageHeight": image.asset->metadata.dimensions.height,
+    "imageHotspot": image.hotspot
+  }
+`
+
+/**
+ * Get all slot images for a specific page and section
+ */
+export const slotImagesBySectionQuery = `
+  *[_type == "slotImage" && page == $page && section == $section && isActive == true] | order(order asc) {
+    slotId,
+    section,
+    description,
+    label,
+    order,
+    "imageUrl": image.asset->url,
+    "imageAlt": image.alt,
+    "imageLqip": image.asset->metadata.lqip,
+    "imageWidth": image.asset->metadata.dimensions.width,
+    "imageHeight": image.asset->metadata.dimensions.height,
+    "imageHotspot": image.hotspot
+  }
+`
+
+/**
+ * Get all slot images with a batch of slotIds
+ */
+export const slotImagesByIdsQuery = `
+  *[_type == "slotImage" && slotId in $slotIds && isActive == true] {
+    slotId,
+    page,
+    section,
+    description,
+    label,
+    "imageUrl": image.asset->url,
+    "imageAlt": image.alt,
+    "imageLqip": image.asset->metadata.lqip,
+    "imageWidth": image.asset->metadata.dimensions.width,
+    "imageHeight": image.asset->metadata.dimensions.height,
+    "imageHotspot": image.hotspot
+  }
+`
