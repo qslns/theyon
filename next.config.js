@@ -48,6 +48,16 @@ const nextConfig = {
   // Headers for security and performance
   async headers() {
     return [
+      // Sanity Studio needs relaxed CSP
+      {
+        source: '/studio/:path*',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: ''
+          }
+        ]
+      },
       {
         source: '/:path*',
         headers: [
@@ -83,7 +93,8 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "img-src 'self' data: blob: https://cdn.sanity.io https://www.google-analytics.com",
               "font-src 'self' https://fonts.gstatic.com",
-              "connect-src 'self' https://www.google-analytics.com https://vitals.vercel-insights.com https://cdn.sanity.io",
+              "connect-src 'self' https://www.google-analytics.com https://vitals.vercel-insights.com https://cdn.sanity.io https://*.api.sanity.io https://*.sanity.io wss://*.sanity.io",
+              "frame-src 'self' https://*.sanity.io",
               "frame-ancestors 'self'",
               "base-uri 'self'",
               "form-action 'self'"
