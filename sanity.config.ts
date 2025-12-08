@@ -120,22 +120,25 @@ export default defineConfig({
     structureTool({
       structure: (S) =>
         S.list()
+          .id('root')
           .title('THE YON Content')
           .items([
             // ===== SLOT IMAGES =====
             S.listItem()
-              .title('🖼️ Slot Images')
               .id('slot-images')
+              .title('🖼️ Slot Images')
               .child(
                 S.list()
+                  .id('slot-images-list')
                   .title('페이지별 슬롯')
                   .items([
                     // Quick filters at top
                     S.listItem()
-                      .title('📋 전체 슬롯 (185개)')
                       .id('all-slots')
+                      .title('📋 전체 슬롯 (185개)')
                       .child(
                         S.documentTypeList('slotImage')
+                          .id('all-slots-docs')
                           .title('All Slots')
                           .filter('_type == "slotImage"')
                           .defaultOrdering([
@@ -145,10 +148,11 @@ export default defineConfig({
                           ])
                       ),
                     S.listItem()
-                      .title('🟢 이미지 있음')
                       .id('with-image')
+                      .title('🟢 이미지 있음')
                       .child(
                         S.documentTypeList('slotImage')
+                          .id('with-image-docs')
                           .title('With Images')
                           .filter('_type == "slotImage" && defined(image)')
                           .defaultOrdering([
@@ -157,10 +161,11 @@ export default defineConfig({
                           ])
                       ),
                     S.listItem()
-                      .title('🔴 이미지 없음')
                       .id('no-image')
+                      .title('🔴 이미지 없음')
                       .child(
                         S.documentTypeList('slotImage')
+                          .id('no-image-docs')
                           .title('Without Images')
                           .filter('_type == "slotImage" && !defined(image)')
                           .defaultOrdering([
@@ -173,18 +178,20 @@ export default defineConfig({
                     // Page-level items with sections nested inside
                     ...PAGE_CONFIG.map((page) =>
                       S.listItem()
-                        .title(`${page.title} (${page.count}개)`)
                         .id(`page-${page.id}`)
+                        .title(`${page.title} (${page.count}개)`)
                         .child(
                           S.list()
+                            .id(`${page.id}-sections-list`)
                             .title(`${page.title} 슬롯`)
                             .items([
                               // All slots in this page
                               S.listItem()
-                                .title(`📋 ${page.title} 전체`)
                                 .id(`${page.id}-all`)
+                                .title(`📋 ${page.title} 전체`)
                                 .child(
                                   S.documentTypeList('slotImage')
+                                    .id(`${page.id}-all-docs`)
                                     .title(`${page.title} All`)
                                     .filter('_type == "slotImage" && page == $page')
                                     .params({ page: page.id })
@@ -197,10 +204,11 @@ export default defineConfig({
                               // Sections within this page
                               ...page.sections.map((section) =>
                                 S.listItem()
-                                  .title(`${SECTION_LABELS[section.id] || section.id} (${section.count}개)`)
                                   .id(`${page.id}-${section.id}`)
+                                  .title(`${SECTION_LABELS[section.id] || section.id} (${section.count}개)`)
                                   .child(
                                     S.documentTypeList('slotImage')
+                                      .id(`${page.id}-${section.id}-docs`)
                                       .title(`${page.title} - ${SECTION_LABELS[section.id] || section.id}`)
                                       .filter('_type == "slotImage" && page == $page && section == $section')
                                       .params({ page: page.id, section: section.id })
@@ -217,36 +225,44 @@ export default defineConfig({
 
             // ===== OTHER CONTENT TYPES =====
             S.listItem()
+              .id('collections-content')
               .title('👗 Collections')
               .child(
                 S.documentTypeList('collection')
+                  .id('collections-docs')
                   .title('Collections')
                   .filter('_type == "collection"')
                   .defaultOrdering([{ field: 'year', direction: 'desc' }])
               ),
 
             S.listItem()
+              .id('experiments-content')
               .title('🧪 Lab Experiments')
               .child(
                 S.documentTypeList('experiment')
+                  .id('experiments-docs')
                   .title('Experiments')
                   .filter('_type == "experiment"')
                   .defaultOrdering([{ field: 'startDate', direction: 'desc' }])
               ),
 
             S.listItem()
+              .id('archive-content')
               .title('📁 Archive Entries')
               .child(
                 S.documentTypeList('archive')
+                  .id('archive-docs')
                   .title('Archive')
                   .filter('_type == "archive"')
                   .defaultOrdering([{ field: 'date', direction: 'desc' }])
               ),
 
             S.listItem()
+              .id('analysis-content')
               .title('📊 Brand Analysis')
               .child(
                 S.documentTypeList('analysis')
+                  .id('analysis-docs')
                   .title('Analysis')
                   .filter('_type == "analysis"')
                   .defaultOrdering([{ field: 'publishedAt', direction: 'desc' }])
