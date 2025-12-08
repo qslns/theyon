@@ -92,7 +92,7 @@ export default function HeroSection() {
     src: img.src,
     alt: img.label,
     caption: img.label,
-    captionKo: 'THE YON 2024-25',
+    captionKo: 'ASKEW 2024-25',
     width: 1200,
     height: img.aspectRatio === '1/1' ? 1200 : 1600,
   }))
@@ -108,7 +108,7 @@ export default function HeroSection() {
   if (!isMounted) {
     return (
       <section className="relative min-h-[100vh] flex items-center justify-center bg-yon-white">
-        <span className="font-mono text-[10px] tracking-[0.4em] text-yon-grey/40 uppercase">THE YON</span>
+        <span className="font-mono text-[10px] tracking-[0.4em] text-yon-grey/40 uppercase">ASKEW</span>
       </section>
     )
   }
@@ -179,10 +179,10 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2, ease: yonEase }}
           >
             <span className="font-mono text-[10px] tracking-[0.4em] text-yon-grey/60 uppercase">
-              THE YON
+              ASKEW
             </span>
             <span className="block font-mono text-[8px] tracking-[0.2em] text-yon-grey/30 mt-1">
-              저 너머
+              Twisted yet Harmonious
             </span>
           </motion.div>
 

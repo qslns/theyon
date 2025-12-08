@@ -313,7 +313,7 @@ export default function AnimatedSections({
     src: img.src,
     alt: img.alt,
     caption: img.label,
-    captionKo: 'THE YON Archive',
+    captionKo: 'ASKEW Archive',
     width: 1200,
     height: 1600,
   }))

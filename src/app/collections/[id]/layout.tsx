@@ -60,7 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     openGraph: {
-      title: `${title} | THE YON`,
+      title: `${title} | ASKEW`,
       description,
       type: 'article',
       images: [
@@ -74,7 +74,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${title} | THE YON`,
+      title: `${title} | ASKEW`,
       description,
     },
   }

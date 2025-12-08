@@ -87,7 +87,7 @@ export default function BackgroundText({
 export function BrandBackground({ className = '' }: { className?: string }) {
   return (
     <BackgroundText
-      text="THE YON"
+      text="ASKEW"
       size="massive"
       position="fixed"
       top="50%"

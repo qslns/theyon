@@ -1,4 +1,4 @@
-// THE YON Archive - 정신세계와 철학의 기록
+// ASKEW Archive - 정신세계와 철학의 기록
 
 export interface Philosophy {
   id: string
@@ -34,7 +34,7 @@ export const philosophies: Philosophy[] = [
 
     We don't sell clothes. We create moments of transformation. Each piece is a timestamp of creative evolution, not a product.
 
-    THE YON is an experimental fashion laboratory. We pursue the limits of fashion through rigorous research and uncompromising methodology.
+    ASKEW is an experimental fashion laboratory. We pursue the limits of fashion through rigorous research and uncompromising methodology.
 
     The laboratory is where fashion meets science, where fabric meets philosophy, where destruction creates beauty.`,
     date: '2024-01-01',
@@ -238,7 +238,7 @@ export const archiveEntries: ArchiveEntry[] = [
     month: 'JUNE',
     day: 15,
     title: 'THE LABORATORY OPENS',
-    subtitle: 'THE YON is born',
+    subtitle: 'ASKEW is born',
     type: 'EVENT',
     category: 'CREATION',
     content: 'Today marks the beginning. No more commerce. No more compromise. Only pure creation. The laboratory is open.',
