@@ -1,6 +1,6 @@
 // ============================================
-// THE YON EXPERIMENTAL TYPOGRAPHY SYSTEM
-// "Twisted yet harmonious"
+// ASKEW EXPERIMENTAL TYPOGRAPHY SYSTEM
+// "Twisted yet Harmonious"
 // GEDOKU/Sakiyama inspired
 // ============================================
 

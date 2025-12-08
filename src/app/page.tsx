@@ -35,7 +35,7 @@ export default async function HomePage() {
           1920x1080 viewport optimized - fits in single screen capture
           ============================================ */}
       <section className="relative w-full overflow-hidden texture-grain" style={{ height: 'calc(100vh - 48px)' }}>
-        {/* Background typography - THE YON massive with layer effect */}
+        {/* Background typography - ASKEW massive with layer effect */}
         <span
           className="absolute pointer-events-none select-none"
           style={{
