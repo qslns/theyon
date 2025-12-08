@@ -125,7 +125,7 @@ export default function YonNav() {
                 letterSpacing: '0.1em',
               }}
             >
-              THE YON
+              ASKEW
             </span>
           </Link>
 
