@@ -69,7 +69,7 @@ export default function Error({ error, reset }: ErrorProps) {
 
         {/* Footer */}
         <p className="mt-16 font-mono text-xs text-yon-grey tracking-[0.2em] uppercase">
-          THE YON — Beyond Fashion
+          ASKEW — Twisted yet Harmonious
         </p>
       </motion.div>
     </div>

@@ -544,7 +544,7 @@ export default async function ContactPage() {
 
           <div className="mt-10 flex justify-center gap-12">
             <a
-              href="https://instagram.com/theyon_studio"
+              href="https://instagram.com/askew_studio"
               target="_blank"
               rel="noopener noreferrer"
               className="font-mono uppercase tracking-[0.2em] text-yon-grey/50 hover:text-yon-black transition-colors border-b border-transparent hover:border-yon-black pb-1"
@@ -554,7 +554,7 @@ export default async function ContactPage() {
             </a>
 
             <a
-              href="mailto:hello@theyon.com"
+              href="mailto:hello@askew.studio"
               className="font-mono uppercase tracking-[0.2em] text-yon-grey/50 hover:text-yon-black transition-colors border-b border-transparent hover:border-yon-black pb-1"
               style={{ fontSize: '0.6rem' }}
             >

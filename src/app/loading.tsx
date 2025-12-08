@@ -18,7 +18,7 @@ export default function Loading() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
         >
-          THE YON
+          ASKEW
         </motion.h1>
 
         {/* Loading indicator - minimal dots */}
@@ -53,7 +53,7 @@ export default function Loading() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
         >
-          Beyond Fashion
+          Twisted yet Harmonious
         </motion.p>
       </div>
     </div>

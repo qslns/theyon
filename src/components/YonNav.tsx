@@ -70,7 +70,7 @@ export default function YonNav() {
               color: '#0A0A0A',
               letterSpacing: '0.1em',
             }}>
-              THE YON
+              ASKEW
             </span>
           </div>
         </header>

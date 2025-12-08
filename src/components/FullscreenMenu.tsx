@@ -21,8 +21,8 @@ const MENU_ITEMS = Object.freeze([
 ] as const)
 
 const SOCIAL_LINKS = Object.freeze([
-  { label: 'Instagram', href: 'https://instagram.com/theyon_studio' },
-  { label: 'Email', href: 'mailto:hello@theyon.com' },
+  { label: 'Instagram', href: 'https://instagram.com/askew_studio' },
+  { label: 'Email', href: 'mailto:hello@askew.studio' },
 ] as const)
 
 // Custom easing - frozen singleton
@@ -297,13 +297,13 @@ function FullscreenMenu({ isOpen, onClose }: FullscreenMenuProps) {
                   className="font-serif text-yon-white group-hover:text-yon-accent transition-colors duration-300"
                   style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', letterSpacing: '-0.02em' }}
                 >
-                  THE YON
+                  ASKEW
                 </span>
                 <span
                   className="font-mono text-yon-grey/40 mt-1"
                   style={{ fontSize: '8px', letterSpacing: '0.25em' }}
                 >
-                  BEYOND FASHION
+                  TWISTED YET HARMONIOUS
                 </span>
               </Link>
             </motion.div>
@@ -461,7 +461,7 @@ function FullscreenMenu({ isOpen, onClose }: FullscreenMenuProps) {
                   className="font-mono tracking-wider"
                   style={{ fontSize: '9px', color: 'rgba(122, 122, 122, 0.4)' }}
                 >
-                  © {CURRENT_YEAR} THE YON
+                  © {CURRENT_YEAR} ASKEW
                 </p>
                 <p
                   className="font-mono mt-2"
@@ -473,7 +473,7 @@ function FullscreenMenu({ isOpen, onClose }: FullscreenMenuProps) {
                   className="font-serif italic mt-1"
                   style={{ fontSize: '10px', color: 'rgba(122, 122, 122, 0.3)' }}
                 >
-                  Beyond Fashion
+                  Twisted yet Harmonious
                 </p>
               </div>
             </motion.div>

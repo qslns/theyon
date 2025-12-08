@@ -2,15 +2,15 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Collections',
-  description: 'Explore experimental fashion collections by THE YON. Deconstructed tailoring, hybrid materials, and architectural silhouettes.',
+  description: 'Explore wearable sculpture collections by ASKEW. Twisted yet harmonious. Structure woven in silence, beauty caught in light.',
   openGraph: {
-    title: 'Collections | THE YON',
-    description: 'Explore experimental fashion collections by THE YON. Deconstructed tailoring, hybrid materials, and architectural silhouettes.',
+    title: 'Collections | ASKEW',
+    description: 'Explore wearable sculpture collections by ASKEW. Twisted yet harmonious.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Collections | THE YON',
-    description: 'Experimental fashion collections by THE YON.',
+    title: 'Collections | ASKEW',
+    description: 'Wearable sculpture collections by ASKEW.',
   },
 }
 

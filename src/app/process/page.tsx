@@ -146,7 +146,7 @@ export default async function ProcessPage() {
               className="block font-mono uppercase tracking-[0.4em] text-yon-grey/40"
               style={{ fontSize: '0.55rem' }}
             >
-              THE YON — Process
+              ASKEW — Process
             </span>
 
             <h1

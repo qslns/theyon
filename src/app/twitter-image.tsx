@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
 
-export const alt = 'THE YON - Beyond Fashion'
+export const alt = 'ASKEW - Twisted yet Harmonious'
 export const size = {
   width: 1200,
   height: 630,
@@ -24,7 +24,7 @@ export default async function Image() {
           position: 'relative',
         }}
       >
-        {/* Decorative large Y in background */}
+        {/* Decorative large A in background */}
         <div
           style={{
             position: 'absolute',
@@ -37,7 +37,7 @@ export default async function Image() {
             lineHeight: 1,
           }}
         >
-          Y
+          A
         </div>
 
         {/* Main content */}
@@ -62,7 +62,7 @@ export default async function Image() {
               marginBottom: 24,
             }}
           >
-            THE YON
+            ASKEW
           </div>
 
           {/* Divider */}
@@ -86,7 +86,7 @@ export default async function Image() {
               textTransform: 'uppercase',
             }}
           >
-            Beyond Fashion
+            Twisted yet Harmonious
           </div>
 
           {/* Designer name */}

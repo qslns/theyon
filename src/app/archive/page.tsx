@@ -285,7 +285,7 @@ export default async function ArchivePage() {
         <div className="relative z-35 pt-44 pb-16 px-8 md:px-16 lg:px-24">
           <div className="max-w-5xl">
             <AnnotationText
-              text="THE YON — Archive"
+              text="ASKEW — Archive"
               variant="stamp"
               className="text-yon-grey/50"
             />

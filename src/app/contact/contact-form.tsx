@@ -241,21 +241,21 @@ export default function ContactForm() {
 
           <div className="mt-5 flex flex-col gap-4">
             <a
-              href="mailto:hello@theyon.com"
+              href="mailto:hello@askew.studio"
               className="font-mono text-yon-grey/50 hover:text-yon-black transition-colors"
               style={{ fontSize: '0.75rem', letterSpacing: '0.1em' }}
             >
-              hello@theyon.com
+              hello@askew.studio
             </a>
 
             <a
-              href="https://instagram.com/theyon_studio"
+              href="https://instagram.com/askew_studio"
               target="_blank"
               rel="noopener noreferrer"
               className="font-mono text-yon-grey/40 hover:text-yon-black transition-colors"
               style={{ fontSize: '0.7rem', letterSpacing: '0.1em' }}
             >
-              @theyon_studio
+              @askew_studio
             </a>
           </div>
         </div>

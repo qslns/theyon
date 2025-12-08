@@ -9,8 +9,7 @@ import YonNav from '@/components/YonNav'
 import ClientProviders from '@/components/ClientProviders'
 import '@/styles/globals.css'
 
-// Typography System - THE YON (Optimized)
-// Only load weights actually used in the design
+// Typography System - ASKEW
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-sans',
@@ -20,7 +19,7 @@ const inter = Inter({
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['300', '400'], // Removed 600 - not used
+  weight: ['300', '400'],
   variable: '--font-serif',
   display: 'swap',
   preload: true,
@@ -28,22 +27,22 @@ const cormorant = Cormorant_Garamond({
 
 const spaceMono = Space_Mono({
   subsets: ['latin'],
-  weight: ['400'], // Removed 700 - rarely used
+  weight: ['400'],
   variable: '--font-mono',
   display: 'swap',
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://theyon.vercel.app'),
+  metadataBase: new URL('https://askewstudio.vercel.app'),
   title: {
-    default: 'THE YON',
-    template: '%s | THE YON',
+    default: 'ASKEW',
+    template: '%s | ASKEW',
   },
-  description: 'Twisted yet harmonious.',
-  keywords: ['THE YON', 'Taehyun Lee', 'fashion'],
+  description: 'Twisted yet Harmonious. Structure woven in silence, beauty caught in light.',
+  keywords: ['ASKEW', 'Taehyun Lee', 'fashion', 'wearable sculpture', 'experimental fashion'],
   authors: [{ name: 'Taehyun Lee' }],
   creator: 'Taehyun Lee',
-  publisher: 'THE YON',
+  publisher: 'ASKEW',
   formatDetection: {
     email: false,
     address: false,
@@ -53,16 +52,16 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'ko_KR',
     alternateLocale: 'en_US',
-    url: 'https://theyon.vercel.app',
-    siteName: 'THE YON',
-    title: 'THE YON',
-    description: 'Twisted yet harmonious.',
+    url: 'https://askewstudio.vercel.app',
+    siteName: 'ASKEW',
+    title: 'ASKEW',
+    description: 'Twisted yet Harmonious. Structure woven in silence, beauty caught in light.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'THE YON',
-    description: 'Twisted yet harmonious.',
-    creator: '@theyon_studio',
+    title: 'ASKEW',
+    description: 'Twisted yet Harmonious. Structure woven in silence, beauty caught in light.',
+    creator: '@askew_studio',
   },
   robots: {
     index: true,
@@ -84,43 +83,43 @@ export const viewport = {
   themeColor: '#000000',
 }
 
-// JSON-LD structured data - Enhanced for SEO
+// JSON-LD structured data - ASKEW
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
       '@type': 'WebSite',
-      '@id': 'https://theyon.vercel.app/#website',
-      url: 'https://theyon.vercel.app',
-      name: 'THE YON',
-      description: 'Experimental fashion portfolio by Taehyun Lee',
-      publisher: { '@id': 'https://theyon.vercel.app/#person' },
+      '@id': 'https://askewstudio.vercel.app/#website',
+      url: 'https://askewstudio.vercel.app',
+      name: 'ASKEW',
+      description: 'Twisted yet Harmonious. Wearable sculpture by Taehyun Lee.',
+      publisher: { '@id': 'https://askewstudio.vercel.app/#person' },
       inLanguage: ['en', 'ko'],
     },
     {
       '@type': 'Person',
-      '@id': 'https://theyon.vercel.app/#person',
+      '@id': 'https://askewstudio.vercel.app/#person',
       name: 'Taehyun Lee',
       alternateName: '이태현',
-      url: 'https://theyon.vercel.app',
-      image: 'https://theyon.vercel.app/images/profile.jpg',
+      url: 'https://askewstudio.vercel.app',
+      image: 'https://askewstudio.vercel.app/images/profile.jpg',
       jobTitle: 'Fashion Designer',
       worksFor: {
         '@type': 'Organization',
-        name: 'THE YON',
+        name: 'ASKEW',
       },
       sameAs: [
-        'https://instagram.com/theyon_studio',
+        'https://instagram.com/askew_studio',
       ],
-      knowsAbout: ['Fashion Design', 'Pattern Making', 'Experimental Fashion'],
+      knowsAbout: ['Fashion Design', 'Pattern Making', 'Wearable Sculpture', 'Experimental Fashion'],
     },
     {
       '@type': 'CollectionPage',
-      '@id': 'https://theyon.vercel.app/#collections',
-      url: 'https://theyon.vercel.app/collections',
+      '@id': 'https://askewstudio.vercel.app/#collections',
+      url: 'https://askewstudio.vercel.app/collections',
       name: 'Collections',
-      description: 'Experimental fashion collections by THE YON',
-      isPartOf: { '@id': 'https://theyon.vercel.app/#website' },
+      description: 'Spider\'s Web Collection - Wearable sculpture by ASKEW',
+      isPartOf: { '@id': 'https://askewstudio.vercel.app/#website' },
     },
   ],
 }
@@ -155,7 +154,7 @@ function NavFallback() {
             color: '#0A0A0A',
             letterSpacing: '0.1em',
           }}>
-            THE YON
+            ASKEW
           </span>
         </div>
       </header>
@@ -182,7 +181,7 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="THE YON" />
+        <meta name="apple-mobile-web-app-title" content="ASKEW" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="msapplication-TileColor" content="#0A0A0A" />
         <script

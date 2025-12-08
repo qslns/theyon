@@ -23,7 +23,7 @@ async function getCollections(): Promise<Partial<Collection>[]> {
   }
 }
 
-// Fallback data for THE YON
+// Fallback data for ASKEW
 const FALLBACK_COLLECTIONS: Partial<Collection>[] = [
   {
     _id: '1',
@@ -307,7 +307,7 @@ export default async function CollectionsPage() {
         <div className="relative z-30 pt-44 pb-16 px-8 md:px-16 lg:px-24">
           <div className="max-w-5xl">
             <LabelText
-              text="THE YON — Collections"
+              text="ASKEW — Collections"
               style={{ fontSize: '0.55rem' }}
             />
 

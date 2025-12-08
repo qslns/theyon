@@ -53,7 +53,7 @@ export default async function HomePage() {
           }}
           aria-hidden="true"
         >
-          THE YON
+          ASKEW
         </span>
 
         {/* Second layer - offset shadow for depth */}
@@ -73,7 +73,7 @@ export default async function HomePage() {
           }}
           aria-hidden="true"
         >
-          THE YON
+          ASKEW
         </span>
 
         {/* Secondary background text - vertical */}
@@ -378,7 +378,7 @@ export default async function HomePage() {
         {/* Brand mark - top left corner with GLITCH effect */}
         <div className="absolute top-6 left-6 z-40">
           <GlitchTitle
-            text="THE YON"
+            text="ASKEW"
             size="small"
             glitchOffset={3}
             style={{
@@ -390,7 +390,7 @@ export default async function HomePage() {
             as="span"
           />
           <ExperimentalText
-            text="Beyond"
+            text="Twisted"
             variant="micro"
             effect="scatter"
             intensity="medium"
@@ -1070,11 +1070,11 @@ export default async function HomePage() {
 
           <div className="mt-12">
             <a
-              href="mailto:hello@theyon.com"
+              href="mailto:hello@askew.studio"
               className="font-mono text-yon-grey/40 hover:text-yon-black transition-colors"
               style={{ fontSize: '0.75rem', letterSpacing: '0.1em' }}
             >
-              hello@theyon.com
+              hello@askew.studio
             </a>
           </div>
         </div>

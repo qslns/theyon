@@ -1,24 +1,29 @@
-# THE YON - Beyond Fashion
+# ASKEW - Twisted yet Harmonious
 
 ## BRAND IDENTITY
-**"Twisted yet harmonious"**
+**"Twisted yet Harmonious"**
 
-THE YON (더 연) = "저 너머"
-시간과 공간을 초월한 패션. 손에 잡히지 않는, 도달하기 어려운 이상적인 아름다움.
+ASKEW (어스큐) = "비뚤어진, 기울어진"
+뒤틀렸지만 조화로운. Wearable sculpture.
+
+**Slogan**: "Twisted yet Harmonious"
+**Message**: "Structure woven in silence, beauty caught in light."
+**Collection**: Spider's Web Collection
 
 ## CORE PHILOSOPHY
-- **정체성**: 실험적 패션 포트폴리오
+- **정체성**: 실험적 패션 포트폴리오 (Wearable Sculpture)
 - **핵심 미학**: 뒤틀렸지만 조화로운 - 모든 요소가 약간씩 어긋나 있지만 전체적으로 아름다운 구성
 - **디자이너**: Taehyun Lee (이태현), 사사다 패션스쿨
 - **목적**: CSM, Parsons, Antwerp 대학원 포트폴리오
+- **도메인**: askewstudio.vercel.app
 
 ## WEBSITE STRUCTURE
 
 ### HOME (/)
-- Faerie 스타일 자유로운 이미지 배치
+- Deconstructivist 스타일 이미지 배치
 - 패럴랙스 스크롤 효과
-- "THE YON" 브랜드 타이포그래피
-- 최신 컬렉션 프리뷰
+- "ASKEW" 브랜드 타이포그래피
+- Spider's Web Collection 프리뷰
 
 ### COLLECTIONS (/collections)
 - 비대칭 그리드 갤러리
@@ -43,7 +48,8 @@ THE YON (더 연) = "저 너머"
 ### CONTACT (/contact)
 - 미니멀 디자인
 - 문의 폼 (Name, Email, Type, Message)
-- 이메일 + 인스타그램 링크
+- 이메일: hello@askew.studio
+- 인스타그램: @askew_studio
 
 ## DESIGN PRINCIPLES
 
@@ -68,7 +74,7 @@ THE YON (더 연) = "저 너머"
 - Framer Motion 사용
 
 ## TECHNICAL STACK
-- Next.js 15.5 App Router
+- Next.js 16 App Router (Turbopack)
 - TypeScript
 - Tailwind CSS
 - Framer Motion
@@ -95,4 +101,4 @@ THE YON (더 연) = "저 너머"
 
 ---
 
-THE YON — Beyond Fashion
+ASKEW — Twisted yet Harmonious

@@ -386,20 +386,20 @@ export default async function AboutPage() {
           }}
         >
           <a
-            href="mailto:hello@theyon.com"
+            href="mailto:hello@askew.studio"
             className="block font-mono text-yon-grey/50 hover:text-yon-black transition-colors"
             style={{ fontSize: '0.75rem', letterSpacing: '0.1em' }}
           >
-            hello@theyon.com
+            hello@askew.studio
           </a>
           <a
-            href="https://instagram.com/theyon_studio"
+            href="https://instagram.com/askew_studio"
             target="_blank"
             rel="noopener noreferrer"
             className="block font-mono text-yon-grey/30 hover:text-yon-black transition-colors mt-2"
             style={{ fontSize: '0.65rem', letterSpacing: '0.1em' }}
           >
-            @theyon_studio
+            @askew_studio
           </a>
         </div>
 

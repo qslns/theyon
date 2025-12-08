@@ -286,7 +286,7 @@ export default async function LabPage() {
         {/* Main title */}
         <div className="relative z-30 pt-40 pb-20 px-8 md:px-16 lg:px-24">
           <div className="max-w-4xl">
-            <LabelText text="THE YON — Experiments" style={{ fontSize: '0.55rem' }} />
+            <LabelText text="ASKEW — Experiments" style={{ fontSize: '0.55rem' }} />
 
             <GlitchTitle
               text="Lab"

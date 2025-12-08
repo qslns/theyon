@@ -130,7 +130,7 @@ export default function GlobalError({
                 color: '#7A7A7A',
               }}
             >
-              THE YON — Beyond Fashion
+              ASKEW — Twisted yet Harmonious
             </p>
           </div>
         </div>

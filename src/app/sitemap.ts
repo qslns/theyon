@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://theyon.vercel.app'
+  const baseUrl = 'https://askewstudio.vercel.app'
   const lastModified = new Date()
 
   // Static routes

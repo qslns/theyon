@@ -1,14 +1,14 @@
 {
-  "name": "THE YON — Beyond Fashion",
-  "short_name": "THE YON",
-  "description": "Twisted yet harmonious. Experimental fashion portfolio by Taehyun Lee. Every element is slightly askew, yet together they form perfect beauty.",
+  "name": "ASKEW — Twisted yet Harmonious",
+  "short_name": "ASKEW",
+  "description": "Twisted yet Harmonious. Wearable sculpture by Taehyun Lee. Structure woven in silence, beauty caught in light.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#FAFAFA",
   "theme_color": "#0A0A0A",
   "orientation": "any",
-  "id": "theyon-portfolio",
+  "id": "askew-portfolio",
   "lang": "en",
   "dir": "ltr",
   "categories": ["fashion", "portfolio", "art"],
@@ -41,7 +41,7 @@
       "name": "Collections",
       "short_name": "Collections",
       "url": "/collections",
-      "description": "Explore experimental fashion collections"
+      "description": "Spider's Web Collection - Wearable sculpture"
     },
     {
       "name": "Archive",
@@ -53,7 +53,7 @@
       "name": "About",
       "short_name": "About",
       "url": "/about",
-      "description": "About Taehyun Lee and THE YON"
+      "description": "About Taehyun Lee and ASKEW"
     }
   ],
   "related_applications": [],

@@ -14,8 +14,8 @@ const NAV_ITEMS = Object.freeze([
 ] as const)
 
 const SOCIAL_ITEMS = Object.freeze([
-  { href: 'mailto:hello@theyon.com', label: 'Email', external: false },
-  { href: 'https://instagram.com/theyon_studio', label: 'Instagram', external: true },
+  { href: 'mailto:hello@askew.studio', label: 'Email', external: false },
+  { href: 'https://instagram.com/askew_studio', label: 'Instagram', external: true },
 ] as const)
 
 const ADMIN_ITEMS = Object.freeze([
@@ -47,7 +47,7 @@ const Footer = memo(function Footer() {
           }}
           aria-hidden="true"
         >
-          YON
+          ASKEW
         </span>
 
         {/* Secondary background - vertical */}
@@ -101,7 +101,7 @@ const Footer = memo(function Footer() {
                     display: 'inline-block',
                   }}
                 >
-                  THE YON
+                  ASKEW
                 </span>
               </Link>
 
@@ -113,8 +113,8 @@ const Footer = memo(function Footer() {
                   marginLeft: '1rem',
                 }}
               >
-                Experimental fashion that transcends time and space.
-                Every element twisted, yet perfectly harmonious.
+                Structure woven in silence, beauty caught in light.
+                Wearable sculpture—twisted yet harmonious.
               </p>
 
               <span
@@ -277,7 +277,7 @@ const Footer = memo(function Footer() {
               className="font-mono text-yon-grey/40"
               style={{ fontSize: '0.55rem', letterSpacing: '0.1em' }}
             >
-              &copy; {CURRENT_YEAR} THE YON
+              &copy; {CURRENT_YEAR} ASKEW
             </p>
 
             {/* Tagline */}
@@ -285,7 +285,7 @@ const Footer = memo(function Footer() {
               className="font-mono text-yon-grey/30 italic"
               style={{ fontSize: '0.5rem', transform: 'rotate(0.5deg)' }}
             >
-              Beyond Fashion
+              Twisted yet Harmonious
             </p>
           </div>
 
