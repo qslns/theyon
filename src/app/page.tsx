@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Footer from '@/components/Footer'
-import { Slot, AnnotationLabel } from '@/components/deconstructivist'
+import { Slot, AnnotationLabel, BackgroundSlot } from '@/components/deconstructivist'
 import {
   LayeredTitle,
   GlitchTitle,
@@ -22,6 +22,13 @@ export default async function HomePage() {
 
   return (
     <div className="relative bg-yon-white min-h-screen overflow-x-hidden">
+      {/* CMS Background Slot */}
+      <BackgroundSlot
+        {...slot('home-background-001', 'BACKGROUND')}
+        opacity={0.03}
+        grayscale
+      />
+
       {/* ============================================
           SECTION 1: HERO - Dense Deconstructivist Collage
           Target: 15+ slots with overlapping, bleeding, varied sizes

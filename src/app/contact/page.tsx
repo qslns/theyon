@@ -1,5 +1,5 @@
 import Footer from '@/components/Footer'
-import { Slot, AnnotationLabel } from '@/components/deconstructivist'
+import { Slot, AnnotationLabel, BackgroundSlot } from '@/components/deconstructivist'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 import ContactForm from './contact-form'
 
@@ -10,6 +10,13 @@ export default async function ContactPage() {
 
   return (
     <div className="relative min-h-screen bg-yon-white overflow-x-hidden">
+      {/* CMS Background Slot */}
+      <BackgroundSlot
+        {...slot('contact-background-001', 'BACKGROUND')}
+        opacity={0.03}
+        grayscale
+      />
+
       {/* ============================================
           CONTACT - Dense Deconstructivist Collage - fits single screen
           15+ scattered slots around minimal form

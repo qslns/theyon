@@ -34,15 +34,15 @@ export default defineConfig({
           .items([
             // Slot Images - Primary management interface
             S.listItem()
-              .title('Slot Images')
+              .title('🖼️ Slot Images')
               .icon(() => '🖼️')
               .child(
                 S.list()
-                  .title('Slot Images by Page')
+                  .title('Slot Images')
                   .items([
-                    // All slots
+                    // Quick Access - All slots
                     S.listItem()
-                      .title('All Slots')
+                      .title('📋 All Slots')
                       .icon(() => '📋')
                       .child(
                         S.documentTypeList('slotImage')
@@ -54,36 +54,82 @@ export default defineConfig({
                             { field: 'order', direction: 'asc' },
                           ])
                       ),
-                    S.divider(),
-                    // Per-page filtering
-                    ...SLOT_PAGES.map((page) =>
-                      S.listItem()
-                        .title(`${page.icon} ${page.title}`)
-                        .id(`slots-${page.id}`)
-                        .child(
-                          S.documentTypeList('slotImage')
-                            .title(`${page.title} Slots`)
-                            .filter('_type == "slotImage" && page == $page')
-                            .params({ page: page.id })
-                            .defaultOrdering([
-                              { field: 'section', direction: 'asc' },
-                              { field: 'order', direction: 'asc' },
-                            ])
-                        )
-                    ),
-                    S.divider(),
-                    // Collection detail pages (dynamic)
+                    // Quick Access - Background slots
                     S.listItem()
-                      .title('📄 Collection Details')
-                      .id('slots-collection-details')
+                      .title('🖼️ Background Slots (All Pages)')
+                      .icon(() => '🖼️')
                       .child(
                         S.documentTypeList('slotImage')
-                          .title('Collection Detail Slots')
-                          .filter('_type == "slotImage" && page match "collection-*"')
+                          .title('Background Slots')
+                          .filter('_type == "slotImage" && section == "background"')
+                          .defaultOrdering([
+                            { field: 'page', direction: 'asc' },
+                          ])
+                      ),
+                    // Quick Access - Active slots only
+                    S.listItem()
+                      .title('🟢 Active Slots')
+                      .icon(() => '🟢')
+                      .child(
+                        S.documentTypeList('slotImage')
+                          .title('Active Slots')
+                          .filter('_type == "slotImage" && isActive == true')
                           .defaultOrdering([
                             { field: 'page', direction: 'asc' },
                             { field: 'section', direction: 'asc' },
-                            { field: 'order', direction: 'asc' },
+                          ])
+                      ),
+                    // Quick Access - Inactive/Hidden slots
+                    S.listItem()
+                      .title('🔴 Hidden Slots')
+                      .icon(() => '🔴')
+                      .child(
+                        S.documentTypeList('slotImage')
+                          .title('Hidden (Inactive) Slots')
+                          .filter('_type == "slotImage" && isActive == false')
+                          .defaultOrdering([
+                            { field: 'page', direction: 'asc' },
+                          ])
+                      ),
+                    S.divider(),
+                    // === BY PAGE ===
+                    S.listItem()
+                      .title('📂 Browse by Page')
+                      .icon(() => '📂')
+                      .child(
+                        S.list()
+                          .title('Select Page')
+                          .items([
+                            ...SLOT_PAGES.map((page) =>
+                              S.listItem()
+                                .title(`${page.icon} ${page.title}`)
+                                .id(`slots-${page.id}`)
+                                .child(
+                                  S.documentTypeList('slotImage')
+                                    .title(`${page.title} Slots`)
+                                    .filter('_type == "slotImage" && page == $page')
+                                    .params({ page: page.id })
+                                    .defaultOrdering([
+                                      { field: 'section', direction: 'asc' },
+                                      { field: 'order', direction: 'asc' },
+                                    ])
+                                )
+                            ),
+                            S.divider(),
+                            // Collection detail pages (dynamic)
+                            S.listItem()
+                              .title('📄 Collection Details')
+                              .id('slots-collection-details')
+                              .child(
+                                S.documentTypeList('slotImage')
+                                  .title('Collection Detail Slots')
+                                  .filter('_type == "slotImage" && page match "collection-*"')
+                                  .defaultOrdering([
+                                    { field: 'page', direction: 'asc' },
+                                    { field: 'section', direction: 'asc' },
+                                    { field: 'order', direction: 'asc' },
+                                  ])
+                              ),
                           ])
                       ),
                   ])
@@ -91,7 +137,7 @@ export default defineConfig({
             S.divider(),
             // Collections
             S.listItem()
-              .title('Collections')
+              .title('👗 Collections')
               .icon(() => '👗')
               .child(
                 S.documentTypeList('collection')
@@ -101,7 +147,7 @@ export default defineConfig({
               ),
             // Lab Experiments
             S.listItem()
-              .title('Lab Experiments')
+              .title('🧪 Lab Experiments')
               .icon(() => '🧪')
               .child(
                 S.documentTypeList('experiment')
@@ -111,7 +157,7 @@ export default defineConfig({
               ),
             // Archive
             S.listItem()
-              .title('Archive Entries')
+              .title('📁 Archive Entries')
               .icon(() => '📁')
               .child(
                 S.documentTypeList('archive')
@@ -121,7 +167,7 @@ export default defineConfig({
               ),
             // Analysis
             S.listItem()
-              .title('Brand Analysis')
+              .title('📊 Brand Analysis')
               .icon(() => '📊')
               .child(
                 S.documentTypeList('analysis')

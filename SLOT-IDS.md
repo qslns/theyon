@@ -14,6 +14,29 @@ Complete reference for all CMS-managed slot images across the website.
 
 ---
 
+## Background Slots (7 slots - All Pages)
+
+Each page has a dedicated background slot for full-screen ambient imagery.
+
+| Slot ID | Page | Description |
+|---------|------|-------------|
+| `home-background-001` | Home | Homepage background image |
+| `about-background-001` | About | About page background |
+| `collections-background-001` | Collections | Collections page background |
+| `archive-background-001` | Archive | Archive page background |
+| `process-background-001` | Process | Process page background |
+| `contact-background-001` | Contact | Contact page background |
+| `lab-background-001` | Lab | Lab page background |
+
+### Background Slot Settings
+- **Opacity**: Typically 0.02 - 0.05 (very subtle)
+- **Position**: Fixed (stays in place during scroll)
+- **Z-Index**: 0 (behind all content)
+- **Effect**: Grayscale by default
+- **Behavior**: If no image uploaded, page uses default background color
+
+---
+
 ## Home Page (42 slots)
 
 ### Hero Section (12 slots)

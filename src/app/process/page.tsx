@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Footer from '@/components/Footer'
-import { Slot } from '@/components/deconstructivist'
+import { Slot, BackgroundSlot } from '@/components/deconstructivist'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 import ProcessStages from './process-stages'
 
@@ -11,6 +11,13 @@ export default async function ProcessPage() {
 
   return (
     <div className="relative min-h-screen bg-yon-white overflow-x-hidden">
+      {/* CMS Background Slot */}
+      <BackgroundSlot
+        {...slot('process-background-001', 'BACKGROUND')}
+        opacity={0.03}
+        grayscale
+      />
+
       {/* ============================================
           HERO - Sketchbook Cover - fits single screen
           ============================================ */}

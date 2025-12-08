@@ -18,6 +18,8 @@ const PAGE_OPTIONS = [
 
 // Section options grouped by page
 const SECTION_OPTIONS = [
+  // Background (all pages) - full screen ambient image
+  { title: '🖼️ Background (Full Screen)', value: 'background' },
   // Home sections
   { title: '🏠 Hero', value: 'hero' },
   { title: '🏠 Philosophy', value: 'philosophy' },
@@ -27,7 +29,7 @@ const SECTION_OPTIONS = [
   // About sections
   { title: '👤 Portrait', value: 'portrait' },
   { title: '👤 Statement', value: 'statement' },
-  { title: '👤 Background', value: 'background' },
+  { title: '👤 About Background', value: 'about-background' },
   { title: '👤 Work Process', value: 'work-process' },
   // Collections sections
   { title: '📚 Header', value: 'header' },
@@ -53,15 +55,27 @@ const SECTION_OPTIONS = [
   { title: '🔬 Experiments', value: 'experiments' },
 ]
 
+// Slot size options with recommended dimensions
+const SLOT_SIZE_OPTIONS = [
+  { title: '🖥️ Background (1920x1080)', value: 'background' },
+  { title: '🦸 Hero (800x600)', value: 'hero' },
+  { title: '📐 Large (600x400)', value: 'large' },
+  { title: '📏 Medium (400x300)', value: 'medium' },
+  { title: '📎 Small (300x200)', value: 'small' },
+  { title: '🔲 Tiny (200x150)', value: 'tiny' },
+  { title: '🎨 Swatch (150x150)', value: 'swatch' },
+  { title: '⚬ Micro (100x100)', value: 'micro' },
+]
+
 export default defineType({
   name: 'slotImage',
   title: 'Slot Images',
   type: 'document',
   icon: () => '🖼️',
   groups: [
-    { name: 'location', title: 'Location', icon: () => '📍', default: true },
-    { name: 'content', title: 'Content', icon: () => '🖼️' },
-    { name: 'settings', title: 'Settings', icon: () => '⚙️' },
+    { name: 'location', title: '📍 Location', icon: () => '📍', default: true },
+    { name: 'content', title: '🖼️ Content', icon: () => '🖼️' },
+    { name: 'settings', title: '⚙️ Settings', icon: () => '⚙️' },
   ],
   fields: [
     // Location Group
@@ -70,7 +84,7 @@ export default defineType({
       title: 'Slot ID',
       type: 'string',
       group: 'location',
-      description: 'Format: page-section-number (e.g., home-hero-001). Check SLOT-IDS.md for reference.',
+      description: 'Unique ID: page-section-number (e.g., home-hero-001). See SLOT-IDS.md for full list.',
       validation: (Rule) =>
         Rule.required()
           .regex(/^[a-z]+-[a-z-]+-\d{3}$/, {
@@ -84,6 +98,7 @@ export default defineType({
       title: 'Page',
       type: 'string',
       group: 'location',
+      description: 'Which page does this slot appear on?',
       options: {
         list: PAGE_OPTIONS,
         layout: 'dropdown',
@@ -95,6 +110,7 @@ export default defineType({
       title: 'Section',
       type: 'string',
       group: 'location',
+      description: 'Which section of the page?',
       options: {
         list: SECTION_OPTIONS,
         layout: 'dropdown',
@@ -106,16 +122,28 @@ export default defineType({
       title: 'Slot Description',
       type: 'string',
       group: 'location',
-      description: 'Describe where this slot appears on the page (helps other editors)',
+      description: 'Brief description of where this image appears (helps other editors)',
+      placeholder: 'e.g., "Main hero image, top-left corner"',
     }),
 
     // Content Group
+    defineField({
+      name: 'slotSize',
+      title: 'Slot Size (Recommended)',
+      type: 'string',
+      group: 'content',
+      description: 'Recommended image dimensions for this slot. Upload at least this resolution for best quality.',
+      options: {
+        list: SLOT_SIZE_OPTIONS,
+        layout: 'dropdown',
+      },
+    }),
     defineField({
       name: 'image',
       title: 'Image',
       type: 'image',
       group: 'content',
-      description: 'Upload or drag an image. Use hotspot to set focus point for cropping.',
+      description: 'Drag and drop or click to upload. Use hotspot (click focal point) to control cropping.',
       options: {
         hotspot: true,
         accept: 'image/*',
@@ -126,7 +154,7 @@ export default defineType({
           name: 'alt',
           title: 'Alt Text',
           type: 'string',
-          description: 'Describe the image for accessibility (screen readers)',
+          description: 'Describe the image for accessibility (screen readers) - IMPORTANT for SEO',
         }),
       ],
       validation: (Rule) => Rule.required().error('Image is required'),
@@ -136,7 +164,8 @@ export default defineType({
       title: 'Label Override',
       type: 'string',
       group: 'content',
-      description: 'Custom text to display on the slot (leave empty to use default)',
+      description: 'Custom text displayed on the slot. Leave empty to use default label.',
+      placeholder: 'e.g., "HERO" or "DETAIL"',
     }),
 
     // Settings Group
@@ -145,7 +174,7 @@ export default defineType({
       title: 'Active',
       type: 'boolean',
       group: 'settings',
-      description: 'Turn off to hide this slot on the website (image stays saved)',
+      description: 'Turn OFF to temporarily hide this slot on the website. The image stays saved for later use.',
       initialValue: true,
     }),
     defineField({
@@ -153,8 +182,16 @@ export default defineType({
       title: 'Display Order',
       type: 'number',
       group: 'settings',
-      description: 'Controls order within section (lower numbers appear first)',
+      description: 'Controls order within section. Lower numbers = appears first. (0, 1, 2, ...)',
       initialValue: 0,
+    }),
+    defineField({
+      name: 'notes',
+      title: 'Internal Notes',
+      type: 'text',
+      group: 'settings',
+      description: 'Private notes for editors (not shown on website)',
+      rows: 2,
     }),
   ],
   preview: {
@@ -165,12 +202,14 @@ export default defineType({
       page: 'page',
       section: 'section',
       isActive: 'isActive',
+      slotSize: 'slotSize',
     },
     prepare(selection) {
-      const { title, subtitle, media, page, section, isActive } = selection
+      const { title, subtitle, media, page, section, isActive, slotSize } = selection
       const statusIcon = isActive === false ? '🔴 ' : '🟢 '
+      const sizeHint = slotSize ? ` [${slotSize}]` : ''
       return {
-        title: `${statusIcon}${title || 'New Slot'}`,
+        title: `${statusIcon}${title || 'New Slot'}${sizeHint}`,
         subtitle: subtitle || `${page || '?'} → ${section || '?'}`,
         media,
       }
@@ -195,6 +234,14 @@ export default defineType({
       title: 'Recently Updated',
       name: 'updatedDesc',
       by: [{ field: '_updatedAt', direction: 'desc' }],
+    },
+    {
+      title: 'Active First',
+      name: 'activeFirst',
+      by: [
+        { field: 'isActive', direction: 'desc' },
+        { field: 'page', direction: 'asc' },
+      ],
     },
   ],
 })

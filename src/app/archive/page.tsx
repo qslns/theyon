@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Footer from '@/components/Footer'
-import { Slot, AnnotationLabel } from '@/components/deconstructivist'
+import { Slot, AnnotationLabel, BackgroundSlot } from '@/components/deconstructivist'
 import {
   GlitchTitle,
   AnnotationText,
@@ -15,6 +15,13 @@ export default async function ArchivePage() {
 
   return (
     <div className="relative min-h-screen bg-yon-white overflow-x-hidden">
+      {/* CMS Background Slot */}
+      <BackgroundSlot
+        {...slot('archive-background-001', 'BACKGROUND')}
+        opacity={0.03}
+        grayscale
+      />
+
       {/* ============================================
           HERO - Dense Deconstructivist Header - fits single screen
           ============================================ */}
