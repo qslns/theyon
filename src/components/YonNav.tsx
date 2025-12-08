@@ -182,69 +182,6 @@ export default function YonNav() {
               )
             })}
 
-            {/* Separator */}
-            <span style={{ width: '1px', height: '12px', background: 'rgba(0,0,0,0.1)' }} />
-
-            {/* CMS Quick Access Button */}
-            <Link
-              href="/studio"
-              style={{
-                fontFamily: 'var(--font-mono), monospace',
-                fontSize: '9px',
-                fontWeight: 400,
-                color: '#8B7355',
-                textDecoration: 'none',
-                textTransform: 'uppercase',
-                letterSpacing: '0.1em',
-                padding: '4px 10px',
-                border: '1px solid rgba(139,115,85,0.3)',
-                borderRadius: '2px',
-                transition: 'all 0.2s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#8B7355'
-                e.currentTarget.style.color = '#FAFAFA'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent'
-                e.currentTarget.style.color = '#8B7355'
-              }}
-            >
-              CMS
-            </Link>
-
-            {/* DEBUG Mode Toggle Button */}
-            <Link
-              href={isDebugMode ? pathname : `${pathname}?debug=slots`}
-              style={{
-                fontFamily: 'var(--font-mono), monospace',
-                fontSize: '9px',
-                fontWeight: 400,
-                color: isDebugMode ? '#22C55E' : '#6A6A6A',
-                textDecoration: 'none',
-                textTransform: 'uppercase',
-                letterSpacing: '0.1em',
-                padding: '4px 10px',
-                border: isDebugMode ? '1px solid #22C55E' : '1px solid rgba(106,106,106,0.3)',
-                borderRadius: '2px',
-                backgroundColor: isDebugMode ? 'rgba(34,197,94,0.1)' : 'transparent',
-                transition: 'all 0.2s ease',
-              }}
-              onMouseEnter={(e) => {
-                if (!isDebugMode) {
-                  e.currentTarget.style.backgroundColor = 'rgba(106,106,106,0.1)'
-                  e.currentTarget.style.color = '#0A0A0A'
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!isDebugMode) {
-                  e.currentTarget.style.backgroundColor = 'transparent'
-                  e.currentTarget.style.color = '#6A6A6A'
-                }
-              }}
-            >
-              {isDebugMode ? '🟢 DEBUG' : 'DEBUG'}
-            </Link>
           </nav>
 
           {/* Mobile Hamburger */}
