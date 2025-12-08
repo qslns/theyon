@@ -151,6 +151,13 @@ const BackgroundSlot = memo(function BackgroundSlot({
           }}
           onMouseEnter={() => setHoveredSlot(slotId)}
           onMouseLeave={() => setHoveredSlot(null)}
+          onClick={() => {
+            // Navigate to Sanity Studio - opens slotImage list
+            const studioUrl = `/studio/structure/slotImage`
+            // Copy slotId to clipboard for easy search
+            navigator.clipboard?.writeText(slotId).catch(() => {})
+            window.open(studioUrl, '_blank')
+          }}
         >
           <div
             className="bg-blue-600 text-white px-4 py-2 font-mono rounded shadow-lg"
@@ -159,6 +166,9 @@ const BackgroundSlot = memo(function BackgroundSlot({
             <div className="font-bold">{slotId}</div>
             <div className="text-xs opacity-80 mt-1">
               Background Slot | opacity: {opacity}
+            </div>
+            <div className="text-xs mt-2" style={{ color: '#4ADE80' }}>
+              CLICK → Studio (ID copied)
             </div>
           </div>
         </div>

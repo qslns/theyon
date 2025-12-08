@@ -20,39 +20,32 @@ const PAGE_OPTIONS = [
 const SECTION_OPTIONS = [
   // Background (all pages) - full screen ambient image
   { title: '🖼️ Background (Full Screen)', value: 'background' },
+  // Common sections
+  { title: '🎯 Hero', value: 'hero' },
+  { title: '🔗 CTA', value: 'cta' },
   // Home sections
-  { title: '🏠 Hero', value: 'hero' },
   { title: '🏠 Philosophy', value: 'philosophy' },
   { title: '🏠 Collections Preview', value: 'collections-preview' },
   { title: '🏠 Process Teaser', value: 'process-teaser' },
   { title: '🏠 Contact CTA', value: 'contact-cta' },
   // About sections
   { title: '👤 Portrait', value: 'portrait' },
-  { title: '👤 Statement', value: 'statement' },
-  { title: '👤 About Background', value: 'about-background' },
-  { title: '👤 Work Process', value: 'work-process' },
+  { title: '👤 Education', value: 'education' },
+  { title: '👤 Process', value: 'process' },
+  { title: '👤 Contact', value: 'contact' },
   // Collections sections
   { title: '📚 Header', value: 'header' },
   { title: '📚 Moodboard', value: 'moodboard' },
   { title: '📚 Gallery', value: 'gallery' },
+  { title: '📚 Archive', value: 'archive' },
   // Archive sections
   { title: '📦 Main', value: 'main' },
-  { title: '📦 Failures', value: 'failures' },
-  // Process sections
-  { title: '⚙️ Research', value: 'research' },
-  { title: '⚙️ Concept', value: 'concept' },
-  { title: '⚙️ Sketch', value: 'sketch' },
-  { title: '⚙️ Material', value: 'material' },
-  { title: '⚙️ Toile', value: 'toile' },
-  { title: '⚙️ Failure', value: 'failure' },
-  { title: '⚙️ Refine', value: 'refine' },
-  { title: '⚙️ Final', value: 'final' },
+  // Lab sections
+  { title: '🔬 Failures', value: 'failures' },
+  { title: '🔬 Method', value: 'method' },
   // Contact sections
-  { title: '✉️ Form', value: 'form' },
   { title: '✉️ Location', value: 'location' },
   { title: '✉️ Social', value: 'social' },
-  // Lab sections
-  { title: '🔬 Experiments', value: 'experiments' },
 ]
 
 // Slot size options with recommended dimensions

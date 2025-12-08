@@ -37,7 +37,9 @@
       "Bash(cmd /c \"echo %USERNAME%\")",
       "Bash(grep:*)",
       "Bash(npm show:*)",
-      "Bash(git revert:*)"
+      "Bash(git revert:*)",
+      "Bash(if not exist scripts mkdir scripts)",
+      "Bash(npm run seed:slots:*)"
     ],
     "deny": [],
     "ask": []

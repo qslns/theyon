@@ -394,6 +394,15 @@ function Slot({
       {/* Debug Mode Overlay */}
       {isDebugMode && slotId && (
         <div
+          onClick={(e) => {
+            e.stopPropagation()
+            // Navigate to Sanity Studio - opens slotImage list
+            // User can search for slotId in the Studio
+            const studioUrl = `/studio/structure/slotImage`
+            // Copy slotId to clipboard for easy search
+            navigator.clipboard?.writeText(slotId).catch(() => {})
+            window.open(studioUrl, '_blank')
+          }}
           style={{
             position: 'absolute',
             inset: 0,
@@ -406,7 +415,7 @@ function Slot({
             alignItems: 'center',
             justifyContent: 'center',
             padding: '8px',
-            pointerEvents: 'none',
+            cursor: 'pointer',
             transition: 'background 0.2s ease',
             border: isHovered ? '2px solid #00ff00' : '1px solid rgba(255,255,255,0.3)',
           }}
@@ -451,6 +460,9 @@ function Slot({
                 </>
               )}
               {rotation !== 0 && <div>ROTATE: {rotation}°</div>}
+              <div style={{ marginTop: '4px', color: '#00ff00', fontSize: '9px' }}>
+                CLICK → Studio (ID copied)
+              </div>
             </div>
           )}
         </div>

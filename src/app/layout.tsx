@@ -125,6 +125,45 @@ const jsonLd = {
   ],
 }
 
+// Navigation fallback for Suspense
+function NavFallback() {
+  return (
+    <>
+      <header style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 9999,
+        backgroundColor: '#FAFAFA',
+        borderBottom: '1px solid rgba(0,0,0,0.06)',
+        height: '48px',
+      }}>
+        <div style={{
+          maxWidth: '1400px',
+          margin: '0 auto',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '0 32px',
+          height: '48px',
+        }}>
+          <span style={{
+            fontFamily: 'Georgia, serif',
+            fontSize: '16px',
+            fontWeight: 400,
+            color: '#0A0A0A',
+            letterSpacing: '0.1em',
+          }}>
+            THE YON
+          </span>
+        </div>
+      </header>
+      <div style={{ height: '48px' }} />
+    </>
+  )
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -158,7 +197,9 @@ export default function RootLayout({
         <ClientProviders>
           <SkipToMain />
           <KeyboardNavigationIndicator />
-          <YonNav />
+          <Suspense fallback={<NavFallback />}>
+            <YonNav />
+          </Suspense>
           <main id="main-content">
             {children}
           </main>

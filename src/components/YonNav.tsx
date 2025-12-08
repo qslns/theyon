@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 
 // Clean navigation structure - no seasons, no sub-items
 const NAV_ITEMS = [
@@ -18,6 +18,8 @@ export default function YonNav() {
   const [scrolled, setScrolled] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
   const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const isDebugMode = searchParams.get('debug') === 'slots'
 
   useEffect(() => {
     setIsMounted(true)
@@ -210,6 +212,39 @@ export default function YonNav() {
             >
               CMS
             </Link>
+
+            {/* DEBUG Mode Toggle Button */}
+            <Link
+              href={isDebugMode ? pathname : `${pathname}?debug=slots`}
+              style={{
+                fontFamily: 'var(--font-mono), monospace',
+                fontSize: '9px',
+                fontWeight: 400,
+                color: isDebugMode ? '#22C55E' : '#6A6A6A',
+                textDecoration: 'none',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                padding: '4px 10px',
+                border: isDebugMode ? '1px solid #22C55E' : '1px solid rgba(106,106,106,0.3)',
+                borderRadius: '2px',
+                backgroundColor: isDebugMode ? 'rgba(34,197,94,0.1)' : 'transparent',
+                transition: 'all 0.2s ease',
+              }}
+              onMouseEnter={(e) => {
+                if (!isDebugMode) {
+                  e.currentTarget.style.backgroundColor = 'rgba(106,106,106,0.1)'
+                  e.currentTarget.style.color = '#0A0A0A'
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isDebugMode) {
+                  e.currentTarget.style.backgroundColor = 'transparent'
+                  e.currentTarget.style.color = '#6A6A6A'
+                }
+              }}
+            >
+              {isDebugMode ? '🟢 DEBUG' : 'DEBUG'}
+            </Link>
           </nav>
 
           {/* Mobile Hamburger */}
@@ -341,11 +376,14 @@ export default function YonNav() {
               )
             })}
 
-            {/* CMS Link - Mobile */}
+            {/* CMS & DEBUG Links - Mobile */}
             <div style={{
               marginTop: '32px',
               paddingTop: '24px',
               borderTop: '1px solid rgba(0,0,0,0.1)',
+              display: 'flex',
+              gap: '12px',
+              flexWrap: 'wrap',
             }}>
               <Link
                 href="/studio"
@@ -365,15 +403,34 @@ export default function YonNav() {
               >
                 CMS Studio →
               </Link>
-              <p style={{
-                fontFamily: 'var(--font-mono), monospace',
-                fontSize: '9px',
-                color: '#7A7A7A',
-                marginTop: '10px',
-              }}>
-                Manage images and content
-              </p>
+              <Link
+                href={isDebugMode ? pathname : `${pathname}?debug=slots`}
+                onClick={() => setIsOpen(false)}
+                style={{
+                  display: 'inline-block',
+                  fontFamily: 'var(--font-mono), monospace',
+                  fontSize: '11px',
+                  color: isDebugMode ? '#22C55E' : '#6A6A6A',
+                  textDecoration: 'none',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  padding: '10px 18px',
+                  border: isDebugMode ? '1px solid #22C55E' : '1px solid rgba(106,106,106,0.4)',
+                  borderRadius: '2px',
+                  backgroundColor: isDebugMode ? 'rgba(34,197,94,0.1)' : 'transparent',
+                }}
+              >
+                {isDebugMode ? '🟢 DEBUG ON' : 'DEBUG MODE'}
+              </Link>
             </div>
+            <p style={{
+              fontFamily: 'var(--font-mono), monospace',
+              fontSize: '9px',
+              color: '#7A7A7A',
+              marginTop: '10px',
+            }}>
+              Manage images and content
+            </p>
 
             {/* Footer */}
             <div style={{
