@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import { Slot, AnnotationLabel } from '@/components/deconstructivist'
+import BackgroundSlot from '@/components/BackgroundSlot'
+import { getBackgroundSlotProps } from '@/lib/background-slot'
 import {
   LayeredTitle,
   GlitchTitle,
@@ -18,6 +20,13 @@ export default async function AboutPage() {
 
   return (
     <div className="relative min-h-screen bg-yon-white overflow-x-hidden">
+      {/* PAGE BACKGROUND - CMS Controlled */}
+      <BackgroundSlot
+        {...getBackgroundSlotProps(slotImages, 'about-background-001')}
+        opacity={0.05}
+        grayscale
+      />
+
       {/* ============================================
           SECTION 1: Portrait Collage Hero
           Dense deconstructivist layout - fits single screen capture

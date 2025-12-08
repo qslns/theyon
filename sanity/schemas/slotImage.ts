@@ -18,39 +18,44 @@ const PAGE_OPTIONS = [
 
 // Section options grouped by page
 const SECTION_OPTIONS = [
+  // ★ PAGE BACKGROUND (all pages) - 가장 뒤쪽 배경 이미지
+  { title: '🖼️ PAGE BACKGROUND (모든 페이지)', value: 'background' },
+
   // Home sections
-  { title: '🏠 Hero', value: 'hero' },
-  { title: '🏠 Philosophy', value: 'philosophy' },
-  { title: '🏠 Collections Preview', value: 'collections-preview' },
-  { title: '🏠 Process Teaser', value: 'process-teaser' },
-  { title: '🏠 Contact CTA', value: 'contact-cta' },
+  { title: '🏠 Home: Hero', value: 'hero' },
+  { title: '🏠 Home: Philosophy', value: 'philosophy' },
+  { title: '🏠 Home: Collections Preview', value: 'collections' },
+  { title: '🏠 Home: Process Teaser', value: 'process' },
+  { title: '🏠 Home: Contact CTA', value: 'contact' },
+
   // About sections
-  { title: '👤 Portrait', value: 'portrait' },
-  { title: '👤 Statement', value: 'statement' },
-  { title: '👤 Background', value: 'background' },
-  { title: '👤 Work Process', value: 'work-process' },
+  { title: '👤 About: Portrait', value: 'portrait' },
+  { title: '👤 About: Statement', value: 'statement' },
+  { title: '👤 About: Timeline', value: 'timeline' },
+  { title: '👤 About: CTA', value: 'cta' },
+
   // Collections sections
-  { title: '📚 Header', value: 'header' },
-  { title: '📚 Moodboard', value: 'moodboard' },
-  { title: '📚 Gallery', value: 'gallery' },
+  { title: '📚 Collections: Header', value: 'header' },
+  { title: '📚 Collections: Moodboard', value: 'moodboard' },
+  { title: '📚 Collections: Gallery', value: 'gallery' },
+
   // Archive sections
-  { title: '📦 Main', value: 'main' },
-  { title: '📦 Failures', value: 'failures' },
+  { title: '📦 Archive: Header', value: 'header' },
+  { title: '📦 Archive: CTA', value: 'cta' },
+
   // Process sections
-  { title: '⚙️ Research', value: 'research' },
-  { title: '⚙️ Concept', value: 'concept' },
-  { title: '⚙️ Sketch', value: 'sketch' },
-  { title: '⚙️ Material', value: 'material' },
-  { title: '⚙️ Toile', value: 'toile' },
-  { title: '⚙️ Failure', value: 'failure' },
-  { title: '⚙️ Refine', value: 'refine' },
-  { title: '⚙️ Final', value: 'final' },
+  { title: '⚙️ Process: Hero', value: 'hero' },
+  { title: '⚙️ Process: CTA', value: 'cta' },
+
   // Contact sections
-  { title: '✉️ Form', value: 'form' },
-  { title: '✉️ Location', value: 'location' },
-  { title: '✉️ Social', value: 'social' },
+  { title: '✉️ Contact: Hero', value: 'hero' },
+  { title: '✉️ Contact: Location', value: 'location' },
+  { title: '✉️ Contact: Social', value: 'social' },
+
   // Lab sections
-  { title: '🔬 Experiments', value: 'experiments' },
+  { title: '🔬 Lab: Hero', value: 'hero' },
+  { title: '🔬 Lab: Experiments', value: 'experiments' },
+  { title: '🔬 Lab: CTA', value: 'cta' },
 ]
 
 export default defineType({
@@ -70,7 +75,18 @@ export default defineType({
       title: 'Slot ID',
       type: 'string',
       group: 'location',
-      description: 'Format: page-section-number (e.g., home-hero-001). Check SLOT-IDS.md for reference.',
+      description: `슬롯 ID 형식: page-section-number (예: home-hero-001)
+
+📌 배경 슬롯 ID (각 페이지당 1개):
+• home-background-001 - 홈페이지 배경
+• about-background-001 - About 페이지 배경
+• collections-background-001 - Collections 페이지 배경
+• archive-background-001 - Archive 페이지 배경
+• process-background-001 - Process 페이지 배경
+• contact-background-001 - Contact 페이지 배경
+• lab-background-001 - Lab 페이지 배경
+
+🌐 웹사이트에서 ?debug=slots 파라미터로 모든 슬롯 위치 확인 가능`,
       validation: (Rule) =>
         Rule.required()
           .regex(/^[a-z]+-[a-z-]+-\d{3}$/, {

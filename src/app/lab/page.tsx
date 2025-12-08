@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import { Slot, AnnotationLabel } from '@/components/deconstructivist'
+import BackgroundSlot from '@/components/BackgroundSlot'
+import { getBackgroundSlotProps } from '@/lib/background-slot'
 import {
   GlitchTitle,
   LabelText,
@@ -17,6 +19,13 @@ export default async function LabPage() {
 
   return (
     <div className="relative min-h-screen bg-yon-white overflow-x-hidden">
+      {/* PAGE BACKGROUND - CMS Controlled */}
+      <BackgroundSlot
+        {...getBackgroundSlotProps(slotImages, 'lab-background-001')}
+        opacity={0.07}
+        grayscale
+      />
+
       {/* ============================================
           HERO - Lab Introduction - fits single screen
           ============================================ */}
