@@ -17,7 +17,6 @@ export default function YonNav() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null)
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const isDebugMode = searchParams.get('debug') === 'slots'
@@ -161,116 +160,117 @@ export default function YonNav() {
             </span>
           </Link>
 
-          {/* Desktop Navigation - Experimental Layout */}
+          {/* Desktop Navigation - Deconstructivist Layout */}
           <nav
             className="desktop-nav"
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
+              gap: '4px',
             }}
           >
-            {NAV_ITEMS.map((item) => {
-              const isActive = pathname === item.href ||
-                (item.href !== '/' && pathname.startsWith(item.href))
-              const isHovered = hoveredItem === item.href
+            {/* Opening bracket */}
+            <span style={{
+              fontFamily: 'var(--font-mono), monospace',
+              fontSize: '14px',
+              color: 'rgba(139,115,85,0.25)',
+              marginRight: '4px',
+              transform: 'rotate(-8deg) translateY(-2px)',
+              display: 'inline-block',
+            }}>[</span>
+
+            {NAV_ITEMS.map((item, idx) => {
+              const isActive = pathname === item.href || pathname.startsWith(item.href)
+
+              // Asymmetric styling per item
+              const styles = [
+                { rotation: -2, size: '9px', spacing: '0.08em', weight: 400 },
+                { rotation: 1.5, size: '8px', spacing: '0.15em', weight: 500 },
+                { rotation: -1, size: '10px', spacing: '0.05em', weight: 300 },
+                { rotation: 2, size: '8px', spacing: '0.12em', weight: 400 },
+                { rotation: -1.5, size: '9px', spacing: '0.1em', weight: 500 },
+              ][idx]
 
               return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onMouseEnter={() => setHoveredItem(item.href)}
-                  onMouseLeave={() => setHoveredItem(null)}
-                  style={{
-                    fontFamily: 'var(--font-mono), monospace',
-                    fontSize: '9px',
-                    fontWeight: 400,
-                    color: isActive ? '#0A0A0A' : isHovered ? '#0A0A0A' : '#7A7A7A',
-                    textDecoration: 'none',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.12em',
-                    position: 'relative',
-                    padding: '8px 12px',
-                    transform: `rotate(${isHovered ? 0 : item.rotation}deg)`,
-                    transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)',
-                    display: 'flex',
-                    alignItems: 'baseline',
-                    gap: '6px',
-                  }}
-                >
-                  {/* Number prefix */}
-                  <span
+                <div key={item.href} style={{ display: 'flex', alignItems: 'center' }}>
+                  <Link
+                    href={item.href}
                     style={{
-                      fontSize: '7px',
-                      color: isActive ? '#8B7355' : 'rgba(139,115,85,0.4)',
-                      transition: 'color 0.3s ease',
+                      fontFamily: 'var(--font-mono), monospace',
+                      fontSize: styles.size,
+                      fontWeight: styles.weight,
+                      color: isActive ? '#0A0A0A' : '#6A6A6A',
+                      textDecoration: isActive ? 'none' : 'none',
+                      textTransform: 'uppercase',
+                      letterSpacing: styles.spacing,
+                      position: 'relative',
+                      padding: '6px 8px',
+                      transform: `rotate(${styles.rotation}deg)`,
+                      display: 'inline-block',
+                      borderBottom: isActive ? '1.5px solid #8B7355' : 'none',
                     }}
                   >
-                    {item.num}
-                  </span>
-                  <span>{item.label}</span>
-                  {/* Active indicator - diagonal line */}
-                  {isActive && (
-                    <span
-                      style={{
-                        position: 'absolute',
-                        bottom: '4px',
-                        left: '12px',
-                        right: '12px',
-                        height: '1px',
-                        backgroundColor: '#8B7355',
-                        transform: 'rotate(-2deg)',
-                      }}
-                    />
+                    {/* Superscript number */}
+                    <sup style={{
+                      fontSize: '6px',
+                      color: '#8B7355',
+                      opacity: isActive ? 1 : 0.5,
+                      marginRight: '2px',
+                      fontWeight: 400,
+                    }}>{item.num}</sup>
+                    {item.label}
+                  </Link>
+                  {/* Decorative separator between items */}
+                  {idx < NAV_ITEMS.length - 1 && (
+                    <span style={{
+                      fontFamily: 'var(--font-mono), monospace',
+                      fontSize: '8px',
+                      color: 'rgba(0,0,0,0.15)',
+                      margin: '0 2px',
+                      transform: `rotate(${idx % 2 === 0 ? 15 : -15}deg)`,
+                      display: 'inline-block',
+                    }}>/</span>
                   )}
-                  {/* Hover indicator - dot */}
-                  {isHovered && !isActive && (
-                    <span
-                      style={{
-                        position: 'absolute',
-                        top: '6px',
-                        right: '6px',
-                        width: '3px',
-                        height: '3px',
-                        borderRadius: '50%',
-                        backgroundColor: '#8B7355',
-                      }}
-                    />
-                  )}
-                </Link>
+                </div>
               )
             })}
 
-            {/* Separator */}
-            <span
-              style={{
-                width: '1px',
-                height: '16px',
-                backgroundColor: 'rgba(0,0,0,0.08)',
-                margin: '0 8px',
-                transform: 'rotate(15deg)',
-              }}
-            />
+            {/* Closing bracket */}
+            <span style={{
+              fontFamily: 'var(--font-mono), monospace',
+              fontSize: '14px',
+              color: 'rgba(139,115,85,0.25)',
+              marginLeft: '4px',
+              transform: 'rotate(8deg) translateY(-2px)',
+              display: 'inline-block',
+            }}>]</span>
 
-            {/* Debug Toggle - Desktop */}
+            {/* Vertical separator */}
+            <span style={{
+              width: '1px',
+              height: '20px',
+              backgroundColor: 'rgba(0,0,0,0.1)',
+              margin: '0 12px',
+              transform: 'rotate(12deg)',
+            }} />
+
+            {/* Debug Toggle */}
             <Link
               href={isDebugMode ? pathname : `${pathname}?debug=slots`}
               style={{
                 fontFamily: 'var(--font-mono), monospace',
-                fontSize: '8px',
-                color: isDebugMode ? '#22C55E' : '#9A9A9A',
+                fontSize: '7px',
+                color: isDebugMode ? '#22C55E' : '#8A8A8A',
                 textDecoration: 'none',
                 textTransform: 'uppercase',
-                letterSpacing: '0.1em',
-                padding: '6px 10px',
-                border: isDebugMode ? '1px solid rgba(34,197,94,0.5)' : '1px solid rgba(0,0,0,0.1)',
-                borderRadius: '2px',
-                backgroundColor: isDebugMode ? 'rgba(34,197,94,0.08)' : 'transparent',
-                transform: 'rotate(1deg)',
-                transition: 'all 0.3s ease',
+                letterSpacing: '0.15em',
+                padding: '5px 8px',
+                border: isDebugMode ? '1px solid #22C55E' : '1px solid rgba(0,0,0,0.12)',
+                transform: 'rotate(-1deg)',
+                display: 'inline-block',
               }}
             >
-              {isDebugMode ? '● DBG' : 'DBG'}
+              {isDebugMode ? '◉ DBG' : '○ DBG'}
             </Link>
 
           </nav>
@@ -362,8 +362,7 @@ export default function YonNav() {
             </Link>
 
             {NAV_ITEMS.map((item) => {
-              const isActive = pathname === item.href ||
-                (item.href !== '/' && pathname.startsWith(item.href))
+              const isActive = pathname === item.href || pathname.startsWith(item.href)
 
               return (
                 <Link
