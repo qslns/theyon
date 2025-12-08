@@ -125,7 +125,7 @@ const Footer = memo(function Footer() {
                   marginLeft: '1rem',
                 }}
               >
-                뒤틀렸지만 조화로운
+                Twisted yet Harmonious
               </span>
             </div>
 

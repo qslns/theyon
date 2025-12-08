@@ -48,7 +48,7 @@ if (typeof globalThis !== 'undefined' && !('_rateLimiterCleanup' in globalThis))
 
 // Allowed origins (Set for O(1) lookup)
 const ALLOWED_ORIGINS = new Set([
-  'https://theyon.vercel.app',
+  'https://askewstudio.vercel.app',
   'http://localhost:3000',
   'http://localhost:3001',
 ])

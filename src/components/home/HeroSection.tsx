@@ -209,10 +209,7 @@ export default function HeroSection() {
           transition={{ delay: 1, duration: 0.8 }}
         >
           <p className="font-serif text-lg md:text-xl text-yon-black/80 leading-relaxed italic">
-            Twisted yet harmonious
-          </p>
-          <p className="font-mono text-[9px] tracking-[0.3em] text-yon-grey/40 mt-4 uppercase">
-            뒤틀렸지만 조화로운
+            Twisted yet Harmonious
           </p>
         </motion.div>
 

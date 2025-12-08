@@ -464,14 +464,8 @@ function FullscreenMenu({ isOpen, onClose }: FullscreenMenuProps) {
                   © {CURRENT_YEAR} ASKEW
                 </p>
                 <p
-                  className="font-mono mt-2"
-                  style={{ fontSize: '8px', color: 'rgba(139, 115, 85, 0.4)', letterSpacing: '0.15em' }}
-                >
-                  뒤틀렸지만 조화로운
-                </p>
-                <p
-                  className="font-serif italic mt-1"
-                  style={{ fontSize: '10px', color: 'rgba(122, 122, 122, 0.3)' }}
+                  className="font-serif italic mt-2"
+                  style={{ fontSize: '10px', color: 'rgba(122, 122, 122, 0.4)', letterSpacing: '0.05em' }}
                 >
                   Twisted yet Harmonious
                 </p>

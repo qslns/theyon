@@ -109,7 +109,7 @@ const PAGE_CONFIG = [
 
 export default defineConfig({
   name: 'default',
-  title: 'THE YON CMS',
+  title: 'ASKEW CMS',
 
   projectId,
   dataset,
@@ -121,7 +121,7 @@ export default defineConfig({
       structure: (S) =>
         S.list()
           .id('root')
-          .title('THE YON Content')
+          .title('ASKEW Content')
           .items([
             // ===== SLOT IMAGES =====
             S.listItem()
