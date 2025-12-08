@@ -2,15 +2,15 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
-// Experimental navigation structure with rotations
+// Experimental navigation structure
 const NAV_ITEMS = [
-  { href: '/collections', label: 'Collections', num: '01', rotation: -1.2 },
-  { href: '/lab', label: 'Lab', num: '02', rotation: 0.8 },
-  { href: '/archive', label: 'Archive', num: '03', rotation: -0.5 },
-  { href: '/about', label: 'About', num: '04', rotation: 1.5 },
-  { href: '/contact', label: 'Contact', num: '05', rotation: -0.8 },
+  { href: '/collections', label: 'Collections' },
+  { href: '/lab', label: 'Lab' },
+  { href: '/archive', label: 'Archive' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
 ] as const
 
 export default function YonNav() {
@@ -18,8 +18,6 @@ export default function YonNav() {
   const [scrolled, setScrolled] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
   const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const isDebugMode = searchParams.get('debug') === 'slots'
 
   useEffect(() => {
     setIsMounted(true)
@@ -200,7 +198,7 @@ export default function YonNav() {
                       fontSize: styles.size,
                       fontWeight: styles.weight,
                       color: isActive ? '#0A0A0A' : '#6A6A6A',
-                      textDecoration: isActive ? 'none' : 'none',
+                      textDecoration: 'none',
                       textTransform: 'uppercase',
                       letterSpacing: styles.spacing,
                       position: 'relative',
@@ -210,14 +208,6 @@ export default function YonNav() {
                       borderBottom: isActive ? '1.5px solid #8B7355' : 'none',
                     }}
                   >
-                    {/* Superscript number */}
-                    <sup style={{
-                      fontSize: '6px',
-                      color: '#8B7355',
-                      opacity: isActive ? 1 : 0.5,
-                      marginRight: '2px',
-                      fontWeight: 400,
-                    }}>{item.num}</sup>
                     {item.label}
                   </Link>
                   {/* Decorative separator between items */}
@@ -244,34 +234,6 @@ export default function YonNav() {
               transform: 'rotate(8deg) translateY(-2px)',
               display: 'inline-block',
             }}>]</span>
-
-            {/* Vertical separator */}
-            <span style={{
-              width: '1px',
-              height: '20px',
-              backgroundColor: 'rgba(0,0,0,0.1)',
-              margin: '0 12px',
-              transform: 'rotate(12deg)',
-            }} />
-
-            {/* Debug Toggle */}
-            <Link
-              href={isDebugMode ? pathname : `${pathname}?debug=slots`}
-              style={{
-                fontFamily: 'var(--font-mono), monospace',
-                fontSize: '7px',
-                color: isDebugMode ? '#22C55E' : '#8A8A8A',
-                textDecoration: 'none',
-                textTransform: 'uppercase',
-                letterSpacing: '0.15em',
-                padding: '5px 8px',
-                border: isDebugMode ? '1px solid #22C55E' : '1px solid rgba(0,0,0,0.12)',
-                transform: 'rotate(-1deg)',
-                display: 'inline-block',
-              }}
-            >
-              {isDebugMode ? '◉ DBG' : '○ DBG'}
-            </Link>
 
           </nav>
 
@@ -382,12 +344,6 @@ export default function YonNav() {
                     position: 'relative',
                   }}
                 >
-                  <span style={{
-                    fontFamily: 'var(--font-mono), monospace',
-                    fontSize: '10px',
-                    color: '#8B7355',
-                    opacity: 0.6,
-                  }}>{item.num}</span>
                   {item.label}
                   {isActive && (
                     <span style={{
@@ -403,14 +359,11 @@ export default function YonNav() {
               )
             })}
 
-            {/* CMS & DEBUG Links - Mobile */}
+            {/* CMS Link - Mobile */}
             <div style={{
               marginTop: '32px',
               paddingTop: '24px',
               borderTop: '1px solid rgba(0,0,0,0.1)',
-              display: 'flex',
-              gap: '12px',
-              flexWrap: 'wrap',
             }}>
               <Link
                 href="/studio"
@@ -430,34 +383,7 @@ export default function YonNav() {
               >
                 CMS Studio →
               </Link>
-              <Link
-                href={isDebugMode ? pathname : `${pathname}?debug=slots`}
-                onClick={() => setIsOpen(false)}
-                style={{
-                  display: 'inline-block',
-                  fontFamily: 'var(--font-mono), monospace',
-                  fontSize: '11px',
-                  color: isDebugMode ? '#22C55E' : '#6A6A6A',
-                  textDecoration: 'none',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1em',
-                  padding: '10px 18px',
-                  border: isDebugMode ? '1px solid #22C55E' : '1px solid rgba(106,106,106,0.4)',
-                  borderRadius: '2px',
-                  backgroundColor: isDebugMode ? 'rgba(34,197,94,0.1)' : 'transparent',
-                }}
-              >
-                {isDebugMode ? '🟢 DEBUG ON' : 'DEBUG MODE'}
-              </Link>
             </div>
-            <p style={{
-              fontFamily: 'var(--font-mono), monospace',
-              fontSize: '9px',
-              color: '#7A7A7A',
-              marginTop: '10px',
-            }}>
-              Manage images and content
-            </p>
 
             {/* Footer */}
             <div style={{
