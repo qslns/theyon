@@ -3,8 +3,6 @@ import Link from 'next/link'
 import type { Collection } from '@/types/sanity'
 import Footer from '@/components/Footer'
 import { Slot, AnnotationLabel } from '@/components/deconstructivist'
-import BackgroundSlot from '@/components/BackgroundSlot'
-import { getBackgroundSlotProps } from '@/lib/background-slot'
 import { GlitchTitle, LabelText } from '@/components/typography'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 import CollectionsClient from './collections-client'
@@ -79,13 +77,6 @@ export default async function CollectionsPage() {
 
   return (
     <div className="relative min-h-screen bg-yon-white overflow-x-hidden">
-      {/* PAGE BACKGROUND - CMS Controlled */}
-      <BackgroundSlot
-        {...getBackgroundSlotProps(slotImages, 'collections-background-001')}
-        opacity={0.06}
-        grayscale
-      />
-
       {/* ============================================
           HERO HEADER - Dense Deconstructivist - fits single screen
           ============================================ */}

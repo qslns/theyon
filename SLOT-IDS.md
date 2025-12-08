@@ -2,22 +2,6 @@
 
 Complete reference for all CMS-managed slot images across the website.
 
-## 🌐 Debug Mode - 슬롯 위치 확인
-
-웹사이트 URL에 `?debug=slots` 파라미터를 추가하면 모든 슬롯의 위치와 ID를 시각적으로 확인할 수 있습니다.
-
-**예시:**
-- `https://theyon.com/?debug=slots`
-- `https://theyon.com/collections?debug=slots`
-- `https://theyon.com/archive?debug=slots`
-
-**디버그 모드 기능:**
-- 각 슬롯에 반투명 배경으로 슬롯 ID 표시
-- 마우스 호버시 추가 정보 (사이즈, 위치) 표시
-- 배경 슬롯은 화면 상단에 별도 표시
-
----
-
 ## Naming Convention
 
 ```
@@ -30,87 +14,69 @@ Complete reference for all CMS-managed slot images across the website.
 
 ---
 
-## 🖼️ Page Background Slots (NEW)
+## Home Page (42 slots)
 
-모든 페이지의 가장 뒤쪽 배경 이미지를 관리하는 슬롯입니다.
+### Hero Section (12 slots)
+| Slot ID | Description |
+|---------|-------------|
+| `home-hero-001` | Main large slot - left side |
+| `home-hero-002` | Medium slot - overlapping |
+| `home-hero-003` | Small accent slot |
+| `home-hero-004` | Micro detail slot |
+| `home-hero-005` | Swatch material sample |
+| `home-hero-006` | Large slot - right side |
+| `home-hero-007` | Medium overlapping slot |
+| `home-hero-008` | Small floating slot |
+| `home-hero-009` | Tiny accent |
+| `home-hero-010` | Micro texture |
+| `home-hero-011` | Additional swatch |
+| `home-hero-012` | Final hero accent |
 
-| Slot ID | Page | Description |
-|---------|------|-------------|
-| `home-background-001` | Home | 홈페이지 전체 배경 (grayscale, 8% opacity) |
-| `about-background-001` | About | About 페이지 전체 배경 (grayscale, 6% opacity) |
-| `collections-background-001` | Collections | Collections 페이지 전체 배경 (grayscale, 5% opacity) |
-| `archive-background-001` | Archive | Archive 페이지 전체 배경 (grayscale+sepia, 5% opacity) |
-| `process-background-001` | Process | Process 페이지 전체 배경 (grayscale, 6% opacity) |
-| `contact-background-001` | Contact | Contact 페이지 전체 배경 (grayscale, 4% opacity) |
-| `lab-background-001` | Lab | Lab 페이지 전체 배경 (grayscale, 5% opacity) |
-
-**참고:** 배경 슬롯은 페이지 전체를 덮는 고정 위치 이미지입니다. 매우 낮은 opacity로 적용되므로, 고대비/고해상도 이미지를 권장합니다.
-
----
-
-## Home Page (45 slots)
-
-### Hero Section (15 slots)
-| Slot ID | Size | Description |
-|---------|------|-------------|
-| `home-hero-001` | hero | Primary large - left side, bleeding |
-| `home-hero-002` | large | Secondary - right top |
-| `home-hero-003` | medium | Overlapping center-right |
-| `home-hero-004` | small | Accent - bottom left, bleeding |
-| `home-hero-005` | tiny | Swatch with tape |
-| `home-hero-006` | swatch | Material sample - wool |
-| `home-hero-007` | small-square | Bottom right |
-| `home-hero-008` | tiny | Far right edge, bleeding |
-| `home-hero-009` | micro | Scattered accent |
-| `home-hero-010` | medium-wide | Overlapping sepia |
-| `home-hero-011` | swatch | Material - silk |
-| `home-hero-012` | swatch | Material - linen |
-| `home-hero-013` | tiny-wide | Reference mood |
-| `home-hero-014` | small | Top bleeding |
-| `home-hero-015` | medium-tall | Form study |
-
-### Philosophy Section (6 slots)
-| Slot ID | Size | Description |
-|---------|------|-------------|
-| `home-philosophy-001` | medium | Mood visual - grayscale |
-| `home-philosophy-002` | tiny | Reference detail |
-| `home-philosophy-003` | swatch | Texture sample |
-| `home-philosophy-004` | small | Sketch - sepia, bleeding |
-| `home-philosophy-005` | tiny-wide | Detail crop |
-| `home-philosophy-006` | micro | Number accent |
+### Philosophy Section (8 slots)
+| Slot ID | Description |
+|---------|-------------|
+| `home-philosophy-001` | Main philosophy visual |
+| `home-philosophy-002` | Detail shot |
+| `home-philosophy-003` | Texture close-up |
+| `home-philosophy-004` | Small accent |
+| `home-philosophy-005` | Overlapping layer |
+| `home-philosophy-006` | Swatch sample |
+| `home-philosophy-007` | Micro detail |
+| `home-philosophy-008` | Background element |
 
 ### Collections Preview (10 slots)
-| Slot ID | Size | Description |
-|---------|------|-------------|
-| `home-collections-001` | large | DECONSTRUCTION main look |
-| `home-collections-002` | small | DECONSTRUCTION detail |
-| `home-collections-003` | swatch | DECONSTRUCTION material - denim |
-| `home-collections-004` | micro | DECONSTRUCTION reference |
-| `home-collections-005` | medium | FRAGMENTS main look |
-| `home-collections-006` | tiny | FRAGMENTS texture |
-| `home-collections-007` | swatch | FRAGMENTS material - nylon |
-| `home-collections-008` | medium | VOID main look |
-| `home-collections-009` | small-square | VOID silhouette |
-| `home-collections-010` | tiny | VOID volume study |
+| Slot ID | Description |
+|---------|-------------|
+| `home-collections-001` | Collection 1 preview |
+| `home-collections-002` | Collection 2 preview |
+| `home-collections-003` | Collection 3 preview |
+| `home-collections-004` | Collection 4 preview |
+| `home-collections-005` | Detail overlay 1 |
+| `home-collections-006` | Detail overlay 2 |
+| `home-collections-007` | Accent swatch 1 |
+| `home-collections-008` | Accent swatch 2 |
+| `home-collections-009` | Micro element 1 |
+| `home-collections-010` | Micro element 2 |
 
 ### Process Teaser (8 slots)
-| Slot ID | Size | Description |
-|---------|------|-------------|
-| `home-process-001` | medium | Sketch main |
-| `home-process-002` | small | Iteration - sepia |
-| `home-process-003` | small-square | Final version |
-| `home-process-004` | tiny | Rejected version |
-| `home-process-005` | micro | Note reference |
-| `home-process-006` | swatch | Material swatch A |
-| `home-process-007` | swatch | Material swatch B |
-| `home-process-008` | swatch | Material swatch C |
+| Slot ID | Description |
+|---------|-------------|
+| `home-process-001` | Process main visual |
+| `home-process-002` | Step detail 1 |
+| `home-process-003` | Step detail 2 |
+| `home-process-004` | Material sample |
+| `home-process-005` | Sketch reference |
+| `home-process-006` | Toile image |
+| `home-process-007` | Accent element |
+| `home-process-008` | Final preview |
 
-### Contact CTA (3 slots)
-| Slot ID | Size | Description |
-|---------|------|-------------|
-| `home-contact-001` | small | Studio visual - grayscale |
-| `home-contact-002` | tiny | Mail icon |
-| `home-contact-003` | micro | @ symbol |
+### Contact CTA (4 slots)
+| Slot ID | Description |
+|---------|-------------|
+| `home-contact-001` | Contact section visual |
+| `home-contact-002` | Overlay element |
+| `home-contact-003` | Accent detail |
+| `home-contact-004` | Background texture |
 
 ---
 

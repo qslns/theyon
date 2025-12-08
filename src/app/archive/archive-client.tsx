@@ -4,6 +4,8 @@ import { useState, useMemo, memo } from 'react'
 import { Slot } from '@/components/deconstructivist'
 import {
   LabelText,
+  WhisperText,
+  NumberTag,
   ExperimentalText,
 } from '@/components/typography'
 
@@ -156,18 +158,12 @@ const ArchiveCard = memo(function ArchiveCard({ item, index }: { item: typeof ar
       {/* Info below */}
       <div className="mt-4 px-2">
         <div className="flex items-center gap-3">
-          <span
-            className={`font-mono uppercase tracking-[0.15em] ${item.status === 'current' ? 'text-yon-accent' : 'text-yon-grey/40'}`}
-            style={{ fontSize: '0.5rem' }}
-          >
+          <NumberTag className={item.status === 'current' ? 'text-yon-accent' : 'text-yon-grey/40'}>
             {item.status === 'current' ? '● Current' : '○ Archived'}
-          </span>
-          <span
-            className="font-mono uppercase tracking-[0.3em] text-yon-grey/30"
-            style={{ fontSize: '0.45rem' }}
-          >
+          </NumberTag>
+          <WhisperText className="text-yon-grey/30">
             {item.date}
-          </span>
+          </WhisperText>
         </div>
 
         <h3
@@ -201,10 +197,11 @@ const ArchiveCard = memo(function ArchiveCard({ item, index }: { item: typeof ar
           {item.tags.map(tag => (
             <LabelText
               key={tag}
-              text={`#${tag}`}
               className="text-yon-grey/50"
               style={{ fontSize: '0.45rem' }}
-            />
+            >
+              #{tag}
+            </LabelText>
           ))}
         </div>
       </div>
