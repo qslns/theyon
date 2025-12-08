@@ -4,19 +4,20 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
 
-// Clean navigation structure - no seasons, no sub-items
+// Experimental navigation structure with rotations
 const NAV_ITEMS = [
-  { href: '/collections', label: 'Collections', num: '01' },
-  { href: '/lab', label: 'Lab', num: '02' },
-  { href: '/archive', label: 'Archive', num: '03' },
-  { href: '/about', label: 'About', num: '04' },
-  { href: '/contact', label: 'Contact', num: '05' },
+  { href: '/collections', label: 'Collections', num: '01', rotation: -1.2 },
+  { href: '/lab', label: 'Lab', num: '02', rotation: 0.8 },
+  { href: '/archive', label: 'Archive', num: '03', rotation: -0.5 },
+  { href: '/about', label: 'About', num: '04', rotation: 1.5 },
+  { href: '/contact', label: 'Contact', num: '05', rotation: -0.8 },
 ] as const
 
 export default function YonNav() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null)
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const isDebugMode = searchParams.get('debug') === 'slots'
@@ -51,8 +52,8 @@ export default function YonNav() {
           right: 0,
           zIndex: 9999,
           backgroundColor: '#FAFAFA',
-          borderBottom: '1px solid rgba(0,0,0,0.06)',
-          height: '48px',
+          borderBottom: '1px solid rgba(0,0,0,0.04)',
+          height: '56px',
         }}>
           <div style={{
             maxWidth: '1400px',
@@ -61,27 +62,29 @@ export default function YonNav() {
             alignItems: 'center',
             justifyContent: 'space-between',
             padding: '0 32px',
-            height: '48px',
+            height: '56px',
           }}>
             <span style={{
               fontFamily: 'Georgia, serif',
-              fontSize: '16px',
+              fontSize: '18px',
               fontWeight: 400,
               color: '#0A0A0A',
-              letterSpacing: '0.1em',
+              letterSpacing: '0.15em',
+              transform: 'rotate(-1deg)',
+              display: 'inline-block',
             }}>
               ASKEW
             </span>
           </div>
         </header>
-        <div style={{ height: '48px' }} />
+        <div style={{ height: '56px' }} />
       </>
     )
   }
 
   return (
     <>
-      {/* Minimal Navigation Bar */}
+      {/* Experimental Navigation Bar */}
       <header
         style={{
           position: 'fixed',
@@ -89,10 +92,10 @@ export default function YonNav() {
           left: 0,
           right: 0,
           zIndex: 9999,
-          backgroundColor: scrolled ? 'rgba(250,250,250,0.97)' : '#FAFAFA',
-          backdropFilter: scrolled ? 'blur(12px)' : 'none',
-          borderBottom: '1px solid rgba(0,0,0,0.06)',
-          transition: 'all 0.3s ease',
+          backgroundColor: scrolled ? 'rgba(250,250,250,0.95)' : '#FAFAFA',
+          backdropFilter: scrolled ? 'blur(16px)' : 'none',
+          borderBottom: scrolled ? '1px solid rgba(0,0,0,0.04)' : 'none',
+          transition: 'all 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
         }}
       >
         <div
@@ -103,84 +106,172 @@ export default function YonNav() {
             alignItems: 'center',
             justifyContent: 'space-between',
             padding: '0 32px',
-            height: '48px',
+            height: '56px',
           }}
         >
-          {/* Logo */}
+          {/* Logo - Twisted */}
           <Link
             href="/"
             style={{
               textDecoration: 'none',
               display: 'flex',
-              alignItems: 'center',
-              gap: '12px',
+              alignItems: 'baseline',
+              gap: '8px',
+              position: 'relative',
             }}
           >
+            {/* Small number tag */}
+            <span
+              style={{
+                fontFamily: 'var(--font-mono), monospace',
+                fontSize: '8px',
+                color: '#8B7355',
+                opacity: 0.5,
+                transform: 'rotate(-90deg) translateX(-4px)',
+                display: 'inline-block',
+              }}
+            >
+              00
+            </span>
             <span
               style={{
                 fontFamily: 'Georgia, serif',
-                fontSize: '16px',
+                fontSize: '18px',
                 fontWeight: 400,
                 color: '#0A0A0A',
-                letterSpacing: '0.1em',
+                letterSpacing: '0.15em',
+                transform: 'rotate(-1deg)',
+                display: 'inline-block',
+                transition: 'transform 0.3s ease',
               }}
+              className="nav-logo"
             >
               ASKEW
             </span>
+            {/* Decorative slash */}
+            <span
+              style={{
+                fontFamily: 'var(--font-mono), monospace',
+                fontSize: '10px',
+                color: 'rgba(139,115,85,0.3)',
+                marginLeft: '4px',
+              }}
+            >
+              /
+            </span>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Experimental Layout */}
           <nav
             className="desktop-nav"
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '32px',
+              gap: '8px',
             }}
           >
             {NAV_ITEMS.map((item) => {
               const isActive = pathname === item.href ||
                 (item.href !== '/' && pathname.startsWith(item.href))
+              const isHovered = hoveredItem === item.href
 
               return (
                 <Link
                   key={item.href}
                   href={item.href}
+                  onMouseEnter={() => setHoveredItem(item.href)}
+                  onMouseLeave={() => setHoveredItem(null)}
                   style={{
                     fontFamily: 'var(--font-mono), monospace',
-                    fontSize: '10px',
+                    fontSize: '9px',
                     fontWeight: 400,
-                    color: isActive ? '#0A0A0A' : '#6A6A6A',
+                    color: isActive ? '#0A0A0A' : isHovered ? '#0A0A0A' : '#7A7A7A',
                     textDecoration: 'none',
                     textTransform: 'uppercase',
-                    letterSpacing: '0.15em',
+                    letterSpacing: '0.12em',
                     position: 'relative',
-                    padding: '4px 0',
-                    transition: 'color 0.2s ease',
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isActive) e.currentTarget.style.color = '#0A0A0A'
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isActive) e.currentTarget.style.color = '#6A6A6A'
+                    padding: '8px 12px',
+                    transform: `rotate(${isHovered ? 0 : item.rotation}deg)`,
+                    transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)',
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    gap: '6px',
                   }}
                 >
-                  {item.label}
+                  {/* Number prefix */}
+                  <span
+                    style={{
+                      fontSize: '7px',
+                      color: isActive ? '#8B7355' : 'rgba(139,115,85,0.4)',
+                      transition: 'color 0.3s ease',
+                    }}
+                  >
+                    {item.num}
+                  </span>
+                  <span>{item.label}</span>
+                  {/* Active indicator - diagonal line */}
                   {isActive && (
                     <span
                       style={{
                         position: 'absolute',
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
+                        bottom: '4px',
+                        left: '12px',
+                        right: '12px',
                         height: '1px',
-                        backgroundColor: '#0A0A0A',
+                        backgroundColor: '#8B7355',
+                        transform: 'rotate(-2deg)',
+                      }}
+                    />
+                  )}
+                  {/* Hover indicator - dot */}
+                  {isHovered && !isActive && (
+                    <span
+                      style={{
+                        position: 'absolute',
+                        top: '6px',
+                        right: '6px',
+                        width: '3px',
+                        height: '3px',
+                        borderRadius: '50%',
+                        backgroundColor: '#8B7355',
                       }}
                     />
                   )}
                 </Link>
               )
             })}
+
+            {/* Separator */}
+            <span
+              style={{
+                width: '1px',
+                height: '16px',
+                backgroundColor: 'rgba(0,0,0,0.08)',
+                margin: '0 8px',
+                transform: 'rotate(15deg)',
+              }}
+            />
+
+            {/* Debug Toggle - Desktop */}
+            <Link
+              href={isDebugMode ? pathname : `${pathname}?debug=slots`}
+              style={{
+                fontFamily: 'var(--font-mono), monospace',
+                fontSize: '8px',
+                color: isDebugMode ? '#22C55E' : '#9A9A9A',
+                textDecoration: 'none',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                padding: '6px 10px',
+                border: isDebugMode ? '1px solid rgba(34,197,94,0.5)' : '1px solid rgba(0,0,0,0.1)',
+                borderRadius: '2px',
+                backgroundColor: isDebugMode ? 'rgba(34,197,94,0.08)' : 'transparent',
+                transform: 'rotate(1deg)',
+                transition: 'all 0.3s ease',
+              }}
+            >
+              {isDebugMode ? '● DBG' : 'DBG'}
+            </Link>
 
           </nav>
 
@@ -228,14 +319,14 @@ export default function YonNav() {
       </header>
 
       {/* Spacer */}
-      <div style={{ height: '48px' }} />
+      <div style={{ height: '56px' }} />
 
       {/* Mobile Menu Overlay */}
       {isOpen && (
         <div
           style={{
             position: 'fixed',
-            top: '48px',
+            top: '56px',
             left: 0,
             right: 0,
             bottom: 0,

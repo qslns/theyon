@@ -19,7 +19,8 @@ const SOCIAL_ITEMS = Object.freeze([
 ] as const)
 
 const ADMIN_ITEMS = Object.freeze([
-  { href: '/studio', label: 'CMS Studio' },
+  { href: '/studio', label: 'Studio' },
+  { href: '/?debug=slots', label: 'Debug' },
 ] as const)
 
 // Current year - computed once at module level
