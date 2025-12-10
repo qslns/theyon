@@ -38,7 +38,7 @@ export default async function HomePage() {
           Target: 15+ slots with overlapping, bleeding, varied sizes
           1920x1080 viewport optimized - fits in single screen capture
           ============================================ */}
-      <section className="relative w-full overflow-hidden texture-grain" style={{ height: 'calc(100vh - 48px)' }}>
+      <section className="relative w-full overflow-visible texture-grain" style={{ height: 'calc(100vh - 48px)' }}>
         {/* Background typography - ASKEW massive with layer effect */}
         <span
           className="absolute pointer-events-none select-none"
@@ -420,7 +420,7 @@ export default async function HomePage() {
           SECTION 2: Philosophy Statement
           Dense asymmetric typography with floating slots
           ============================================ */}
-      <section className="relative min-h-[90vh] w-full flex items-center overflow-hidden texture-paper">
+      <section className="relative min-h-[90vh] w-full flex items-center overflow-visible texture-paper">
         {/* Background letter - massive Y with echo effect */}
         <span
           className="absolute pointer-events-none select-none"
@@ -591,7 +591,7 @@ export default async function HomePage() {
           SECTION 3: Collections Preview
           Dense moodboard grid - 10+ slots
           ============================================ */}
-      <section className="relative min-h-screen w-full py-24 overflow-hidden texture-grain">
+      <section className="relative min-h-screen w-full py-24 overflow-visible texture-grain">
         {/* Section title - background with triple layer */}
         <span
           className="absolute pointer-events-none select-none"
@@ -840,7 +840,7 @@ export default async function HomePage() {
           SECTION 4: Process Teaser
           Sketchbook feel with 8+ slots
           ============================================ */}
-      <section className="relative min-h-[80vh] w-full py-20 overflow-hidden bg-yon-ivory/30 texture-paper">
+      <section className="relative min-h-[80vh] w-full py-20 overflow-visible bg-yon-ivory/30 texture-paper">
         {/* Background with layered effect */}
         <span
           className="absolute pointer-events-none select-none"
@@ -1008,7 +1008,7 @@ export default async function HomePage() {
           SECTION 5: Contact CTA
           Minimal with accent slots
           ============================================ */}
-      <section className="relative min-h-[60vh] w-full flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[60vh] w-full flex items-center justify-center overflow-visible">
         {/* Background symbol with offset */}
         <span
           className="absolute pointer-events-none select-none"
