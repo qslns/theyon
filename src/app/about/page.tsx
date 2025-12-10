@@ -11,6 +11,8 @@ import {
 } from '@/components/typography'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 
+export const revalidate = 60
+
 export default async function AboutPage() {
   // Fetch all slot images for about page from CMS
   const slotImages = await getSlotImages('about')

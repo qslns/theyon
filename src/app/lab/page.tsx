@@ -10,6 +10,8 @@ import {
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 import LabExperiments from './lab-experiments'
 
+export const revalidate = 60
+
 export default async function LabPage() {
   // Fetch all slot images for lab page from CMS
   const slotImages = await getSlotImages('lab')

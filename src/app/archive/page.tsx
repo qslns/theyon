@@ -8,6 +8,8 @@ import {
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 import ArchiveClient from './archive-client'
 
+export const revalidate = 60
+
 export default async function ArchivePage() {
   // Fetch all slot images for archive page from CMS
   const slotImages = await getSlotImages('archive')
