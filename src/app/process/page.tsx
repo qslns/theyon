@@ -4,7 +4,7 @@ import { Slot, BackgroundSlot } from '@/components/deconstructivist'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 import ProcessStages from './process-stages'
 
-export const revalidate = 60
+export const revalidate = 10
 
 export default async function ProcessPage() {
   // Fetch all slot images for process page from CMS

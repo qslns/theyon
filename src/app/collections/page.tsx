@@ -7,7 +7,7 @@ import { GlitchTitle, LabelText } from '@/components/typography'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 import CollectionsClient from './collections-client'
 
-export const revalidate = 60
+export const revalidate = 10
 
 // Fetch collections from Sanity or use fallback
 async function getCollections(): Promise<Partial<Collection>[]> {

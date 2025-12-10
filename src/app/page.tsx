@@ -17,7 +17,7 @@ import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 
 // Revalidate every 60 seconds for ISR (Incremental Static Regeneration)
 // This ensures Sanity CMS updates appear without full redeploy
-export const revalidate = 60
+export const revalidate = 10
 
 export default async function HomePage() {
   // Fetch all slot images for home page from CMS

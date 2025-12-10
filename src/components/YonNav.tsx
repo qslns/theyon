@@ -4,13 +4,13 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-// Experimental navigation structure
+// Navigation items in alphabetical order for readability
 const NAV_ITEMS = [
-  { href: '/collections', label: 'Collections' },
-  { href: '/lab', label: 'Lab' },
-  { href: '/archive', label: 'Archive' },
   { href: '/about', label: 'About' },
+  { href: '/archive', label: 'Archive' },
+  { href: '/collections', label: 'Collections' },
   { href: '/contact', label: 'Contact' },
+  { href: '/lab', label: 'Lab' },
 ] as const
 
 export default function YonNav() {

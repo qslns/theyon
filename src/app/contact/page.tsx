@@ -3,7 +3,7 @@ import { Slot, AnnotationLabel, BackgroundSlot } from '@/components/deconstructi
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 import ContactForm from './contact-form'
 
-export const revalidate = 60
+export const revalidate = 10
 
 export default async function ContactPage() {
   // Fetch all slot images for contact page from CMS
