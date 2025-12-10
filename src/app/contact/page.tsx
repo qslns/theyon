@@ -23,7 +23,7 @@ export default async function ContactPage() {
           CONTACT - Dense Deconstructivist Collage - fits single screen
           15+ scattered slots around minimal form
           ============================================ */}
-      <section className="relative w-full overflow-hidden texture-grain" style={{ height: 'calc(100vh - 48px)' }}>
+      <section className="relative w-full overflow-visible texture-grain" style={{ height: 'calc(100vh - 48px)' }}>
         {/* Background typography - @ symbol massive */}
         <span
           className="absolute pointer-events-none select-none"
@@ -331,7 +331,7 @@ export default async function ContactPage() {
       {/* ============================================
           LOCATION SECTION - New Dense Section
           ============================================ */}
-      <section className="relative min-h-[70vh] w-full py-24 overflow-hidden bg-yon-ivory/30 texture-paper">
+      <section className="relative min-h-[70vh] w-full py-24 overflow-visible bg-yon-ivory/30 texture-paper">
         {/* Background */}
         <span
           className="absolute pointer-events-none select-none"
@@ -507,7 +507,7 @@ export default async function ContactPage() {
       {/* ============================================
           SOCIAL SECTION - Additional Dense Area
           ============================================ */}
-      <section className="relative min-h-[50vh] w-full py-20 overflow-hidden texture-grain">
+      <section className="relative min-h-[50vh] w-full py-20 overflow-visible texture-grain">
         {/* Background */}
         <span
           className="absolute pointer-events-none select-none"

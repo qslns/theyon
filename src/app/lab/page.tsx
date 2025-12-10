@@ -29,7 +29,7 @@ export default async function LabPage() {
       {/* ============================================
           HERO - Lab Introduction - fits single screen
           ============================================ */}
-      <section className="relative w-full overflow-hidden texture-grain" style={{ height: 'calc(100vh - 48px)' }}>
+      <section className="relative w-full overflow-visible texture-grain" style={{ height: 'calc(100vh - 48px)' }}>
         {/* Background typography - LAB */}
         <span
           className="absolute pointer-events-none select-none"
@@ -368,7 +368,7 @@ export default async function LabPage() {
       {/* ============================================
           FAILURES SECTION - Dense Scattered Layout
           ============================================ */}
-      <section className="relative min-h-screen w-full py-24 overflow-hidden bg-yon-ivory/30 texture-grain">
+      <section className="relative min-h-screen w-full py-24 overflow-visible bg-yon-ivory/30 texture-grain">
         {/* Background */}
         <span
           className="absolute pointer-events-none select-none"
@@ -637,7 +637,7 @@ export default async function LabPage() {
       {/* ============================================
           METHODOLOGY SECTION - New Addition
           ============================================ */}
-      <section className="relative min-h-[80vh] w-full py-24 overflow-hidden texture-paper">
+      <section className="relative min-h-[80vh] w-full py-24 overflow-visible texture-paper">
         {/* Background */}
         <span
           className="absolute pointer-events-none select-none"
@@ -777,7 +777,7 @@ export default async function LabPage() {
       {/* ============================================
           CTA - Collections
           ============================================ */}
-      <section className="relative min-h-[50vh] w-full flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[50vh] w-full flex items-center justify-center overflow-visible">
         {/* Background */}
         <span
           className="absolute pointer-events-none select-none"

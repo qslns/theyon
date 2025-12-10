@@ -31,7 +31,7 @@ export default async function AboutPage() {
           SECTION 1: Portrait Collage Hero
           Dense deconstructivist layout - fits single screen capture
           ============================================ */}
-      <section className="relative w-full overflow-hidden texture-grain" style={{ height: 'calc(100vh - 48px)' }}>
+      <section className="relative w-full overflow-visible texture-grain" style={{ height: 'calc(100vh - 48px)' }}>
         {/* Background typography - Name */}
         <span
           className="absolute pointer-events-none select-none"
@@ -421,7 +421,7 @@ export default async function AboutPage() {
           SECTION 2: Philosophy / Statement
           Dense moodboard style with 8 slots
           ============================================ */}
-      <section className="relative min-h-[90vh] w-full flex items-center overflow-hidden texture-paper">
+      <section className="relative min-h-[90vh] w-full flex items-center overflow-visible texture-paper">
         {/* Background letter */}
         <span
           className="absolute pointer-events-none select-none"
@@ -607,7 +607,7 @@ export default async function AboutPage() {
           SECTION 3: Education / Background
           Dense documentation style with 6 slots
           ============================================ */}
-      <section className="relative min-h-[80vh] py-24 px-8 md:px-16 lg:px-24 overflow-hidden texture-grain">
+      <section className="relative min-h-[80vh] py-24 px-8 md:px-16 lg:px-24 overflow-visible texture-grain">
         {/* Background */}
         <span
           className="absolute pointer-events-none select-none"
@@ -804,7 +804,7 @@ export default async function AboutPage() {
           SECTION 4: Work Process Section
           New dense moodboard
           ============================================ */}
-      <section className="relative min-h-[70vh] w-full py-24 overflow-hidden bg-yon-ivory/30 texture-paper">
+      <section className="relative min-h-[70vh] w-full py-24 overflow-visible bg-yon-ivory/30 texture-paper">
         {/* Background */}
         <span
           className="absolute pointer-events-none select-none"
@@ -967,7 +967,7 @@ export default async function AboutPage() {
       {/* ============================================
           SECTION 5: CTA - Contact
           ============================================ */}
-      <section className="relative min-h-[50vh] w-full flex items-center justify-center overflow-hidden texture-grain">
+      <section className="relative min-h-[50vh] w-full flex items-center justify-center overflow-visible texture-grain">
         {/* Background */}
         <span
           className="absolute pointer-events-none select-none"

@@ -89,7 +89,7 @@ export default async function CollectionsPage() {
       {/* ============================================
           HERO HEADER - Dense Deconstructivist - fits single screen
           ============================================ */}
-      <section className="relative w-full overflow-hidden texture-grain" style={{ height: 'calc(100vh - 48px)' }}>
+      <section className="relative w-full overflow-visible texture-grain" style={{ height: 'calc(100vh - 48px)' }}>
         {/* Background typography */}
         <span
           className="absolute pointer-events-none select-none"
@@ -365,7 +365,7 @@ export default async function CollectionsPage() {
       {/* ============================================
           ARCHIVE LINK - Dense Section
           ============================================ */}
-      <section className="relative min-h-[60vh] py-24 px-8 md:px-16 lg:px-24 overflow-hidden texture-paper">
+      <section className="relative min-h-[60vh] py-24 px-8 md:px-16 lg:px-24 overflow-visible texture-paper">
         {/* Background */}
         <span
           className="absolute pointer-events-none select-none"

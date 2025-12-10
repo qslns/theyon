@@ -182,17 +182,18 @@ export default function YonNav() {
 
               // Asymmetric styling per item
               const styles = [
-                { rotation: -2, size: '9px', spacing: '0.08em', weight: 400 },
-                { rotation: 1.5, size: '8px', spacing: '0.15em', weight: 500 },
-                { rotation: -1, size: '10px', spacing: '0.05em', weight: 300 },
-                { rotation: 2, size: '8px', spacing: '0.12em', weight: 400 },
-                { rotation: -1.5, size: '9px', spacing: '0.1em', weight: 500 },
+                { rotation: -2, size: '9px', spacing: '0.08em', weight: 400, hoverRotation: -1.5 },
+                { rotation: 1.5, size: '8px', spacing: '0.15em', weight: 500, hoverRotation: 1 },
+                { rotation: -1, size: '10px', spacing: '0.05em', weight: 300, hoverRotation: -1 },
+                { rotation: 2, size: '8px', spacing: '0.12em', weight: 400, hoverRotation: 1.5 },
+                { rotation: -1.5, size: '9px', spacing: '0.1em', weight: 500, hoverRotation: -0.8 },
               ][idx]
 
               return (
                 <div key={item.href} style={{ display: 'flex', alignItems: 'center' }}>
                   <Link
                     href={item.href}
+                    className={`nav-link-hover nav-item-${idx}`}
                     style={{
                       fontFamily: 'var(--font-mono), monospace',
                       fontSize: styles.size,
@@ -206,7 +207,10 @@ export default function YonNav() {
                       transform: `rotate(${styles.rotation}deg)`,
                       display: 'inline-block',
                       borderBottom: isActive ? '1.5px solid #8B7355' : 'none',
-                    }}
+                      // CSS custom property for hover rotation
+                      '--hover-rotation': `${styles.hoverRotation}deg`,
+                      '--base-rotation': `${styles.rotation}deg`,
+                    } as React.CSSProperties}
                   >
                     {item.label}
                   </Link>
@@ -420,6 +424,72 @@ export default function YonNav() {
         }
         .mobile-menu-btn {
           display: none !important;
+        }
+
+        /* Navigation Link Hover Effect - Asymmetric Tilt & Accent Underline */
+        .nav-link-hover {
+          position: relative;
+          transition:
+            transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+            letter-spacing 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+            color 0.3s ease;
+        }
+
+        .nav-link-hover::after {
+          content: '';
+          position: absolute;
+          bottom: 2px;
+          right: 8px;
+          width: 0;
+          height: 1.5px;
+          background: #8B7355;
+          transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .nav-link-hover:hover,
+        .nav-link-hover:focus-visible {
+          color: #8B7355 !important;
+          letter-spacing: 0.15em !important;
+        }
+
+        .nav-link-hover:hover::after,
+        .nav-link-hover:focus-visible::after {
+          width: calc(100% - 16px);
+          right: auto;
+          left: 8px;
+        }
+
+        /* Asymmetric rotation per item on hover */
+        .nav-item-0:hover { transform: rotate(-1.5deg) !important; }
+        .nav-item-1:hover { transform: rotate(1deg) !important; }
+        .nav-item-2:hover { transform: rotate(-1deg) !important; }
+        .nav-item-3:hover { transform: rotate(1.5deg) !important; }
+        .nav-item-4:hover { transform: rotate(-0.8deg) !important; }
+
+        /* Logo hover effect */
+        .nav-logo:hover {
+          transform: rotate(-2.5deg) !important;
+        }
+
+        /* Mobile: disable hover effects */
+        @media (hover: none) and (pointer: coarse) {
+          .nav-link-hover:hover {
+            transform: var(--base-rotation) !important;
+            letter-spacing: inherit !important;
+            color: inherit !important;
+          }
+          .nav-link-hover:hover::after {
+            width: 0;
+          }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+          .nav-link-hover,
+          .nav-link-hover::after,
+          .nav-logo {
+            transition: none;
+          }
         }
 
         @media (max-width: 768px) {

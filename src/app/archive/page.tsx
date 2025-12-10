@@ -27,7 +27,7 @@ export default async function ArchivePage() {
       {/* ============================================
           HERO - Dense Deconstructivist Header - fits single screen
           ============================================ */}
-      <section className="relative w-full overflow-hidden texture-grain" style={{ height: 'calc(100vh - 48px)' }}>
+      <section className="relative w-full overflow-visible texture-grain" style={{ height: 'calc(100vh - 48px)' }}>
         {/* Background typography - ARCHIVE */}
         <span
           className="absolute pointer-events-none select-none"
@@ -326,7 +326,7 @@ export default async function ArchivePage() {
       {/* ============================================
           CTA - Collections Link
           ============================================ */}
-      <section className="relative min-h-[50vh] w-full flex items-center justify-center overflow-hidden texture-grain">
+      <section className="relative min-h-[50vh] w-full flex items-center justify-center overflow-visible texture-grain">
         {/* Background */}
         <span
           className="absolute pointer-events-none select-none"
