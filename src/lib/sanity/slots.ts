@@ -43,7 +43,7 @@ export async function getSlotImages(page: string): Promise<SlotImageMap> {
     const images = await cachedFetch<SlotImage[]>(
       slotImagesByPageQuery,
       { page },
-      60 * 1000 // 60 second cache
+      5 * 1000 // 5 second cache - short for faster updates
     )
 
     // Convert array to map for O(1) lookup
@@ -65,7 +65,7 @@ export async function getSlotImage(slotId: string): Promise<SlotImage | null> {
     const image = await cachedFetch<SlotImage | null>(
       slotImageByIdQuery,
       { slotId },
-      60 * 1000
+      5 * 1000
     )
     return image
   } catch (error) {
@@ -85,7 +85,7 @@ export async function getSlotImagesBySection(
     const images = await cachedFetch<SlotImage[]>(
       slotImagesBySectionQuery,
       { page, section },
-      60 * 1000
+      5 * 1000
     )
     return images
   } catch (error) {
@@ -103,7 +103,7 @@ export async function getSlotImagesByIds(slotIds: string[]): Promise<SlotImageMa
     const images = await cachedFetch<SlotImage[]>(
       slotImagesByIdsQuery,
       { slotIds },
-      60 * 1000
+      5 * 1000
     )
 
     return images.reduce((acc, img) => {
