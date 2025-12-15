@@ -2,11 +2,7 @@
 
 import { useState, useMemo, memo } from 'react'
 import { Slot } from '@/components/deconstructivist'
-import {
-  LabelText,
-  WhisperText,
-  ExperimentalText,
-} from '@/components/typography'
+import { WhisperText } from '@/components/typography'
 
 // Archive items - research and process documentation
 const archiveItems = [
@@ -94,69 +90,36 @@ const archiveItems = [
 
 const categories = ['All', 'Construction', 'Material', 'Form', 'Process', 'Experiment', 'Detail', 'Origin', 'Surface']
 
-// Dense archive card with scattered slots
-// Note: These slots use hardcoded labels since they're generated dynamically
+// Simplified archive card with single slot
 const ArchiveCard = memo(function ArchiveCard({ item, index }: { item: typeof archiveItems[0]; index: number }) {
-  const [isHovered, setIsHovered] = useState(false)
-  const rotations = [-3, 2, -2, 3, -1.5, 2.5, -2.5, 1.5]
-  const clips = ['irregular-1', 'torn-1', 'organic-1', 'torn-2', 'irregular-3', 'wave-1', 'corner-cut', 'notch-1'] as const
-  const decorations = ['tape-corner', 'pin', 'staple', 'corner-fold', 'tape-top', 'clip', 'pin-red', 'mark-x'] as const
+  const rotations = [-2, 1.5, -1.5, 2, -1, 2.5, -2, 1]
+  const clips = ['irregular-1', 'torn-1', 'organic-1', 'torn-2'] as const
 
   return (
     <div
       className="relative animate-fade-in-up"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       style={{
-        transform: `rotate(${rotations[index % rotations.length] * 0.3}deg)`,
-        animationDelay: `${index * 50}ms`
+        transform: `rotate(${rotations[index % rotations.length] * 0.2}deg)`,
+        animationDelay: `${index * 40}ms`
       }}
     >
-      {/* Main slot - clickable */}
-      <div className="relative cursor-pointer" style={{ minHeight: '280px' }}>
+      {/* Single slot per card */}
+      <div className="relative" style={{ minHeight: '220px' }}>
         <Slot
           label={item.title}
-          size={index % 3 === 0 ? 'medium' : index % 3 === 1 ? 'small' : 'medium-wide'}
+          size={index % 2 === 0 ? 'medium' : 'small'}
           rotation={rotations[index % rotations.length]}
           clip={clips[index % clips.length]}
-          shadow={isHovered ? 'dramatic' : 'offset'}
+          shadow="offset"
           zIndex={10}
           grayscale={item.status === 'archived'}
-          sepia={item.status === 'archived' && index % 2 === 0}
-          decoration={decorations[index % decorations.length]}
           annotationNumber={item.id}
-          texture={index % 4 === 0 ? 'grain' : undefined}
-        />
-
-        {/* Secondary accent slot */}
-        <Slot
-          label={item.category}
-          size="tiny"
-          position="absolute"
-          top="65%"
-          right="-8%"
-          rotation={-rotations[index % rotations.length] * 2}
-          border="thin"
-          zIndex={15}
-          decoration={index % 2 === 0 ? 'pin' : 'clip'}
-        />
-
-        {/* Swatch */}
-        <Slot
-          label={item.id}
-          size="swatch"
-          position="absolute"
-          bottom="-5%"
-          left="10%"
-          rotation={rotations[(index + 3) % rotations.length]}
-          border={index % 2 === 0 ? 'rough' : 'accent'}
-          zIndex={12}
         />
       </div>
 
-      {/* Info below */}
-      <div className="mt-4 px-2">
-        <div className="flex items-center gap-3">
+      {/* Info */}
+      <div className="mt-3 px-1">
+        <div className="flex items-center gap-2">
           <span
             className={`font-mono uppercase tracking-[0.15em] ${item.status === 'current' ? 'text-yon-accent' : 'text-yon-grey/40'}`}
             style={{ fontSize: '0.5rem' }}
@@ -166,43 +129,16 @@ const ArchiveCard = memo(function ArchiveCard({ item, index }: { item: typeof ar
           <WhisperText text={item.date} className="text-yon-grey/30" />
         </div>
 
-        <h3
-          className="mt-2"
-          style={{
-            transform: `rotate(${rotations[index % rotations.length] * 0.2}deg)`
-          }}
-        >
-          <ExperimentalText
-            text={item.title}
-            variant="subtitle"
-            effect={item.status === 'archived' ? 'grain' : 'layer'}
-            intensity="subtle"
-            colorScheme="mono"
-            as="span"
-          />
+        <h3 className="font-serif text-yon-black mt-2" style={{ fontSize: '1rem' }}>
+          {item.title}
         </h3>
 
         <p
-          className="font-sans text-yon-grey/60 mt-2"
-          style={{ fontSize: '0.75rem', lineHeight: 1.6 }}
+          className="font-sans text-yon-grey/50 mt-1"
+          style={{ fontSize: '0.7rem', lineHeight: 1.5 }}
         >
           {item.description}
         </p>
-
-        {/* Tags */}
-        <div
-          className="mt-3 flex flex-wrap gap-2 transition-opacity duration-300"
-          style={{ opacity: isHovered ? 1 : 0.5 }}
-        >
-          {item.tags.map(tag => (
-            <LabelText
-              key={tag}
-              text={`#${tag}`}
-              className="text-yon-grey/50"
-              style={{ fontSize: '0.45rem' }}
-            />
-          ))}
-        </div>
       </div>
     </div>
   )

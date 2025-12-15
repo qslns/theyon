@@ -2,14 +2,8 @@ import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
-import { Slot, AnnotationLabel } from '@/components/deconstructivist'
-import {
-  GlitchTitle,
-  LabelText,
-  WhisperText,
-  NumberTag,
-  ExperimentalText,
-} from '@/components/typography'
+import { Slot } from '@/components/deconstructivist'
+import { GlitchTitle, LabelText, WhisperText } from '@/components/typography'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 
 // Collection data with enhanced image layouts
@@ -100,12 +94,6 @@ export function generateStaticParams() {
   }))
 }
 
-// Slot sizes for gallery
-const slotSizes = ['large', 'medium', 'small', 'medium-wide', 'small-square'] as const
-const slotClips = ['irregular-1', 'torn-1', 'organic-1', 'torn-2', 'irregular-3', 'wave-1'] as const
-const rotations = [-2.5, 3, -1.5, 4, -3, 2]
-const decorations = ['tape-corner', 'pin', 'staple', 'corner-fold', 'tape-top', 'clip'] as const
-
 interface PageProps {
   params: Promise<{ id: string }>
 }
@@ -126,181 +114,102 @@ export default async function CollectionDetailPage({ params }: PageProps) {
   return (
     <div className="min-h-screen bg-yon-white overflow-x-hidden">
       {/* ============================================
-          HERO SECTION - Dense Deconstructivist Collage
+          HERO SECTION - Simplified with 4 key slots
           ============================================ */}
-      <section className="relative w-full overflow-hidden texture-grain" style={{ height: 'calc(100vh - 48px)' }}>
+      <section className="relative w-full overflow-hidden texture-grain" style={{ minHeight: 'calc(100vh - 56px)' }}>
         {/* Background typography */}
         <span
           className="absolute pointer-events-none select-none"
           style={{
             top: '10%',
-            right: '-15%',
-            fontSize: 'clamp(18rem, 45vw, 60rem)',
+            right: '-10%',
+            fontSize: 'clamp(14rem, 35vw, 50rem)',
             fontWeight: 100,
             fontFamily: 'var(--font-serif), Georgia, serif',
-            opacity: 0.025,
-            lineHeight: 0.8,
-            color: '#0A0A0A',
+            opacity: 0.02,
+            color: 'var(--yon-black)',
           }}
           aria-hidden="true"
         >
           {collection.title.charAt(0)}
         </span>
 
-        {/* Secondary background - index */}
         <span
           className="absolute pointer-events-none select-none"
           style={{
             bottom: '15%',
             left: '-5%',
-            fontSize: 'clamp(12rem, 30vw, 45rem)',
+            fontSize: 'clamp(10rem, 25vw, 35rem)',
             fontWeight: 100,
             fontFamily: 'var(--font-mono), monospace',
             opacity: 0.015,
-            letterSpacing: '0.2em',
-            color: '#8B7355',
+            color: 'var(--yon-accent)',
           }}
           aria-hidden="true"
         >
           {collection.index}
         </span>
 
-        {/* Hero Slots - 8 scattered */}
+        {/* 4 key slots */}
         <Slot
           {...slot(`collection-${slug}-hero-001`, `${collection.title} / MAIN`)}
           size="hero"
           position="absolute"
           top="5%"
           left="-3%"
-          rotation={-2.5}
+          rotation={-2}
           clip="irregular-1"
           shadow="offset-xl"
           zIndex={20}
           bleed="left"
           bleedAmount="lg"
-          annotationNumber={`${collection.index}-001`}
-          texture="grain"
+          annotationNumber={collection.index}
         />
 
         <Slot
           {...slot(`collection-${slug}-hero-002`, 'DETAIL')}
-          size="large"
+          size="medium"
           position="absolute"
-          top="8%"
-          right="5%"
+          top="10%"
+          right="8%"
           rotation={3}
           clip="torn-1"
           shadow="float"
           zIndex={18}
           decoration="tape-corner"
-          bleed="right"
-          bleedAmount="md"
         />
 
         <Slot
           {...slot(`collection-${slug}-hero-003`, 'PROCESS')}
-          size="medium"
-          position="absolute"
-          top="45%"
-          right="15%"
-          rotation={-4}
-          clip="organic-1"
-          shadow="dramatic"
-          zIndex={25}
-          overlapX={80}
-          decoration="staple"
-        />
-
-        <Slot
-          {...slot(`collection-${slug}-hero-004`, 'TEXTURE')}
           size="small"
           position="absolute"
-          bottom="25%"
-          left="8%"
-          rotation={6}
-          clip="torn-2"
-          shadow="offset"
+          top="50%"
+          right="20%"
+          rotation={-4}
+          clip="organic-1"
           zIndex={22}
-          grayscale
           decoration="pin"
         />
 
         <Slot
-          {...slot(`collection-${slug}-hero-005`, 'MATERIAL')}
+          {...slot(`collection-${slug}-hero-004`, 'MATERIAL')}
           size="swatch"
           position="absolute"
-          top="65%"
-          left="35%"
-          rotation={-10}
+          bottom="25%"
+          left="40%"
+          rotation={-8}
           border="rough"
-          zIndex={28}
+          zIndex={24}
           decoration="tape-top"
         />
 
-        <Slot
-          {...slot(`collection-${slug}-hero-006`, 'SAMPLE')}
-          size="swatch"
-          position="absolute"
-          top="70%"
-          left="42%"
-          rotation={8}
-          border="accent"
-          zIndex={29}
-          overlapX={25}
-        />
-
-        <Slot
-          {...slot(`collection-${slug}-hero-007`, 'REF')}
-          size="tiny"
-          position="absolute"
-          top="55%"
-          right="-2%"
-          rotation={-12}
-          clip="irregular-4"
-          zIndex={15}
-          bleed="right"
-          bleedAmount="md"
-        />
-
-        <Slot
-          {...slot(`collection-${slug}-hero-008`, collection.index)}
-          size="micro"
-          position="absolute"
-          top="35%"
-          left="50%"
-          rotation={15}
-          border="thin"
-          zIndex={30}
-          decoration="pin-red"
-        />
-
-        {/* Annotations */}
-        <AnnotationLabel
-          text={collection.title}
-          position={{ top: '12%', left: '25%' }}
-          rotation={-3}
-          variant="tag"
-        />
-        <AnnotationLabel
-          text="in progress"
-          position={{ top: '50%', left: '5%' }}
-          rotation={5}
-          variant="handwritten"
-        />
-        <AnnotationLabel
-          text={`NO.${collection.index}`}
-          position={{ bottom: '35%', right: '30%' }}
-          rotation={-2}
-          variant="number"
-        />
-
-        {/* Title card - bottom left */}
+        {/* Title card */}
         <div
-          className="absolute z-40"
+          className="absolute z-30"
           style={{
-            bottom: '8%',
+            bottom: '10%',
             left: '6%',
-            transform: 'rotate(-2deg)',
+            transform: 'rotate(-1.5deg)',
           }}
         >
           <LabelText text="Collection" style={{ fontSize: '0.55rem' }} />
@@ -308,127 +217,116 @@ export default async function CollectionDetailPage({ params }: PageProps) {
           <GlitchTitle
             text={collection.title}
             size="heading"
-            glitchOffset={5}
+            glitchOffset={4}
             charRotation
-            rotationIntensity={3}
+            rotationIntensity={2}
             className="mt-3"
             style={{
-              fontSize: 'clamp(2rem, 6vw, 4.5rem)',
-              letterSpacing: '-0.03em',
+              fontSize: 'clamp(2rem, 5vw, 4rem)',
+              letterSpacing: '-0.02em',
             }}
             as="h1"
           />
 
-          <div className="mt-4 flex items-center gap-3">
-            <NumberTag index={parseInt(collection.index)} />
-            <span className="w-6 h-px bg-yon-accent/40" />
-            <ExperimentalText
-              text={collection.description.split('.')[0]}
-              variant="caption"
-              effect="scatter"
-              intensity="subtle"
-              style={{ maxWidth: '280px', fontSize: '0.65rem' }}
-            />
-          </div>
+          <p
+            className="font-sans text-yon-grey/60 mt-4 max-w-sm"
+            style={{ fontSize: '0.85rem', lineHeight: 1.6 }}
+          >
+            {collection.description}
+          </p>
         </div>
 
         {/* Scroll hint */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40">
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30">
           <WhisperText text="Scroll" style={{ fontSize: '0.5rem' }} />
-          <span className="block text-yon-grey/30 mt-2 text-center">↓</span>
+          <span className="block text-yon-grey/20 mt-2 text-center">↓</span>
         </div>
       </section>
 
 
       {/* ============================================
-          IMAGE GALLERY - Dense Moodboard Style
+          GALLERY & INFO - Simplified with 2 slots
           ============================================ */}
-      <section className="relative py-24 px-8 md:px-16 overflow-hidden texture-paper">
+      <section className="relative py-20 px-8 md:px-16 lg:px-24 overflow-hidden texture-paper">
         {/* Background */}
         <span
           className="absolute pointer-events-none select-none"
           style={{
             top: '5%',
-            left: '-10%',
-            fontSize: 'clamp(10rem, 25vw, 35rem)',
+            left: '-8%',
+            fontSize: 'clamp(8rem, 20vw, 28rem)',
             fontWeight: 100,
             fontFamily: 'var(--font-serif), Georgia, serif',
-            opacity: 0.02,
-            color: '#0A0A0A',
-            transform: 'rotate(-5deg)',
+            opacity: 0.015,
+            color: 'var(--yon-black)',
+            transform: 'rotate(-4deg)',
           }}
           aria-hidden="true"
         >
           LOOKS
         </span>
 
-        <div className="max-w-7xl mx-auto">
-          <LabelText text="Gallery" className="mb-12" style={{ fontSize: '0.55rem' }} />
+        <div className="max-w-5xl mx-auto">
+          <LabelText text="Gallery" style={{ fontSize: '0.55rem' }} />
 
-          {/* Image grid with Slots */}
-          <div className="relative" style={{ minHeight: '150vh' }}>
-            {collection.images.map((image, index) => {
-              const positions = [
-                { top: '0', left: '0' },
-                { top: '5%', right: '10%' },
-                { top: '25%', left: '25%' },
-                { top: '35%', right: '5%' },
-                { top: '55%', left: '5%' },
-                { top: '65%', right: '20%' },
-              ]
-              const pos = positions[index % positions.length]
+          {/* 2 gallery slots */}
+          <div className="relative mt-10" style={{ minHeight: '50vh' }}>
+            <Slot
+              {...slot(`collection-${slug}-gallery-001`, 'LOOK 01')}
+              size="large"
+              position="absolute"
+              top="0"
+              left="0"
+              rotation={-2}
+              clip="irregular-1"
+              shadow="offset-lg"
+              zIndex={15}
+              annotationNumber={`${collection.index}-01`}
+            />
 
-              return (
-                <Slot
-                  key={image.id}
-                  {...slot(`collection-${slug}-gallery-${String(image.id).padStart(3, '0')}`, image.caption || `LOOK ${String(image.id).padStart(2, '0')}`)}
-                  size={slotSizes[index % slotSizes.length]}
-                  position="absolute"
-                  top={pos.top}
-                  left={pos.left}
-                  right={pos.right}
-                  rotation={rotations[index % rotations.length]}
-                  clip={slotClips[index % slotClips.length]}
-                  shadow={index === 0 ? 'offset-lg' : index % 2 === 0 ? 'float' : 'offset'}
-                  zIndex={15 + index}
-                  decoration={decorations[index % decorations.length]}
-                  annotationNumber={`${collection.index}-${String(image.id).padStart(3, '0')}`}
-                  grayscale={index % 4 === 3}
-                  sepia={index % 5 === 4}
-                />
-              )
-            })}
+            <Slot
+              {...slot(`collection-${slug}-gallery-002`, 'LOOK 02')}
+              size="medium"
+              position="absolute"
+              top="20%"
+              right="5%"
+              rotation={3}
+              clip="torn-1"
+              shadow="float"
+              zIndex={18}
+              decoration="tape-corner"
+            />
           </div>
 
-          {/* Concept section */}
-          <div className="mt-32 max-w-2xl" style={{ transform: 'rotate(-0.5deg)' }}>
-            <LabelText text="Concept" style={{ fontSize: '0.55rem', color: 'rgba(139, 115, 85, 0.6)' }} />
+          {/* Concept */}
+          <div className="mt-16 max-w-2xl" style={{ transform: 'rotate(-0.3deg)' }}>
+            <LabelText text="Concept" style={{ fontSize: '0.55rem', color: 'var(--yon-accent)' }} />
             <p
-              className="font-sans text-yon-grey/70 mt-6 leading-relaxed"
-              style={{ fontSize: '0.95rem' }}
+              className="font-sans text-yon-grey/60 mt-5 leading-relaxed"
+              style={{ fontSize: '0.9rem' }}
             >
               {collection.concept}
             </p>
           </div>
 
           {/* Techniques & Materials */}
-          <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-16">
-            <div style={{ transform: 'rotate(0.3deg)' }}>
-              <LabelText text="Techniques" style={{ fontSize: '0.55rem', color: 'rgba(139, 115, 85, 0.6)' }} />
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+              <LabelText text="Techniques" style={{ fontSize: '0.55rem', color: 'var(--yon-accent)' }} />
               <ul className="mt-4 space-y-2">
                 {collection.techniques.map((technique, i) => (
-                  <li key={i} className="font-mono text-yon-grey/60" style={{ fontSize: '0.75rem' }}>
+                  <li key={i} className="font-mono text-yon-grey/50" style={{ fontSize: '0.7rem' }}>
                     {technique}
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div style={{ transform: 'rotate(-0.3deg)' }}>
-              <LabelText text="Materials" style={{ fontSize: '0.55rem', color: 'rgba(139, 115, 85, 0.6)' }} />
+            <div>
+              <LabelText text="Materials" style={{ fontSize: '0.55rem', color: 'var(--yon-accent)' }} />
               <ul className="mt-4 space-y-2">
                 {collection.materials.map((material, i) => (
-                  <li key={i} className="font-mono text-yon-grey/60" style={{ fontSize: '0.75rem' }}>
+                  <li key={i} className="font-mono text-yon-grey/50" style={{ fontSize: '0.7rem' }}>
                     {material}
                   </li>
                 ))}
@@ -436,20 +334,6 @@ export default async function CollectionDetailPage({ params }: PageProps) {
             </div>
           </div>
         </div>
-
-        {/* Scattered annotations */}
-        <AnnotationLabel
-          text="final"
-          position={{ top: '15%', right: '25%' }}
-          rotation={-4}
-          variant="handwritten"
-        />
-        <AnnotationLabel
-          text="APPROVED"
-          position={{ top: '45%', left: '55%' }}
-          rotation={5}
-          variant="stamp"
-        />
       </section>
 
 
