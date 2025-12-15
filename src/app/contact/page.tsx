@@ -5,12 +5,9 @@ import {
   ScrollingBackgroundSlot,
   SectionNumber,
   DecoLine,
-  DotsPattern,
   CrossMarker,
-  BracketDeco,
   VerticalText,
   NoiseOverlay,
-  DecoDivider,
 } from '@/components/deconstructivist'
 import { LabelText, StickerText } from '@/components/typography'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
@@ -236,6 +233,8 @@ export default async function ContactPage() {
               shadow="offset"
               zIndex={15}
               decoration="tape-corner"
+              frameStyle="polaroid"
+              filmFilter="warm"
             />
 
             <Slot
@@ -249,6 +248,8 @@ export default async function ContactPage() {
               shadow="float"
               zIndex={18}
               sepia
+              frameStyle="vintage"
+              filmFilter="vintage"
             />
           </div>
         </div>

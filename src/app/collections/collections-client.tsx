@@ -62,6 +62,9 @@ function CollectionMoodboard({
             shadow="offset-lg"
             zIndex={20}
             annotationNumber={String(index + 1).padStart(2, '0')}
+            frameStyle="film-strip"
+            frameNumber={String(index + 1).padStart(2, '0')}
+            filmFilter="warm"
           />
 
           {/* Slot 2: Medium secondary */}
@@ -77,6 +80,8 @@ function CollectionMoodboard({
             shadow="float"
             zIndex={18}
             decoration="tape-corner"
+            frameStyle="polaroid"
+            filmFilter="vintage"
           />
 
           {/* Slot 3: Small detail */}
@@ -90,6 +95,8 @@ function CollectionMoodboard({
             clip="irregular-3"
             zIndex={22}
             decoration="pin"
+            frameStyle="slide-mount"
+            filmFilter="faded"
           />
 
           {/* Slot 4: Swatch */}
@@ -104,6 +111,7 @@ function CollectionMoodboard({
             border="rough"
             zIndex={24}
             decoration="tape-top"
+            frameStyle="torn"
           />
 
           {/* Collection info */}

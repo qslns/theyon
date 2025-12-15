@@ -52,6 +52,9 @@ function ExperimentCard({
             grayscale={experiment.status === 'paused'}
             zIndex={15}
             annotationNumber={experiment.id.replace('EXP-', '')}
+            frameStyle={(['contact-sheet', 'sketchbook', 'crumpled', 'vintage', 'torn'] as const)[index % 5]}
+            frameNumber={experiment.id.replace('EXP-', '')}
+            filmFilter={experiment.status === 'paused' ? 'faded' : experiment.status === 'active' ? 'warm' : 'vintage'}
           />
 
           {/* Detail slot */}
@@ -65,6 +68,8 @@ function ExperimentCard({
             clip={clips[(index + 1) % clips.length]}
             zIndex={18}
             decoration={index % 2 === 0 ? 'tape-corner' : 'pin'}
+            frameStyle={(['polaroid', 'slide-mount', 'torn', 'film-strip', 'vintage'] as const)[index % 5]}
+            filmFilter="cool"
           />
         </div>
 

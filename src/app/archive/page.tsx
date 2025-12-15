@@ -6,7 +6,6 @@ import {
   ScrollingBackgroundSlot,
   SectionNumber,
   DecoLine,
-  DotsPattern,
   CrossMarker,
   BracketDeco,
   VerticalText,

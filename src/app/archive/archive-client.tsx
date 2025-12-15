@@ -114,6 +114,8 @@ const ArchiveCard = memo(function ArchiveCard({ item, index }: { item: typeof ar
           zIndex={10}
           grayscale={item.status === 'archived'}
           annotationNumber={item.id}
+          frameStyle={(['contact-sheet', 'sketchbook', 'crumpled', 'vintage', 'torn', 'polaroid', 'slide-mount', 'film-strip'] as const)[index % 8]}
+          filmFilter={item.status === 'archived' ? 'faded' : 'vintage'}
         />
       </div>
 

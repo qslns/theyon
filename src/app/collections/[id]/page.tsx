@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import {
   Slot,
   BackgroundSlot,
+  ScrollingBackgroundSlot,
   SectionNumber,
   DecoLine,
   DotsPattern,
@@ -131,6 +132,15 @@ export default async function CollectionDetailPage({ params }: PageProps) {
         {...slot(`collection-${slug}-background-001`, 'BACKGROUND')}
         opacity={0.02}
         grayscale
+      />
+
+      {/* Scrolling Background */}
+      <ScrollingBackgroundSlot
+        {...slot(`collection-${slug}-background-002`, 'SCROLLING BG')}
+        scrollSpeed={0.4}
+        opacity={0.02}
+        grayscale
+        zIndex={1}
       />
 
       {/* Global noise overlay */}

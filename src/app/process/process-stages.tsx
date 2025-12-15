@@ -92,6 +92,9 @@ function ProcessStage({
             zIndex={15}
             grayscale={isFailure}
             annotationNumber={stage.id}
+            frameStyle={(['sketchbook', 'contact-sheet', 'crumpled', 'vintage', 'torn', 'film-strip', 'polaroid', 'slide-mount'] as const)[index % 8]}
+            frameNumber={stage.id}
+            filmFilter={isFailure ? 'faded' : 'vintage'}
           />
 
           {/* Secondary slot */}
@@ -107,6 +110,8 @@ function ProcessStage({
             shadow="float"
             zIndex={18}
             decoration={index % 2 === 0 ? 'tape-corner' : 'pin'}
+            frameStyle={(['polaroid', 'torn', 'slide-mount', 'vintage', 'sketchbook', 'crumpled', 'contact-sheet', 'film-strip'] as const)[index % 8]}
+            filmFilter="warm"
           />
         </div>
       </div>

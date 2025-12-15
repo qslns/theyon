@@ -6,12 +6,9 @@ import {
   ScrollingBackgroundSlot,
   SectionNumber,
   DecoLine,
-  DotsPattern,
   CrossMarker,
-  BracketDeco,
   VerticalText,
   NoiseOverlay,
-  DecoDivider,
 } from '@/components/deconstructivist'
 import {
   GlitchTitle,
@@ -293,6 +290,9 @@ export default async function LabPage() {
               zIndex={10}
               annotationNumber="F-001"
               decoration="mark-x"
+              frameStyle="crumpled"
+              frameNumber="F-01"
+              filmFilter="faded"
             />
 
             <Slot
@@ -306,6 +306,8 @@ export default async function LabPage() {
               grayscale
               zIndex={15}
               decoration="tape-corner"
+              frameStyle="torn"
+              filmFilter="faded"
             />
 
             <Slot
@@ -319,6 +321,8 @@ export default async function LabPage() {
               grayscale
               zIndex={18}
               decoration="staple"
+              frameStyle="vintage"
+              filmFilter="faded"
             />
 
             <Slot
@@ -332,6 +336,9 @@ export default async function LabPage() {
               grayscale
               zIndex={16}
               decoration="mark-x"
+              frameStyle="contact-sheet"
+              frameNumber="F-04"
+              filmFilter="faded"
             />
           </div>
         </div>
@@ -388,6 +395,8 @@ export default async function LabPage() {
                   zIndex={10}
                   annotationNumber="01"
                   decoration="pin"
+                  frameStyle="sketchbook"
+                  filmFilter="warm"
                 />
                 <p className="font-sans text-yon-grey/60 mt-6" style={{ fontSize: '0.8rem', lineHeight: 1.7 }}>
                   Research and observation. Finding unexpected connections.
@@ -404,6 +413,8 @@ export default async function LabPage() {
                   zIndex={10}
                   annotationNumber="02"
                   decoration="tape-top"
+                  frameStyle="polaroid"
+                  filmFilter="vintage"
                 />
                 <p className="font-sans text-yon-grey/60 mt-6" style={{ fontSize: '0.8rem', lineHeight: 1.7 }}>
                   Rapid prototyping. Embracing failures as data.
@@ -420,6 +431,8 @@ export default async function LabPage() {
                   zIndex={10}
                   annotationNumber="03"
                   decoration="staple"
+                  frameStyle="slide-mount"
+                  filmFilter="cool"
                 />
                 <p className="font-sans text-yon-grey/60 mt-6" style={{ fontSize: '0.8rem', lineHeight: 1.7 }}>
                   Iteration toward the essential. Removing excess.
