@@ -1,46 +1,42 @@
 import Link from 'next/link'
 import Footer from '@/components/Footer'
-import { Slot, AnnotationLabel, BackgroundSlot } from '@/components/deconstructivist'
-import {
-  GlitchTitle,
-  AnnotationText,
-} from '@/components/typography'
+import { Slot, BackgroundSlot } from '@/components/deconstructivist'
+import { GlitchTitle, StickerText, LabelText } from '@/components/typography'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 import ArchiveClient from './archive-client'
 
 export const revalidate = 10
 
 export default async function ArchivePage() {
-  // Fetch all slot images for archive page from CMS
   const slotImages = await getSlotImages('archive')
   const slot = createSlotHelper(slotImages)
 
   return (
     <div className="relative min-h-screen bg-yon-white overflow-x-hidden">
-      {/* CMS Background Slot */}
+      {/* Background Slot */}
       <BackgroundSlot
         {...slot('archive-background-001', 'BACKGROUND')}
-        opacity={0.03}
+        opacity={0.02}
         grayscale
       />
 
       {/* ============================================
-          HERO - Dense Deconstructivist Header - fits single screen
+          HERO - Clean with 4 key slots
           ============================================ */}
-      <section className="relative w-full overflow-hidden texture-grain" style={{ height: 'calc(100vh - 48px)' }}>
-        {/* Background typography - ARCHIVE */}
+      <section className="relative w-full overflow-hidden texture-grain" style={{ minHeight: 'calc(100vh - 56px)' }}>
+        {/* Background typography */}
         <span
           className="absolute pointer-events-none select-none"
           style={{
             top: '10%',
-            left: '-12%',
+            left: '-10%',
             fontSize: 'clamp(14rem, 35vw, 55rem)',
             fontWeight: 100,
             fontFamily: 'var(--font-serif), Georgia, serif',
-            opacity: 0.025,
+            opacity: 0.02,
             lineHeight: 0.8,
             letterSpacing: '-0.05em',
-            color: '#0A0A0A',
+            color: 'var(--yon-black)',
             transform: 'rotate(-4deg)',
           }}
           aria-hidden="true"
@@ -48,17 +44,16 @@ export default async function ArchivePage() {
           ARCHIVE
         </span>
 
-        {/* Secondary background - DOC */}
         <span
           className="absolute pointer-events-none select-none"
           style={{
             bottom: '8%',
-            right: '-8%',
+            right: '-6%',
             fontSize: 'clamp(10rem, 25vw, 40rem)',
             fontWeight: 100,
             fontFamily: 'var(--font-mono), monospace',
-            opacity: 0.02,
-            color: '#8B7355',
+            opacity: 0.015,
+            color: 'var(--yon-accent)',
             transform: 'rotate(6deg)',
           }}
           aria-hidden="true"
@@ -66,34 +61,15 @@ export default async function ArchivePage() {
           DOC
         </span>
 
-        {/* Third layer - vertical */}
-        <span
-          className="absolute pointer-events-none select-none"
-          style={{
-            top: '25%',
-            right: '5%',
-            fontSize: 'clamp(4rem, 10vw, 12rem)',
-            fontWeight: 100,
-            fontFamily: 'var(--font-mono), monospace',
-            opacity: 0.015,
-            letterSpacing: '0.3em',
-            color: '#0A0A0A',
-            writingMode: 'vertical-rl',
-          }}
-          aria-hidden="true"
-        >
-          RESEARCH
-        </span>
+        {/* ===== HERO SLOTS - 4 carefully placed ===== */}
 
-        {/* ===== HERO SLOTS - 12 scattered ===== */}
-
-        {/* Slot 1: Hero left bleeding */}
+        {/* Slot 1: Hero left */}
         <Slot
           {...slot('archive-header-001', 'ARCHIVE / MAIN')}
           size="hero"
           position="absolute"
           top="5%"
-          left="-5%"
+          left="-3%"
           rotation={-3}
           clip="irregular-1"
           shadow="offset-xl"
@@ -117,33 +93,31 @@ export default async function ArchivePage() {
           shadow="float"
           zIndex={16}
           decoration="tape-corner"
-          bleed="right"
-          bleedAmount="md"
           sepia
         />
 
-        {/* Slot 3: Medium overlapping */}
+        {/* Slot 3: Medium overlap */}
         <Slot
           {...slot('archive-header-003', 'RESEARCH')}
           size="medium"
           position="absolute"
-          top="40%"
-          left="35%"
+          top="42%"
+          left="38%"
           rotation={-5}
           clip="organic-1"
           shadow="dramatic"
           zIndex={22}
-          overlapX={80}
+          overlapX={60}
           decoration="staple"
         />
 
-        {/* Slot 4: Small */}
+        {/* Slot 4: Small accent */}
         <Slot
           {...slot('archive-header-004', 'STUDY')}
           size="small"
           position="absolute"
-          top="55%"
-          right="20%"
+          bottom="25%"
+          right="18%"
           rotation={6}
           clip="torn-2"
           zIndex={20}
@@ -151,182 +125,60 @@ export default async function ArchivePage() {
           decoration="pin"
         />
 
-        {/* Slot 5: Medium-wide */}
-        <Slot
-          {...slot('archive-header-005', 'DOCUMENT')}
-          size="medium-wide"
-          position="absolute"
-          bottom="20%"
-          left="5%"
-          rotation={2}
-          clip="wave-1"
-          shadow="soft"
-          zIndex={14}
-          decoration="corner-fold"
-        />
-
-        {/* Slot 6-8: Swatch cluster */}
-        <Slot
-          {...slot('archive-header-006', 'A')}
-          size="swatch"
-          position="absolute"
-          top="28%"
-          left="55%"
-          rotation={12}
-          border="rough"
-          zIndex={24}
-          decoration="tape-top"
-        />
-
-        <Slot
-          {...slot('archive-header-007', 'B')}
-          size="swatch"
-          position="absolute"
-          top="32%"
-          left="62%"
-          rotation={-8}
-          border="accent"
-          zIndex={26}
-          overlapX={20}
-        />
-
-        <Slot
-          {...slot('archive-header-008', 'C')}
-          size="swatch"
-          position="absolute"
-          top="36%"
-          left="68%"
-          rotation={5}
-          border="thin"
-          zIndex={25}
-          overlapX={25}
-        />
-
-        {/* Slot 9: Tiny */}
-        <Slot
-          {...slot('archive-header-009', 'REF')}
-          size="tiny"
-          position="absolute"
-          bottom="35%"
-          right="35%"
-          rotation={-10}
-          clip="notch-1"
-          zIndex={28}
-          decoration="clip"
-        />
-
-        {/* Slot 10: Small bottom right bleeding */}
-        <Slot
-          {...slot('archive-header-010', 'NOTES')}
-          size="small"
-          position="absolute"
-          bottom="15%"
-          right="-2%"
-          rotation={-4}
-          clip="irregular-4"
-          zIndex={15}
-          bleed="right"
-          bleedAmount="md"
-          grayscale
-        />
-
-        {/* Slot 11: Micro accents */}
-        <Slot
-          {...slot('archive-header-011', '01')}
-          size="micro"
-          position="absolute"
-          top="48%"
-          left="72%"
-          rotation={15}
-          border="thin"
-          zIndex={30}
-          decoration="pin-red"
-        />
-
-        {/* Slot 12: Medium-tall */}
-        <Slot
-          {...slot('archive-header-012', 'HISTORY')}
-          size="medium-tall"
-          position="absolute"
-          bottom="5%"
-          left="45%"
-          rotation={-1.5}
-          clip="corner-cut"
-          shadow="deep"
-          zIndex={12}
-          sepia
-        />
-
-        {/* Scattered Annotations */}
-        <AnnotationLabel
-          text="archive"
-          position={{ top: '12%', left: '28%' }}
-          rotation={-3}
-          variant="tag"
-        />
-        <AnnotationLabel
-          text="research notes"
-          position={{ top: '38%', right: '8%' }}
-          rotation={5}
-          variant="handwritten"
-        />
-        <AnnotationLabel
-          text="DOC"
-          position={{ bottom: '28%', left: '25%' }}
-          rotation={-2}
-          variant="stamp"
-        />
-        <AnnotationLabel
-          text="reference"
-          position={{ top: '65%', left: '58%' }}
-          rotation={8}
-          variant="default"
-        />
-
         {/* Main title */}
-        <div className="relative z-35 pt-44 pb-16 px-8 md:px-16 lg:px-24">
+        <div className="relative z-30 pt-40 pb-16 px-8 md:px-16 lg:px-24">
           <div className="max-w-5xl">
-            <AnnotationText
-              text="ASKEW — Archive"
-              variant="stamp"
-              className="text-yon-grey/50"
+            <StickerText variant="archive" rotation={-1} color="transparent" size="xs">
+              DOCUMENTATION
+            </StickerText>
+
+            <GlitchTitle
+              text="Archive"
+              size="display"
+              glitchOffset={6}
+              charRotation
+              rotationIntensity={3}
+              className="mt-6"
+              style={{
+                fontSize: 'clamp(3rem, 8vw, 6rem)',
+                letterSpacing: '-0.03em',
+                transform: 'rotate(-2deg)',
+                lineHeight: 0.9,
+              }}
+              as="h1"
             />
 
-            <div className="mt-6" style={{ transform: 'rotate(-2.5deg)' }}>
-              <GlitchTitle
-                text="Archive"
-                size="display"
-                glitchOffset={8}
-                charRotation
-                rotationIntensity={4}
-                as="h1"
-              />
-            </div>
-
-            <div className="mt-10 max-w-lg" style={{ marginLeft: '3rem' }}>
-              <p
-                className="font-sans text-yon-grey/60"
-                style={{
-                  fontSize: '0.95rem',
-                  lineHeight: 1.8,
-                  transform: 'rotate(0.5deg)',
-                }}
-              >
-                Research, process documentation, and experiments.
-                Every failure is a step toward discovery. Nothing is wasted.
-              </p>
-            </div>
+            <p
+              className="font-sans text-yon-grey/60 mt-10 max-w-lg"
+              style={{
+                fontSize: '0.9rem',
+                lineHeight: 1.8,
+                marginLeft: '3rem',
+                transform: 'rotate(0.5deg)',
+              }}
+            >
+              Research, process documentation, and experiments.
+              Every failure is a step toward discovery.
+            </p>
           </div>
+        </div>
+
+        {/* Scroll hint */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40">
+          <span className="block font-mono uppercase tracking-[0.3em] text-yon-grey/30" style={{ fontSize: '0.5rem' }}>
+            Explore
+          </span>
+          <span className="block text-yon-grey/20 mt-2 text-center">↓</span>
         </div>
       </section>
 
-      {/* Archive Grid - Client Component for Filtering */}
+      {/* Archive Grid - Client Component */}
       <ArchiveClient />
 
       {/* ============================================
           CTA - Collections Link
           ============================================ */}
-      <section className="relative min-h-[50vh] w-full flex items-center justify-center overflow-hidden texture-grain">
+      <section className="relative min-h-[50vh] w-full flex items-center justify-center overflow-hidden texture-paper">
         {/* Background */}
         <span
           className="absolute pointer-events-none select-none"
@@ -337,8 +189,8 @@ export default async function ArchivePage() {
             fontSize: 'clamp(12rem, 30vw, 45rem)',
             fontWeight: 100,
             fontFamily: 'var(--font-serif), Georgia, serif',
-            opacity: 0.015,
-            color: '#0A0A0A',
+            opacity: 0.012,
+            color: 'var(--yon-black)',
           }}
           aria-hidden="true"
         >
@@ -346,22 +198,21 @@ export default async function ArchivePage() {
         </span>
 
         <div className="text-center px-8 z-10">
-          <AnnotationText
-            text="SEE THE RESULTS"
-            variant="tag"
-            className="text-yon-grey/50"
-          />
+          <LabelText text="See the results" style={{ fontSize: '0.55rem' }} />
 
-          <div className="mt-6" style={{ transform: 'rotate(-2deg)' }}>
-            <GlitchTitle
-              text="Collections"
-              size="heading"
-              glitchOffset={5}
-              charRotation
-              rotationIntensity={3}
-              as="h2"
-            />
-          </div>
+          <GlitchTitle
+            text="Collections"
+            size="heading"
+            glitchOffset={4}
+            charRotation
+            rotationIntensity={2}
+            className="mt-6"
+            style={{
+              fontSize: 'clamp(1.8rem, 4.5vw, 3rem)',
+              transform: 'rotate(-1.5deg)',
+            }}
+            as="h2"
+          />
 
           <Link
             href="/collections"
@@ -372,13 +223,13 @@ export default async function ArchivePage() {
           </Link>
         </div>
 
-        {/* Accent slots */}
+        {/* 2 accent slots */}
         <Slot
           {...slot('archive-cta-001', 'RESULT')}
           size="small"
           position="absolute"
-          bottom="15%"
-          right="10%"
+          bottom="18%"
+          right="12%"
           rotation={-5}
           clip="irregular-3"
           zIndex={5}
@@ -387,31 +238,14 @@ export default async function ArchivePage() {
 
         <Slot
           {...slot('archive-cta-002', 'FINAL')}
-          size="tiny"
+          size="swatch"
           position="absolute"
-          top="20%"
+          top="22%"
           left="15%"
           rotation={8}
-          border="accent"
+          border="rough"
           zIndex={6}
-        />
-
-        <Slot
-          {...slot('archive-cta-003', '→')}
-          size="micro"
-          position="absolute"
-          bottom="30%"
-          left="25%"
-          rotation={-3}
-          border="thin"
-          zIndex={7}
-        />
-
-        <AnnotationLabel
-          text="explore"
-          position={{ top: '35%', right: '20%' }}
-          rotation={4}
-          variant="handwritten"
+          grayscale
         />
       </section>
 
