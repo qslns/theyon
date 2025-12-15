@@ -6,6 +6,9 @@ import { Slot } from '@/components/deconstructivist'
 import { GlitchTitle, LabelText, WhisperText } from '@/components/typography'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 
+// Revalidate every 10 seconds for ISR
+export const revalidate = 10
+
 // Collection data with enhanced image layouts
 const collectionsData: Record<string, {
   title: string
