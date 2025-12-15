@@ -60,6 +60,37 @@ const SLOT_SIZE_OPTIONS = [
   { title: '⚬ Micro (100x100)', value: 'micro' },
 ]
 
+// Slot type options - 슬롯 종류
+const SLOT_TYPE_OPTIONS = [
+  { title: '📷 Normal (일반 이미지)', value: 'normal' },
+  { title: '✂️ Nukki (누끼/투명 배경)', value: 'nukki' },
+  { title: '🖼️ Background (스크롤 배경)', value: 'background' },
+]
+
+// Frame style options - 외적 개성
+const FRAME_STYLE_OPTIONS = [
+  { title: '🚫 None (없음)', value: 'none' },
+  { title: '📸 Polaroid (폴라로이드)', value: 'polaroid' },
+  { title: '📜 Torn (찢어진 종이)', value: 'torn' },
+  { title: '🎞️ Film Strip (필름 스트립)', value: 'film-strip' },
+  { title: '🔲 Slide Mount (슬라이드 마운트)', value: 'slide-mount' },
+  { title: '📄 Crumpled (구겨진 종이)', value: 'crumpled' },
+  { title: '✋ Handcut (손으로 자른)', value: 'handcut' },
+  { title: '🏛️ Vintage (빈티지)', value: 'vintage' },
+  { title: '📋 Contact Sheet (컨택트 시트)', value: 'contact-sheet' },
+  { title: '📓 Sketchbook (스케치북)', value: 'sketchbook' },
+]
+
+// Film filter options - 필름 필터
+const FILM_FILTER_OPTIONS = [
+  { title: '🎬 Default (기본 필름)', value: 'default' },
+  { title: '🌅 Warm (따뜻한 톤)', value: 'warm' },
+  { title: '❄️ Cool (차가운 톤)', value: 'cool' },
+  { title: '📷 Vintage (빈티지)', value: 'vintage' },
+  { title: '🌫️ Faded (바랜 색감)', value: 'faded' },
+  { title: '🚫 None (필터 없음)', value: 'none' },
+]
+
 export default defineType({
   name: 'slotImage',
   title: 'Slot Images',
@@ -171,6 +202,44 @@ export default defineType({
       initialValue: true,
     }),
     defineField({
+      name: 'slotType',
+      title: 'Slot Type',
+      type: 'string',
+      group: 'settings',
+      description: 'Choose slot type: Normal (standard image), Nukki (transparent background PNG), or Background (scrolling full-screen).',
+      options: {
+        list: SLOT_TYPE_OPTIONS,
+        layout: 'radio',
+        direction: 'horizontal',
+      },
+      initialValue: 'normal',
+    }),
+    defineField({
+      name: 'frameStyle',
+      title: 'Frame Style',
+      type: 'string',
+      group: 'settings',
+      description: 'Visual frame around the image. Gives personality to each slot.',
+      options: {
+        list: FRAME_STYLE_OPTIONS,
+        layout: 'dropdown',
+      },
+      initialValue: 'none',
+      hidden: ({ parent }) => parent?.slotType === 'background', // 배경 슬롯에는 프레임 불필요
+    }),
+    defineField({
+      name: 'filmFilter',
+      title: 'Film Filter',
+      type: 'string',
+      group: 'settings',
+      description: 'Color grading filter applied to the image.',
+      options: {
+        list: FILM_FILTER_OPTIONS,
+        layout: 'dropdown',
+      },
+      initialValue: 'default',
+    }),
+    defineField({
       name: 'order',
       title: 'Display Order',
       type: 'number',
@@ -196,14 +265,18 @@ export default defineType({
       section: 'section',
       isActive: 'isActive',
       slotSize: 'slotSize',
+      slotType: 'slotType',
+      frameStyle: 'frameStyle',
     },
     prepare(selection) {
-      const { title, subtitle, media, page, section, isActive, slotSize } = selection
+      const { title, subtitle, media, page, section, isActive, slotSize, slotType, frameStyle } = selection
       const statusIcon = isActive === false ? '🔴 ' : '🟢 '
+      const typeIcon = slotType === 'nukki' ? '✂️' : slotType === 'background' ? '🖼️' : '📷'
       const sizeHint = slotSize ? ` [${slotSize}]` : ''
+      const frameHint = frameStyle && frameStyle !== 'none' ? ` (${frameStyle})` : ''
       return {
-        title: `${statusIcon}${title || 'New Slot'}${sizeHint}`,
-        subtitle: subtitle || `${page || '?'} → ${section || '?'}`,
+        title: `${statusIcon}${typeIcon} ${title || 'New Slot'}${sizeHint}`,
+        subtitle: subtitle || `${page || '?'} → ${section || '?'}${frameHint}`,
         media,
       }
     },

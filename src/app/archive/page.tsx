@@ -1,6 +1,18 @@
 import Link from 'next/link'
 import Footer from '@/components/Footer'
-import { Slot, BackgroundSlot } from '@/components/deconstructivist'
+import {
+  Slot,
+  BackgroundSlot,
+  ScrollingBackgroundSlot,
+  SectionNumber,
+  DecoLine,
+  DotsPattern,
+  CrossMarker,
+  BracketDeco,
+  VerticalText,
+  NoiseOverlay,
+  DecoDivider,
+} from '@/components/deconstructivist'
 import { GlitchTitle, StickerText, LabelText } from '@/components/typography'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 import ArchiveClient from './archive-client'
@@ -19,6 +31,18 @@ export default async function ArchivePage() {
         opacity={0.02}
         grayscale
       />
+
+      {/* Scrolling Background */}
+      <ScrollingBackgroundSlot
+        {...slot('archive-background-002', 'SCROLLING BG')}
+        scrollSpeed={0.5}
+        opacity={0.025}
+        grayscale
+        zIndex={1}
+      />
+
+      {/* Global noise overlay */}
+      <NoiseOverlay opacity={0.02} />
 
       {/* ============================================
           HERO - Clean with 4 key slots
@@ -61,6 +85,12 @@ export default async function ArchivePage() {
           DOC
         </span>
 
+        {/* Section decorative elements */}
+        <SectionNumber number="01" position="top-left" style={{ top: '10%', left: '3%' }} />
+        <DecoLine direction="vertical" position="left" length={100} style={{ top: '25%', left: '2%' }} />
+        <CrossMarker position="bottom-right" style={{ bottom: '30%', right: '5%' }} />
+        <VerticalText text="ARCHIVE" position="right" style={{ right: '2%', top: '30%' }} />
+
         {/* ===== HERO SLOTS - 4 carefully placed ===== */}
 
         {/* Slot 1: Hero left */}
@@ -79,6 +109,9 @@ export default async function ArchivePage() {
           grayscale
           annotationNumber="A-001"
           texture="grain"
+          frameStyle="contact-sheet"
+          frameNumber="01"
+          filmFilter="faded"
         />
 
         {/* Slot 2: Large right */}
@@ -94,6 +127,8 @@ export default async function ArchivePage() {
           zIndex={16}
           decoration="tape-corner"
           sepia
+          frameStyle="sketchbook"
+          filmFilter="vintage"
         />
 
         {/* Slot 3: Medium overlap */}
@@ -109,6 +144,7 @@ export default async function ArchivePage() {
           zIndex={22}
           overlapX={60}
           decoration="staple"
+          frameStyle="crumpled"
         />
 
         {/* Slot 4: Small accent */}
@@ -123,6 +159,7 @@ export default async function ArchivePage() {
           zIndex={20}
           grayscale
           decoration="pin"
+          frameStyle="torn"
         />
 
         {/* Main title */}
@@ -223,6 +260,11 @@ export default async function ArchivePage() {
           </Link>
         </div>
 
+        {/* Section decorative elements */}
+        <SectionNumber number="02" position="bottom-left" style={{ bottom: '10%', left: '5%' }} />
+        <BracketDeco position="top-right" style={{ top: '15%', right: '8%' }} />
+        <DecoDivider style={{ top: '5%', left: '50%', transform: 'translateX(-50%)' }} />
+
         {/* 2 accent slots */}
         <Slot
           {...slot('archive-cta-001', 'RESULT')}
@@ -234,6 +276,8 @@ export default async function ArchivePage() {
           clip="irregular-3"
           zIndex={5}
           decoration="tape-corner"
+          frameStyle="vintage"
+          filmFilter="faded"
         />
 
         <Slot
@@ -246,6 +290,7 @@ export default async function ArchivePage() {
           border="rough"
           zIndex={6}
           grayscale
+          frameStyle="polaroid"
         />
       </section>
 

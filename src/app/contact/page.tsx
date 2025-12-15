@@ -1,5 +1,17 @@
 import Footer from '@/components/Footer'
-import { Slot, BackgroundSlot } from '@/components/deconstructivist'
+import {
+  Slot,
+  BackgroundSlot,
+  ScrollingBackgroundSlot,
+  SectionNumber,
+  DecoLine,
+  DotsPattern,
+  CrossMarker,
+  BracketDeco,
+  VerticalText,
+  NoiseOverlay,
+  DecoDivider,
+} from '@/components/deconstructivist'
 import { LabelText, StickerText } from '@/components/typography'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 import ContactForm from './contact-form'
@@ -18,6 +30,18 @@ export default async function ContactPage() {
         opacity={0.02}
         grayscale
       />
+
+      {/* Scrolling Background */}
+      <ScrollingBackgroundSlot
+        {...slot('contact-background-002', 'SCROLLING BG')}
+        scrollSpeed={0.4}
+        opacity={0.02}
+        grayscale
+        zIndex={1}
+      />
+
+      {/* Global noise overlay */}
+      <NoiseOverlay opacity={0.02} />
 
       {/* ============================================
           CONTACT - Minimal with form - 4 key slots
@@ -60,6 +84,12 @@ export default async function ContactPage() {
           MAIL
         </span>
 
+        {/* Section decorative elements */}
+        <SectionNumber number="01" position="top-left" style={{ top: '10%', left: '3%' }} />
+        <DecoLine direction="vertical" position="left" length={100} style={{ top: '25%', left: '2%' }} />
+        <CrossMarker position="bottom-right" style={{ bottom: '30%', right: '5%' }} />
+        <VerticalText text="CONTACT" position="right" style={{ right: '2%', top: '30%' }} />
+
         {/* ===== 4 key slots ===== */}
 
         {/* Slot 1: Hero top left */}
@@ -77,6 +107,9 @@ export default async function ContactPage() {
           bleedAmount="lg"
           grayscale
           annotationNumber="001"
+          frameStyle="film-strip"
+          frameNumber="01"
+          filmFilter="faded"
         />
 
         {/* Slot 2: Medium right */}
@@ -91,6 +124,7 @@ export default async function ContactPage() {
           shadow="float"
           zIndex={18}
           decoration="tape-corner"
+          frameStyle="polaroid"
         />
 
         {/* Slot 3: Small accent */}
@@ -105,6 +139,7 @@ export default async function ContactPage() {
           shadow="offset"
           zIndex={20}
           decoration="pin"
+          frameStyle="vintage"
         />
 
         {/* Slot 4: Swatch */}
@@ -118,6 +153,7 @@ export default async function ContactPage() {
           border="rough"
           zIndex={22}
           decoration="tape-top"
+          frameStyle="torn"
         />
 
         {/* Contact Form - Client Component */}

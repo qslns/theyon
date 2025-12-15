@@ -1,6 +1,20 @@
 import Link from 'next/link'
 import Footer from '@/components/Footer'
-import { Slot, BackgroundSlot } from '@/components/deconstructivist'
+import {
+  Slot,
+  BackgroundSlot,
+  ScrollingBackgroundSlot,
+  Watermark,
+  SectionNumber,
+  DecoLine,
+  DotsPattern,
+  CrossMarker,
+  BracketDeco,
+  VerticalText,
+  GridPattern,
+  NoiseOverlay,
+  DecoDivider,
+} from '@/components/deconstructivist'
 import {
   GlitchTitle,
   ExperimentalText,
@@ -29,6 +43,26 @@ export default async function HomePage() {
         {...slot('home-background-001', 'BACKGROUND')}
         opacity={0.02}
         grayscale
+      />
+
+      {/* Scrolling Background - tall image that scrolls with page */}
+      <ScrollingBackgroundSlot
+        {...slot('home-background-002', 'SCROLLING BG')}
+        scrollSpeed={0.6}
+        opacity={0.03}
+        grayscale
+        zIndex={1}
+      />
+
+      {/* Global noise overlay for film texture */}
+      <NoiseOverlay opacity={0.02} />
+
+      {/* Subtle grid pattern in corners */}
+      <GridPattern
+        position="top-left"
+        size={80}
+        opacity={0.015}
+        style={{ width: '200px', height: '200px' }}
       />
 
       {/* ============================================
@@ -82,6 +116,11 @@ export default async function HomePage() {
 
         {/* ===== HERO SLOTS - 4 carefully placed slots ===== */}
 
+        {/* Section decorative elements */}
+        <SectionNumber number="01" position="top-left" style={{ top: '15%', left: '3%' }} />
+        <DecoLine direction="vertical" position="left" length={120} style={{ top: '30%', left: '2%' }} />
+        <CrossMarker position="bottom-right" style={{ bottom: '30%', right: '5%' }} />
+
         {/* Slot 1: Hero - Primary large image (60% width, left bleeding) */}
         <Slot
           {...slot('home-hero-001', 'LOOK 01')}
@@ -97,6 +136,8 @@ export default async function HomePage() {
           bleedAmount="md"
           annotationNumber="001"
           texture="grain"
+          frameStyle="film-strip"
+          frameNumber="01"
         />
 
         {/* Slot 2: Supporting - Right side (25% width) */}
@@ -111,6 +152,7 @@ export default async function HomePage() {
           shadow="float"
           zIndex={18}
           decoration="tape-corner"
+          frameStyle="polaroid"
         />
 
         {/* Slot 3: Accent - Bottom right detail */}
@@ -125,6 +167,7 @@ export default async function HomePage() {
           shadow="dramatic"
           zIndex={25}
           decoration="pin"
+          frameStyle="slide-mount"
         />
 
         {/* Slot 4: Swatch - Material sample */}
@@ -138,6 +181,7 @@ export default async function HomePage() {
           border="rough"
           zIndex={22}
           decoration="tape-top"
+          frameStyle="torn"
         />
 
         {/* Sticker label - Season */}
@@ -265,6 +309,11 @@ export default async function HomePage() {
           </p>
         </div>
 
+        {/* Section decorative elements */}
+        <SectionNumber number="02" position="top-right" style={{ top: '8%', right: '5%' }} />
+        <BracketDeco position="top-left" style={{ top: '50%', left: '5%' }} />
+        <DotsPattern position="bottom-right" rows={4} cols={8} style={{ bottom: '10%', right: '35%' }} />
+
         {/* Floating slots - 2 accent slots */}
         <Slot
           {...slot('home-philosophy-001', 'MOOD')}
@@ -278,6 +327,8 @@ export default async function HomePage() {
           zIndex={8}
           grayscale
           decoration="tape-top"
+          frameStyle="vintage"
+          filmFilter="faded"
         />
 
         <Slot
@@ -290,6 +341,7 @@ export default async function HomePage() {
           clip="torn-3"
           zIndex={9}
           sepia
+          frameStyle="sketchbook"
         />
 
         {/* Handwritten note */}
@@ -325,6 +377,11 @@ export default async function HomePage() {
           COLLECTIONS
         </span>
 
+        {/* Section decorative elements */}
+        <SectionNumber number="03" position="top-right" style={{ top: '3%', right: '8%' }} />
+        <VerticalText text="COLLECTIONS" position="left" style={{ left: '2%', top: '25%' }} />
+        <DecoLine direction="horizontal" length={150} style={{ top: '15%', right: '10%' }} />
+
         {/* Section label */}
         <div className="px-8 md:px-16 mb-16">
           <StickerText variant="archive" rotation={-0.5} color="transparent" size="xs">
@@ -346,6 +403,8 @@ export default async function HomePage() {
                 zIndex={15}
                 annotationNumber="D-001"
                 decoration="tape-corner"
+                frameStyle="contact-sheet"
+                frameNumber="01"
               />
               <div className="mt-6 ml-2">
                 <Link href="/collections/deconstruction" className="group">
@@ -369,6 +428,7 @@ export default async function HomePage() {
                 shadow="float"
                 zIndex={14}
                 decoration="pin"
+                frameStyle="polaroid"
               />
               <div className="mt-4">
                 <Link href="/collections/fragments" className="group">
@@ -389,6 +449,8 @@ export default async function HomePage() {
               zIndex={16}
               grayscale
               style={{ marginTop: '10rem' }}
+              frameStyle="slide-mount"
+              filmFilter="cool"
             />
 
             {/* Collection 4: Swatch/texture */}
@@ -399,6 +461,7 @@ export default async function HomePage() {
               border="rough"
               zIndex={18}
               style={{ marginTop: '3rem' }}
+              frameStyle="handcut"
             />
           </div>
         </div>
@@ -438,6 +501,11 @@ export default async function HomePage() {
           PROCESS
         </span>
 
+        {/* Section decorative elements */}
+        <SectionNumber number="04" position="top-left" style={{ top: '5%', left: '5%' }} />
+        <CrossMarker position="bottom-left" size={16} style={{ bottom: '15%', left: '8%' }} />
+        <DotsPattern rows={3} cols={5} style={{ top: '20%', right: '15%' }} />
+
         <div className="relative z-10 px-8 md:px-16 lg:px-24">
           {/* Section label */}
           <div className="mb-12">
@@ -457,6 +525,8 @@ export default async function HomePage() {
               zIndex={15}
               annotationNumber="S-001"
               texture="paper"
+              frameStyle="sketchbook"
+              filmFilter="vintage"
             />
 
             <Slot
@@ -468,6 +538,7 @@ export default async function HomePage() {
               sepia
               decoration="pin"
               style={{ marginTop: '4rem' }}
+              frameStyle="crumpled"
             />
 
             <Slot
@@ -477,6 +548,8 @@ export default async function HomePage() {
               border="brutal"
               zIndex={20}
               decoration="mark-check"
+              frameStyle="film-strip"
+              frameNumber="03"
             />
           </div>
 
@@ -512,6 +585,11 @@ export default async function HomePage() {
           Minimal with 1 accent slot
           ============================================ */}
       <section className="relative min-h-[55vh] w-full flex items-center justify-center overflow-hidden">
+        {/* Section decorative elements */}
+        <SectionNumber number="05" position="bottom-left" style={{ bottom: '10%', left: '5%' }} />
+        <BracketDeco position="top-right" style={{ top: '15%', right: '8%' }} />
+        <DecoDivider style={{ top: '5%', left: '50%', transform: 'translateX(-50%)' }} />
+
         {/* Background symbol */}
         <span
           className="absolute pointer-events-none select-none"
@@ -576,6 +654,8 @@ export default async function HomePage() {
           zIndex={5}
           grayscale
           decoration="tape-corner"
+          frameStyle="vintage"
+          filmFilter="faded"
         />
       </section>
 

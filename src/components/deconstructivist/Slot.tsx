@@ -94,6 +94,25 @@ type Decoration =
 // Texture overlays
 type TextureOverlay = 'grain' | 'paper' | 'noise' | 'scan' | 'none'
 
+// Frame styles - 슬롯별 외적 개성
+type FrameStyle =
+  | 'polaroid'        // 폴라로이드 스타일
+  | 'torn'            // 찢어진 가장자리
+  | 'film-strip'      // 필름 스트립 프레임
+  | 'slide-mount'     // 빈티지 슬라이드 마운트
+  | 'crumpled'        // 구겨진 종이
+  | 'handcut'         // 가위로 자른 듯한
+  | 'vintage'         // 오래된 사진
+  | 'contact-sheet'   // 콘택트 시트
+  | 'sketchbook'      // 스케치북
+  | 'none'
+
+// Slot types - 슬롯 종류
+type SlotType = 'normal' | 'nukki' | 'background'
+
+// Film filter types
+type FilmFilter = 'default' | 'warm' | 'cool' | 'vintage' | 'faded' | 'none'
+
 interface SlotProps {
   children?: ReactNode
   // Slot identification (for debug mode)
@@ -142,6 +161,13 @@ interface SlotProps {
   // Annotation/Number
   annotationNumber?: string
   annotationText?: string
+  // Frame style - 외적 개성
+  frameStyle?: FrameStyle
+  frameNumber?: string // 콘택트 시트용 번호
+  // Slot type - 슬롯 종류
+  slotType?: SlotType
+  // Film filter
+  filmFilter?: FilmFilter
   // Custom
   className?: string
   style?: CSSProperties
@@ -304,6 +330,10 @@ function Slot({
   texture = 'none',
   annotationNumber,
   annotationText,
+  frameStyle = 'none',
+  frameNumber,
+  slotType = 'normal',
+  filmFilter = 'default',
   className = '',
   style = {},
   onClick,
@@ -340,10 +370,39 @@ function Slot({
   if (bleed === 'top' || bleed === 'both-y') marginTop = -BLEED_MARGINS[bleedAmount]
   if (bleed === 'bottom' || bleed === 'both-y') marginBottom = -BLEED_MARGINS[bleedAmount]
 
+  // Frame style class mapping
+  const FRAME_STYLE_CLASSES: Record<FrameStyle, string> = {
+    polaroid: 'frame-polaroid',
+    torn: 'frame-torn',
+    'film-strip': 'frame-film-strip',
+    'slide-mount': 'frame-slide-mount',
+    crumpled: 'frame-crumpled',
+    handcut: 'frame-handcut',
+    vintage: 'frame-vintage',
+    'contact-sheet': 'frame-contact-sheet',
+    sketchbook: 'frame-sketchbook',
+    none: '',
+  }
+
+  // Film filter class mapping
+  const FILM_FILTER_CLASSES: Record<FilmFilter, string> = {
+    default: 'film-filter film-grain',
+    warm: 'film-filter-warm film-grain',
+    cool: 'film-filter-cool film-grain',
+    vintage: 'film-filter-vintage film-grain film-vignette',
+    faded: 'film-filter-faded film-grain',
+    none: '',
+  }
+
+  // Build class names
+  const frameClass = FRAME_STYLE_CLASSES[frameStyle]
+  const filmClass = FILM_FILTER_CLASSES[filmFilter]
+  const nukkiClass = slotType === 'nukki' ? 'slot-nukki slot-nukki-shadow' : ''
+
   // Combine all styles
   const combinedStyle: CSSProperties = {
     ...SIZE_STYLES[size],
-    ...(BORDER_STYLES[border] || {}),
+    ...(slotType !== 'nukki' && BORDER_STYLES[border] ? BORDER_STYLES[border] : {}),
     position,
     ...(top && { top }),
     ...(left && { left }),
@@ -355,12 +414,12 @@ function Slot({
     ...(marginRight !== undefined && { marginRight }),
     ...(marginBottom !== undefined && { marginBottom }),
     transform: transforms.length > 0 ? transforms.join(' ') : undefined,
-    clipPath: clip !== 'none' ? CLIP_PATHS[clip] : undefined,
-    boxShadow: shadow !== 'none' ? SHADOWS[shadow] : undefined,
+    clipPath: clip !== 'none' && slotType !== 'nukki' ? CLIP_PATHS[clip] : undefined,
+    boxShadow: shadow !== 'none' && slotType !== 'nukki' ? SHADOWS[shadow] : undefined,
     mixBlendMode: blend !== 'normal' ? blend : undefined,
     filter: filters.length > 0 ? filters.join(' ') : undefined,
     opacity,
-    overflow: 'hidden',
+    overflow: slotType === 'nukki' ? 'visible' : 'hidden',
     transition: animated ? 'transform 0.3s ease, box-shadow 0.3s ease' : undefined,
     ...style,
   }
@@ -382,7 +441,7 @@ function Slot({
 
   return (
     <div
-      className={`slot ${className}`}
+      className={`slot ${frameClass} ${filmClass} ${nukkiClass} ${className}`.trim().replace(/\s+/g, ' ')}
       style={combinedStyle}
       onClick={onClick}
       onMouseEnter={handleMouseEnter}
@@ -390,6 +449,8 @@ function Slot({
       role={onClick ? 'button' : undefined}
       tabIndex={onClick ? 0 : undefined}
       data-slot-id={slotId}
+      data-slot-type={slotType}
+      data-frame-number={frameNumber}
     >
       {/* Debug Mode Overlay */}
       {isDebugMode && slotId && (

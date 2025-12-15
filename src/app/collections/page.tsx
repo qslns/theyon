@@ -2,7 +2,19 @@ import { Suspense } from 'react'
 import Link from 'next/link'
 import type { Collection } from '@/types/sanity'
 import Footer from '@/components/Footer'
-import { Slot, BackgroundSlot } from '@/components/deconstructivist'
+import {
+  Slot,
+  BackgroundSlot,
+  ScrollingBackgroundSlot,
+  SectionNumber,
+  DecoLine,
+  DotsPattern,
+  CrossMarker,
+  BracketDeco,
+  VerticalText,
+  NoiseOverlay,
+  DecoDivider,
+} from '@/components/deconstructivist'
 import { GlitchTitle, StickerText, SeasonLabel } from '@/components/typography'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 import CollectionsClient from './collections-client'
@@ -81,6 +93,18 @@ export default async function CollectionsPage() {
         grayscale
       />
 
+      {/* Scrolling Background */}
+      <ScrollingBackgroundSlot
+        {...slot('collections-background-002', 'SCROLLING BG')}
+        scrollSpeed={0.6}
+        opacity={0.025}
+        grayscale
+        zIndex={1}
+      />
+
+      {/* Global noise overlay */}
+      <NoiseOverlay opacity={0.02} />
+
       {/* ============================================
           HERO - Clean with 4 key slots
           ============================================ */}
@@ -124,6 +148,12 @@ export default async function CollectionsPage() {
 
         {/* ===== HERO SLOTS - 4 carefully placed ===== */}
 
+        {/* Section decorative elements */}
+        <SectionNumber number="01" position="top-left" style={{ top: '10%', left: '3%' }} />
+        <DecoLine direction="vertical" position="left" length={100} style={{ top: '25%', left: '2%' }} />
+        <CrossMarker position="bottom-right" style={{ bottom: '30%', right: '5%' }} />
+        <VerticalText text="COLLECTIONS" position="right" style={{ right: '2%', top: '30%' }} />
+
         {/* Slot 1: Hero - large left */}
         <Slot
           {...slot('collections-header-001', 'FEATURED')}
@@ -139,6 +169,8 @@ export default async function CollectionsPage() {
           bleedAmount="lg"
           annotationNumber="001"
           texture="grain"
+          frameStyle="film-strip"
+          frameNumber="01"
         />
 
         {/* Slot 2: Medium - right top */}
@@ -153,6 +185,7 @@ export default async function CollectionsPage() {
           shadow="float"
           zIndex={20}
           decoration="tape-corner"
+          frameStyle="polaroid"
         />
 
         {/* Slot 3: Small - accent */}
@@ -166,6 +199,8 @@ export default async function CollectionsPage() {
           clip="organic-1"
           zIndex={22}
           decoration="pin"
+          frameStyle="slide-mount"
+          filmFilter="warm"
         />
 
         {/* Slot 4: Swatch - material */}
@@ -179,6 +214,7 @@ export default async function CollectionsPage() {
           border="rough"
           zIndex={24}
           decoration="tape-top"
+          frameStyle="torn"
         />
 
         {/* Season label */}
@@ -302,6 +338,11 @@ export default async function CollectionsPage() {
           </Link>
         </div>
 
+        {/* Section decorative elements */}
+        <SectionNumber number="02" position="top-right" style={{ top: '5%', right: '3%' }} />
+        <BracketDeco position="bottom-left" style={{ bottom: '15%', left: '5%' }} />
+        <DotsPattern rows={3} cols={5} style={{ bottom: '8%', right: '35%' }} />
+
         {/* 2 floating slots */}
         <Slot
           {...slot('collections-archive-001', 'ARCHIVE')}
@@ -315,6 +356,8 @@ export default async function CollectionsPage() {
           grayscale
           zIndex={10}
           decoration="tape-corner"
+          frameStyle="vintage"
+          filmFilter="faded"
         />
 
         <Slot
@@ -327,6 +370,7 @@ export default async function CollectionsPage() {
           clip="torn-3"
           zIndex={12}
           sepia
+          frameStyle="sketchbook"
         />
       </section>
 

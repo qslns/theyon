@@ -40,7 +40,15 @@
       "Bash(git revert:*)",
       "Bash(if not exist scripts mkdir scripts)",
       "Bash(npm run seed:slots:*)",
-      "Bash(npx eslint:*)"
+      "Bash(npx eslint:*)",
+      "Bash(npm run lint)",
+      "Bash(for component in \"LayeredTitle\" \"GlitchTitle\" \"ExperimentalText\" \"AnnotationText\" \"LabelText\" \"WhisperText\" \"StickerText\" \"SeasonLabel\" \"HandwrittenNote\")",
+      "Bash(do echo \"=== $component ===\")",
+      "Bash(done)",
+      "Bash(npm run lint:*)",
+      "Bash(ls:*)",
+      "Bash(npx next build)",
+      "Bash(wc:*)"
     ],
     "deny": [],
     "ask": []

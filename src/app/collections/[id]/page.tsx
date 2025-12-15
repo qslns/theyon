@@ -2,7 +2,17 @@ import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
-import { Slot } from '@/components/deconstructivist'
+import {
+  Slot,
+  BackgroundSlot,
+  SectionNumber,
+  DecoLine,
+  DotsPattern,
+  CrossMarker,
+  BracketDeco,
+  VerticalText,
+  NoiseOverlay,
+} from '@/components/deconstructivist'
 import { GlitchTitle, LabelText, WhisperText } from '@/components/typography'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 
@@ -116,6 +126,16 @@ export default async function CollectionDetailPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-yon-white overflow-x-hidden">
+      {/* Background Slot */}
+      <BackgroundSlot
+        {...slot(`collection-${slug}-background-001`, 'BACKGROUND')}
+        opacity={0.02}
+        grayscale
+      />
+
+      {/* Global noise overlay */}
+      <NoiseOverlay opacity={0.02} />
+
       {/* ============================================
           HERO SECTION - Simplified with 4 key slots
           ============================================ */}
@@ -153,6 +173,12 @@ export default async function CollectionDetailPage({ params }: PageProps) {
           {collection.index}
         </span>
 
+        {/* Section decorative elements */}
+        <SectionNumber number={collection.index} position="top-left" style={{ top: '10%', left: '3%' }} />
+        <DecoLine direction="vertical" position="left" length={100} style={{ top: '25%', left: '2%' }} />
+        <CrossMarker position="bottom-right" style={{ bottom: '30%', right: '5%' }} />
+        <VerticalText text={collection.title} position="right" style={{ right: '2%', top: '30%' }} />
+
         {/* 4 key slots */}
         <Slot
           {...slot(`collection-${slug}-hero-001`, `${collection.title} / MAIN`)}
@@ -167,6 +193,8 @@ export default async function CollectionDetailPage({ params }: PageProps) {
           bleed="left"
           bleedAmount="lg"
           annotationNumber={collection.index}
+          frameStyle="film-strip"
+          frameNumber={collection.index}
         />
 
         <Slot
@@ -180,6 +208,7 @@ export default async function CollectionDetailPage({ params }: PageProps) {
           shadow="float"
           zIndex={18}
           decoration="tape-corner"
+          frameStyle="polaroid"
         />
 
         <Slot
@@ -192,6 +221,8 @@ export default async function CollectionDetailPage({ params }: PageProps) {
           clip="organic-1"
           zIndex={22}
           decoration="pin"
+          frameStyle="slide-mount"
+          filmFilter="warm"
         />
 
         <Slot
@@ -204,6 +235,7 @@ export default async function CollectionDetailPage({ params }: PageProps) {
           border="rough"
           zIndex={24}
           decoration="tape-top"
+          frameStyle="torn"
         />
 
         {/* Title card */}
@@ -272,6 +304,11 @@ export default async function CollectionDetailPage({ params }: PageProps) {
         <div className="max-w-5xl mx-auto">
           <LabelText text="Gallery" style={{ fontSize: '0.55rem' }} />
 
+          {/* Section decorative elements */}
+          <SectionNumber number="02" position="top-right" style={{ position: 'absolute', top: '0', right: '0' }} />
+          <BracketDeco position="bottom-left" style={{ position: 'absolute', bottom: '10%', left: '0' }} />
+          <DotsPattern rows={4} cols={6} style={{ position: 'absolute', bottom: '5%', right: '20%' }} />
+
           {/* 2 gallery slots */}
           <div className="relative mt-10" style={{ minHeight: '50vh' }}>
             <Slot
@@ -285,6 +322,8 @@ export default async function CollectionDetailPage({ params }: PageProps) {
               shadow="offset-lg"
               zIndex={15}
               annotationNumber={`${collection.index}-01`}
+              frameStyle="contact-sheet"
+              frameNumber="01"
             />
 
             <Slot
@@ -298,6 +337,8 @@ export default async function CollectionDetailPage({ params }: PageProps) {
               shadow="float"
               zIndex={18}
               decoration="tape-corner"
+              frameStyle="vintage"
+              filmFilter="faded"
             />
           </div>
 

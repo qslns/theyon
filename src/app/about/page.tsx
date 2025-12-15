@@ -1,6 +1,19 @@
 import Link from 'next/link'
 import Footer from '@/components/Footer'
-import { Slot, BackgroundSlot } from '@/components/deconstructivist'
+import {
+  Slot,
+  BackgroundSlot,
+  ScrollingBackgroundSlot,
+  Watermark,
+  SectionNumber,
+  DecoLine,
+  DotsPattern,
+  CrossMarker,
+  BracketDeco,
+  VerticalText,
+  NoiseOverlay,
+  DecoDivider,
+} from '@/components/deconstructivist'
 import {
   LayeredTitle,
   GlitchTitle,
@@ -28,6 +41,21 @@ export default async function AboutPage() {
         opacity={0.02}
         grayscale
       />
+
+      {/* Scrolling Background */}
+      <ScrollingBackgroundSlot
+        {...slot('about-background-002', 'SCROLLING BG')}
+        scrollSpeed={0.5}
+        opacity={0.025}
+        grayscale
+        zIndex={1}
+      />
+
+      {/* Global noise overlay */}
+      <NoiseOverlay opacity={0.02} />
+
+      {/* Decorative watermark */}
+      <Watermark text="ASKEW" position="top-right" style={{ top: '5%', right: '3%' }} />
 
       {/* ============================================
           SECTION 1: Portrait Hero
@@ -78,6 +106,11 @@ export default async function AboutPage() {
 
         {/* ===== HERO SLOTS - 3 carefully placed ===== */}
 
+        {/* Section decorative elements */}
+        <SectionNumber number="01" position="top-left" style={{ top: '10%', left: '3%' }} />
+        <DecoLine direction="vertical" position="left" length={100} style={{ top: '25%', left: '2%' }} />
+        <CrossMarker position="bottom-right" style={{ bottom: '25%', right: '5%' }} />
+
         {/* Slot 1: Main portrait - large, left bleeding */}
         <Slot
           {...slot('about-hero-001', 'PORTRAIT')}
@@ -93,6 +126,8 @@ export default async function AboutPage() {
           bleedAmount="md"
           annotationNumber="001"
           texture="grain"
+          frameStyle="film-strip"
+          frameNumber="01"
         />
 
         {/* Slot 2: Studio shot - right side */}
@@ -107,6 +142,7 @@ export default async function AboutPage() {
           shadow="float"
           zIndex={18}
           decoration="tape-corner"
+          frameStyle="polaroid"
         />
 
         {/* Slot 3: Working hands - accent */}
@@ -121,6 +157,8 @@ export default async function AboutPage() {
           shadow="dramatic"
           zIndex={25}
           decoration="pin"
+          frameStyle="slide-mount"
+          filmFilter="warm"
         />
 
         {/* Season label */}
@@ -274,6 +312,11 @@ export default async function AboutPage() {
           </p>
         </div>
 
+        {/* Section decorative elements */}
+        <SectionNumber number="02" position="top-right" style={{ top: '5%', right: '5%' }} />
+        <BracketDeco position="top-left" style={{ top: '40%', left: '3%' }} />
+        <DotsPattern rows={4} cols={6} style={{ bottom: '15%', right: '40%' }} />
+
         {/* Floating slots - 2 accent slots */}
         <Slot
           {...slot('about-philosophy-001', 'MOOD')}
@@ -287,6 +330,8 @@ export default async function AboutPage() {
           zIndex={8}
           grayscale
           decoration="tape-top"
+          frameStyle="vintage"
+          filmFilter="faded"
         />
 
         <Slot
@@ -299,6 +344,7 @@ export default async function AboutPage() {
           clip="torn-3"
           zIndex={10}
           sepia
+          frameStyle="sketchbook"
         />
 
         {/* Handwritten note */}
@@ -401,6 +447,11 @@ export default async function AboutPage() {
           </div>
         </div>
 
+        {/* Section decorative elements */}
+        <SectionNumber number="03" position="top-right" style={{ top: '5%', right: '3%' }} />
+        <VerticalText text="EDUCATION" position="left" style={{ left: '2%', top: '30%' }} />
+        <DecoLine direction="horizontal" length={100} style={{ bottom: '12%', left: '10%' }} />
+
         {/* Side slots - 3 carefully placed */}
         <Slot
           {...slot('about-education-001', 'SKETCH')}
@@ -414,6 +465,8 @@ export default async function AboutPage() {
           zIndex={10}
           annotationNumber="S-001"
           decoration="tape-corner"
+          frameStyle="contact-sheet"
+          frameNumber="01"
         />
 
         <Slot
@@ -427,6 +480,8 @@ export default async function AboutPage() {
           shadow="float"
           zIndex={12}
           sepia
+          frameStyle="crumpled"
+          filmFilter="vintage"
         />
 
         <Slot
@@ -440,6 +495,7 @@ export default async function AboutPage() {
           zIndex={14}
           grayscale
           decoration="pin"
+          frameStyle="torn"
         />
       </section>
 
@@ -504,6 +560,10 @@ export default async function AboutPage() {
             </p>
           </div>
 
+          {/* Section decorative elements */}
+          <SectionNumber number="04" position="top-left" style={{ position: 'absolute', top: '5%', left: '5%' }} />
+          <CrossMarker position="bottom-right" style={{ position: 'absolute', bottom: '20%', right: '5%' }} />
+
           {/* Process slots - 3 showing journey */}
           <div className="flex flex-wrap gap-8 items-start mt-16">
             <Slot
@@ -515,6 +575,8 @@ export default async function AboutPage() {
               zIndex={15}
               annotationNumber="01"
               decoration="pin"
+              frameStyle="sketchbook"
+              filmFilter="vintage"
             />
 
             <Slot
@@ -525,6 +587,7 @@ export default async function AboutPage() {
               zIndex={18}
               decoration="tape-top"
               style={{ marginTop: '5rem' }}
+              frameStyle="crumpled"
             />
 
             <Slot
@@ -535,6 +598,8 @@ export default async function AboutPage() {
               shadow="float"
               zIndex={16}
               annotationNumber="02"
+              frameStyle="film-strip"
+              frameNumber="03"
             />
           </div>
 
@@ -553,6 +618,11 @@ export default async function AboutPage() {
           Minimal with 1 accent slot
           ============================================ */}
       <section className="relative min-h-[50vh] w-full flex items-center justify-center overflow-hidden texture-grain">
+        {/* Section decorative elements */}
+        <SectionNumber number="05" position="bottom-left" style={{ bottom: '8%', left: '5%' }} />
+        <BracketDeco position="top-right" style={{ top: '10%', right: '8%' }} />
+        <DecoDivider style={{ top: '5%', left: '50%', transform: 'translateX(-50%)' }} />
+
         {/* Background */}
         <span
           className="absolute pointer-events-none select-none"
@@ -613,6 +683,8 @@ export default async function AboutPage() {
           zIndex={5}
           grayscale
           decoration="tape-corner"
+          frameStyle="vintage"
+          filmFilter="faded"
         />
       </section>
 

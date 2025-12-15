@@ -1,6 +1,18 @@
 import Link from 'next/link'
 import Footer from '@/components/Footer'
-import { Slot, BackgroundSlot } from '@/components/deconstructivist'
+import {
+  Slot,
+  BackgroundSlot,
+  ScrollingBackgroundSlot,
+  SectionNumber,
+  DecoLine,
+  DotsPattern,
+  CrossMarker,
+  BracketDeco,
+  VerticalText,
+  NoiseOverlay,
+  DecoDivider,
+} from '@/components/deconstructivist'
 import { StickerText, LabelText, WhisperText } from '@/components/typography'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 import ProcessStages from './process-stages'
@@ -19,6 +31,18 @@ export default async function ProcessPage() {
         opacity={0.02}
         grayscale
       />
+
+      {/* Scrolling Background */}
+      <ScrollingBackgroundSlot
+        {...slot('process-background-002', 'SCROLLING BG')}
+        scrollSpeed={0.5}
+        opacity={0.025}
+        grayscale
+        zIndex={1}
+      />
+
+      {/* Global noise overlay */}
+      <NoiseOverlay opacity={0.02} />
 
       {/* ============================================
           HERO - Sketchbook Cover - 4 key slots
@@ -61,6 +85,12 @@ export default async function ProcessPage() {
           WORK
         </span>
 
+        {/* Section decorative elements */}
+        <SectionNumber number="01" position="top-left" style={{ top: '10%', left: '3%' }} />
+        <DecoLine direction="vertical" position="left" length={100} style={{ top: '25%', left: '2%' }} />
+        <CrossMarker position="bottom-right" style={{ bottom: '30%', right: '5%' }} />
+        <VerticalText text="PROCESS" position="right" style={{ right: '2%', top: '30%' }} />
+
         {/* ===== HERO SLOTS - 4 carefully placed ===== */}
 
         {/* Slot 1: Main sketch */}
@@ -75,6 +105,8 @@ export default async function ProcessPage() {
           shadow="offset-lg"
           zIndex={15}
           decoration="tape-corner"
+          frameStyle="sketchbook"
+          filmFilter="vintage"
         />
 
         {/* Slot 2: Toile */}
@@ -89,6 +121,7 @@ export default async function ProcessPage() {
           shadow="float"
           zIndex={18}
           decoration="pin"
+          frameStyle="crumpled"
         />
 
         {/* Slot 3: Fabric swatch */}
@@ -102,6 +135,7 @@ export default async function ProcessPage() {
           border="rough"
           zIndex={20}
           decoration="tape-top"
+          frameStyle="torn"
         />
 
         {/* Slot 4: Small mood */}
@@ -116,6 +150,8 @@ export default async function ProcessPage() {
           shadow="soft"
           zIndex={14}
           grayscale
+          frameStyle="vintage"
+          filmFilter="faded"
         />
 
         {/* Main title */}
@@ -205,6 +241,11 @@ export default async function ProcessPage() {
           </Link>
         </div>
 
+        {/* Section decorative elements */}
+        <SectionNumber number="02" position="bottom-left" style={{ bottom: '10%', left: '5%' }} />
+        <BracketDeco position="top-right" style={{ top: '15%', right: '8%' }} />
+        <DecoDivider style={{ top: '5%', left: '50%', transform: 'translateX(-50%)' }} />
+
         {/* 2 accent slots */}
         <Slot
           {...slot('process-cta-001', 'FINAL')}
@@ -217,6 +258,8 @@ export default async function ProcessPage() {
           grayscale
           zIndex={5}
           decoration="tape-corner"
+          frameStyle="film-strip"
+          frameNumber="03"
         />
 
         <Slot
@@ -228,6 +271,7 @@ export default async function ProcessPage() {
           rotation={8}
           border="rough"
           zIndex={6}
+          frameStyle="polaroid"
         />
       </section>
 

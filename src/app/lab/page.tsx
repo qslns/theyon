@@ -1,6 +1,18 @@
 import Link from 'next/link'
 import Footer from '@/components/Footer'
-import { Slot, BackgroundSlot } from '@/components/deconstructivist'
+import {
+  Slot,
+  BackgroundSlot,
+  ScrollingBackgroundSlot,
+  SectionNumber,
+  DecoLine,
+  DotsPattern,
+  CrossMarker,
+  BracketDeco,
+  VerticalText,
+  NoiseOverlay,
+  DecoDivider,
+} from '@/components/deconstructivist'
 import {
   GlitchTitle,
   LabelText,
@@ -26,6 +38,18 @@ export default async function LabPage() {
         opacity={0.02}
         grayscale
       />
+
+      {/* Scrolling Background */}
+      <ScrollingBackgroundSlot
+        {...slot('lab-background-002', 'SCROLLING BG')}
+        scrollSpeed={0.5}
+        opacity={0.025}
+        grayscale
+        zIndex={1}
+      />
+
+      {/* Global noise overlay */}
+      <NoiseOverlay opacity={0.02} />
 
       {/* ============================================
           HERO - Lab Introduction - 4 key slots
@@ -68,6 +92,12 @@ export default async function LabPage() {
           EXP
         </span>
 
+        {/* Section decorative elements */}
+        <SectionNumber number="01" position="top-left" style={{ top: '10%', left: '3%' }} />
+        <DecoLine direction="vertical" position="left" length={100} style={{ top: '25%', left: '2%' }} />
+        <CrossMarker position="bottom-right" style={{ bottom: '30%', right: '5%' }} />
+        <VerticalText text="LAB" position="right" style={{ right: '2%', top: '30%' }} />
+
         {/* ===== HERO SLOTS - 4 carefully placed ===== */}
 
         {/* Slot 1: Hero - large left */}
@@ -85,6 +115,8 @@ export default async function LabPage() {
           bleedAmount="lg"
           annotationNumber="001"
           texture="grain"
+          frameStyle="contact-sheet"
+          frameNumber="01"
         />
 
         {/* Slot 2: Large - right */}
@@ -99,6 +131,8 @@ export default async function LabPage() {
           shadow="float"
           zIndex={18}
           decoration="tape-corner"
+          frameStyle="sketchbook"
+          filmFilter="vintage"
         />
 
         {/* Slot 3: Medium - center overlap */}
@@ -114,6 +148,7 @@ export default async function LabPage() {
           zIndex={25}
           overlapX={60}
           decoration="staple"
+          frameStyle="crumpled"
         />
 
         {/* Slot 4: Small - bottom */}
@@ -129,6 +164,8 @@ export default async function LabPage() {
           zIndex={22}
           grayscale
           decoration="pin"
+          frameStyle="torn"
+          filmFilter="faded"
         />
 
         {/* Main title */}
