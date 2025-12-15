@@ -1,6 +1,6 @@
 import Footer from '@/components/Footer'
 import { Slot, BackgroundSlot } from '@/components/deconstructivist'
-import { GlitchTitle, LabelText, StickerText } from '@/components/typography'
+import { LabelText, StickerText } from '@/components/typography'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 import ContactForm from './contact-form'
 

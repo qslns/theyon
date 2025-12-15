@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import { Slot, BackgroundSlot } from '@/components/deconstructivist'
-import { GlitchTitle, StickerText, LabelText, WhisperText } from '@/components/typography'
+import { StickerText, LabelText, WhisperText } from '@/components/typography'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 import ProcessStages from './process-stages'
 

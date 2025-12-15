@@ -49,7 +49,7 @@ const BackgroundSlot = memo(function BackgroundSlot({
   position = 'fixed',
   zIndex = 0,
 }: BackgroundSlotProps) {
-  const { isDebugMode, hoveredSlot, setHoveredSlot } = useSlotDebug()
+  const { isDebugMode, hoveredSlotId, setHoveredSlotId } = useSlotDebug()
 
   // If no image, render nothing (transparent background)
   if (!src) {
@@ -71,8 +71,8 @@ const BackgroundSlot = memo(function BackgroundSlot({
               backgroundColor: 'rgba(255, 100, 100, 0.1)',
               border: '2px dashed rgba(255, 100, 100, 0.5)',
             }}
-            onMouseEnter={() => setHoveredSlot(slotId)}
-            onMouseLeave={() => setHoveredSlot(null)}
+            onMouseEnter={() => setHoveredSlotId(slotId)}
+            onMouseLeave={() => setHoveredSlotId(null)}
           >
             <div
               className="bg-red-500 text-white px-3 py-1.5 font-mono text-sm rounded"
@@ -145,12 +145,12 @@ const BackgroundSlot = memo(function BackgroundSlot({
         <div
           className="absolute inset-0 flex items-center justify-center pointer-events-auto cursor-pointer"
           style={{
-            backgroundColor: hoveredSlot === slotId ? 'rgba(0, 150, 255, 0.15)' : 'rgba(0, 150, 255, 0.05)',
+            backgroundColor: hoveredSlotId === slotId ? 'rgba(0, 150, 255, 0.15)' : 'rgba(0, 150, 255, 0.05)',
             border: '2px solid rgba(0, 150, 255, 0.3)',
             transition: 'background-color 0.2s',
           }}
-          onMouseEnter={() => setHoveredSlot(slotId)}
-          onMouseLeave={() => setHoveredSlot(null)}
+          onMouseEnter={() => setHoveredSlotId(slotId)}
+          onMouseLeave={() => setHoveredSlotId(null)}
           onClick={() => {
             // Navigate to Sanity Studio - opens slotImage list
             const studioUrl = `/studio/structure/slotImage`

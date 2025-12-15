@@ -1,8 +1,7 @@
 import Link from 'next/link'
 import Footer from '@/components/Footer'
-import { Slot, AnnotationLabel, BackgroundSlot } from '@/components/deconstructivist'
+import { Slot, BackgroundSlot } from '@/components/deconstructivist'
 import {
-  LayeredTitle,
   GlitchTitle,
   ExperimentalText,
   NumberTag,

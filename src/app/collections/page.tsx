@@ -3,7 +3,7 @@ import Link from 'next/link'
 import type { Collection } from '@/types/sanity'
 import Footer from '@/components/Footer'
 import { Slot, BackgroundSlot } from '@/components/deconstructivist'
-import { GlitchTitle, LabelText, StickerText, SeasonLabel } from '@/components/typography'
+import { GlitchTitle, StickerText, SeasonLabel } from '@/components/typography'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 import CollectionsClient from './collections-client'
 
