@@ -27,6 +27,24 @@
     --yon-white: #FAFAFA;
     --yon-accent: #8B7355;
 
+    /* ASKEW Toned-Down Color Palette - Sticker/Label System */
+    --bg-primary: #FAFAF8;           /* Warm off-white */
+    --bg-secondary: #F5F0E8;         /* Cream */
+    --bg-accent: #EDE8E0;            /* Light beige */
+
+    --text-primary: #1A1A1A;         /* Soft black */
+    --text-secondary: #4A4A4A;       /* Charcoal */
+    --text-muted: #6B6B6B;           /* Medium grey */
+
+    --accent-primary: #8B7355;       /* Warm brown */
+    --accent-secondary: #A69580;     /* Light beige */
+    --accent-hover: #6B5A45;         /* Dark brown */
+
+    --sticker-bg: #F5F0E8;           /* Cream for stickers */
+    --sticker-border: #D4C5B5;       /* Light brown border */
+    --sticker-shadow: rgba(0,0,0,0.05);
+    --tape-bg: rgba(255, 245, 200, 0.85);  /* Translucent yellow */
+
     /* Typography Scale */
     --text-micro: 0.625rem;    /* 10px */
     --text-caption: 0.75rem;   /* 12px */

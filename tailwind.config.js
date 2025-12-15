@@ -24,6 +24,17 @@ module.exports = {
         'yon-accent': '#8B7355',
         'yon-accent-light': '#A89580',
 
+        // ASKEW Sticker/Label System Colors
+        'askew-bg-primary': '#FAFAF8',
+        'askew-bg-secondary': '#F5F0E8',
+        'askew-bg-accent': '#EDE8E0',
+        'askew-sticker-bg': '#F5F0E8',
+        'askew-sticker-border': '#D4C5B5',
+        'askew-accent-primary': '#8B7355',
+        'askew-accent-secondary': '#A69580',
+        'askew-accent-hover': '#6B5A45',
+        'askew-text-muted': '#6B6B6B',
+
         // Transparent Overlays
         'yon-overlay-dark': 'rgba(10, 10, 10, 0.85)',
         'yon-overlay-light': 'rgba(250, 250, 250, 0.9)',

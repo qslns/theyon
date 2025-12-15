@@ -2,14 +2,13 @@ import { Suspense } from 'react'
 import Link from 'next/link'
 import type { Collection } from '@/types/sanity'
 import Footer from '@/components/Footer'
-import { Slot, AnnotationLabel, BackgroundSlot } from '@/components/deconstructivist'
-import { GlitchTitle, LabelText } from '@/components/typography'
+import { Slot, BackgroundSlot } from '@/components/deconstructivist'
+import { GlitchTitle, LabelText, StickerText, SeasonLabel } from '@/components/typography'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 import CollectionsClient from './collections-client'
 
 export const revalidate = 10
 
-// Fetch collections from Sanity or use fallback
 async function getCollections(): Promise<Partial<Collection>[]> {
   const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
   if (!projectId || projectId === 'your_project_id_here') {
@@ -25,7 +24,6 @@ async function getCollections(): Promise<Partial<Collection>[]> {
   }
 }
 
-// Fallback data for ASKEW
 const FALLBACK_COLLECTIONS: Partial<Collection>[] = [
   {
     _id: '1',
@@ -70,39 +68,36 @@ const FALLBACK_COLLECTIONS: Partial<Collection>[] = [
 ]
 
 export default async function CollectionsPage() {
-  // Fetch slot images for collections page from CMS
   const slotImages = await getSlotImages('collections')
   const slot = createSlotHelper(slotImages)
-
-  // Fetch collections data
   const collections = await getCollections()
 
   return (
     <div className="relative min-h-screen bg-yon-white overflow-x-hidden">
-      {/* CMS Background Slot */}
+      {/* Background Slot */}
       <BackgroundSlot
         {...slot('collections-background-001', 'BACKGROUND')}
-        opacity={0.03}
+        opacity={0.02}
         grayscale
       />
 
       {/* ============================================
-          HERO HEADER - Dense Deconstructivist - fits single screen
+          HERO - Clean with 4 key slots
           ============================================ */}
-      <section className="relative w-full overflow-hidden texture-grain" style={{ height: 'calc(100vh - 48px)' }}>
+      <section className="relative w-full overflow-hidden texture-grain" style={{ minHeight: 'calc(100vh - 56px)' }}>
         {/* Background typography */}
         <span
           className="absolute pointer-events-none select-none"
           style={{
-            top: '15%',
+            top: '12%',
             left: '-8%',
-            fontSize: 'clamp(12rem, 30vw, 50rem)',
+            fontSize: 'clamp(14rem, 35vw, 55rem)',
             fontWeight: 100,
             fontFamily: 'var(--font-serif), Georgia, serif',
-            opacity: 0.025,
+            opacity: 0.02,
             lineHeight: 0.8,
             letterSpacing: '-0.05em',
-            color: '#0A0A0A',
+            color: 'var(--yon-black)',
             transform: 'rotate(-3deg)',
           }}
           aria-hidden="true"
@@ -110,17 +105,16 @@ export default async function CollectionsPage() {
           WORKS
         </span>
 
-        {/* Secondary background */}
         <span
           className="absolute pointer-events-none select-none"
           style={{
-            bottom: '10%',
-            right: '-10%',
-            fontSize: 'clamp(8rem, 20vw, 35rem)',
+            bottom: '8%',
+            right: '-8%',
+            fontSize: 'clamp(9rem, 22vw, 38rem)',
             fontWeight: 100,
             fontFamily: 'var(--font-mono), monospace',
-            opacity: 0.02,
-            color: '#8B7355',
+            opacity: 0.015,
+            color: 'var(--yon-accent)',
             transform: 'rotate(5deg)',
           }}
           aria-hidden="true"
@@ -128,202 +122,88 @@ export default async function CollectionsPage() {
           04
         </span>
 
-        {/* Third layer - vertical */}
-        <span
-          className="absolute pointer-events-none select-none"
-          style={{
-            top: '20%',
-            right: '5%',
-            fontSize: 'clamp(4rem, 10vw, 12rem)',
-            fontWeight: 100,
-            fontFamily: 'var(--font-mono), monospace',
-            opacity: 0.015,
-            letterSpacing: '0.3em',
-            color: '#0A0A0A',
-            writingMode: 'vertical-rl',
-          }}
-          aria-hidden="true"
-        >
-          COLLECTIONS
-        </span>
+        {/* ===== HERO SLOTS - 4 carefully placed ===== */}
 
-        {/* ===== HEADER SLOTS - 10 scattered ===== */}
-
-        {/* Slot 1: Hero left bleeding */}
+        {/* Slot 1: Hero - large left */}
         <Slot
           {...slot('collections-header-001', 'FEATURED')}
-          size="large"
+          size="hero"
           position="absolute"
-          top="8%"
-          left="-4%"
+          top="5%"
+          left="-3%"
           rotation={-3}
           clip="irregular-1"
           shadow="offset-xl"
-          zIndex={15}
+          zIndex={18}
           bleed="left"
           bleedAmount="lg"
           annotationNumber="001"
+          texture="grain"
         />
 
-        {/* Slot 2: Medium right */}
+        {/* Slot 2: Medium - right top */}
         <Slot
-          {...slot('collections-header-002', 'AW25')}
+          {...slot('collections-header-002', 'LOOK 02')}
           size="medium"
           position="absolute"
-          top="10%"
-          right="8%"
+          top="8%"
+          right="6%"
           rotation={4}
           clip="torn-1"
           shadow="float"
-          zIndex={18}
+          zIndex={20}
           decoration="tape-corner"
         />
 
-        {/* Slot 3: Small overlapping */}
+        {/* Slot 3: Small - accent */}
         <Slot
-          {...slot('collections-header-003', 'PROCESS')}
+          {...slot('collections-header-003', 'DETAIL')}
           size="small"
           position="absolute"
-          top="45%"
-          right="20%"
+          bottom="25%"
+          right="18%"
           rotation={-5}
           clip="organic-1"
           zIndex={22}
-          overlapX={60}
           decoration="pin"
         />
 
-        {/* Slot 4: Tiny accent */}
+        {/* Slot 4: Swatch - material */}
         <Slot
-          {...slot('collections-header-004', 'REF')}
-          size="tiny"
-          position="absolute"
-          top="60%"
-          left="15%"
-          rotation={-10}
-          clip="notch-1"
-          zIndex={25}
-          decoration="clip"
-        />
-
-        {/* Slot 5-7: Swatch cluster */}
-        <Slot
-          {...slot('collections-header-005', 'A')}
+          {...slot('collections-header-004', 'FABRIC')}
           size="swatch"
           position="absolute"
-          top="30%"
-          left="35%"
-          rotation={12}
+          bottom="18%"
+          left="45%"
+          rotation={10}
           border="rough"
-          zIndex={20}
+          zIndex={24}
           decoration="tape-top"
         />
 
-        <Slot
-          {...slot('collections-header-006', 'B')}
-          size="swatch"
-          position="absolute"
-          top="33%"
-          left="42%"
-          rotation={-8}
-          border="accent"
-          zIndex={21}
-          overlapX={20}
-        />
+        {/* Season label */}
+        <div className="absolute" style={{ top: '12%', right: '30%', zIndex: 50 }}>
+          <SeasonLabel season="S/S" year="2025" rotation={-2} />
+        </div>
 
-        <Slot
-          {...slot('collections-header-007', 'C')}
-          size="swatch"
-          position="absolute"
-          top="36%"
-          left="49%"
-          rotation={5}
-          border="thin"
-          zIndex={23}
-          overlapX={25}
-        />
-
-        {/* Slot 8: Medium-wide bottom */}
-        <Slot
-          {...slot('collections-header-008', 'ARCHIVE')}
-          size="medium-wide"
-          position="absolute"
-          bottom="20%"
-          left="5%"
-          rotation={2}
-          clip="wave-1"
-          shadow="soft"
-          zIndex={12}
-          sepia
-        />
-
-        {/* Slot 9: Small right bleeding */}
-        <Slot
-          {...slot('collections-header-009', 'SKETCH')}
-          size="small"
-          position="absolute"
-          bottom="30%"
-          right="-2%"
-          rotation={-6}
-          clip="torn-2"
-          zIndex={16}
-          bleed="right"
-          bleedAmount="md"
-          grayscale
-        />
-
-        {/* Slot 10: Micro */}
-        <Slot
-          {...slot('collections-header-010', '04')}
-          size="micro"
-          position="absolute"
-          top="50%"
-          left="55%"
-          rotation={15}
-          border="accent"
-          zIndex={28}
-          decoration="pin-red"
-        />
-
-        {/* Annotations */}
-        <AnnotationLabel
-          text="collections"
-          position={{ top: '12%', left: '50%' }}
-          rotation={-3}
-          variant="tag"
-        />
-        <AnnotationLabel
-          text="view all"
-          position={{ top: '55%', right: '35%' }}
-          rotation={5}
-          variant="handwritten"
-        />
-        <AnnotationLabel
-          text="2024-25"
-          position={{ bottom: '25%', left: '40%' }}
-          rotation={-2}
-          variant="stamp"
-        />
-
-        {/* Main title with experimental typography */}
-        <div className="relative z-30 pt-44 pb-16 px-8 md:px-16 lg:px-24">
+        {/* Main title */}
+        <div className="relative z-30 pt-40 pb-16 px-8 md:px-16 lg:px-24">
           <div className="max-w-5xl">
-            <LabelText
-              text="ASKEW — Collections"
-              style={{ fontSize: '0.55rem' }}
-            />
+            <StickerText variant="label" rotation={-1} color="cream" size="xs">
+              04 COLLECTIONS
+            </StickerText>
 
             <GlitchTitle
               text="Collections"
               size="display"
-              glitchOffset={8}
+              glitchOffset={6}
               charRotation
-              rotationIntensity={4}
+              rotationIntensity={3}
               className="mt-6"
               style={{
-                fontSize: 'clamp(3.5rem, 9vw, 7rem)',
-                letterSpacing: '-0.04em',
-                transform: 'rotate(-2.5deg)',
+                fontSize: 'clamp(3rem, 8vw, 6rem)',
+                letterSpacing: '-0.03em',
+                transform: 'rotate(-2deg)',
                 lineHeight: 0.9,
               }}
               as="h1"
@@ -332,29 +212,32 @@ export default async function CollectionsPage() {
             <p
               className="font-sans text-yon-grey/60 mt-10 max-w-lg"
               style={{
-                fontSize: '0.95rem',
+                fontSize: '0.9rem',
                 lineHeight: 1.8,
                 marginLeft: '3rem',
                 transform: 'rotate(0.5deg)',
               }}
             >
               Experimental fashion explorations. Each collection challenges conventional construction,
-              material, and form. Work in progress, failures documented.
+              material, and form.
             </p>
           </div>
         </div>
+
+        {/* Scroll hint */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40">
+          <span className="block font-mono uppercase tracking-[0.3em] text-yon-grey/30" style={{ fontSize: '0.5rem' }}>
+            View All
+          </span>
+          <span className="block text-yon-grey/20 mt-2 text-center">↓</span>
+        </div>
       </section>
 
-      {/* ============================================
-          COLLECTIONS - Client Component for Filtering
-          ============================================ */}
+      {/* Collections Grid - Client Component */}
       <Suspense fallback={
         <div className="flex flex-col items-center justify-center py-40 gap-4">
           <div className="w-10 h-10 border border-yon-grey/20 border-t-yon-black rounded-full animate-spin" />
-          <span
-            className="font-mono uppercase tracking-[0.2em] text-yon-grey/40"
-            style={{ fontSize: '0.6rem' }}
-          >
+          <span className="font-mono uppercase tracking-[0.2em] text-yon-grey/40" style={{ fontSize: '0.6rem' }}>
             Loading Collections
           </span>
         </div>
@@ -363,52 +246,31 @@ export default async function CollectionsPage() {
       </Suspense>
 
       {/* ============================================
-          ARCHIVE LINK - Dense Section
+          ARCHIVE LINK - Clean Section
           ============================================ */}
-      <section className="relative min-h-[60vh] py-24 px-8 md:px-16 lg:px-24 overflow-hidden texture-paper">
+      <section className="relative min-h-[55vh] py-24 px-8 md:px-16 lg:px-24 overflow-hidden texture-paper">
         {/* Background */}
         <span
           className="absolute pointer-events-none select-none"
           style={{
             top: '5%',
-            right: '-12%',
-            fontSize: 'clamp(18rem, 45vw, 60rem)',
+            right: '-10%',
+            fontSize: 'clamp(16rem, 40vw, 55rem)',
             fontWeight: 100,
             fontFamily: 'var(--font-serif), Georgia, serif',
-            opacity: 0.02,
+            opacity: 0.015,
             lineHeight: 0.8,
-            color: '#0A0A0A',
+            color: 'var(--yon-black)',
           }}
           aria-hidden="true"
         >
           A
         </span>
 
-        <span
-          className="absolute pointer-events-none select-none"
-          style={{
-            bottom: '10%',
-            left: '-5%',
-            fontSize: 'clamp(6rem, 15vw, 22rem)',
-            fontWeight: 100,
-            fontFamily: 'var(--font-mono), monospace',
-            opacity: 0.015,
-            color: '#8B7355',
-            transform: 'rotate(-90deg)',
-            transformOrigin: 'left bottom',
-          }}
-          aria-hidden="true"
-        >
-          ARCHIVE
-        </span>
-
         <div className="relative z-10 max-w-4xl">
-          <span
-            className="block font-mono uppercase tracking-[0.3em] text-yon-grey/40"
-            style={{ fontSize: '0.55rem' }}
-          >
-            Research & Process
-          </span>
+          <StickerText variant="tape" rotation={1} size="xs">
+            RESEARCH & PROCESS
+          </StickerText>
 
           <h2
             className="font-serif text-yon-black mt-6"
@@ -429,7 +291,6 @@ export default async function CollectionsPage() {
             }}
           >
             Explorations, experiments, and documentation of the creative process.
-            Failures are documented as essential steps toward discovery.
           </p>
 
           <Link
@@ -441,80 +302,31 @@ export default async function CollectionsPage() {
           </Link>
         </div>
 
-        {/* Floating slots */}
+        {/* 2 floating slots */}
         <Slot
           {...slot('collections-archive-001', 'ARCHIVE')}
           size="medium"
           position="absolute"
           top="10%"
-          right="10%"
+          right="8%"
           rotation={-4}
           clip="irregular-4"
           shadow="float"
           grayscale
           zIndex={10}
-          annotationNumber="A-001"
           decoration="tape-corner"
         />
 
         <Slot
-          {...slot('collections-archive-002', 'DOC')}
+          {...slot('collections-archive-002', 'PROCESS')}
           size="small"
           position="absolute"
-          top="45%"
-          right="25%"
+          bottom="20%"
+          right="20%"
           rotation={6}
           clip="torn-3"
           zIndex={12}
           sepia
-        />
-
-        <Slot
-          {...slot('collections-archive-003', 'PROCESS')}
-          size="tiny"
-          position="absolute"
-          bottom="25%"
-          right="35%"
-          rotation={-8}
-          border="thin"
-          zIndex={14}
-          decoration="pin"
-        />
-
-        <Slot
-          {...slot('collections-archive-004', 'REF')}
-          size="swatch"
-          position="absolute"
-          bottom="15%"
-          right="10%"
-          rotation={10}
-          border="rough"
-          zIndex={11}
-          grayscale
-        />
-
-        <Slot
-          {...slot('collections-archive-005', '→')}
-          size="micro"
-          position="absolute"
-          top="30%"
-          right="45%"
-          rotation={-5}
-          border="accent"
-          zIndex={15}
-        />
-
-        <AnnotationLabel
-          text="explore"
-          position={{ top: '25%', right: '30%' }}
-          rotation={4}
-          variant="handwritten"
-        />
-        <AnnotationLabel
-          text="RESEARCH"
-          position={{ bottom: '35%', right: '20%' }}
-          rotation={-3}
-          variant="stamp"
         />
       </section>
 

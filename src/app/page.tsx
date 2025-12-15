@@ -5,74 +5,75 @@ import {
   LayeredTitle,
   GlitchTitle,
   ExperimentalText,
-  AnnotationText,
   NumberTag,
   LabelText,
   WhisperText,
   HandwrittenNote,
   GrainDisplay,
-  StaggerFadeText,
+  StickerText,
+  SeasonLabel,
+  MargielaTag,
 } from '@/components/typography'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 
-// Revalidate every 60 seconds for ISR (Incremental Static Regeneration)
-// This ensures Sanity CMS updates appear without full redeploy
+// Revalidate every 10 seconds for ISR
 export const revalidate = 10
 
 export default async function HomePage() {
-  // Fetch all slot images for home page from CMS
   const slotImages = await getSlotImages('home')
   const slot = createSlotHelper(slotImages)
 
   return (
     <div className="relative bg-yon-white min-h-screen overflow-x-hidden">
-      {/* CMS Background Slot */}
+      {/* Background Slot - subtle texture */}
       <BackgroundSlot
         {...slot('home-background-001', 'BACKGROUND')}
-        opacity={0.03}
+        opacity={0.02}
         grayscale
       />
 
       {/* ============================================
-          SECTION 1: HERO - Dense Deconstructivist Collage
-          Target: 15+ slots with overlapping, bleeding, varied sizes
-          1920x1080 viewport optimized - fits in single screen capture
+          SECTION 1: HERO - Impactful with fewer elements
+          Inspired by: Maison Margiela, GEDOKU/Sakiyama
+          Target: 4 slots maximum for maximum impact
           ============================================ */}
-      <section className="relative w-full overflow-hidden texture-grain" style={{ height: 'calc(100vh - 48px)' }}>
-        {/* Background typography - ASKEW massive with layer effect */}
+      <section
+        className="relative w-full overflow-hidden texture-grain"
+        style={{ minHeight: 'calc(100vh - 56px)' }}
+      >
+        {/* Background typography - ASKEW massive */}
         <span
           className="absolute pointer-events-none select-none"
           style={{
-            top: '25%',
-            left: '-8%',
-            fontSize: 'clamp(14rem, 32vw, 45rem)',
+            top: '20%',
+            left: '-5%',
+            fontSize: 'clamp(16rem, 35vw, 50rem)',
             fontWeight: 100,
             fontFamily: 'var(--font-serif), Georgia, serif',
-            opacity: 0.03,
+            opacity: 0.025,
             lineHeight: 0.8,
             letterSpacing: '-0.05em',
-            color: '#0A0A0A',
+            color: 'var(--yon-black)',
             zIndex: 1,
-            textShadow: '6px 6px 0 rgba(139, 115, 85, 0.02)',
           }}
           aria-hidden="true"
         >
           ASKEW
         </span>
 
-        {/* Second layer - offset shadow for depth */}
+        {/* Echo shadow layer for depth */}
         <span
           className="absolute pointer-events-none select-none"
           style={{
-            top: 'calc(25% + 8px)',
-            left: 'calc(-8% + 8px)',
-            fontSize: 'clamp(14rem, 32vw, 45rem)',
+            top: 'calc(20% + 6px)',
+            left: 'calc(-5% + 6px)',
+            fontSize: 'clamp(16rem, 35vw, 50rem)',
             fontWeight: 100,
             fontFamily: 'var(--font-serif), Georgia, serif',
-            opacity: 0.015,
+            opacity: 0.01,
             lineHeight: 0.8,
             letterSpacing: '-0.05em',
-            color: '#8B7355',
+            color: 'var(--yon-accent)',
             zIndex: 0,
           }}
           aria-hidden="true"
@@ -80,313 +81,90 @@ export default async function HomePage() {
           ASKEW
         </span>
 
-        {/* Secondary background text - vertical */}
-        <span
-          className="absolute pointer-events-none select-none"
-          style={{
-            top: '10%',
-            right: '3%',
-            fontSize: 'clamp(6rem, 15vw, 20rem)',
-            fontWeight: 100,
-            fontFamily: 'var(--font-mono), monospace',
-            opacity: 0.015,
-            letterSpacing: '0.3em',
-            color: '#0A0A0A',
-            writingMode: 'vertical-rl',
-            zIndex: 1,
-          }}
-          aria-hidden="true"
-        >
-          2024
-        </span>
+        {/* ===== HERO SLOTS - 4 carefully placed slots ===== */}
 
-        {/* Third layer - accent mark */}
-        <span
-          className="absolute pointer-events-none select-none"
-          style={{
-            top: '60%',
-            right: '15%',
-            fontSize: 'clamp(8rem, 20vw, 28rem)',
-            fontWeight: 100,
-            fontFamily: 'var(--font-mono), monospace',
-            opacity: 0.012,
-            color: '#8B7355',
-            transform: 'rotate(15deg)',
-            zIndex: 0,
-          }}
-          aria-hidden="true"
-        >
-          →
-        </span>
-
-        {/* ===== HERO SLOTS - 15 slots with dense overlapping ===== */}
-
-        {/* Slot 1: Hero - Primary large image (left, bleeding) */}
+        {/* Slot 1: Hero - Primary large image (60% width, left bleeding) */}
         <Slot
           {...slot('home-hero-001', 'LOOK 01')}
           size="hero"
           position="absolute"
-          top="5%"
-          left="-3%"
-          rotation={-2.5}
+          top="8%"
+          left="-2%"
+          rotation={-2}
           clip="irregular-1"
           shadow="offset-xl"
           zIndex={20}
           bleed="left"
-          bleedAmount="lg"
+          bleedAmount="md"
           annotationNumber="001"
           texture="grain"
         />
 
-        {/* Slot 2: Large - Secondary (right top) */}
+        {/* Slot 2: Supporting - Right side (25% width) */}
         <Slot
           {...slot('home-hero-002', 'LOOK 02')}
-          size="large"
+          size="medium"
           position="absolute"
-          top="3%"
-          right="5%"
+          top="5%"
+          right="6%"
           rotation={3}
           clip="torn-1"
           shadow="float"
           zIndex={18}
           decoration="tape-corner"
-          annotationText="main look"
         />
 
-        {/* Slot 3: Medium - Overlapping center-right */}
+        {/* Slot 3: Accent - Bottom right detail */}
         <Slot
           {...slot('home-hero-003', 'DETAIL')}
-          size="medium"
+          size="small"
           position="absolute"
-          top="40%"
-          right="12%"
-          rotation={-4}
+          bottom="25%"
+          right="15%"
+          rotation={-5}
           clip="irregular-5"
           shadow="dramatic"
           zIndex={25}
-          overlapX={100}
-          overlapY={50}
           decoration="pin"
         />
 
-        {/* Slot 4: Small - Accent (bottom left, bleeding) */}
+        {/* Slot 4: Swatch - Material sample */}
         <Slot
-          {...slot('home-hero-004', 'PROCESS')}
-          size="small"
+          {...slot('home-hero-004', 'FABRIC')}
+          size="swatch"
           position="absolute"
           bottom="18%"
-          left="-2%"
-          rotation={6}
-          clip="torn-2"
-          shadow="brutal-sm"
-          zIndex={22}
-          bleed="left"
-          bleedAmount="md"
-          grayscale
-        />
-
-        {/* Slot 5: Tiny - Swatch with tape */}
-        <Slot
-          {...slot('home-hero-005', 'FABRIC')}
-          size="tiny"
-          position="absolute"
-          top="65%"
-          left="32%"
-          rotation={-10}
+          left="45%"
+          rotation={12}
           border="rough"
-          zIndex={30}
+          zIndex={22}
           decoration="tape-top"
         />
 
-        {/* Slot 6: Swatch - Material sample */}
-        <Slot
-          {...slot('home-hero-006', 'WOOL')}
-          size="swatch"
-          position="absolute"
-          top="22%"
-          right="32%"
-          rotation={15}
-          border="brutal"
-          zIndex={24}
-          decoration="staple"
-        />
-
-        {/* Slot 7: Small square - Bottom right */}
-        <Slot
-          {...slot('home-hero-007', 'TOILE')}
-          size="small-square"
-          position="absolute"
-          bottom="10%"
-          right="8%"
-          rotation={-3}
-          clip="diagonal-1"
-          shadow="offset"
-          zIndex={19}
-          decoration="corner-fold"
-        />
-
-        {/* Slot 8: Tiny - Far right edge (bleeding) */}
-        <Slot
-          {...slot('home-hero-008', 'REF')}
-          size="tiny"
-          position="absolute"
-          top="50%"
-          right="-4%"
-          rotation={-18}
-          clip="irregular-4"
-          zIndex={15}
-          bleed="right"
-          bleedAmount="lg"
-        />
-
-        {/* Slot 9: Micro - Scattered accent */}
-        <Slot
-          {...slot('home-hero-009', '01')}
-          size="micro"
-          position="absolute"
-          top="35%"
-          left="48%"
-          rotation={8}
-          border="thin"
-          zIndex={28}
-          decoration="pin-red"
-        />
-
-        {/* Slot 10: Medium-wide - Overlapping */}
-        <Slot
-          {...slot('home-hero-010', 'SILHOUETTE')}
-          size="medium-wide"
-          position="absolute"
-          top="58%"
-          left="15%"
-          rotation={2}
-          clip="wave-1"
-          shadow="soft"
-          zIndex={16}
-          overlapY={80}
-          sepia
-        />
-
-        {/* Slot 11: Swatch cluster 1 */}
-        <Slot
-          {...slot('home-hero-011', 'SILK')}
-          size="swatch"
-          position="absolute"
-          top="75%"
-          left="55%"
-          rotation={-5}
-          border="accent"
-          zIndex={26}
-        />
-
-        {/* Slot 12: Swatch cluster 2 */}
-        <Slot
-          {...slot('home-hero-012', 'LINEN')}
-          size="swatch"
-          position="absolute"
-          top="78%"
-          left="60%"
-          rotation={12}
-          border="rough"
-          zIndex={27}
-          overlapX={30}
-        />
-
-        {/* Slot 13: Tiny-wide - Reference */}
-        <Slot
-          {...slot('home-hero-013', 'MOOD')}
-          size="tiny-wide"
-          position="absolute"
-          top="12%"
-          left="40%"
-          rotation={-7}
-          clip="notch-1"
-          zIndex={21}
-          grayscale
-          decoration="clip"
-        />
-
-        {/* Slot 14: Small - Top bleeding */}
-        <Slot
-          {...slot('home-hero-014', 'ARCHIVE')}
-          size="small"
-          position="absolute"
-          top="-3%"
-          left="58%"
-          rotation={4}
-          clip="trapezoid"
-          shadow="float"
-          zIndex={14}
-          bleed="top"
-          bleedAmount="md"
-        />
-
-        {/* Slot 15: Medium-tall */}
-        <Slot
-          {...slot('home-hero-015', 'FORM')}
-          size="medium-tall"
-          position="absolute"
-          bottom="5%"
-          left="40%"
-          rotation={-1}
-          clip="organic-1"
-          shadow="deep"
-          zIndex={17}
-          contrast
-        />
-
-        {/* Scattered Annotation Labels with experimental typography */}
-        <AnnotationLabel
-          text="CURRENT"
-          position={{ top: '8%', left: '25%' }}
-          rotation={-3}
-          variant="tag"
-        />
+        {/* Sticker label - Season */}
         <div
           className="absolute"
-          style={{ top: '45%', left: '5%', transform: 'rotate(5deg)', zIndex: 50 }}
+          style={{ top: '12%', right: '35%', zIndex: 50 }}
         >
-          <HandwrittenNote text="test print" />
-        </div>
-        <div
-          className="absolute"
-          style={{ bottom: '30%', right: '35%', transform: 'rotate(-2deg)', zIndex: 50 }}
-        >
-          <AnnotationText text="APPROVED" variant="stamp" />
-        </div>
-        <div
-          className="absolute"
-          style={{ top: '70%', right: '5%', transform: 'rotate(8deg)', zIndex: 50 }}
-        >
-          <NumberTag index={1} />
+          <SeasonLabel season="S/S" year="2025" rotation={-2} />
         </div>
 
-        {/* Navigation hint - bottom center */}
+        {/* Margiela-style number tag */}
         <div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40"
-          style={{ textAlign: 'center' }}
+          className="absolute"
+          style={{ bottom: '35%', right: '8%', zIndex: 50 }}
         >
-          <Link href="/collections" className="group">
-            <span
-              className="block font-mono uppercase tracking-[0.3em] text-yon-grey/60 group-hover:text-yon-black transition-colors"
-              style={{ fontSize: '0.6rem' }}
-            >
-              View Collections
-            </span>
-            <span className="block text-yon-grey/40 mt-2 text-lg group-hover:text-yon-black transition-colors">
-              ↓
-            </span>
-          </Link>
+          <MargielaTag current={1} total={4} rotation={3} />
         </div>
 
-        {/* Brand mark - top left corner with GLITCH effect */}
-        <div className="absolute top-6 left-6 z-40">
+        {/* Brand mark - top left */}
+        <div className="absolute top-8 left-8 z-40">
           <GlitchTitle
             text="ASKEW"
             size="small"
-            glitchOffset={3}
+            glitchOffset={2}
             style={{
-              fontSize: '0.85rem',
+              fontSize: '0.8rem',
               letterSpacing: '0.35em',
               fontFamily: 'var(--font-mono)',
               fontWeight: 500,
@@ -402,117 +180,100 @@ export default async function HomePage() {
           />
         </div>
 
-        {/* Year - top right corner */}
-        <div className="absolute top-6 right-6 z-40 text-right">
-          <LabelText
-            text="Portfolio"
-            style={{ fontSize: '0.55rem' }}
-          />
+        {/* Year - top right */}
+        <div className="absolute top-8 right-8 z-40 text-right">
+          <LabelText text="Portfolio" style={{ fontSize: '0.55rem' }} />
           <WhisperText
             text="2024—25"
             className="block mt-1"
             style={{ fontSize: '0.5rem' }}
           />
         </div>
+
+        {/* Navigation hint - bottom center */}
+        <div
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-40 text-center"
+        >
+          <Link href="/collections" className="group">
+            <span
+              className="block font-mono uppercase tracking-[0.3em] text-yon-grey/50 group-hover:text-yon-black transition-colors"
+              style={{ fontSize: '0.55rem' }}
+            >
+              View Collections
+            </span>
+            <span className="block text-yon-grey/30 mt-2 text-lg group-hover:text-yon-black transition-colors">
+              ↓
+            </span>
+          </Link>
+        </div>
       </section>
 
       {/* ============================================
           SECTION 2: Philosophy Statement
-          Dense asymmetric typography with floating slots
+          Clean typography with 2 floating accent slots
           ============================================ */}
-      <section className="relative min-h-[90vh] w-full flex items-center overflow-hidden texture-paper">
-        {/* Background letter - massive Y with echo effect */}
+      <section className="relative min-h-[85vh] w-full flex items-center overflow-hidden texture-paper">
+        {/* Background letter */}
         <span
           className="absolute pointer-events-none select-none"
           style={{
             top: '5%',
-            right: '-15%',
-            fontSize: 'clamp(25rem, 60vw, 80rem)',
+            right: '-12%',
+            fontSize: 'clamp(28rem, 65vw, 85rem)',
             fontWeight: 100,
             fontFamily: 'var(--font-serif), Georgia, serif',
-            opacity: 0.02,
+            opacity: 0.015,
             lineHeight: 0.8,
-            color: '#0A0A0A',
+            color: 'var(--yon-black)',
           }}
           aria-hidden="true"
         >
           Y
         </span>
 
-        {/* Echo layer */}
-        <span
-          className="absolute pointer-events-none select-none"
-          style={{
-            top: 'calc(5% + 15px)',
-            right: 'calc(-15% + 15px)',
-            fontSize: 'clamp(25rem, 60vw, 80rem)',
-            fontWeight: 100,
-            fontFamily: 'var(--font-serif), Georgia, serif',
-            opacity: 0.008,
-            lineHeight: 0.8,
-            color: '#8B7355',
-          }}
-          aria-hidden="true"
-        >
-          Y
-        </span>
+        <div className="relative z-10 px-8 md:px-16 lg:px-24 max-w-4xl">
+          {/* Section label */}
+          <div style={{ marginBottom: '2rem' }}>
+            <StickerText variant="label" rotation={-1} color="cream" size="xs">
+              PHILOSOPHY
+            </StickerText>
+          </div>
 
-        {/* Secondary background text */}
-        <span
-          className="absolute pointer-events-none select-none"
-          style={{
-            bottom: '10%',
-            left: '-5%',
-            fontSize: 'clamp(4rem, 10vw, 12rem)',
-            fontWeight: 100,
-            fontFamily: 'var(--font-mono), monospace',
-            opacity: 0.025,
-            letterSpacing: '0.2em',
-            color: '#0A0A0A',
-            transform: 'rotate(-90deg)',
-            transformOrigin: 'left bottom',
-          }}
-          aria-hidden="true"
-        >
-          PHILOSOPHY
-        </span>
-
-        <div className="relative z-10 px-8 md:px-16 lg:px-24 max-w-5xl">
-          {/* Philosophy text - GLITCH layered title */}
+          {/* Philosophy text */}
           <GlitchTitle
             text="Twisted yet harmonious"
             size="display"
-            glitchOffset={6}
+            glitchOffset={5}
             charRotation
-            rotationIntensity={3}
+            rotationIntensity={2}
             style={{
               fontStyle: 'italic',
-              transform: 'rotate(-2deg)',
+              transform: 'rotate(-1.5deg)',
             }}
             as="h2"
           />
 
           <p
-            className="font-sans text-yon-grey/70 mt-14 max-w-md leading-relaxed"
+            className="font-sans text-yon-grey/60 mt-12 max-w-md leading-relaxed"
             style={{
-              fontSize: '0.95rem',
-              marginLeft: '5rem',
-              transform: 'rotate(0.8deg)',
+              fontSize: '0.9rem',
+              marginLeft: '4rem',
+              transform: 'rotate(0.5deg)',
             }}
           >
             Every element slightly askew, yet together they form perfect beauty.
-            Fashion that exists beyond time and space—unreachable, ideal.
+            Fashion that exists beyond time—unreachable, ideal.
           </p>
         </div>
 
-        {/* Floating slots - 6 slots */}
+        {/* Floating slots - 2 accent slots */}
         <Slot
           {...slot('home-philosophy-001', 'MOOD')}
           size="medium"
           position="absolute"
-          top="10%"
+          top="12%"
           right="8%"
-          rotation={8}
+          rotation={6}
           clip="irregular-6"
           shadow="float"
           zIndex={8}
@@ -521,67 +282,21 @@ export default async function HomePage() {
         />
 
         <Slot
-          {...slot('home-philosophy-002', 'REF')}
-          size="tiny"
-          position="absolute"
-          bottom="25%"
-          right="20%"
-          rotation={-6}
-          border="thin"
-          zIndex={10}
-          decoration="pin"
-        />
-
-        <Slot
-          {...slot('home-philosophy-003', 'TEXTURE')}
-          size="swatch"
-          position="absolute"
-          top="60%"
-          right="35%"
-          rotation={12}
-          border="rough"
-          zIndex={9}
-        />
-
-        <Slot
-          {...slot('home-philosophy-004', 'SKETCH')}
+          {...slot('home-philosophy-002', 'SKETCH')}
           size="small"
           position="absolute"
-          bottom="15%"
-          right="5%"
+          bottom="18%"
+          right="12%"
           rotation={-4}
           clip="torn-3"
-          zIndex={7}
-          bleed="right"
-          bleedAmount="sm"
+          zIndex={9}
           sepia
         />
 
-        <Slot
-          {...slot('home-philosophy-005', 'DETAIL')}
-          size="tiny-wide"
-          position="absolute"
-          top="35%"
-          right="28%"
-          rotation={-10}
-          clip="notch-2"
-          zIndex={11}
-        />
-
-        <Slot
-          {...slot('home-philosophy-006', '002')}
-          size="micro"
-          position="absolute"
-          top="50%"
-          right="45%"
-          rotation={15}
-          border="accent"
-          zIndex={12}
-        />
-
+        {/* Handwritten note */}
         <div
           className="absolute"
-          style={{ bottom: '40%', left: '60%', transform: 'rotate(3deg)', zIndex: 50 }}
+          style={{ bottom: '35%', right: '28%', transform: 'rotate(4deg)', zIndex: 50 }}
         >
           <HandwrittenNote text="essential" />
         </div>
@@ -589,247 +304,112 @@ export default async function HomePage() {
 
       {/* ============================================
           SECTION 3: Collections Preview
-          Dense moodboard grid - 10+ slots
+          4 slots representing key collections
           ============================================ */}
-      <section className="relative min-h-screen w-full py-24 overflow-hidden texture-grain">
-        {/* Section title - background with triple layer */}
+      <section className="relative min-h-screen w-full py-28 overflow-hidden texture-grain">
+        {/* Section background */}
         <span
           className="absolute pointer-events-none select-none"
           style={{
-            top: '3%',
-            left: '-10%',
-            fontSize: 'clamp(8rem, 18vw, 25rem)',
+            top: '5%',
+            left: '-8%',
+            fontSize: 'clamp(9rem, 20vw, 28rem)',
             fontWeight: 200,
             fontFamily: 'var(--font-serif), Georgia, serif',
-            opacity: 0.035,
+            opacity: 0.025,
             letterSpacing: '-0.03em',
-            color: '#0A0A0A',
-            transform: 'rotate(-5deg)',
+            color: 'var(--yon-black)',
+            transform: 'rotate(-4deg)',
           }}
           aria-hidden="true"
         >
           COLLECTIONS
         </span>
 
-        {/* Second layer */}
-        <span
-          className="absolute pointer-events-none select-none"
-          style={{
-            top: 'calc(3% + 6px)',
-            left: 'calc(-10% + 6px)',
-            fontSize: 'clamp(8rem, 18vw, 25rem)',
-            fontWeight: 200,
-            fontFamily: 'var(--font-serif), Georgia, serif',
-            opacity: 0.015,
-            letterSpacing: '-0.03em',
-            color: '#8B7355',
-            transform: 'rotate(-5deg)',
-          }}
-          aria-hidden="true"
-        >
-          COLLECTIONS
-        </span>
+        {/* Section label */}
+        <div className="px-8 md:px-16 mb-16">
+          <StickerText variant="archive" rotation={-0.5} color="transparent" size="xs">
+            04 COLLECTIONS
+          </StickerText>
+        </div>
 
-        {/* Third layer */}
-        <span
-          className="absolute pointer-events-none select-none"
-          style={{
-            top: 'calc(3% + 12px)',
-            left: 'calc(-10% + 12px)',
-            fontSize: 'clamp(8rem, 18vw, 25rem)',
-            fontWeight: 200,
-            fontFamily: 'var(--font-serif), Georgia, serif',
-            opacity: 0.008,
-            letterSpacing: '-0.03em',
-            color: '#4A4A4A',
-            transform: 'rotate(-5deg)',
-          }}
-          aria-hidden="true"
-        >
-          COLLECTIONS
-        </span>
+        {/* Collections Grid - 4 key slots */}
+        <div className="px-8 md:px-16 lg:px-24">
+          <div className="flex flex-wrap items-start gap-8 md:gap-6">
+            {/* Collection 1: Main highlight */}
+            <div className="relative" style={{ transform: 'rotate(-1deg)' }}>
+              <Slot
+                {...slot('home-collections-001', 'DECONSTRUCTION')}
+                size="large"
+                rotation={-2}
+                clip="irregular-1"
+                shadow="offset-lg"
+                zIndex={15}
+                annotationNumber="D-001"
+                decoration="tape-corner"
+              />
+              <div className="mt-6 ml-2">
+                <Link href="/collections/deconstruction" className="group">
+                  <GrainDisplay
+                    text="DECONSTRUCTION"
+                    variant="photocopy"
+                    className="group-hover:opacity-60 transition-opacity"
+                    style={{ fontSize: 'clamp(1.2rem, 3vw, 1.8rem)' }}
+                  />
+                </Link>
+              </div>
+            </div>
 
-        {/* Second background layer */}
-        <span
-          className="absolute pointer-events-none select-none"
-          style={{
-            bottom: '5%',
-            right: '-8%',
-            fontSize: 'clamp(10rem, 22vw, 30rem)',
-            fontWeight: 100,
-            fontFamily: 'var(--font-mono), monospace',
-            opacity: 0.02,
-            color: '#0A0A0A',
-            transform: 'rotate(8deg)',
-          }}
-          aria-hidden="true"
-        >
-          04
-        </span>
+            {/* Collection 2: Secondary */}
+            <div className="relative" style={{ marginTop: '5rem', transform: 'rotate(1.5deg)' }}>
+              <Slot
+                {...slot('home-collections-002', 'FRAGMENTS')}
+                size="medium"
+                rotation={3}
+                clip="organic-2"
+                shadow="float"
+                zIndex={14}
+                decoration="pin"
+              />
+              <div className="mt-4">
+                <Link href="/collections/fragments" className="group">
+                  <span className="font-mono text-xs uppercase tracking-widest text-yon-grey/50 group-hover:text-yon-black transition-colors">
+                    FRAGMENTS →
+                  </span>
+                </Link>
+              </div>
+            </div>
 
-        {/* Collection 1: DECONSTRUCTION */}
-        <div className="relative mb-20 px-8 md:px-16">
-          <div className="flex flex-wrap items-start gap-4 md:gap-0">
-            {/* Main look */}
+            {/* Collection 3: Accent */}
             <Slot
-              {...slot('home-collections-001', 'DECONSTRUCTION / 01')}
-              size="large"
-              rotation={-2.5}
-              clip="irregular-1"
-              shadow="offset-lg"
-              zIndex={15}
-              annotationNumber="D-001"
-              decoration="tape-corner"
-            />
-
-            {/* Detail overlapping */}
-            <Slot
-              {...slot('home-collections-002', 'DETAIL')}
+              {...slot('home-collections-003', 'VOID')}
               size="small"
-              rotation={5}
-              clip="torn-1"
-              zIndex={20}
-              overlapX={80}
-              style={{ marginTop: '6rem' }}
-              decoration="pin"
+              rotation={-5}
+              clip="corner-cut"
+              shadow="dramatic"
+              zIndex={16}
+              grayscale
+              style={{ marginTop: '10rem' }}
             />
 
-            {/* Swatch with decoration */}
+            {/* Collection 4: Swatch/texture */}
             <Slot
-              {...slot('home-collections-003', 'DENIM')}
+              {...slot('home-collections-004', 'MATERIAL')}
               size="swatch"
-              rotation={-10}
+              rotation={10}
               border="rough"
-              decoration="tape-top"
-              zIndex={25}
-              style={{ marginLeft: '-1.5rem', marginTop: '1.5rem' }}
-            />
-
-            {/* Extra tiny */}
-            <Slot
-              {...slot('home-collections-004', 'REF')}
-              size="micro"
-              rotation={12}
-              border="thin"
-              zIndex={22}
-              style={{ marginLeft: '1rem', marginTop: '8rem' }}
-            />
-          </div>
-
-          {/* Collection info with GRAIN experimental typography */}
-          <div className="mt-10 ml-4" style={{ transform: 'rotate(-1deg)' }}>
-            <Link href="/collections/deconstruction" className="group">
-              <GrainDisplay
-                text="DECONSTRUCTION"
-                variant="photocopy"
-                className="group-hover:opacity-70 transition-opacity"
-                style={{ fontSize: 'clamp(1.5rem, 4vw, 2.2rem)' }}
-              />
-              <ExperimentalText
-                text="View Collection →"
-                variant="caption"
-                effect="wave"
-                intensity="medium"
-                className="mt-3 block"
-              />
-            </Link>
-          </div>
-        </div>
-
-        {/* Collection 2: FRAGMENTS - Right aligned */}
-        <div className="relative mb-20 px-8 md:px-16 flex justify-end">
-          <div className="flex flex-wrap items-end gap-4 md:gap-0">
-            <Slot
-              {...slot('home-collections-005', 'FRAGMENTS / 01')}
-              size="medium"
-              rotation={3}
-              clip="organic-2"
-              shadow="float"
-              zIndex={15}
-              annotationNumber="F-001"
-            />
-
-            <Slot
-              {...slot('home-collections-006', 'TEXTURE')}
-              size="tiny"
-              rotation={-15}
-              border="brutal"
-              zIndex={20}
-              decoration="pin-red"
-              style={{ marginLeft: '-2.5rem', marginBottom: '3rem' }}
-            />
-
-            <Slot
-              {...slot('home-collections-007', 'NYLON')}
-              size="swatch"
-              rotation={8}
-              border="accent"
               zIndex={18}
-              style={{ marginLeft: '0.5rem' }}
+              style={{ marginTop: '3rem' }}
             />
           </div>
-        </div>
-
-        {/* Collection 3: VOID - Scattered */}
-        <div className="relative px-8 md:px-16">
-          <Slot
-            {...slot('home-collections-008', 'VOID / 01')}
-            size="medium"
-            position="relative"
-            rotation={-1.5}
-            clip="corner-cut"
-            shadow="dramatic"
-            zIndex={15}
-            style={{ marginLeft: '18%' }}
-            decoration="staple"
-            grayscale
-          />
-
-          <Slot
-            {...slot('home-collections-009', 'SILHOUETTE')}
-            size="small-square"
-            position="absolute"
-            top="0"
-            right="12%"
-            rotation={7}
-            clip="diagonal-2"
-            zIndex={12}
-            sepia
-          />
-
-          <Slot
-            {...slot('home-collections-010', 'VOL')}
-            size="tiny"
-            position="absolute"
-            top="40%"
-            right="25%"
-            rotation={-8}
-            border="thin"
-            zIndex={18}
-            decoration="clip"
-          />
-        </div>
-
-        {/* Scattered labels with experimental typography */}
-        <div
-          className="absolute"
-          style={{ top: '15%', right: '20%', transform: 'rotate(-4deg)', zIndex: 50 }}
-        >
-          <AnnotationText text="CURRENT" variant="tag" />
-        </div>
-        <div
-          className="absolute"
-          style={{ top: '45%', left: '8%', transform: 'rotate(6deg)', zIndex: 50 }}
-        >
-          <AnnotationText text="IN PROGRESS" variant="stamp" rotation={2} />
         </div>
 
         {/* View all link */}
-        <div className="text-center mt-20">
+        <div className="text-center mt-24">
           <Link
             href="/collections"
-            className="inline-block font-mono uppercase tracking-[0.25em] text-yon-grey/60 hover:text-yon-black transition-colors border-b border-yon-grey/20 hover:border-yon-black pb-1"
-            style={{ fontSize: '0.65rem' }}
+            className="inline-block font-mono uppercase tracking-[0.25em] text-yon-grey/50 hover:text-yon-black transition-colors border-b border-yon-grey/20 hover:border-yon-black pb-1"
+            style={{ fontSize: '0.6rem' }}
           >
             View All Collections
           </Link>
@@ -838,70 +418,41 @@ export default async function HomePage() {
 
       {/* ============================================
           SECTION 4: Process Teaser
-          Sketchbook feel with 8+ slots
+          3 slots showing sketch-to-finish journey
           ============================================ */}
-      <section className="relative min-h-[80vh] w-full py-20 overflow-hidden bg-yon-ivory/30 texture-paper">
-        {/* Background with layered effect */}
+      <section className="relative min-h-[75vh] w-full py-24 overflow-hidden bg-yon-ivory/20 texture-paper">
+        {/* Background */}
         <span
           className="absolute pointer-events-none select-none"
           style={{
-            bottom: '8%',
-            right: '-8%',
-            fontSize: 'clamp(10rem, 25vw, 35rem)',
+            bottom: '10%',
+            right: '-6%',
+            fontSize: 'clamp(11rem, 28vw, 38rem)',
             fontWeight: 100,
             fontFamily: 'var(--font-serif), Georgia, serif',
-            opacity: 0.025,
-            color: '#0A0A0A',
-            transform: 'rotate(5deg)',
-          }}
-          aria-hidden="true"
-        >
-          PROCESS
-        </span>
-
-        <span
-          className="absolute pointer-events-none select-none"
-          style={{
-            bottom: 'calc(8% + 5px)',
-            right: 'calc(-8% + 5px)',
-            fontSize: 'clamp(10rem, 25vw, 35rem)',
-            fontWeight: 100,
-            fontFamily: 'var(--font-serif), Georgia, serif',
-            opacity: 0.01,
-            color: '#8B7355',
-            transform: 'rotate(5deg)',
-          }}
-          aria-hidden="true"
-        >
-          PROCESS
-        </span>
-
-        <span
-          className="absolute pointer-events-none select-none"
-          style={{
-            top: '15%',
-            left: '-3%',
-            fontSize: 'clamp(5rem, 12vw, 15rem)',
-            fontWeight: 100,
-            fontFamily: 'var(--font-mono), monospace',
             opacity: 0.02,
-            letterSpacing: '0.15em',
-            color: '#0A0A0A',
-            transform: 'rotate(-90deg)',
-            transformOrigin: 'left top',
+            color: 'var(--yon-black)',
+            transform: 'rotate(4deg)',
           }}
           aria-hidden="true"
         >
-          01—08
+          PROCESS
         </span>
 
         <div className="relative z-10 px-8 md:px-16 lg:px-24">
-          <div className="flex flex-wrap gap-6 items-start">
-            {/* Sketch slots */}
+          {/* Section label */}
+          <div className="mb-12">
+            <StickerText variant="tape" rotation={2} size="xs">
+              BEHIND THE SCENES
+            </StickerText>
+          </div>
+
+          {/* Process slots - 3 showing journey */}
+          <div className="flex flex-wrap gap-8 items-start">
             <Slot
-              {...slot('home-process-001', 'SKETCH / 001')}
+              {...slot('home-process-001', 'SKETCH')}
               size="medium"
-              rotation={-4}
+              rotation={-3}
               border="rough"
               decoration="tape-top"
               zIndex={15}
@@ -910,14 +461,14 @@ export default async function HomePage() {
             />
 
             <Slot
-              {...slot('home-process-002', 'ITERATION')}
+              {...slot('home-process-002', 'TOILE')}
               size="small"
-              rotation={8}
+              rotation={5}
               clip="torn-3"
               zIndex={18}
-              style={{ marginTop: '4rem' }}
               sepia
               decoration="pin"
+              style={{ marginTop: '4rem' }}
             />
 
             <Slot
@@ -928,116 +479,52 @@ export default async function HomePage() {
               zIndex={20}
               decoration="mark-check"
             />
-
-            <Slot
-              {...slot('home-process-004', 'REJECTED')}
-              size="tiny"
-              rotation={12}
-              clip="irregular-3"
-              zIndex={16}
-              grayscale
-              decoration="mark-x"
-              style={{ marginTop: '2rem' }}
-            />
-
-            <Slot
-              {...slot('home-process-005', 'NOTE')}
-              size="micro"
-              rotation={-15}
-              border="dashed"
-              zIndex={22}
-              style={{ marginLeft: '-1rem', marginTop: '5rem' }}
-            />
-          </div>
-
-          {/* Swatch cluster */}
-          <div className="absolute right-16 top-20 flex gap-2">
-            <Slot
-              {...slot('home-process-006', 'A')}
-              size="swatch"
-              rotation={-5}
-              border="thin"
-              zIndex={10}
-            />
-            <Slot
-              {...slot('home-process-007', 'B')}
-              size="swatch"
-              rotation={8}
-              border="accent"
-              zIndex={11}
-              overlapX={20}
-            />
-            <Slot
-              {...slot('home-process-008', 'C')}
-              size="swatch"
-              rotation={-12}
-              border="rough"
-              zIndex={12}
-              overlapX={25}
-            />
           </div>
 
           {/* Process link */}
           <div className="mt-16" style={{ transform: 'rotate(-0.5deg)' }}>
             <Link href="/process" className="group">
-              <span
-                className="font-mono uppercase tracking-[0.2em] text-yon-grey/60 group-hover:text-yon-black transition-colors"
-                style={{ fontSize: '0.65rem' }}
-              >
+              <span className="font-mono uppercase tracking-[0.2em] text-yon-grey/50 group-hover:text-yon-black transition-colors" style={{ fontSize: '0.6rem' }}>
                 Explore Process →
               </span>
             </Link>
           </div>
         </div>
 
+        {/* Handwritten note */}
         <div
           className="absolute"
-          style={{ top: '30%', right: '10%', transform: 'rotate(5deg)', zIndex: 50 }}
-        >
-          <NumberTag index={3} />
-        </div>
-        <div
-          className="absolute"
-          style={{ bottom: '25%', left: '45%', transform: 'rotate(-3deg)', zIndex: 50 }}
+          style={{ bottom: '25%', right: '15%', transform: 'rotate(-3deg)', zIndex: 50 }}
         >
           <HandwrittenNote text="needs revision" />
+        </div>
+
+        {/* Number tag */}
+        <div
+          className="absolute"
+          style={{ top: '25%', right: '10%', zIndex: 50 }}
+        >
+          <NumberTag index={3} />
         </div>
       </section>
 
       {/* ============================================
           SECTION 5: Contact CTA
-          Minimal with accent slots
+          Minimal with 1 accent slot
           ============================================ */}
-      <section className="relative min-h-[60vh] w-full flex items-center justify-center overflow-hidden">
-        {/* Background symbol with offset */}
+      <section className="relative min-h-[55vh] w-full flex items-center justify-center overflow-hidden">
+        {/* Background symbol */}
         <span
           className="absolute pointer-events-none select-none"
           style={{
             top: '20%',
             left: '50%',
             transform: 'translateX(-50%)',
-            fontSize: 'clamp(15rem, 35vw, 50rem)',
+            fontSize: 'clamp(16rem, 38vw, 55rem)',
             fontWeight: 100,
             fontFamily: 'var(--font-serif), Georgia, serif',
-            opacity: 0.015,
-            color: '#0A0A0A',
-          }}
-          aria-hidden="true"
-        >
-          →
-        </span>
-
-        <span
-          className="absolute pointer-events-none select-none"
-          style={{
-            top: 'calc(20% + 8px)',
-            left: 'calc(50% + 8px)',
-            transform: 'translateX(-50%)',
-            fontSize: 'clamp(15rem, 35vw, 50rem)',
-            fontWeight: 100,
-            fontFamily: 'var(--font-serif), Georgia, serif',
-            opacity: 0.008,
-            color: '#8B7355',
+            opacity: 0.012,
+            color: 'var(--yon-black)',
           }}
           aria-hidden="true"
         >
@@ -1048,76 +535,48 @@ export default async function HomePage() {
           <GlitchTitle
             text="Get in Touch"
             size="heading"
-            glitchOffset={5}
+            glitchOffset={4}
             charRotation
-            rotationIntensity={2.5}
-            style={{
-              transform: 'rotate(-2deg)',
-            }}
+            rotationIntensity={2}
+            style={{ transform: 'rotate(-1.5deg)' }}
             as="h2"
           />
 
           <div className="mt-10">
-            <Link
-              href="/contact"
-              className="inline-block group"
-            >
+            <Link href="/contact" className="inline-block group">
               <ExperimentalText
                 text="Contact →"
                 variant="caption"
                 effect="scatter"
                 intensity="medium"
-                className="group-hover:opacity-70 transition-opacity"
+                className="group-hover:opacity-60 transition-opacity"
               />
             </Link>
           </div>
 
-          <div className="mt-12">
+          <div className="mt-10">
             <a
               href="mailto:hello@askew.studio"
-              className="font-mono text-yon-grey/40 hover:text-yon-black transition-colors"
-              style={{ fontSize: '0.75rem', letterSpacing: '0.1em' }}
+              className="font-mono text-yon-grey/35 hover:text-yon-black transition-colors"
+              style={{ fontSize: '0.7rem', letterSpacing: '0.1em' }}
             >
               hello@askew.studio
             </a>
           </div>
         </div>
 
-        {/* Accent slots */}
+        {/* Single accent slot */}
         <Slot
           {...slot('home-contact-001', 'STUDIO')}
           size="small"
           position="absolute"
-          bottom="18%"
-          right="8%"
-          rotation={-8}
+          bottom="20%"
+          right="10%"
+          rotation={-6}
           clip="irregular-6"
           zIndex={5}
           grayscale
           decoration="tape-corner"
-        />
-
-        <Slot
-          {...slot('home-contact-002', 'MAIL')}
-          size="tiny"
-          position="absolute"
-          top="25%"
-          left="12%"
-          rotation={10}
-          border="thin"
-          zIndex={6}
-          decoration="pin"
-        />
-
-        <Slot
-          {...slot('home-contact-003', '@')}
-          size="micro"
-          position="absolute"
-          bottom="30%"
-          left="25%"
-          rotation={-5}
-          border="accent"
-          zIndex={7}
         />
       </section>
 

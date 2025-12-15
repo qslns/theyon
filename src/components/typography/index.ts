@@ -43,3 +43,15 @@ export {
   GlitchText,
   ScatterText,
 } from './CharacterEffect'
+
+// NEW: Sticker/Label Typography System
+export { default as StickerText } from './StickerText'
+export {
+  CollectionLabel,
+  SeasonLabel,
+  ArchiveStamp,
+  TapeNote,
+  MargielaTag,
+  StatusLabel,
+  PinnedNote,
+} from './StickerText'
