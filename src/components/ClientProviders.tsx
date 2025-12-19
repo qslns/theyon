@@ -19,9 +19,6 @@ const BackToTop = dynamic(() => import('@/components/BackToTop'), {
 const ScrollProgress = dynamic(() => import('@/components/ScrollProgress'), {
   ssr: false,
 })
-const CustomCursor = dynamic(() => import('@/components/CustomCursor'), {
-  ssr: false,
-})
 
 const ClientProviders = memo(function ClientProviders({ children }: { children: React.ReactNode }) {
   return (
@@ -29,7 +26,6 @@ const ClientProviders = memo(function ClientProviders({ children }: { children: 
       <SlotDebugProvider>
         <LenisProvider>
           <LightboxProvider>
-            <CustomCursor />
             <ScrollProgress />
             {children}
             <BackToTop />
