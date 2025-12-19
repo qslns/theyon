@@ -111,7 +111,7 @@ type FrameStyle =
 type SlotType = 'normal' | 'nukki' | 'background'
 
 // Film filter types
-type FilmFilter = 'default' | 'warm' | 'cool' | 'vintage' | 'faded' | 'none'
+type FilmFilter = 'default' | 'warm' | 'cool' | 'vintage' | 'faded' | 'bw' | 'none'
 
 interface SlotProps {
   children?: ReactNode
@@ -391,6 +391,7 @@ function Slot({
     cool: 'film-filter-cool film-grain',
     vintage: 'film-filter-vintage film-grain film-vignette',
     faded: 'film-filter-faded film-grain',
+    bw: 'film-filter-bw film-grain film-vignette',
     none: '',
   }
 

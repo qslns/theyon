@@ -122,6 +122,7 @@ export default async function ContactPage() {
           zIndex={18}
           decoration="tape-corner"
           frameStyle="polaroid"
+          filmFilter="vintage"
         />
 
         {/* Slot 3: Small accent */}
@@ -137,6 +138,7 @@ export default async function ContactPage() {
           zIndex={20}
           decoration="pin"
           frameStyle="vintage"
+          filmFilter="warm"
         />
 
         {/* Slot 4: Swatch */}
@@ -151,6 +153,7 @@ export default async function ContactPage() {
           zIndex={22}
           decoration="tape-top"
           frameStyle="torn"
+          filmFilter="faded"
         />
 
         {/* Contact Form - Client Component */}

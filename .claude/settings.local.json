@@ -48,7 +48,8 @@
       "Bash(npm run lint:*)",
       "Bash(ls:*)",
       "Bash(npx next build)",
-      "Bash(wc:*)"
+      "Bash(wc:*)",
+      "Bash(npx stylelint:*)"
     ],
     "deny": [],
     "ask": []

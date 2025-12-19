@@ -121,6 +121,7 @@ export default async function ProcessPage() {
           zIndex={18}
           decoration="pin"
           frameStyle="crumpled"
+          filmFilter="vintage"
         />
 
         {/* Slot 3: Fabric swatch */}
@@ -135,6 +136,7 @@ export default async function ProcessPage() {
           zIndex={20}
           decoration="tape-top"
           frameStyle="torn"
+          filmFilter="faded"
         />
 
         {/* Slot 4: Small mood */}
@@ -259,6 +261,7 @@ export default async function ProcessPage() {
           decoration="tape-corner"
           frameStyle="film-strip"
           frameNumber="03"
+          filmFilter="faded"
         />
 
         <Slot
@@ -271,6 +274,7 @@ export default async function ProcessPage() {
           border="rough"
           zIndex={6}
           frameStyle="polaroid"
+          filmFilter="warm"
         />
       </section>
 

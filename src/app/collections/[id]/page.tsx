@@ -205,6 +205,7 @@ export default async function CollectionDetailPage({ params }: PageProps) {
           annotationNumber={collection.index}
           frameStyle="film-strip"
           frameNumber={collection.index}
+          filmFilter="warm"
         />
 
         <Slot
@@ -219,6 +220,7 @@ export default async function CollectionDetailPage({ params }: PageProps) {
           zIndex={18}
           decoration="tape-corner"
           frameStyle="polaroid"
+          filmFilter="vintage"
         />
 
         <Slot
@@ -246,6 +248,7 @@ export default async function CollectionDetailPage({ params }: PageProps) {
           zIndex={24}
           decoration="tape-top"
           frameStyle="torn"
+          filmFilter="faded"
         />
 
         {/* Title card */}
@@ -334,6 +337,7 @@ export default async function CollectionDetailPage({ params }: PageProps) {
               annotationNumber={`${collection.index}-01`}
               frameStyle="contact-sheet"
               frameNumber="01"
+              filmFilter="warm"
             />
 
             <Slot

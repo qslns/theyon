@@ -2805,6 +2805,40 @@ html {
   z-index: 2;
 }
 
+/* B&W 필터 - 고대비 흑백 (Classic B&W Film) */
+.film-filter-bw {
+  filter:
+    grayscale(100%)
+    contrast(1.15)
+    brightness(1.02);
+  position: relative;
+}
+
+.film-filter-bw::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: rgba(10, 10, 10, 0.03);
+  mix-blend-mode: multiply;
+  z-index: 1;
+}
+
+.film-filter-bw::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 40%,
+      rgba(10, 10, 10, 0.1) 100%
+    );
+  mix-blend-mode: multiply;
+  z-index: 2;
+}
+
 /* 그레인 텍스처 오버레이 (필름 느낌 강화) */
 .film-grain {
   position: relative;

@@ -88,6 +88,7 @@ const FILM_FILTER_OPTIONS = [
   { title: '❄️ Cool (차가운 톤)', value: 'cool' },
   { title: '📷 Vintage (빈티지)', value: 'vintage' },
   { title: '🌫️ Faded (바랜 색감)', value: 'faded' },
+  { title: '⬛ B&W (흑백)', value: 'bw' },
   { title: '🚫 None (필터 없음)', value: 'none' },
 ]
 

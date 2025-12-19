@@ -112,6 +112,7 @@ function CollectionMoodboard({
             zIndex={24}
             decoration="tape-top"
             frameStyle="torn"
+            filmFilter="faded"
           />
 
           {/* Collection info */}

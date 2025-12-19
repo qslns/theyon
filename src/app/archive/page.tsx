@@ -144,6 +144,7 @@ export default async function ArchivePage() {
           overlapX={60}
           decoration="staple"
           frameStyle="crumpled"
+          filmFilter="vintage"
         />
 
         {/* Slot 4: Small accent */}
@@ -159,6 +160,7 @@ export default async function ArchivePage() {
           grayscale
           decoration="pin"
           frameStyle="torn"
+          filmFilter="faded"
         />
 
         {/* Main title */}
@@ -290,6 +292,7 @@ export default async function ArchivePage() {
           zIndex={6}
           grayscale
           frameStyle="polaroid"
+          filmFilter="faded"
         />
       </section>
 

@@ -114,6 +114,7 @@ export default async function LabPage() {
           texture="grain"
           frameStyle="contact-sheet"
           frameNumber="01"
+          filmFilter="warm"
         />
 
         {/* Slot 2: Large - right */}
@@ -146,6 +147,7 @@ export default async function LabPage() {
           overlapX={60}
           decoration="staple"
           frameStyle="crumpled"
+          filmFilter="vintage"
         />
 
         {/* Slot 4: Small - bottom */}

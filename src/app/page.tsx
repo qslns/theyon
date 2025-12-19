@@ -4,7 +4,6 @@ import {
   Slot,
   BackgroundSlot,
   ScrollingBackgroundSlot,
-  Watermark,
   SectionNumber,
   DecoLine,
   DotsPattern,
@@ -138,6 +137,7 @@ export default async function HomePage() {
           texture="grain"
           frameStyle="film-strip"
           frameNumber="01"
+          filmFilter="warm"
         />
 
         {/* Slot 2: Supporting - Right side (25% width) */}
@@ -153,6 +153,7 @@ export default async function HomePage() {
           zIndex={18}
           decoration="tape-corner"
           frameStyle="polaroid"
+          filmFilter="vintage"
         />
 
         {/* Slot 3: Accent - Bottom right detail */}
@@ -168,6 +169,7 @@ export default async function HomePage() {
           zIndex={25}
           decoration="pin"
           frameStyle="slide-mount"
+          filmFilter="warm"
         />
 
         {/* Slot 4: Swatch - Material sample */}
@@ -182,6 +184,7 @@ export default async function HomePage() {
           zIndex={22}
           decoration="tape-top"
           frameStyle="torn"
+          filmFilter="faded"
         />
 
         {/* Sticker label - Season */}
@@ -342,6 +345,7 @@ export default async function HomePage() {
           zIndex={9}
           sepia
           frameStyle="sketchbook"
+          filmFilter="vintage"
         />
 
         {/* Handwritten note */}
@@ -405,6 +409,7 @@ export default async function HomePage() {
                 decoration="tape-corner"
                 frameStyle="contact-sheet"
                 frameNumber="01"
+                filmFilter="warm"
               />
               <div className="mt-6 ml-2">
                 <Link href="/collections/deconstruction" className="group">
@@ -429,6 +434,7 @@ export default async function HomePage() {
                 zIndex={14}
                 decoration="pin"
                 frameStyle="polaroid"
+                filmFilter="vintage"
               />
               <div className="mt-4">
                 <Link href="/collections/fragments" className="group">
@@ -462,6 +468,7 @@ export default async function HomePage() {
               zIndex={18}
               style={{ marginTop: '3rem' }}
               frameStyle="handcut"
+              filmFilter="faded"
             />
           </div>
         </div>
@@ -539,6 +546,7 @@ export default async function HomePage() {
               decoration="pin"
               style={{ marginTop: '4rem' }}
               frameStyle="crumpled"
+              filmFilter="warm"
             />
 
             <Slot
@@ -550,6 +558,7 @@ export default async function HomePage() {
               decoration="mark-check"
               frameStyle="film-strip"
               frameNumber="03"
+              filmFilter="cool"
             />
           </div>
 

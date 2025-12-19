@@ -171,6 +171,7 @@ export default async function CollectionsPage() {
           texture="grain"
           frameStyle="film-strip"
           frameNumber="01"
+          filmFilter="warm"
         />
 
         {/* Slot 2: Medium - right top */}
@@ -186,6 +187,7 @@ export default async function CollectionsPage() {
           zIndex={20}
           decoration="tape-corner"
           frameStyle="polaroid"
+          filmFilter="vintage"
         />
 
         {/* Slot 3: Small - accent */}
@@ -215,6 +217,7 @@ export default async function CollectionsPage() {
           zIndex={24}
           decoration="tape-top"
           frameStyle="torn"
+          filmFilter="faded"
         />
 
         {/* Season label */}
@@ -371,6 +374,7 @@ export default async function CollectionsPage() {
           zIndex={12}
           sepia
           frameStyle="sketchbook"
+          filmFilter="vintage"
         />
       </section>
 
