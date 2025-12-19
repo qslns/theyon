@@ -286,10 +286,10 @@ function CollectionCard({ collection, index }: { collection: Collection; index: 
 
 // Archive preview images for lightbox
 const archivePreviewImages = [
-  { src: '/images/archive/aw25-001.jpg', alt: 'AW25-001', label: 'AW25-001' },
-  { src: '/images/archive/ss25.jpg', alt: 'SS25', label: 'SS25' },
-  { src: '/images/archive/ss25-002.jpg', alt: 'SS25-002', label: 'SS25-002' },
-  { src: '/images/archive/aw24.jpg', alt: 'AW24', label: 'AW24' },
+  { src: '/images/archive/look-001.jpg', alt: 'LOOK 001', label: 'LOOK 001' },
+  { src: '/images/archive/look-002.jpg', alt: 'LOOK 002', label: 'LOOK 002' },
+  { src: '/images/archive/detail-001.jpg', alt: 'DETAIL', label: 'DETAIL' },
+  { src: '/images/archive/process-001.jpg', alt: 'PROCESS', label: 'PROCESS' },
 ]
 
 export default function AnimatedSections({
@@ -507,10 +507,10 @@ export default function AnimatedSections({
                   whileHover={{ scale: 1.02, rotate: 0 }}
                   onClick={() => handleArchiveImageClick(0)}
                   data-cursor="image"
-                  aria-label="View AW25-001"
+                  aria-label="View LOOK 001"
                 >
                   <span className="font-mono text-[10px] text-yon-silver/30 tracking-[0.2em] group-hover:text-yon-silver/50 transition-colors">
-                    AW25-001
+                    LOOK 001
                   </span>
                   {/* Hover zoom icon */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center bg-yon-black/20">
@@ -527,10 +527,10 @@ export default function AnimatedSections({
                   whileHover={{ scale: 1.05, rotate: 0 }}
                   onClick={() => handleArchiveImageClick(1)}
                   data-cursor="image"
-                  aria-label="View SS25"
+                  aria-label="View LOOK 002"
                 >
                   <span className="font-mono text-[9px] text-yon-silver/30 tracking-wider group-hover:text-yon-silver/50 transition-colors">
-                    SS25
+                    LOOK 002
                   </span>
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center bg-yon-black/20">
                     <svg width="24" height="24" viewBox="0 0 32 32" fill="none" stroke="#FAFAFA" strokeWidth="1.5">
@@ -546,10 +546,10 @@ export default function AnimatedSections({
                   whileHover={{ scale: 1.02, rotate: 0 }}
                   onClick={() => handleArchiveImageClick(2)}
                   data-cursor="image"
-                  aria-label="View SS25-002"
+                  aria-label="View DETAIL"
                 >
                   <span className="font-mono text-[9px] text-yon-silver/30 tracking-wider group-hover:text-yon-silver/50 transition-colors">
-                    SS25-002
+                    DETAIL
                   </span>
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center bg-yon-black/20">
                     <svg width="24" height="24" viewBox="0 0 32 32" fill="none" stroke="#FAFAFA" strokeWidth="1.5">
@@ -564,10 +564,10 @@ export default function AnimatedSections({
                   whileHover={{ scale: 1.05, rotate: 0 }}
                   onClick={() => handleArchiveImageClick(3)}
                   data-cursor="image"
-                  aria-label="View AW24"
+                  aria-label="View PROCESS"
                 >
                   <span className="font-mono text-[9px] text-yon-silver/30 tracking-wider group-hover:text-yon-silver/50 transition-colors">
-                    AW24
+                    PROCESS
                   </span>
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center bg-yon-black/20">
                     <svg width="24" height="24" viewBox="0 0 32 32" fill="none" stroke="#FAFAFA" strokeWidth="1.5">

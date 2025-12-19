@@ -8,13 +8,12 @@ ASKEW (어스큐) = "비뚤어진, 기울어진"
 
 **Slogan**: "Twisted yet Harmonious"
 **Message**: "Structure woven in silence, beauty caught in light."
-**Collection**: Spider's Web Collection
 
 ## CORE PHILOSOPHY
 - **정체성**: 실험적 패션 포트폴리오 (Wearable Sculpture)
 - **핵심 미학**: 뒤틀렸지만 조화로운 - 모든 요소가 약간씩 어긋나 있지만 전체적으로 아름다운 구성
-- **디자이너**: Taehyun Lee (이태현), 사사다 패션스쿨
-- **목적**: CSM, Parsons, Antwerp 대학원 포트폴리오
+- **디자이너**: Taehyun Lee (이태현)
+- **목적**: 패션 디자인 포트폴리오
 - **도메인**: askewstudio.vercel.app
 
 ## WEBSITE STRUCTURE
@@ -23,12 +22,12 @@ ASKEW (어스큐) = "비뚤어진, 기울어진"
 - Deconstructivist 스타일 이미지 배치
 - 패럴랙스 스크롤 효과
 - "ASKEW" 브랜드 타이포그래피
-- Spider's Web Collection 프리뷰
+- Collections 프리뷰
 
 ### COLLECTIONS (/collections)
 - 비대칭 그리드 갤러리
 - Sanity CMS 연동 (선택적)
-- 시즌별 필터링 (AW25, SS25, AW24, SS24)
+- 상태별 필터링 (Current, Archive)
 
 ### COLLECTIONS/[SLUG] (/collections/[slug])
 - 동적 라우팅
@@ -37,7 +36,7 @@ ASKEW (어스큐) = "비뚤어진, 기울어진"
 
 ### ARCHIVE (/archive)
 - 리서치/프로세스 문서화
-- 시즌별 필터링
+- 카테고리별 필터링
 - 카테고리: Construction, Material, Form, Process
 
 ### ABOUT (/about)

@@ -104,10 +104,7 @@ src/
 
 ## Portfolio Purpose
 
-This website serves as a portfolio for graduate school applications to:
-- Central Saint Martins (CSM)
-- Parsons School of Design
-- Royal Academy of Fine Arts Antwerp
+This website serves as an experimental fashion design portfolio showcasing wearable sculpture and research-driven fashion.
 
 ## License
 
@@ -116,6 +113,5 @@ This website serves as a portfolio for graduate school applications to:
 ---
 
 **Designer:** Taehyun Lee
-**School:** SASADA Fashion School
 
-*"Beyond fashion, beyond reach, beyond time."*
+*"Twisted yet Harmonious."*

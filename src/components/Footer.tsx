@@ -224,7 +224,7 @@ const Footer = memo(function Footer() {
                   Based in
                 </span>
                 <span className="text-yon-silver" style={{ fontSize: '0.85rem' }}>
-                  Seoul & Tokyo
+                  Seoul
                 </span>
               </div>
 

@@ -22,7 +22,6 @@ import {
   LabelText,
   WhisperText,
   StickerText,
-  SeasonLabel,
   HandwrittenNote,
 } from '@/components/typography'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
