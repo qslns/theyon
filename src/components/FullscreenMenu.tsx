@@ -219,7 +219,7 @@ function FullscreenMenu({ isOpen, onClose }: FullscreenMenuProps) {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.9 }}
             >
-              2024
+              ASKEW
             </motion.span>
 
             {/* Scattered accent marks */}

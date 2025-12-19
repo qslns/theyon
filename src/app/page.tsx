@@ -23,7 +23,6 @@ import {
   HandwrittenNote,
   GrainDisplay,
   StickerText,
-  SeasonLabel,
   MargielaTag,
 } from '@/components/typography'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
@@ -187,12 +186,14 @@ export default async function HomePage() {
           filmFilter="faded"
         />
 
-        {/* Sticker label - Season */}
+        {/* Sticker label */}
         <div
           className="absolute"
           style={{ top: '12%', right: '35%', zIndex: 50 }}
         >
-          <SeasonLabel season="S/S" year="2025" rotation={-2} />
+          <StickerText variant="stamp" rotation={-2} color="accent" size="xs">
+            COLLECTION
+          </StickerText>
         </div>
 
         {/* Margiela-style number tag */}
@@ -226,14 +227,9 @@ export default async function HomePage() {
           />
         </div>
 
-        {/* Year - top right */}
+        {/* Label - top right */}
         <div className="absolute top-8 right-8 z-40 text-right">
           <LabelText text="Portfolio" style={{ fontSize: '0.55rem' }} />
-          <WhisperText
-            text="2024—25"
-            className="block mt-1"
-            style={{ fontSize: '0.5rem' }}
-          />
         </div>
 
         {/* Navigation hint - bottom center */}

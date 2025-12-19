@@ -15,7 +15,7 @@ import {
   NoiseOverlay,
   DecoDivider,
 } from '@/components/deconstructivist'
-import { GlitchTitle, StickerText, SeasonLabel } from '@/components/typography'
+import { GlitchTitle, StickerText } from '@/components/typography'
 import { getSlotImages, createSlotHelper } from '@/lib/sanity/slots'
 import CollectionsClient from './collections-client'
 
@@ -220,9 +220,11 @@ export default async function CollectionsPage() {
           filmFilter="faded"
         />
 
-        {/* Season label */}
+        {/* Collection label */}
         <div className="absolute" style={{ top: '12%', right: '30%', zIndex: 50 }}>
-          <SeasonLabel season="S/S" year="2025" rotation={-2} />
+          <StickerText variant="stamp" rotation={-2} color="accent" size="xs">
+            COLLECTION
+          </StickerText>
         </div>
 
         {/* Main title */}

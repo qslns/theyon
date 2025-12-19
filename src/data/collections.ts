@@ -26,11 +26,11 @@ export interface Collection {
 export const collections: Collection[] = [
   {
     id: 'COL_001',
-    code: 'SS25',
+    code: 'COL-A',
     title: 'DECONSTRUCTED_REALITY',
-    subtitle: 'SPRING SUMMER 2025',
-    year: 2025,
-    season: 'SPRING',
+    subtitle: 'COLLECTION A',
+    year: 0,
+    season: 'ANNUAL',
     status: 'UPCOMING',
     description: 'Reality bent through the lens of deconstruction. Each piece exists between structure and chaos.',
     philosophy: 'Fashion is not about selling. It is about creating moments that transcend commerce.',
@@ -53,15 +53,15 @@ export const collections: Collection[] = [
     ],
     techniques: ['Pattern deconstruction', 'Raw edge finishing', 'Asymmetric cutting'],
     materials: ['Raw canvas', 'Industrial mesh', 'Recycled synthetics'],
-    releaseDate: '2025-03-01'
+    releaseDate: 'ONGOING'
   },
   {
     id: 'COL_002',
-    code: 'FW24',
+    code: 'COL-B',
     title: 'TEMPORAL_DISTORTION',
-    subtitle: 'FALL WINTER 2024',
-    year: 2024,
-    season: 'FALL',
+    subtitle: 'COLLECTION B',
+    year: 0,
+    season: 'ANNUAL',
     status: 'CURRENT',
     description: 'Time folded onto itself. Past and future collapsed into singular moments of creation.',
     philosophy: 'Each garment is a timestamp of experimental research, not a commodity.',
@@ -79,14 +79,14 @@ export const collections: Collection[] = [
     ],
     techniques: ['Temporal layering', 'Phase shifting', 'Memory forming'],
     materials: ['Memory fabric', 'Shape-retaining alloys', 'Thermal-reactive fibers'],
-    releaseDate: '2024-09-01'
+    releaseDate: 'ONGOING'
   },
   {
     id: 'COL_003',
     code: 'ARCHIVE',
     title: 'GENESIS_EXPERIMENTS',
     subtitle: 'ONGOING RESEARCH',
-    year: 2024,
+    year: 0,
     season: 'ANNUAL',
     status: 'ARCHIVED',
     description: 'The beginning. Raw experiments that birthed the laboratory.',

@@ -4,11 +4,11 @@ import { Slot } from '@/components/deconstructivist'
 
 // Lab experiments data
 const experiments = [
-  { id: 'EXP-001', title: 'Material Splice', status: 'active', description: 'Contrasting fabric fusion techniques', date: '2024.11' },
-  { id: 'EXP-002', title: 'Zero Waste Pattern', status: 'testing', description: 'Pattern cutting with no fabric waste', date: '2024.10' },
-  { id: 'EXP-003', title: 'Modular System', status: 'paused', description: 'Interchangeable garment components', date: '2024.09' },
-  { id: 'EXP-004', title: 'Surface Treatment', status: 'complete', description: 'Post-production fabric manipulation', date: '2024.08' },
-  { id: 'EXP-005', title: 'Volume Study', status: 'active', description: '3D form through flat construction', date: '2024.11' },
+  { id: 'EXP-001', title: 'Material Splice', status: 'active', description: 'Contrasting fabric fusion techniques' },
+  { id: 'EXP-002', title: 'Zero Waste Pattern', status: 'testing', description: 'Pattern cutting with no fabric waste' },
+  { id: 'EXP-003', title: 'Modular System', status: 'paused', description: 'Interchangeable garment components' },
+  { id: 'EXP-004', title: 'Surface Treatment', status: 'complete', description: 'Post-production fabric manipulation' },
+  { id: 'EXP-005', title: 'Volume Study', status: 'active', description: '3D form through flat construction' },
 ]
 
 // Simplified experiment card - 2 slots per experiment
@@ -96,7 +96,7 @@ function ExperimentCard({
           </p>
 
           <span className="font-mono text-yon-grey/30 mt-3" style={{ fontSize: '0.5rem', letterSpacing: '0.1em' }}>
-            {experiment.date}
+            ONGOING
           </span>
         </div>
       </div>

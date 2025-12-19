@@ -37,7 +37,7 @@ export const philosophies: Philosophy[] = [
     ASKEW is an experimental fashion laboratory. We pursue the limits of fashion through rigorous research and uncompromising methodology.
 
     The laboratory is where fashion meets science, where fabric meets philosophy, where destruction creates beauty.`,
-    date: '2024-01-01',
+    date: 'ONGOING',
     category: 'MANIFESTO'
   },
   {
@@ -48,7 +48,7 @@ export const philosophies: Philosophy[] = [
     In the laboratory, we embrace failure as a teacher. Each failed experiment brings us closer to revelation.
 
     Pattern deconstruction is not about breaking things - it's about finding the beauty in broken things.`,
-    date: '2024-03-15',
+    date: 'ONGOING',
     category: 'THOUGHT'
   },
   {
@@ -59,7 +59,7 @@ export const philosophies: Philosophy[] = [
     We design for the future while honoring the destruction of the past. Each collection is a time capsule of NOW.
 
     Fashion that changes over time, that degrades beautifully, that evolves with wear - this is living fashion.`,
-    date: '2024-06-20',
+    date: 'ONGOING',
     category: 'PROCESS'
   },
   {
@@ -70,7 +70,7 @@ export const philosophies: Philosophy[] = [
     In fashion, what we don't create is as important as what we do create. The absence defines the presence.
 
     TWIST • BALANCE • REPEAT - The twist creates tension, the balance creates harmony, the repeat creates rhythm.`,
-    date: '2024-09-10',
+    date: 'ONGOING',
     category: 'REFLECTION'
   },
   {
@@ -81,7 +81,7 @@ export const philosophies: Philosophy[] = [
     We don't sell because selling diminishes the work. Each piece exists as art, as experiment, as statement.
 
     After exhibitions, after documentation, maybe one piece finds an owner. Not through transaction, but through understanding.`,
-    date: '2024-12-01',
+    date: 'ONGOING',
     category: 'MANIFESTO'
   }
 ]
@@ -134,16 +134,16 @@ export const archiveEntries: ArchiveEntry[] = [
     month: 'MARCH',
     day: 1,
     title: 'DECONSTRUCTED REALITY',
-    subtitle: 'Spring Summer 2025 Collection Launch',
+    subtitle: 'New Collection Launch',
     type: 'COLLECTION',
     category: 'REVELATION',
     content: 'Reality bent through the lens of deconstruction. Each piece exists between structure and chaos. No sales, only exhibition.',
     thoughts: [
       'Fashion is not about selling',
       'It is about creating moments that transcend commerce',
-      'SS25 is not a collection, it is a statement'
+      'This is not just a collection, it is a statement'
     ],
-    tags: ['COLLECTION', 'SS25', 'NO_SALES'],
+    tags: ['COLLECTION', 'EXPERIMENT', 'NO_SALES'],
     significance: 5,
     isPublic: true,
     relatedCollections: ['COL_001']
@@ -196,16 +196,16 @@ export const archiveEntries: ArchiveEntry[] = [
     month: 'SEPTEMBER',
     day: 1,
     title: 'TEMPORAL DISTORTION',
-    subtitle: 'Fall Winter 2024 Collection',
+    subtitle: 'Archive Collection',
     type: 'COLLECTION',
     category: 'REVELATION',
     content: 'Time folded onto itself. Past and future collapsed into singular moments of creation. Each garment is a timestamp of experimental research.',
     thoughts: [
       'Time is not linear',
       'Fashion exists in multiple dimensions',
-      'FW24 breaks temporal boundaries'
+      'Breaking temporal boundaries'
     ],
-    tags: ['COLLECTION', 'FW24', 'TIME'],
+    tags: ['COLLECTION', 'ARCHIVE', 'TIME'],
     significance: 5,
     isPublic: true,
     relatedCollections: ['COL_002']

@@ -70,8 +70,8 @@ function FloatingImage({
 
 // Hero images data for lightbox
 const heroImages = [
-  { label: 'AW25 / 001', src: '/images/hero/aw25-001.jpg', aspectRatio: '3/4' },
-  { label: 'SS25 / 002', src: '/images/hero/ss25-002.jpg', aspectRatio: '4/5' },
+  { label: 'LOOK / 001', src: '/images/hero/look-001.jpg', aspectRatio: '3/4' },
+  { label: 'LOOK / 002', src: '/images/hero/look-002.jpg', aspectRatio: '4/5' },
   { label: 'DETAIL / 003', src: '/images/hero/detail-003.jpg', aspectRatio: '1/1' },
 ]
 
@@ -92,7 +92,7 @@ export default function HeroSection() {
     src: img.src,
     alt: img.label,
     caption: img.label,
-    captionKo: 'ASKEW 2024-25',
+    captionKo: 'ASKEW',
     width: 1200,
     height: img.aspectRatio === '1/1' ? 1200 : 1600,
   }))
@@ -129,7 +129,7 @@ export default function HeroSection() {
           top="15%"
           rotation={-1.5}
           delay={0.3}
-          label="AW25 / 001"
+          label="LOOK / 001"
           variant="dark"
           aspectRatio="3/4"
           size="hero"
@@ -143,7 +143,7 @@ export default function HeroSection() {
           top="10%"
           rotation={1.5}
           delay={0.5}
-          label="SS25 / 002"
+          label="LOOK / 002"
           variant="light"
           aspectRatio="4/5"
           size="large"
@@ -194,9 +194,6 @@ export default function HeroSection() {
           >
             <span className="font-mono text-[8px] tracking-[0.25em] text-yon-grey/30 uppercase">
               Portfolio
-            </span>
-            <span className="block font-mono text-[8px] tracking-[0.15em] text-yon-grey/20 mt-0.5">
-              2024—25
             </span>
           </motion.div>
         </div>
@@ -266,7 +263,7 @@ export default function HeroSection() {
               Taehyun Lee
             </span>
             <span className="font-mono text-[7px] tracking-[0.15em] text-yon-grey/15 block mt-0.5">
-              SASADA
+              Fashion Designer
             </span>
           </motion.div>
         </div>

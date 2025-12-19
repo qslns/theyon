@@ -161,12 +161,14 @@ export default async function AboutPage() {
           filmFilter="warm"
         />
 
-        {/* Season label */}
+        {/* Brand label */}
         <div
           className="absolute"
           style={{ top: '12%', right: '32%', zIndex: 50 }}
         >
-          <SeasonLabel season="S/S" year="2025" rotation={-2} />
+          <StickerText variant="stamp" rotation={-2} color="accent" size="xs">
+            ASKEW
+          </StickerText>
         </div>
 
         {/* Name and info - positioned asymmetrically */}
@@ -198,14 +200,14 @@ export default async function AboutPage() {
 
           <div className="mt-5 flex items-center gap-4">
             <ExperimentalText
-              text="Seoul / Tokyo"
+              text="Seoul"
               variant="caption"
               effect="scatter"
               intensity="medium"
             />
             <span className="w-8 h-px bg-yon-accent/40" />
             <ExperimentalText
-              text="SASADA"
+              text="Fashion Designer"
               variant="caption"
               effect="wave"
               intensity="medium"
@@ -377,7 +379,7 @@ export default async function AboutPage() {
           }}
           aria-hidden="true"
         >
-          2024
+          WORK
         </span>
 
         <span
@@ -394,44 +396,44 @@ export default async function AboutPage() {
           }}
           aria-hidden="true"
         >
-          SASADA
+          FORM
         </span>
 
         <div className="relative z-10 max-w-4xl">
           {/* Section label */}
           <StickerText variant="archive" rotation={-0.5} color="transparent" size="xs">
-            BACKGROUND
+            APPROACH
           </StickerText>
 
           <div className="mt-14 space-y-14">
-            {/* Education */}
+            {/* Philosophy */}
             <div style={{ transform: 'rotate(-0.5deg)' }}>
-              <AnnotationText text="EDUCATION" variant="label" style={{ color: 'rgba(139, 115, 85, 0.5)' }} />
+              <AnnotationText text="PHILOSOPHY" variant="label" style={{ color: 'rgba(139, 115, 85, 0.5)' }} />
               <LayeredTitle
-                text="SASADA Fashion School"
+                text="Twisted yet Harmonious"
                 size="small"
                 layerStyle="offset"
                 offsetX={2}
                 offsetY={2}
                 layerOpacity={0.06}
                 className="mt-3"
-                style={{ fontSize: 'clamp(1.2rem, 2.2vw, 1.6rem)' }}
+                style={{ fontSize: 'clamp(1.2rem, 2.2vw, 1.6rem)', fontStyle: 'italic' }}
                 as="h3"
               />
               <WhisperText
-                text="Tokyo — 2023–Present"
+                text="Structure woven in silence"
                 className="block mt-2"
                 style={{ fontSize: '0.6rem' }}
               />
             </div>
 
-            {/* Target */}
+            {/* Approach */}
             <div style={{ marginLeft: '4rem', transform: 'rotate(0.3deg)' }}>
-              <AnnotationText text="PORTFOLIO TARGET" variant="label" style={{ color: 'rgba(139, 115, 85, 0.5)' }} />
+              <AnnotationText text="METHODOLOGY" variant="label" style={{ color: 'rgba(139, 115, 85, 0.5)' }} />
               <p className="font-sans text-yon-grey/55 mt-3" style={{ fontSize: '0.85rem', lineHeight: 1.7 }}>
-                CSM, Parsons, Royal Academy of Antwerp
+                Research-driven experimentation. Embracing imperfection.
               </p>
-              <WhisperText text="Graduate Portfolio" className="block mt-2" style={{ fontSize: '0.5rem' }} />
+              <WhisperText text="Beauty caught in light" className="block mt-2" style={{ fontSize: '0.5rem' }} />
             </div>
 
             {/* Focus */}
@@ -441,7 +443,7 @@ export default async function AboutPage() {
                 className="font-sans text-yon-grey/55 mt-3"
                 style={{ fontSize: '0.85rem', lineHeight: 1.7, maxWidth: '40ch' }}
               >
-                Experimental tailoring, pattern deconstruction, material exploration
+                Experimental construction, material exploration, form studies
               </p>
             </div>
           </div>
@@ -449,7 +451,7 @@ export default async function AboutPage() {
 
         {/* Section decorative elements */}
         <SectionNumber number="03" position="top-right" style={{ top: '5%', right: '3%' }} />
-        <VerticalText text="EDUCATION" position="left" style={{ left: '2%', top: '30%' }} />
+        <VerticalText text="APPROACH" position="left" style={{ left: '2%', top: '30%' }} />
         <DecoLine direction="horizontal" length={100} style={{ bottom: '12%', left: '10%' }} />
 
         {/* Side slots - 3 carefully placed */}

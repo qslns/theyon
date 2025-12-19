@@ -14,7 +14,6 @@ const archiveItems = [
     longDescription: 'Exploring the boundary between precision and disorder in classical tailoring. Each seam becomes a decision point—to follow or to break.',
     status: 'current',
     tags: ['Tailoring', 'Deconstruction', 'Structure'],
-    date: '2025.01',
   },
   {
     id: '002',
@@ -24,7 +23,6 @@ const archiveItems = [
     longDescription: 'What if we celebrated the edges that convention tells us to hide? A meditation on completion and incompleteness.',
     status: 'current',
     tags: ['Raw Edge', 'Texture', 'Unfinished'],
-    date: '2025.01',
   },
   {
     id: '003',
@@ -34,7 +32,6 @@ const archiveItems = [
     longDescription: 'Architecture for the human form. Creating three-dimensional space that moves, breathes, and transforms with the wearer.',
     status: 'archived',
     tags: ['Volume', 'Sculpture', 'Silhouette'],
-    date: '2024.10',
   },
   {
     id: '004',
@@ -44,7 +41,6 @@ const archiveItems = [
     longDescription: 'The toile is not just a test—it is a document of exploration. Each iteration preserves a moment of discovery or failure.',
     status: 'archived',
     tags: ['Muslin', 'Prototype', 'Iteration'],
-    date: '2024.09',
   },
   {
     id: '005',
@@ -54,7 +50,6 @@ const archiveItems = [
     longDescription: 'A collection of experiments that did not succeed in their original intention, but revealed unexpected truths about material and form.',
     status: 'archived',
     tags: ['Failure', 'Learning', 'Discovery'],
-    date: '2024.06',
   },
   {
     id: '006',
@@ -64,7 +59,6 @@ const archiveItems = [
     longDescription: 'Inverting the hierarchy of garment construction. The seam—normally hidden—becomes the main character of the narrative.',
     status: 'archived',
     tags: ['Seams', 'Exposed', 'Detail'],
-    date: '2024.05',
   },
   {
     id: '007',
@@ -74,7 +68,6 @@ const archiveItems = [
     longDescription: 'The first marks of imagination. Before fabric, before form—there is the line. These sketches capture the genesis of ideas.',
     status: 'archived',
     tags: ['Sketch', 'Concept', 'Beginning'],
-    date: '2024.02',
   },
   {
     id: '008',
@@ -84,7 +77,6 @@ const archiveItems = [
     longDescription: 'Macro explorations of textile surfaces. Understanding material through intimate observation reveals patterns invisible to the casual eye.',
     status: 'archived',
     tags: ['Texture', 'Material', 'Surface'],
-    date: '2024.01',
   },
 ]
 
@@ -128,7 +120,6 @@ const ArchiveCard = memo(function ArchiveCard({ item, index }: { item: typeof ar
           >
             {item.status === 'current' ? '● Current' : '○ Archived'}
           </span>
-          <WhisperText text={item.date} className="text-yon-grey/30" />
         </div>
 
         <h3 className="font-serif text-yon-black mt-2" style={{ fontSize: '1rem' }}>

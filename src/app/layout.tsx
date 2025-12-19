@@ -118,7 +118,7 @@ const jsonLd = {
       '@id': 'https://askewstudio.vercel.app/#collections',
       url: 'https://askewstudio.vercel.app/collections',
       name: 'Collections',
-      description: 'Spider\'s Web Collection - Wearable sculpture by ASKEW',
+      description: 'Experimental fashion collections - Wearable sculpture by ASKEW',
       isPartOf: { '@id': 'https://askewstudio.vercel.app/#website' },
     },
   ],
