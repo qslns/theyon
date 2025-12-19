@@ -8,101 +8,140 @@ const dataset = 'production'
 
 // Section labels in Korean
 const SECTION_LABELS: Record<string, string> = {
-  background: '🎨 배경',
+  background: '🖼️ 배경',
   hero: '⭐ 히어로',
   philosophy: '💭 철학',
-  collections: '📸 컬렉션',
+  collections: '👔 컬렉션',
   process: '⚙️ 프로세스',
   contact: '📧 연락처',
-  education: '📚 교육',
+  education: '🎓 교육',
   header: '📋 헤더',
-  archive: '📁 아카이브',
-  cta: '🔗 CTA',
+  archive: '📦 아카이브',
+  cta: '🎯 CTA',
   location: '📍 위치',
-  social: '🌐 소셜',
   failures: '❌ 실패',
-  method: '📝 방법',
+  method: '🔬 방법론',
+  gallery: '🖼️ 갤러리',
 }
 
-// Page configurations with sections and slot counts
+// Page configurations with sections - ACTUAL slot counts
 const PAGE_CONFIG = [
   {
     id: 'home',
     title: '🏠 Home',
-    count: 43,
+    count: 16,
     sections: [
-      { id: 'background', count: 1 },
-      { id: 'hero', count: 15 },
-      { id: 'philosophy', count: 6 },
-      { id: 'collections', count: 10 },
-      { id: 'process', count: 8 },
-      { id: 'contact', count: 3 },
+      { id: 'background', count: 2 },
+      { id: 'hero', count: 4 },
+      { id: 'philosophy', count: 2 },
+      { id: 'collections', count: 4 },
+      { id: 'process', count: 3 },
+      { id: 'contact', count: 1 },
     ],
   },
   {
     id: 'about',
     title: '👤 About',
-    count: 40,
+    count: 14,
     sections: [
-      { id: 'background', count: 1 },
-      { id: 'hero', count: 15 },
-      { id: 'philosophy', count: 8 },
-      { id: 'education', count: 6 },
-      { id: 'process', count: 7 },
-      { id: 'contact', count: 3 },
+      { id: 'background', count: 2 },
+      { id: 'hero', count: 3 },
+      { id: 'philosophy', count: 2 },
+      { id: 'education', count: 3 },
+      { id: 'process', count: 3 },
+      { id: 'contact', count: 1 },
     ],
   },
   {
     id: 'collections',
     title: '📸 Collections',
-    count: 16,
+    count: 8,
     sections: [
-      { id: 'background', count: 1 },
-      { id: 'header', count: 10 },
-      { id: 'archive', count: 5 },
+      { id: 'background', count: 2 },
+      { id: 'header', count: 4 },
+      { id: 'archive', count: 2 },
     ],
   },
   {
     id: 'archive',
     title: '📁 Archive',
-    count: 16,
+    count: 8,
     sections: [
-      { id: 'background', count: 1 },
-      { id: 'header', count: 12 },
-      { id: 'cta', count: 3 },
+      { id: 'background', count: 2 },
+      { id: 'header', count: 4 },
+      { id: 'cta', count: 2 },
     ],
   },
   {
     id: 'process',
     title: '⚙️ Process',
-    count: 12,
+    count: 8,
     sections: [
-      { id: 'background', count: 1 },
-      { id: 'hero', count: 8 },
-      { id: 'cta', count: 3 },
+      { id: 'background', count: 2 },
+      { id: 'hero', count: 4 },
+      { id: 'cta', count: 2 },
     ],
   },
   {
     id: 'contact',
     title: '📧 Contact',
-    count: 25,
+    count: 8,
     sections: [
-      { id: 'background', count: 1 },
-      { id: 'hero', count: 15 },
-      { id: 'location', count: 6 },
-      { id: 'social', count: 3 },
+      { id: 'background', count: 2 },
+      { id: 'hero', count: 4 },
+      { id: 'location', count: 2 },
     ],
   },
   {
     id: 'lab',
     title: '🧪 Lab',
-    count: 33,
+    count: 13,
     sections: [
-      { id: 'background', count: 1 },
-      { id: 'hero', count: 12 },
-      { id: 'failures', count: 12 },
-      { id: 'method', count: 5 },
-      { id: 'cta', count: 3 },
+      { id: 'background', count: 2 },
+      { id: 'hero', count: 4 },
+      { id: 'failures', count: 4 },
+      { id: 'method', count: 3 },
+    ],
+  },
+  // Collection Detail Pages
+  {
+    id: 'collection-deconstruction',
+    title: '👔 DECONSTRUCTION',
+    count: 8,
+    sections: [
+      { id: 'background', count: 2 },
+      { id: 'hero', count: 4 },
+      { id: 'gallery', count: 2 },
+    ],
+  },
+  {
+    id: 'collection-fragments',
+    title: '👗 FRAGMENTS',
+    count: 8,
+    sections: [
+      { id: 'background', count: 2 },
+      { id: 'hero', count: 4 },
+      { id: 'gallery', count: 2 },
+    ],
+  },
+  {
+    id: 'collection-void',
+    title: '🖤 VOID',
+    count: 8,
+    sections: [
+      { id: 'background', count: 2 },
+      { id: 'hero', count: 4 },
+      { id: 'gallery', count: 2 },
+    ],
+  },
+  {
+    id: 'collection-origin',
+    title: '🌱 ORIGIN',
+    count: 8,
+    sections: [
+      { id: 'background', count: 2 },
+      { id: 'hero', count: 4 },
+      { id: 'gallery', count: 2 },
     ],
   },
 ]
@@ -135,7 +174,7 @@ export default defineConfig({
                     // Quick filters at top
                     S.listItem()
                       .id('all-slots')
-                      .title('📋 전체 슬롯 (185개)')
+                      .title('📋 전체 슬롯 (107개)')
                       .child(
                         S.documentTypeList('slotImage')
                           .id('all-slots-docs')
