@@ -22,7 +22,6 @@ export {
   LabelText,
   WhisperText,
   CrossedText,
-  SeasonTag,
 } from './AnnotationText'
 
 export { default as GrainText } from './GrainText'
@@ -48,7 +47,6 @@ export {
 export { default as StickerText } from './StickerText'
 export {
   CollectionLabel,
-  SeasonLabel,
   ArchiveStamp,
   TapeNote,
   MargielaTag,

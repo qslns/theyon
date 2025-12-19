@@ -105,10 +105,23 @@ type FrameStyle =
   | 'vintage'         // 오래된 사진
   | 'contact-sheet'   // 콘택트 시트
   | 'sketchbook'      // 스케치북
+  | 'washi-tape'      // 와시테이프 프레임
+  | 'instax'          // 인스탁스 프레임
+  | 'clip'            // 클립 프레임
+  | 'pin'             // 핀 프레임
+  | 'floating-card'   // 떠있는 카드 프레임
+  | 'sticker'         // 스티커 프레임
+  | 'tape-x'          // 마스킹테이프 X 프레임
   | 'none'
 
 // Slot types - 슬롯 종류
 type SlotType = 'normal' | 'nukki' | 'background'
+
+// Nukki shadow sizes - 누끼 그림자 크기
+type NukkiShadowSize = 'none' | 'sm' | 'default' | 'md' | 'lg' | 'xl' | 'offset' | 'back' | 'accent'
+
+// Nukki effect types - 누끼 특수 효과
+type NukkiEffect = 'none' | 'blur' | 'crisp' | 'vintage' | 'fade' | 'fade-left' | 'fade-right'
 
 // Film filter types
 type FilmFilter = 'default' | 'warm' | 'cool' | 'vintage' | 'faded' | 'bw' | 'none'
@@ -166,6 +179,9 @@ interface SlotProps {
   frameNumber?: string // 콘택트 시트용 번호
   // Slot type - 슬롯 종류
   slotType?: SlotType
+  // Nukki slot options - 누끼 슬롯 전용 옵션
+  nukkiShadow?: NukkiShadowSize
+  nukkiEffect?: NukkiEffect
   // Film filter
   filmFilter?: FilmFilter
   // Custom
@@ -333,6 +349,8 @@ function Slot({
   frameStyle = 'none',
   frameNumber,
   slotType = 'normal',
+  nukkiShadow = 'default',
+  nukkiEffect = 'none',
   filmFilter = 'default',
   className = '',
   style = {},
@@ -381,6 +399,13 @@ function Slot({
     vintage: 'frame-vintage',
     'contact-sheet': 'frame-contact-sheet',
     sketchbook: 'frame-sketchbook',
+    'washi-tape': 'frame-washi-tape',
+    instax: 'frame-instax',
+    clip: 'frame-clip',
+    pin: 'frame-pin',
+    'floating-card': 'frame-floating-card',
+    sticker: 'frame-sticker',
+    'tape-x': 'frame-tape-x',
     none: '',
   }
 
@@ -395,10 +420,36 @@ function Slot({
     none: '',
   }
 
+  // Nukki shadow class mapping
+  const NUKKI_SHADOW_CLASSES: Record<NukkiShadowSize, string> = {
+    none: '',
+    sm: 'slot-nukki-shadow-sm',
+    default: 'slot-nukki-shadow',
+    md: 'slot-nukki-shadow-md',
+    lg: 'slot-nukki-shadow-lg',
+    xl: 'slot-nukki-shadow-xl',
+    offset: 'slot-nukki-shadow-offset',
+    back: 'slot-nukki-shadow-back',
+    accent: 'slot-nukki-shadow-accent',
+  }
+
+  // Nukki effect class mapping
+  const NUKKI_EFFECT_CLASSES: Record<NukkiEffect, string> = {
+    none: '',
+    blur: 'slot-nukki-blur',
+    crisp: 'slot-nukki-crisp',
+    vintage: 'slot-nukki-vintage',
+    fade: 'slot-nukki-fade',
+    'fade-left': 'slot-nukki-fade-left',
+    'fade-right': 'slot-nukki-fade-right',
+  }
+
   // Build class names
   const frameClass = FRAME_STYLE_CLASSES[frameStyle]
   const filmClass = FILM_FILTER_CLASSES[filmFilter]
-  const nukkiClass = slotType === 'nukki' ? 'slot-nukki slot-nukki-shadow' : ''
+  const nukkiClass = slotType === 'nukki'
+    ? `slot-nukki ${NUKKI_SHADOW_CLASSES[nukkiShadow]} ${NUKKI_EFFECT_CLASSES[nukkiEffect]}`.trim()
+    : ''
 
   // Combine all styles
   const combinedStyle: CSSProperties = {
@@ -1038,3 +1089,43 @@ export const AnnotationLabel = memo(function AnnotationLabel({
     </span>
   )
 })
+
+/**
+ * NukkiSlot - 누끼(투명 배경 PNG) 전용 슬롯
+ *
+ * 일반 Slot과 달리:
+ * - 프레임/테두리 없음
+ * - 클립패스 없음
+ * - 드롭 쉐도우로 떠있는 느낌
+ * - 이미지 형태 그대로 표시
+ *
+ * Usage:
+ * <NukkiSlot
+ *   {...slot('home-nukki-001', 'PRODUCT')}
+ *   shadow="lg"
+ *   effect="vintage"
+ *   size="large"
+ * />
+ */
+interface NukkiSlotProps extends Omit<SlotProps, 'slotType' | 'frameStyle' | 'clip' | 'border' | 'nukkiShadow' | 'nukkiEffect'> {
+  shadow?: NukkiShadowSize
+  effect?: NukkiEffect
+}
+
+export function NukkiSlot({
+  shadow = 'default',
+  effect = 'none',
+  ...props
+}: NukkiSlotProps) {
+  return (
+    <Slot
+      {...props}
+      slotType="nukki"
+      nukkiShadow={shadow}
+      nukkiEffect={effect}
+      frameStyle="none"
+      clip="none"
+      border="none"
+    />
+  )
+}

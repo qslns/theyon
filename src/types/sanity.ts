@@ -21,9 +21,8 @@ export interface Collection {
   _id: string
   title: string
   slug: string
-  season: 'fw25' | 'ss25' | 'fw24' | 'ss24' | 'aw25' | 'aw24'
-  year: number
-  status: 'in_progress' | 'testing' | 'complete'
+  season?: string // Optional generic season
+  status: 'in_progress' | 'testing' | 'complete' | 'archived' | 'upcoming'
   mainImage: SanityImage
   gallery?: SanityImage[]
   description?: string

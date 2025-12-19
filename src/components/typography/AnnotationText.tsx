@@ -323,20 +323,3 @@ export const CrossedText = memo(function CrossedText(
   return <AnnotationText {...props} variant="crossed" />
 })
 
-// Season tag (common in fashion)
-export const SeasonTag = memo(function SeasonTag({
-  season,
-  year,
-  ...props
-}: Omit<AnnotationTextProps, 'variant' | 'text'> & {
-  season: 'SS' | 'AW' | 'PF' | 'RS'
-  year: string
-}) {
-  return (
-    <AnnotationText
-      {...props}
-      text={`${season}${year}`}
-      variant="tag"
-    />
-  )
-})

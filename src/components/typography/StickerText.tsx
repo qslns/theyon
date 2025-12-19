@@ -234,23 +234,6 @@ export const CollectionLabel = memo(function CollectionLabel({
   )
 })
 
-// Season tag - "2025 S/S"
-export const SeasonLabel = memo(function SeasonLabel({
-  season,
-  year = '2025',
-  rotation = 1,
-}: {
-  season: 'S/S' | 'A/W' | 'F/W' | 'Resort' | 'Pre-Fall'
-  year?: string
-  rotation?: number
-}) {
-  return (
-    <StickerText variant="tag" color="white" rotation={rotation} size="xs" hole>
-      {year} {season}
-    </StickerText>
-  )
-})
-
 // Archive stamp - "ARCHIVED"
 export const ArchiveStamp = memo(function ArchiveStamp({
   text = 'ARCHIVED',

@@ -108,7 +108,7 @@ This website serves as an experimental fashion design portfolio showcasing weara
 
 ## License
 
-© 2025 THE YON. All rights reserved.
+© ASKEW. All rights reserved.
 
 ---
 

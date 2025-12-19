@@ -1,29 +1,23 @@
-// ASKEW Archive - 정신세계와 철학의 기록
+// ASKEW Archive - Philosophy and Research Documentation
 
 export interface Philosophy {
   id: string
   title: string
   content: string
-  date: string
   category: 'MANIFESTO' | 'THOUGHT' | 'PROCESS' | 'REFLECTION'
 }
 
 export interface ArchiveEntry {
   id: string
-  year: number
-  month: string
-  day?: number
   title: string
   subtitle: string
-  type: 'PHILOSOPHY' | 'EXPERIMENT' | 'COLLECTION' | 'EVENT' | 'FAILURE' | 'DISCOVERY'
-  category: 'CREATION' | 'DESTRUCTION' | 'TRANSFORMATION' | 'REVELATION'
+  type: 'PHILOSOPHY' | 'EXPERIMENT' | 'RESEARCH' | 'PROCESS' | 'STUDY'
+  category: 'CREATION' | 'EXPLORATION' | 'TRANSFORMATION' | 'REFLECTION'
   content: string
   thoughts: string[]
   tags: string[]
   significance: number // 1-5
   isPublic: boolean
-  relatedExperiments?: string[]
-  relatedCollections?: string[]
 }
 
 export const philosophies: Philosophy[] = [
@@ -36,8 +30,7 @@ export const philosophies: Philosophy[] = [
 
     ASKEW is an experimental fashion laboratory. We pursue the limits of fashion through rigorous research and uncompromising methodology.
 
-    The laboratory is where fashion meets science, where fabric meets philosophy, where destruction creates beauty.`,
-    date: 'ONGOING',
+    The laboratory is where fashion meets art, where fabric meets philosophy, where destruction creates beauty.`,
     category: 'MANIFESTO'
   },
   {
@@ -48,7 +41,6 @@ export const philosophies: Philosophy[] = [
     In the laboratory, we embrace failure as a teacher. Each failed experiment brings us closer to revelation.
 
     Pattern deconstruction is not about breaking things - it's about finding the beauty in broken things.`,
-    date: 'ONGOING',
     category: 'THOUGHT'
   },
   {
@@ -59,7 +51,6 @@ export const philosophies: Philosophy[] = [
     We design for the future while honoring the destruction of the past. Each collection is a time capsule of NOW.
 
     Fashion that changes over time, that degrades beautifully, that evolves with wear - this is living fashion.`,
-    date: 'ONGOING',
     category: 'PROCESS'
   },
   {
@@ -70,53 +61,44 @@ export const philosophies: Philosophy[] = [
     In fashion, what we don't create is as important as what we do create. The absence defines the presence.
 
     TWIST • BALANCE • REPEAT - The twist creates tension, the balance creates harmony, the repeat creates rhythm.`,
-    date: 'ONGOING',
     category: 'REFLECTION'
   },
   {
     id: 'PHIL_005',
-    title: 'COMMERCE IS DEATH',
-    content: `The moment fashion becomes commerce, it dies. Price tags are tombstones.
+    title: 'BEYOND COMMERCE',
+    content: `When fashion becomes pure commerce, it loses its soul.
 
-    We don't sell because selling diminishes the work. Each piece exists as art, as experiment, as statement.
+    We create because we must. Each piece exists as art, as experiment, as statement.
 
-    After exhibitions, after documentation, maybe one piece finds an owner. Not through transaction, but through understanding.`,
-    date: 'ONGOING',
+    The work speaks for itself. Not through price, but through understanding.`,
     category: 'MANIFESTO'
   }
 ]
 
 export const archiveEntries: ArchiveEntry[] = [
-  // 2025 Entries
+  // Research & Process
   {
-    id: 'ARCHIVE_2025_001',
-    year: 2025,
-    month: 'JANUARY',
-    day: 15,
+    id: 'ARCHIVE_001',
     title: 'THE BEGINNING OF CHAOS',
-    subtitle: 'First experiment of the new cycle',
+    subtitle: 'Pattern deconstruction series',
     type: 'EXPERIMENT',
     category: 'CREATION',
-    content: 'Initiated the pattern deconstruction series. Traditional pattern blocks subjected to mathematical chaos theory. Results: unexpected beauty in disorder.',
+    content: 'Pattern blocks subjected to creative reinterpretation. Traditional forms questioned, new silhouettes discovered.',
     thoughts: [
       'Patterns want to be broken',
-      'Mathematics is the language of fashion',
-      'Chaos is just unrecognized order'
+      'Structure is just one possibility',
+      'Chaos is unrecognized order'
     ],
-    tags: ['PATTERN', 'CHAOS', 'MATHEMATICS', 'DECONSTRUCTION'],
+    tags: ['PATTERN', 'DECONSTRUCTION', 'STRUCTURE'],
     significance: 5,
-    isPublic: true,
-    relatedExperiments: ['EXP_001']
+    isPublic: true
   },
   {
-    id: 'ARCHIVE_2025_002',
-    year: 2025,
-    month: 'FEBRUARY',
-    day: 3,
+    id: 'ARCHIVE_002',
     title: 'FAILURE AS TEACHER',
-    subtitle: 'Complete structural collapse in test 3',
-    type: 'FAILURE',
-    category: 'DESTRUCTION',
+    subtitle: 'Structural exploration',
+    type: 'STUDY',
+    category: 'EXPLORATION',
     content: 'The garment collapsed under its own conceptual weight. The structure could not support the idea. But in collapse, we found new form.',
     thoughts: [
       'Failure is data',
@@ -125,125 +107,97 @@ export const archiveEntries: ArchiveEntry[] = [
     ],
     tags: ['FAILURE', 'STRUCTURE', 'LEARNING'],
     significance: 4,
-    isPublic: true,
-    relatedExperiments: ['EXP_001']
+    isPublic: true
   },
   {
-    id: 'ARCHIVE_2025_003',
-    year: 2025,
-    month: 'MARCH',
-    day: 1,
+    id: 'ARCHIVE_003',
     title: 'DECONSTRUCTED REALITY',
-    subtitle: 'New Collection Launch',
-    type: 'COLLECTION',
-    category: 'REVELATION',
-    content: 'Reality bent through the lens of deconstruction. Each piece exists between structure and chaos. No sales, only exhibition.',
+    subtitle: 'Collection development',
+    type: 'RESEARCH',
+    category: 'REFLECTION',
+    content: 'Reality bent through the lens of deconstruction. Each piece exists between structure and chaos.',
     thoughts: [
       'Fashion is not about selling',
       'It is about creating moments that transcend commerce',
       'This is not just a collection, it is a statement'
     ],
-    tags: ['COLLECTION', 'EXPERIMENT', 'NO_SALES'],
+    tags: ['COLLECTION', 'EXPERIMENT', 'PHILOSOPHY'],
     significance: 5,
-    isPublic: true,
-    relatedCollections: ['COL_001']
+    isPublic: true
   },
-
-  // 2024 Entries
   {
-    id: 'ARCHIVE_2024_001',
-    year: 2024,
-    month: 'MARCH',
-    day: 15,
-    title: 'MATERIAL ALCHEMY BEGINS',
-    subtitle: 'Chemical manipulation of textiles',
+    id: 'ARCHIVE_004',
+    title: 'MATERIAL EXPLORATION',
+    subtitle: 'Textile research',
     type: 'EXPERIMENT',
     category: 'TRANSFORMATION',
-    content: 'Started thermal restructuring experiments. Synthetic polymers subjected to 800°C heat, then rapid cooling in nitrogen. Fabric developed memory.',
+    content: 'Exploring the boundaries of fabric behavior. Understanding how materials respond to manipulation and stress.',
     thoughts: [
-      'Heat creates memory in fabrics',
+      'Materials have memory',
       'Destruction is a form of creation',
-      'Chemistry is fashion'
+      'Every fabric tells a story'
     ],
-    tags: ['MATERIAL', 'ALCHEMY', 'HEAT', 'TRANSFORMATION'],
+    tags: ['MATERIAL', 'RESEARCH', 'TRANSFORMATION'],
     significance: 5,
-    isPublic: true,
-    relatedExperiments: ['EXP_002']
+    isPublic: true
   },
   {
-    id: 'ARCHIVE_2024_002',
-    year: 2024,
-    month: 'MAY',
-    day: 7,
-    title: 'TOXIC FUME GENERATION',
-    subtitle: 'Uncontrolled chemical reaction',
-    type: 'FAILURE',
-    category: 'DESTRUCTION',
-    content: 'Acid erosion experiment went wrong. Complete dissolution of sample 7. Lab evacuated. But we learned about material limits.',
+    id: 'ARCHIVE_005',
+    title: 'UNEXPECTED RESULTS',
+    subtitle: 'Learning from mistakes',
+    type: 'STUDY',
+    category: 'EXPLORATION',
+    content: 'Sometimes the best discoveries come from unplanned outcomes. Embracing the unexpected as creative opportunity.',
     thoughts: [
-      'Chemistry has its own agenda',
+      'Mistakes are discoveries in disguise',
       'Respect the materials',
-      'Danger is part of experimentation'
+      'Every failure teaches something new'
     ],
-    tags: ['FAILURE', 'DANGER', 'CHEMISTRY'],
+    tags: ['FAILURE', 'DISCOVERY', 'LEARNING'],
     significance: 3,
-    isPublic: true,
-    relatedExperiments: ['EXP_002']
+    isPublic: true
   },
   {
-    id: 'ARCHIVE_2024_003',
-    year: 2024,
-    month: 'SEPTEMBER',
-    day: 1,
+    id: 'ARCHIVE_006',
     title: 'TEMPORAL DISTORTION',
-    subtitle: 'Archive Collection',
-    type: 'COLLECTION',
-    category: 'REVELATION',
-    content: 'Time folded onto itself. Past and future collapsed into singular moments of creation. Each garment is a timestamp of experimental research.',
+    subtitle: 'Time-based research',
+    type: 'RESEARCH',
+    category: 'REFLECTION',
+    content: 'Exploring how garments exist across time. Past and future collapsed into singular moments of creation.',
     thoughts: [
       'Time is not linear',
       'Fashion exists in multiple dimensions',
-      'Breaking temporal boundaries'
+      'Every piece is a timestamp'
     ],
-    tags: ['COLLECTION', 'ARCHIVE', 'TIME'],
+    tags: ['TIME', 'PHILOSOPHY', 'RESEARCH'],
     significance: 5,
-    isPublic: true,
-    relatedCollections: ['COL_002']
+    isPublic: true
   },
   {
-    id: 'ARCHIVE_2024_004',
-    year: 2024,
-    month: 'NOVEMBER',
-    day: 20,
-    title: 'DIMENSIONAL BREAKTHROUGH',
-    subtitle: 'Möbius strip integration success',
-    type: 'DISCOVERY',
+    id: 'ARCHIVE_007',
+    title: 'DIMENSIONAL STUDY',
+    subtitle: 'Form exploration',
+    type: 'EXPERIMENT',
     category: 'CREATION',
-    content: 'Successfully created garments with no beginning or end. The wearer becomes part of an infinite loop. Fashion can be non-Euclidean.',
+    content: 'Investigating how three-dimensional forms wrap and define the human body. Geometry as wearable art.',
     thoughts: [
       'Geometry is wearable',
-      'Infinity fits the human form',
+      'The body defines the form',
       'Breaking dimensional boundaries'
     ],
-    tags: ['DISCOVERY', 'DIMENSION', 'MÖBIUS'],
+    tags: ['FORM', 'GEOMETRY', 'BODY'],
     significance: 5,
-    isPublic: true,
-    relatedExperiments: ['EXP_003']
+    isPublic: true
   },
-
-  // 2023 Entries
   {
-    id: 'ARCHIVE_2023_001',
-    year: 2023,
-    month: 'JUNE',
-    day: 15,
-    title: 'THE LABORATORY OPENS',
-    subtitle: 'ASKEW is born',
-    type: 'EVENT',
+    id: 'ARCHIVE_008',
+    title: 'THE LABORATORY',
+    subtitle: 'Space of creation',
+    type: 'PHILOSOPHY',
     category: 'CREATION',
-    content: 'Today marks the beginning. No more commerce. No more compromise. Only pure creation. The laboratory is open.',
+    content: 'The beginning of pure experimentation. No more commerce. No more compromise. Only creation.',
     thoughts: [
-      'This is day zero',
+      'This is where it begins',
       'Fashion dies when it becomes product',
       'We choose experiment over profit'
     ],
@@ -252,84 +206,46 @@ export const archiveEntries: ArchiveEntry[] = [
     isPublic: true
   },
   {
-    id: 'ARCHIVE_2023_002',
-    year: 2023,
-    month: 'AUGUST',
-    day: 30,
-    title: 'WEARER TRAPPED IN LOOP',
-    subtitle: 'Möbius experiment gone wrong',
-    type: 'FAILURE',
-    category: 'DESTRUCTION',
-    content: 'Test subject could not exit the garment. The Möbius design worked too well. Emergency scissors required. Back to drawing board.',
+    id: 'ARCHIVE_009',
+    title: 'ITERATION STUDY',
+    subtitle: 'Process documentation',
+    type: 'PROCESS',
+    category: 'EXPLORATION',
+    content: 'Multiple iterations of the same concept. Each version teaches something new about the original idea.',
     thoughts: [
       'Success and failure are perspectives',
-      'The garment was perfect, the human was not',
-      'We must design for human limitations'
+      'Iteration reveals truth',
+      'We must design for evolution'
     ],
-    tags: ['FAILURE', 'MÖBIUS', 'HUMAN_ERROR'],
+    tags: ['ITERATION', 'PROCESS', 'EVOLUTION'],
     significance: 4,
-    isPublic: true,
-    relatedExperiments: ['EXP_003']
+    isPublic: true
   },
   {
-    id: 'ARCHIVE_2023_003',
-    year: 2023,
-    month: 'DECEMBER',
-    day: 25,
-    title: 'GENIUS RECOGNITION',
-    subtitle: 'The world begins to understand',
-    type: 'EVENT',
-    category: 'REVELATION',
-    content: 'First major exhibition. No sales booth. No price tags. Just pure fashion experiment. The audience was confused, then amazed.',
+    id: 'ARCHIVE_010',
+    title: 'RECOGNITION',
+    subtitle: 'Exhibition documentation',
+    type: 'PHILOSOPHY',
+    category: 'REFLECTION',
+    content: 'Pure fashion experiment on display. The audience was confused, then amazed.',
     thoughts: [
       'Confusion precedes understanding',
       'Experimental work is often misunderstood initially',
       'We are not here to be understood, we are here to create'
     ],
-    tags: ['EXHIBITION', 'RECOGNITION', 'NO_SALES'],
+    tags: ['EXHIBITION', 'UNDERSTANDING', 'CREATION'],
     significance: 5,
     isPublic: true
   }
 ]
 
-// Archive Statistics
-export interface ArchiveStats {
-  year: number
-  experiments: number
-  collections: number
-  events: number
-  failures: number
-  discoveries: number
-  totalEntries: number
-}
-
-export function getArchiveStats(): ArchiveStats[] {
-  const years = [...new Set(archiveEntries.map(e => e.year))].sort((a, b) => b - a)
-
-  return years.map(year => {
-    const yearEntries = archiveEntries.filter(e => e.year === year)
-    return {
-      year,
-      experiments: yearEntries.filter(e => e.type === 'EXPERIMENT').length,
-      collections: yearEntries.filter(e => e.type === 'COLLECTION').length,
-      events: yearEntries.filter(e => e.type === 'EVENT').length,
-      failures: yearEntries.filter(e => e.type === 'FAILURE').length,
-      discoveries: yearEntries.filter(e => e.type === 'DISCOVERY').length,
-      totalEntries: yearEntries.length
-    }
-  })
-}
-
+// Archive Helper Functions
 export function getPhilosophyById(id: string): Philosophy | undefined {
   return philosophies.find(p => p.id === id)
 }
 
 export function getArchiveEntryById(id: string): ArchiveEntry | undefined {
   return archiveEntries.find(e => e.id === id)
-}
-
-export function getEntriesByYear(year: number): ArchiveEntry[] {
-  return archiveEntries.filter(e => e.year === year)
 }
 
 export function getEntriesByType(type: ArchiveEntry['type']): ArchiveEntry[] {
