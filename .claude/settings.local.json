@@ -49,7 +49,8 @@
       "Bash(ls:*)",
       "Bash(npx next build)",
       "Bash(wc:*)",
-      "Bash(npx stylelint:*)"
+      "Bash(npx stylelint:*)",
+      "Bash(git grep:*)"
     ],
     "deny": [],
     "ask": []

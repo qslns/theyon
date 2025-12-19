@@ -152,7 +152,7 @@ const SLOTS: SlotData[] = [
 
   // Header Section (10 slots)
   { slotId: 'collections-header-001', page: 'collections', section: 'header', description: 'Collections 헤더 피처드 이미지.', slotSize: 'hero', label: 'FEATURED' },
-  { slotId: 'collections-header-002', page: 'collections', section: 'header', description: 'Collections 헤더 AW25 이미지.', slotSize: 'large', label: 'AW25' },
+  { slotId: 'collections-header-002', page: 'collections', section: 'header', description: 'Collections 헤더 시즌 이미지.', slotSize: 'large', label: 'SEASONAL' },
   { slotId: 'collections-header-003', page: 'collections', section: 'header', description: 'Collections 헤더 프로세스 이미지.', slotSize: 'medium', label: 'PROCESS' },
   { slotId: 'collections-header-004', page: 'collections', section: 'header', description: 'Collections 헤더 레퍼런스 이미지.', slotSize: 'small', label: 'REF' },
   { slotId: 'collections-header-005', page: 'collections', section: 'header', description: 'Collections 헤더 스와치 A.', slotSize: 'swatch', label: 'A' },
@@ -232,7 +232,7 @@ const SLOTS: SlotData[] = [
   { slotId: 'contact-hero-011', page: 'contact', section: 'hero', description: 'Contact 히어로 작업 이미지.', slotSize: 'small', label: 'WORK' },
   { slotId: 'contact-hero-012', page: 'contact', section: 'hero', description: 'Contact 히어로 협업 이미지.', slotSize: 'tiny', label: 'COLLAB' },
   { slotId: 'contact-hero-013', page: 'contact', section: 'hero', description: 'Contact 히어로 KR 스와치.', slotSize: 'swatch', label: 'KR' },
-  { slotId: 'contact-hero-014', page: 'contact', section: 'hero', description: 'Contact 히어로 2024 스와치.', slotSize: 'swatch', label: '2024' },
+  { slotId: 'contact-hero-014', page: 'contact', section: 'hero', description: 'Contact 히어로 C 스와치.', slotSize: 'swatch', label: 'C' },
   { slotId: 'contact-hero-015', page: 'contact', section: 'hero', description: 'Contact 히어로 화살표.', slotSize: 'micro', label: '→' },
 
   // Location Section (6 slots)
