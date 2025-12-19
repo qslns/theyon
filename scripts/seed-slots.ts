@@ -671,6 +671,49 @@ const SLOTS: SlotData[] = [
     slotSize: 'medium',
     description: `방법론 섹션의 "Refine" 정제 단계 이미지입니다.\n\n${SIZE_GUIDE.medium}`,
   },
+
+  // ==========================================
+  // COLLECTION DETAIL PAGES (32 slots - 8 per collection)
+  // ==========================================
+  // DECONSTRUCTION
+  { slotId: 'collection-deconstruction-background-001', page: 'collection-deconstruction', section: 'background', label: '🖼️ 배경', slotSize: 'background', description: `DECONSTRUCTION 컬렉션 고정 배경 이미지입니다.\n\n${SIZE_GUIDE.background}` },
+  { slotId: 'collection-deconstruction-background-002', page: 'collection-deconstruction', section: 'background', label: '🖼️ 스크롤 배경', slotSize: 'background', description: `DECONSTRUCTION 컬렉션 스크롤 배경 이미지입니다.\n\n${SIZE_GUIDE.background}` },
+  { slotId: 'collection-deconstruction-hero-001', page: 'collection-deconstruction', section: 'hero', label: '⭐ DECONSTRUCTION 메인', slotSize: 'hero', description: `DECONSTRUCTION 컬렉션의 메인 히어로 이미지입니다.\n\n${SIZE_GUIDE.hero}\n\n💡 팁: 이 컬렉션을 대표하는 가장 강력한 룩 이미지.` },
+  { slotId: 'collection-deconstruction-hero-002', page: 'collection-deconstruction', section: 'hero', label: '🔍 디테일', slotSize: 'medium', description: `DECONSTRUCTION 히어로의 디테일 이미지입니다.\n\n${SIZE_GUIDE.medium}` },
+  { slotId: 'collection-deconstruction-hero-003', page: 'collection-deconstruction', section: 'hero', label: '⚙️ 프로세스', slotSize: 'small', description: `DECONSTRUCTION 히어로의 프로세스 이미지입니다.\n\n${SIZE_GUIDE.small}` },
+  { slotId: 'collection-deconstruction-hero-004', page: 'collection-deconstruction', section: 'hero', label: '🧵 소재', slotSize: 'swatch', description: `DECONSTRUCTION 히어로의 소재 스와치입니다.\n\n${SIZE_GUIDE.swatch}` },
+  { slotId: 'collection-deconstruction-gallery-001', page: 'collection-deconstruction', section: 'gallery', label: '👔 룩 01', slotSize: 'large', description: `DECONSTRUCTION 갤러리의 첫 번째 룩 이미지입니다.\n\n${SIZE_GUIDE.large}` },
+  { slotId: 'collection-deconstruction-gallery-002', page: 'collection-deconstruction', section: 'gallery', label: '👗 룩 02', slotSize: 'medium', description: `DECONSTRUCTION 갤러리의 두 번째 룩 이미지입니다.\n\n${SIZE_GUIDE.medium}` },
+
+  // FRAGMENTS
+  { slotId: 'collection-fragments-background-001', page: 'collection-fragments', section: 'background', label: '🖼️ 배경', slotSize: 'background', description: `FRAGMENTS 컬렉션 고정 배경 이미지입니다.\n\n${SIZE_GUIDE.background}` },
+  { slotId: 'collection-fragments-background-002', page: 'collection-fragments', section: 'background', label: '🖼️ 스크롤 배경', slotSize: 'background', description: `FRAGMENTS 컬렉션 스크롤 배경 이미지입니다.\n\n${SIZE_GUIDE.background}` },
+  { slotId: 'collection-fragments-hero-001', page: 'collection-fragments', section: 'hero', label: '⭐ FRAGMENTS 메인', slotSize: 'hero', description: `FRAGMENTS 컬렉션의 메인 히어로 이미지입니다.\n\n${SIZE_GUIDE.hero}\n\n💡 팁: 이 컬렉션을 대표하는 가장 강력한 룩 이미지.` },
+  { slotId: 'collection-fragments-hero-002', page: 'collection-fragments', section: 'hero', label: '🔍 디테일', slotSize: 'medium', description: `FRAGMENTS 히어로의 디테일 이미지입니다.\n\n${SIZE_GUIDE.medium}` },
+  { slotId: 'collection-fragments-hero-003', page: 'collection-fragments', section: 'hero', label: '⚙️ 프로세스', slotSize: 'small', description: `FRAGMENTS 히어로의 프로세스 이미지입니다.\n\n${SIZE_GUIDE.small}` },
+  { slotId: 'collection-fragments-hero-004', page: 'collection-fragments', section: 'hero', label: '🧵 소재', slotSize: 'swatch', description: `FRAGMENTS 히어로의 소재 스와치입니다.\n\n${SIZE_GUIDE.swatch}` },
+  { slotId: 'collection-fragments-gallery-001', page: 'collection-fragments', section: 'gallery', label: '👔 룩 01', slotSize: 'large', description: `FRAGMENTS 갤러리의 첫 번째 룩 이미지입니다.\n\n${SIZE_GUIDE.large}` },
+  { slotId: 'collection-fragments-gallery-002', page: 'collection-fragments', section: 'gallery', label: '👗 룩 02', slotSize: 'medium', description: `FRAGMENTS 갤러리의 두 번째 룩 이미지입니다.\n\n${SIZE_GUIDE.medium}` },
+
+  // VOID
+  { slotId: 'collection-void-background-001', page: 'collection-void', section: 'background', label: '🖼️ 배경', slotSize: 'background', description: `VOID 컬렉션 고정 배경 이미지입니다.\n\n${SIZE_GUIDE.background}` },
+  { slotId: 'collection-void-background-002', page: 'collection-void', section: 'background', label: '🖼️ 스크롤 배경', slotSize: 'background', description: `VOID 컬렉션 스크롤 배경 이미지입니다.\n\n${SIZE_GUIDE.background}` },
+  { slotId: 'collection-void-hero-001', page: 'collection-void', section: 'hero', label: '⭐ VOID 메인', slotSize: 'hero', description: `VOID 컬렉션의 메인 히어로 이미지입니다.\n\n${SIZE_GUIDE.hero}\n\n💡 팁: 이 컬렉션을 대표하는 가장 강력한 룩 이미지.` },
+  { slotId: 'collection-void-hero-002', page: 'collection-void', section: 'hero', label: '🔍 디테일', slotSize: 'medium', description: `VOID 히어로의 디테일 이미지입니다.\n\n${SIZE_GUIDE.medium}` },
+  { slotId: 'collection-void-hero-003', page: 'collection-void', section: 'hero', label: '⚙️ 프로세스', slotSize: 'small', description: `VOID 히어로의 프로세스 이미지입니다.\n\n${SIZE_GUIDE.small}` },
+  { slotId: 'collection-void-hero-004', page: 'collection-void', section: 'hero', label: '🧵 소재', slotSize: 'swatch', description: `VOID 히어로의 소재 스와치입니다.\n\n${SIZE_GUIDE.swatch}` },
+  { slotId: 'collection-void-gallery-001', page: 'collection-void', section: 'gallery', label: '👔 룩 01', slotSize: 'large', description: `VOID 갤러리의 첫 번째 룩 이미지입니다.\n\n${SIZE_GUIDE.large}` },
+  { slotId: 'collection-void-gallery-002', page: 'collection-void', section: 'gallery', label: '👗 룩 02', slotSize: 'medium', description: `VOID 갤러리의 두 번째 룩 이미지입니다.\n\n${SIZE_GUIDE.medium}` },
+
+  // ORIGIN
+  { slotId: 'collection-origin-background-001', page: 'collection-origin', section: 'background', label: '🖼️ 배경', slotSize: 'background', description: `ORIGIN 컬렉션 고정 배경 이미지입니다.\n\n${SIZE_GUIDE.background}` },
+  { slotId: 'collection-origin-background-002', page: 'collection-origin', section: 'background', label: '🖼️ 스크롤 배경', slotSize: 'background', description: `ORIGIN 컬렉션 스크롤 배경 이미지입니다.\n\n${SIZE_GUIDE.background}` },
+  { slotId: 'collection-origin-hero-001', page: 'collection-origin', section: 'hero', label: '⭐ ORIGIN 메인', slotSize: 'hero', description: `ORIGIN 컬렉션의 메인 히어로 이미지입니다.\n\n${SIZE_GUIDE.hero}\n\n💡 팁: 이 컬렉션을 대표하는 가장 강력한 룩 이미지.` },
+  { slotId: 'collection-origin-hero-002', page: 'collection-origin', section: 'hero', label: '🔍 디테일', slotSize: 'medium', description: `ORIGIN 히어로의 디테일 이미지입니다.\n\n${SIZE_GUIDE.medium}` },
+  { slotId: 'collection-origin-hero-003', page: 'collection-origin', section: 'hero', label: '⚙️ 프로세스', slotSize: 'small', description: `ORIGIN 히어로의 프로세스 이미지입니다.\n\n${SIZE_GUIDE.small}` },
+  { slotId: 'collection-origin-hero-004', page: 'collection-origin', section: 'hero', label: '🧵 소재', slotSize: 'swatch', description: `ORIGIN 히어로의 소재 스와치입니다.\n\n${SIZE_GUIDE.swatch}` },
+  { slotId: 'collection-origin-gallery-001', page: 'collection-origin', section: 'gallery', label: '👔 룩 01', slotSize: 'large', description: `ORIGIN 갤러리의 첫 번째 룩 이미지입니다.\n\n${SIZE_GUIDE.large}` },
+  { slotId: 'collection-origin-gallery-002', page: 'collection-origin', section: 'gallery', label: '👗 룩 02', slotSize: 'medium', description: `ORIGIN 갤러리의 두 번째 룩 이미지입니다.\n\n${SIZE_GUIDE.medium}` },
 ]
 
 async function seedSlots() {
